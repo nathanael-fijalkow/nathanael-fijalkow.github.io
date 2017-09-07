@@ -1,0 +1,33 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{graphicx}
+
+\newcommand{\tr}[1]{\langle #1 \rangle}
+
+\begin{document}
+
+\begin{picture}(130,73)(-15,-12)
+  	\node[linecolor=White,fillcolor=Red](N)(25,0){}
+  	\node[linecolor=White,fillcolor=Green](C)(75,0){}
+
+	\gasset{AHLength=3,AHLength=3,Nadjust=w}
+
+  	\node[Nmarks=i,iangle=180](H1)(0,30){$\textrm{underfit}$}
+  	\node(H2)(50,30){$\textrm{accurate}$}
+  	\node(H3)(100,30){$\textrm{overfit}$}
+
+  	\drawedge(H1,H2){$\textrm{train}:0.6$}
+  	\drawedge(H2,H3){$\textrm{train}:0.55$}
+  	\drawedge[curvedepth=-20,ELside=r](H3,H1){$\textrm{predict}:1$}
+	\drawloop[loopangle=90](H1){$\textrm{train}:0.4$}
+	\drawloop[loopangle=90](H2){$\textrm{train}:0.45$}
+	\drawloop[loopangle=90](H3){$\textrm{train}$}
+  	\drawedge[curvedepth=-5](H1,N){$\textrm{predict}:1$}
+  	\drawedge[curvedepth=-5](H2,C){$\textrm{predict}:1$}
+	\drawloop[loopangle=0](N){}
+	\drawloop[loopangle=0](C){}
+\end{picture}
+
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\definecolor{light-gray}{gray}{0.5}
+\definecolor{very-light-gray}{gray}{0.8}
+
+\begin{document}
+
+\begin{picture}(102,30)(0,-4)
+	\gasset{Nframe=n,Nfill=y,fillcolor=very-light-gray,loopdiam=4}
+
+	\put(1,3){$u^n$ has $n-1$ accepting runs}
+	\put(10,-3){\color{red}{linear ambiguity}}
+
+  	\node[Nmarks=i,iangle=180](p1)(10,15){}
+  	\node[Nmarks=f](p2)(30,15){}
+
+	\drawloop[loopangle=90](p1){$u$}
+	\drawedge(p1,p2){$u$}
+	\drawloop[loopangle=90](p2){$u$}
+
+
+	\put(58,3){$u^n$ has $2^{n-1}$ accepting runs}
+	\put(62,-3){\color{red}{exponential ambiguity}}
+	
+  	\node[Nmarks=i,iangle=180](p3)(70,15){}
+  	\node[Nmarks=f](p4)(90,15){}
+
+	\drawloop[loopangle=90](p3){$u$}
+	\drawloop[loopangle=90](p4){$u$}
+
+	\drawedge[curvedepth=3](p3,p4){$u$}
+	\drawedge[curvedepth=3](p4,p3){$u$}
+
+\end{picture}
+
+\end{document}

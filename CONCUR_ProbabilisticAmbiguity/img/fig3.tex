@@ -1,0 +1,31 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\definecolor{light-gray}{gray}{0.5}
+\definecolor{very-light-gray}{gray}{0.8}
+
+\begin{document}
+
+\begin{picture}(50,60)(0,0)
+	\gasset{Nframe=n,Nfill=y,fillcolor=very-light-gray,loopdiam=4}
+
+  	\node[Nmarks=i,iangle=180](p1)(10,30){$q_{in}$}
+  	\node(p2)(40,45){$\bot$}
+  	\node[Nmarks=f](p3)(40,15){$\top$}
+
+	\drawloop[loopangle=-90](p1){$0: \frac{1}{2}$}
+	\drawloop[loopangle=90](p1){$1: \frac{1}{2}$}
+
+	\drawedge(p1,p2){$0: \frac{1}{2}$}
+	\drawedge[ELside=r](p1,p3){$1: \frac{1}{2}$}
+
+	\drawloop[loopangle=-90](p2){$0: 1$}
+	\drawloop[loopangle=90](p2){$1: 1$}
+
+	\drawloop[loopangle=-90](p3){$0: 1$}
+	\drawloop[loopangle=90](p3){$1: 1$}
+\end{picture}
+
+\end{document}

@@ -1,0 +1,211 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Probabilistic automata with bounded ambiguity</title>
+    
+    <meta name="description" content="Probabilistic automata" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="1">
+	<h2>Probabilistic automata of bounded ambiguity</h2>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3><red>Nathana&euml;l Fijalkow</red>, <br/>Cristian Riveros, James Worrell</h3>
+	<h3><blue>Alan Turing Institute, London</blue></h3>
+	</div>
+
+	<br/>
+
+	<div class="slide_step">
+	<h4>CONCUR, Berlin, September 8th, 2017</h4>
+	</div>
+    </div>
+
+    <div id="story" class="step" data-x="-1000" data-y="100" data-scale="1">
+
+	<img id="mail" src="img/mail.png"/>
+
+	<div class="slide_step">
+	<img id="pa" src="img/pa.svg"/>
+	$$\mathbb{P}(\text{train train predict}) = 0.4 \cdot 0.6 \cdot 1\ +\ 0.6 \cdot 0.45 \cdot 1$$
+	</div>
+    </div>
+
+    <div id="pa" class="step" data-x="-1000" data-y="800" data-scale="1">
+	A probabilistic automaton induces &nbsp;&nbsp; $\mathbb{P} : A^* \to [0,1]$
+
+	<br/>
+	<br/>
+
+	<red>Goal</red>: algorithmically <green>determine</green> the properties of $\mathbb{P}$
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	In this paper: <blue>emptiness problem</blue>
+	$$\exists w \in A^*,\ \mathbb{P}(w) \ge \frac{1}{2}$$
+	</div>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	Many models somehow embed:
+	<ul>
+		<li>HMM: Hidden Markov Models
+		<li>PSR: Predictive State Representations
+		<li>OOM: Observable Operator Models
+	</ul>
+	</div>
+    </div>
+
+    <div id="ambiguity" class="step" data-x="-1000" data-y="1600" data-scale="1">
+	<h3>Ambiguity</h3>
+
+	<br/>
+	<br/>
+
+	An automaton has <red>ambiguity</red> $f : \mathbb{N} \to \mathbb{N}$ if each word of length $n$ have at most $f(n)$ <blue>accepting</blue> runs.
+
+	<br/>
+	<br/>
+
+	<img id="ambiguity" src="img/fig4.svg"/>
+    </div>
+
+
+
+    <div id="undecidability" class="step" data-x="0" data-y="850" data-scale="1" data-duration="0">
+	<h3>Undecidability</h3>
+
+	<div align="center">
+	<img id="bin" src="img/fig3.svg"/>
+	</div>
+
+	<br/>
+	This automaton computes the binary value function and is <red>linearly ambiguous</red>: 
+	<blue>undecidability</blue> follows for emptiness, universality, isolation with <green>infinite</green> ambiguity
+   </div>
+
+    <div id="results" class="step" data-x="0" data-y="1600" data-scale="1">
+	<h3>Results</h3>
+
+	<blue>Emptiness:</blue>
+	<ul>
+		<li>in NEXPTIME and PSPACE-hard for finitely ambiguous
+		<li>PSPACE-complete if the ambiguity is polynomially bounded in the number of states
+		<li>in NP for k-ambiguous, for every constant k
+		<li><red>in quasi-polynomial time $O(n^{\log(n)})$ for 2-ambiguous</red>
+	</ul>
+
+	<br/>
+	<br/>
+
+	<blue>Approximation of emptiness:</blue>
+	<ul>
+		<li>no polynomial time approximation for finitely ambiguous unless P = NP
+		<li><green>polynomial time approximation for k-ambiguous, for every constant k</green>
+	</ul>
+    </div>
+
+
+
+
+
+    <div id="idea" class="step" data-x="1500" data-y="100" data-scale=".8" data-duration="0">
+	<h3>Stochastic path problem</h3>
+
+	<div align="center">
+	<img id="graph" src="img/fig1.svg"/>
+	</div>
+	value of the red path: $.4 \times .9 \times .9\ +\ .6 \times .1 \times .9 = .27$.
+	
+	<br/><br/>
+	<blue>Input</blue>: a graph and a threshold $c$
+	<br/>
+	<red>Question</red>: does there exist a path from $s$ to $t$ whose value is at least $c$?
+
+    </div>
+
+    <div id="reduction" class="step" data-x="1500" data-y="800" data-scale="1">
+	<h3>Reduction</h3>
+
+	Given a $k$-ambiguous probabilistic automaton with $n$ states,
+	we construct a graph with $O(n^k)$ vertices such that:
+	<ul>
+		<li>path $\implies$ $k$ accepting runs of some word,
+		<li>$k$ accepting runs of a word $\implies$ path
+	</ul>
+
+	<br/>
+	<br/>
+	TL;DR: <red>emptiness of $k$-ambiguous</red> reduces to <blue>$k$-stochastic path problem</blue>
+    </div>
+
+    <div id="pareto" class="step" data-x="1000" data-y="1500" data-scale="1">
+	<h3>(Convex) Pareto curves</h3>
+
+	<div align="center">
+	<img id="pareto" src="img/fig2.svg"/>
+	</div>
+
+	<br/>
+	<b>Theorem</b>: quasi-polynomial time algorithm returns a <red>convex Pareto curve</red> for the bi-stochastic path problem
+
+	<br/>
+	<br/>
+	<b>Corollary</b>: quasi-polynomial time algorithm for emptiness of 2-ambiguous probabilistic automata
+    </div>
+
+    <div id="approx_pareto" class="step" data-x="2000" data-y="1500" data-scale="1">
+	<h3>Approximate Pareto curves</h3>
+
+	<div align="center">
+	<img id="pareto_approx" src="img/fig5.svg"/>
+	</div>
+
+	<br/>
+	<b>Theorem</b>: polynomial time algorithm returns a <red>convex $\varepsilon$-Pareto curve</red> for the $k$-stochastic path problem
+
+	<br/>
+	<br/>
+	<b>Corollary</b>: polynomial time algorithm for approximation of the emptiness of $k$-ambiguous probabilistic automata
+    </div>
+
+
+
+    <div id="overview" class="step" data-x="0" data-y="900" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+
+
