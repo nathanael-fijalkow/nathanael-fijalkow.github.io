@@ -1,0 +1,44 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsfonts}
+
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+
+\begin{document}
+
+\begin{picture}(120,50)(4,10)
+	\gasset{Nadjust=h}
+
+  	\node[Nmarks=if,fangle=-90](p)(15,40){$p$}
+  	\node(q)(35,40){$q$}
+
+  	\drawedge[curvedepth=3](p,q){$a$}
+  	\drawedge[curvedepth=3](q,p){$a$}
+	\drawloop[loopangle=90](p){$b$}
+	\drawloop[loopangle=0](q){$b$}
+
+	\put(15,15){Automaton}
+
+	\put(55,50){$\varphi : \set{a,b}^* \to \mathbb{Z}/ 2\mathbb{Z}$}
+	\put(55,45){$\varphi(a) = 1,\ \varphi(b) = 0$}
+	\put(59,40){$F = \set{0}$}
+
+	\put(55,30){
+	$\begin{array}{c|cc}
+	   & 0 & 1 \\
+	 \hline
+	 0 & 0 & 1 \\
+	 1 & 1 & 0
+	\end{array}$}
+
+	\put(55,15){Semigroup}
+
+	\put(95,35){$(b^* a b^* a b^*)^*$}
+
+	\put(90,15){Regular Expression}
+
+\end{picture}
+
+\end{document}

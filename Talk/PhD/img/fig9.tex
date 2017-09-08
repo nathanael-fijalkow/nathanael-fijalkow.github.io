@@ -1,0 +1,29 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\tr}[1]{\langle #1 \rangle}
+
+\begin{document}
+
+\begin{picture}(80,22)(-10,-4)
+	\gasset{Nw=6,Nh=6,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=-90](0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){$a,x$}
+	\drawloop(1){$a$}
+	\drawloop[loopangle=0](F){$a,b$}
+	\drawloop[loopangle=180](bottom){$a,b$}
+
+  	\drawedge(0,bottom){$b$}
+  	\drawedge[curvedepth=2](0,1){$a,1-x$}
+  	\drawedge[curvedepth=2](1,0){$b$}
+  	\drawedge(1,F){$b$}
+\end{picture}
+
+\end{document}

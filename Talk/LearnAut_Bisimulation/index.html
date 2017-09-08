@@ -1,0 +1,154 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Bisimulation on Distributions</title>
+    
+    <meta name="description" content="Bisimulation on Distributions" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="1">
+	<h2>Bisimulation on Distributions<br/>
+	for Reinforcement Learning</h2>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	</div>
+    </div>
+
+    <div id="whoami" class="step" data-x="-1200" data-y="-700" data-scale="1" data-duration="0">
+	<h2>Who am I?</h2>
+	<br/>
+	<h3>A <red>Logician</red> at the<br/> <green>Alan Turing Institute</green><br/> of Data Science, London</h3>
+
+	<br/>
+	Thanks to them:
+	<br/>
+	<img id="thomas" src="img/thomas.png"/>
+	<img id="mikolaj" src="img/mikolaj.png"/>
+	<img id="je" src="img/je.png"/>
+    </div>
+
+    <div id="circle" class="step" data-x="-200" data-y="-700" data-scale="1">
+	<h2>The virtuous circle</h2>
+
+	<img id="circle" src="img/fig1.svg"/>
+    </div>
+
+    <div id="analysis" class="step" data-x="1200" data-y="-700" data-scale="1">
+	<h2>Automata Analysis</h2>
+	<br/>
+
+	An automaton is a <green>data structure</green> to facilitate <red>data</red> analysis.
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	Typical problems:
+	<ul>
+		<li><green>Emptiness</green> (boolean properties): is the property non-trivial?
+		<li><green>Equivalence</green>: are two properties equivalent?
+		<br/>Notion of <red>minimal / canonical</red> automaton
+	<ul>
+	</div>
+    </div>
+
+    <div id="overview_intermediate" class="step" data-x="0" data-y="300" data-scale="3">
+    </div>
+
+    <div id="model" class="step" data-x="-1000" data-y="600" data-scale="1">
+	<h2>Markov Decision Process</h2>
+
+	<img id="model" src="img/fig3.svg"/>
+    </div>
+
+    <div id="idea" class="step" data-x="-1000" data-y="1400" data-scale="1">
+	<h2>Making things simple before learning them</h2>
+
+	<br/>
+	<ul>
+		<li>Start from an MDP $\mathcal{M}$
+		<li>Let $\mathcal{M}'$ be the <red>quotient</red> of $\mathcal{M}$ by $\sim$
+		<li>Learn $\mathcal{M}'$
+		<li><blue>Transfer</blue> the results from $\mathcal{M}'$ to $\mathcal{M}$
+	</ul>
+    </div>
+
+    <div id="bisimulation" class="step" data-x="0" data-y="700" data-scale="1" data-duration="0">
+	<h3>Probabilistic Bisimulation (Larsen, Skou)</h3>
+
+	<br/>
+	<b>Definition</b>: $p \sim q$ just if $\forall a \in A, \forall C \in [S]_\sim,\ \tau(p,a)(C) = \tau(q,a)(C)$.
+
+	<img id="example" src="img/fig2.svg"/>
+    </div>
+
+    <div id="transfer" class="step" data-x="0" data-y="1400" data-scale="1">
+	<h2>Transfer results</h2>
+
+	<br/>
+	Bisimulation is extended to a bisimulation metric.
+
+	<br/>
+	<br/>
+	<b>Theorem</b> (Castro, Precup, Panangaden) The difference in Q-values is bounded by the bisimulation metric.
+
+    </div>
+
+    <div id="bisim_on_distr" class="step" data-x="1000" data-y="600" data-scale="1" data-duration="0">
+	<h3>Bisimulation on Distributions</h3>
+
+	<br/>
+	<b>Definition</b>: $p \sim_D q$ just if $\forall a \in A,\ \tau(p,a) \sim_D \tau(q,a)$.
+
+	<img id="example2" src="img/fig4.svg"/>
+
+	<br/>
+	<ul>
+		<li> $p \sim q$ implies $p \sim_D q$, but not conversely
+		<li> equivalent to <red>Trace Equivalence</red>:
+		<br/>
+		$p \sim_D q$ if, and only if, $\forall w \in A^*, P(w|p) = P(w|q)$
+	</ul>
+    </div>
+
+    <div id="question" class="step" data-x="1000" data-y="1400" data-scale="1">
+	<h2>What transfer results?</h2>
+
+	<br/>
+	<ul>
+		<li>What metric?
+		<li>How do we transfer policies?
+	</ul>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="300" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+

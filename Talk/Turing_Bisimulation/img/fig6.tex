@@ -1,0 +1,33 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsmath,amssymb}
+
+
+\begin{document}
+
+\begin{picture}(85,40)(-10,5)
+	\gasset{Nw=5,Nh=5}
+
+  	\node[Nmarks=i](0)(0,25){}
+  	\node(1)(20,40){}
+  	\node(2)(20,25){}
+  	\node(4)(20,10){}
+  	\node(3)(40,25){}
+
+  	\drawedge(0,1){$a$}
+  	\drawedge(0,2){$a$}
+  	\drawedge(0,4){$b$}
+
+	\drawedge[curvedepth=-5,ELside=r](1,0){$a$}
+	\drawedge(1,3){$b$}
+	\drawedge[curvedepth=5](4,0){$a$}
+	\drawedge(4,3){$a$}
+	\drawedge(2,3){$b$}
+	
+	\put(45,30){Labelled Transition}
+	\put(55,25){System}
+	\put(34,10){$\Delta : Q \times A \to \mathcal{P}(Q)$}
+\end{picture}
+\end{document}

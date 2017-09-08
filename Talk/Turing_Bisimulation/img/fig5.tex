@@ -1,0 +1,33 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{very-light-gray}{gray}{0.8}
+
+\begin{document}
+
+\begin{picture}(100,30)(0,0)
+	\gasset{Nadjust=wh,Nframe=n}
+
+  	\node(p1)(5,15){$p_1$}
+  	\node(p2)(25,15){$p_2$}
+  	\node(p3)(45,15){$p_3$}
+  	\node(p4)(65,15){$p_4$}
+
+  	\node(q)(90,15){$q$}
+
+	\drawloop[loopdiam=5](p1){$\frac{1}{2}$}
+
+	\drawedge(p1,p2){$\frac{1}{2}$}
+	\drawedge(p2,p3){$\frac{1}{2}$}
+	\drawedge(p3,p4){$\frac{1}{2}$}
+
+	\drawedge[curvedepth=3](p2,p1){$\frac{1}{2}$}
+	\drawedge[curvedepth=5](p3,p1){$\frac{1}{2}$}
+
+	\drawloop[loopdiam=5](q){$1$}
+\end{picture}
+
+\end{document}

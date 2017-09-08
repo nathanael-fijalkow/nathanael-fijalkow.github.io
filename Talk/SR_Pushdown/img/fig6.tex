@@ -1,0 +1,28 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\begin{document}
+
+\begin{picture}(140,36)(-10,-5)
+	\gasset{Nh=7,Nw=7}
+
+	\node[polyangle=45](q_0)(0,10){$q'_0$}
+	\node[polyangle=45](q_1)(40,10){$q'_1$}
+	\put(45,10){\begin{Huge}$\ldots$\end{Huge}}
+	\node[polyangle=45,Nadjust=w](q_n-1)(60,10){$q'_{n-1}$}
+	\node[polyangle=45](q_n)(100,10){$q'_n$}
+	\node[polyangle=45,Nframe=n](q_G)(120,10){\ \ to $q_n$}
+
+	\drawedge(q_0,q_1){$\begin{array}{cc}\bot,\push(0) \\ 0,\push(1) \\ \vdots \\ (k-2),\push(k-1)\end{array}$}
+	\drawedge(q_n-1,q_n){$\begin{array}{cc}0,\push(0) \\ 1,\push(1) \\ \vdots \\ (k-1),\push(k-1)\end{array}$}
+	\drawedge[curvedepth=10](q_n,q_0){$0,\ldots,k-2$}
+	\drawedge(q_n,q_G){$k-1$}
+\end{picture}
+
+\end{document}

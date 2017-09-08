@@ -1,0 +1,34 @@
+\documentclass{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{shapes,decorations.pathreplacing}
+
+\begin{document}
+
+\begin{tikzpicture}
+\clip (-6,0) rectangle (5,8);
+
+\fill[white!85!black] (-1,2) ellipse (8cm and 4cm) ;
+\draw (1,4) node {leaktight} ;
+
+\fill[white!60!violet] (-6,0) ellipse (5.2cm and 7cm) ;
+\draw (-5,6) node {simple} ;
+
+\fill[white!80!violet] (-6,0) ellipse (4cm and 5.5cm) ;
+\draw (-5,3.6) node {structurally} ;
+\draw (-5,3.3) node {simple} ;
+
+\fill[white!80!red] (-1,0) ellipse (8cm and 2.6cm) ;
+\draw (-1,2) node {$\sharp$-acyclic} ;
+
+\fill[white!70!blue] (-5,0) ellipse (2.5cm and 1.8cm) ;
+\draw (-5,.6) node {hierarchical} ;
+
+\fill[white!30!red] (2,0) ellipse (2cm and 1.5cm) ;
+\draw (2,.5) node {deterministic} ;
+\end{tikzpicture}
+
+\end{document}

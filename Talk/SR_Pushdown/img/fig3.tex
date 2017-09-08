@@ -1,0 +1,39 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(70,40)(-3,-2)
+	\drawline(0,0)(50,0)
+	\drawline(0,0)(0,35)
+
+	\gasset{Nfill=y,Nh=1,Nw=1,AHLength=0}
+
+	\node(1)(0,5){}
+	\node(2)(10,13){}
+	\node(3)(20,20){}
+	\node(4)(30,20){}
+	\node(5)(40,20){}
+	\node(6)(50,20){}
+
+	\drawqbezier(0,5,4,28,10,13)
+	\drawqbezier(10,13,14,30,20,20)
+	\drawedge[curvedepth=10](3,4){}
+	\drawedge[curvedepth=10](4,5){}
+	\drawedge[curvedepth=10](5,6){}
+
+	\gasset{Nfill=y,Nh=1,Nw=1,AHLength=2,ATnb=1}
+	\drawline(30,16)(40,16)
+	\drawline(40,16)(30,16)
+	\put(29,11){$\le n \cdot k^{n \cdot k}$}
+
+	\drawline(52,20)(52,30)
+	\drawline(52,30)(52,20)
+	\put(54,24){$\le n \cdot k$}
+
+	\put(20,-5){Case 1.}
+\end{picture}
+
+\end{document}

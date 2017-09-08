@@ -1,0 +1,347 @@
+\documentclass[10pt]{tpcaml}
+\tp{3}{Graphes et parcours de graphes}
+
+% TP CaML LLG 2011/2012
+% par Nathanaël FIJALKOW
+% Utilise les classes LaTeX de Victor Nicollet
+
+\begin{document}
+  \maketitle
+
+L'objectif de ce TP est d'introduire un objet fondamental en informatique,
+aussi bien théorique que pratique, les graphes.
+On explore les différentes options pour manipuler un graphe en programmation,
+puis on introduit les parcours en largeur et en profondeur, et deux applications : la détection de circuit 
+et le calcul de composantes connexes dans le cas non-orienté.
+
+%Last but not least, ce TP est une introduction au
+%DM $1$, sur les jeux sur les graphes, qui sera à rendre après les vacances.
+
+\section{Graphes}
+
+Intuitivement, un graphe est un ensemble de points reliés par des flèches.
+Vous devez vous représenter un graphe par un dessin, comme celui-ci:
+
+\begin{center}
+\begin{picture}(80,30)(0,-5)
+	\node(0)(20,20){$0$}
+	\node(1)(40,20){$1$}
+	\node(2)(20,0){$2$}
+	\node(3)(40,0){$3$}
+	\node(4)(60,10){$4$}
+
+  	\drawedge(0,2){}
+  	\drawedge(0,3){}
+  	\drawedge(1,0){}
+  	\drawedge[curvedepth=5](1,3){}
+  	\drawedge(2,3){}
+  	\drawedge[curvedepth=5](2,4){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(3,4){}
+	\drawloop[loopangle=0](4){}
+\end{picture}
+\end{center}
+
+Un graphe est la donnée $G = (V,E)$ où $V$ est l'ensemble des sommets ($V$ pour vertex) et 
+$E \subseteq V \times V$ est l'ensemble des arcs ($E$ pour edge).
+
+Il y a plusieurs distinctions à faire.
+En général, les graphes que l'on considére sont \textbf{finis} 
+(c'est-à-dire qu'ils ont un ensemble de sommets $\set{0,\dots,n-1}$ pour un certain $n \in \N$) ; 
+dans ce TP, les graphes seront finis.
+On notera $n = |V|$ le nombre de sommets et $m = |E|$ le nombre d'arcs.
+
+Les graphes que l'on considère sont \textbf{simples} :
+pour un couple de sommets $(u,v)$, il y a au plus un arc entre $u$ et $v$.
+Ainsi on peut représenter l'ensemble des arcs par une relation $E \subseteq V \times V$,
+telle que $(u,v) \in E$ s'il y a un arc entre $u$ et $v$.
+
+Les graphes sont soit \textbf{orientés}, ou (``directed'' en anglais),
+soit \textbf{non-orientés} (``undirected'' en anglais).
+
+Dans le cas orienté, les arcs ont une origine et un but.
+Un arc est donc un couple ordonné $(u,v)$ où $u$ et $v$ sont des sommets.
+Le graphe ci-dessus est orienté.
+
+Dans le cas non-orienté, les arcs sont juste des liens entre deux sommets,
+on ne se soucie donc pas de l'ordre du couple. On parle d'arête et non plus d'arc.
+\textit{Le cas non-orienté est un cas particulier du cas orienté}, où
+$(u,v) \in E$ si et seulement si $(v,u) \in E$. Dans ce TP, les graphes sont orientés.
+
+\section{Représentation d'un graphe}
+
+Pour représenter un graphe on peut utiliser la matrice d'adjacence $M$, de taille $n \times n$, qui vérifie :
+$$M_{u,v} = \left \{
+\begin{array}{cc}
+1 & \mbox{si } (u,v) \in E \\
+0 & \mbox{sinon}
+\end{array} \right.$$
+
+\begin{question}
+Que représente la transposée de $M$? Et l'égalité entre $M$ et sa transposée?
+\end{question}
+
+\begin{question}
+On munit $\set{0,1}$ des lois $\oplus$ et $\otimes$, données par :
+$$\begin{array}{c|cc}
+\oplus & 0 & 1 \\
+\hline
+0 & 0 & 1 \\
+1 & 1 & 1
+\end{array}\hspace{10ex}
+\begin{array}{c|cc}
+\otimes  & 0 & 1 \\
+\hline
+0 & 0 & 0 \\
+1 & 0 & 1
+\end{array}$$
+Interpréter ces lois par des opérations logiques.
+On considère l'ensemble des matrices sur $\set{0,1}$ muni de ces deux lois.
+Attention, ce n'est pas un anneau, c'est un semi-anneau (il n'y a pas d'inverse pour la loi additive).
+
+Notons $D = I \oplus M$, où $I$ est la matrice identité de taille $n \times n$.
+Définir une multiplication de matrices, puis expliquer comment on peut définir $D^k$ (attention, il y a une subtilité).
+Interpréter $D$, puis $D^2$, puis $D^n$ en termes de chemin.
+En déduire un algorithme qui détermine s'il existe un chemin entre deux sommets $u$ et $v$ donnés, en calculant la suite $D,D^2,D^3,\ldots,D^n$. 
+Améliorer cet algorithme en calculant $D,D^2,D^4,\ldots,D^{2^k}$. Démontrer sa correction et estimer sa complexité.
+\end{question}
+
+Pour représenter un graphe on peut aussi utiliser des listes d'adjacence :
+$\Succ_u$ est la liste des successeurs (immédiats) de $u$,
+$\Pred_u$ est la liste des prédecesseurs (immédiats) de $u$.
+On conserve ces listes dans un tableau de taille $n$.
+
+\begin{question}
+\'Ecrire une fonction \code{de\_succ\_a\_pred}
+qui étant donné le tableau contenant la liste des successeurs,
+construit le tableau contenant la liste des prédecesseurs.
+\end{question}
+
+\begin{question}
+\'Ecrire une fonction \code{de\_pred\_a\_succ}
+qui étant donné le tableau contenant la liste des prédecesseurs,
+construit le tableau contenant la liste des successeurs.
+\end{question}
+
+\begin{question}
+Quelles sont les complexités de \code{de\_succ\_a\_pred} et \code{de\_pred\_a\_succ}?
+Elles devraient être $O(m + n)$.
+\end{question}
+
+\section{Parcours de graphes}
+
+Considérons un graphe $G = (V,E)$, la bordure $\Gamma(T)$ d'une partie $T$ de $V$ est le sous-ensemble des
+sommets de $S \setminus T$ qui sont les extrémités d'un arc dont l'origine est dans $T$.
+
+un parcours de $G$ depuis $s$ est une liste des sommets $L$ de $G$ telle que :
+\begin{itemize}
+	\item chaque sommet de $G$ apparaît une fois et une seule dans $L$;
+	\item chaque sommet de $L$ (sauf le premier) appartient à la bordure du sous-ensemble 
+des sommets placés avant lui dans $L$, si cette bordure est non vide.
+\end{itemize}
+
+Il y a essentiellement deux paradigmes pour parcourir un graphe : en largeur et en profondeur.
+Le parcours en largeur consiste, à partir d'un sommet, à explorer tous les voisins, 
+puis à continuer le parcours à partir de chaque voisin.
+\`A l'inverse, le parcours en profondeur explore chaque branche les unes après les autres.
+Par exemple, sur le graphe suivant, que l'on parcourt depuis le sommet $0$ :
+
+\begin{center}
+\begin{picture}(110,25)(0,-5)
+	\node(n0)(60,15){$0$}
+	\node(n1)(40,10){$1$}
+	\node(n2)(50,0){$2$}
+	\node(n3)(70,0){$3$}
+	\node(n4)(90,5){$4$}
+	\node(n5)(20,5){$5$}
+	\node(n6)(110,5){$6$}
+	\node(n7)(0,5){$7$}
+
+	\drawedge(n0,n1){}
+	\drawedge(n0,n2){}
+	\drawedge(n0,n3){}
+	\drawedge(n0,n4){}
+	\drawedge(n3,n4){}
+	\drawedge(n1,n5){}
+	\drawedge(n4,n6){}
+	\drawedge(n5,n7){}
+\end{picture}
+
+en largeur : $0;\ 1;\ 2;\ 3;\ 4;\ 5;\ 6;\ 7$.\\
+en profondeur : $0;\ 1;\ 5;\ 7;\ 2;\ 3;\ 4;\ 6$.
+\end{center}
+
+\begin{codesection}
+let parcours n tab\_succ sommet\_depart =\\
+let tab\_non\_parcourus = make\_vect n true in\\
+\ let rec boucle liste\_a\_traiter = match liste\_a\_traiter with\\
+\ \ \ | [] -> []\\
+\ \ \ | sommet\_courant::suite \\
+\ \ \ when tab\_non\_parcourus.(sommet\_courant)->\\
+\ \ \ \ \ tab\_non\_parcourus.(sommet\_courant) <- false ;\\
+\ \ \ \ \ let liste\_a\_traiter = tab\_succ.(sommet\_courant) @ suite in\\
+\ \ \ \ \ sommet\_courant::(boucle liste\_a\_traiter)\\
+\ \ \ | \_::suite -> boucle suite \\
+in boucle [sommet\_depart] ;;
+\end{codesection}
+
+\begin{question}
+Le code ci-contre retourne sous forme de liste un parcours du graphe à \code{n} sommets 
+décrit par \code{tab\_succ} depuis le sommet\\
+\code{sommet\_depart}. Quel est ce parcours?
+Comment modifier une ligne de ce code pour obtenir l'autre parcours?
+\end{question}
+
+\begin{question}
+Combien y a-t-il d'appels à la fonction \code{boucle}?
+\end{question}
+
+\begin{question}
+Dans les deux cas, on utilise la concaténation de liste $@$: quel est le coût en opérations élémentaires?
+Quelles sont les structures de données adaptées dans chacun des cas pour maintenir \code{liste\_a\_traiter}?
+\end{question}
+
+\section{Applications}
+
+On va utiliser le parcours en profondeur pour obtenir des informations sur le graphe.
+
+\subsection{Calcul des composantes connexes dans un graphe non-orienté}
+
+On se place dans le cas des graphes \textbf{non-orientés}.
+Un sous-graphe $G'$ de $G$ est un graphe $(V',E')$ tel que $V'$ est un
+sous-ensemble de $V$ et $E'$ l'ensemble des arêtes de $G$ ayant ses
+deux extrémités dans $V'$.
+
+Une composante connexe de $G$ est un sous-graphe $G'$ de $G$ tels que
+pour tous sommets $u$ et $v$ de $G'$ il existe un chemin de $u$ a $v$
+dans $G'$, $G'$ étant maximal pour cette propriété.
+Une composante connexe de $G$ est donc entièrement décrite par la liste de ses sommets.
+
+\begin{question}
+\'Ecrire une fonction \code{calcul\_composantes\_connexes} qui étant donné 
+un graphe non-orienté, retourne la liste de ses composantes connexes.
+\end{question}
+
+\subsection{Détection de circuit dans un graphe orienté}
+
+On revient au cas (général) des graphes \textbf{orientés}.
+
+Soit $G = (V,E)$ un graphe et $L = [x_1;x_2;\ldots;x_n]$ un parcours quelconque de $G$.
+Pour chaque $x_j$, par définition du parcours $L$, il y a un arc $(x_i,x_j) \in E$ pour un certain $i < j$.
+On choisit pour chaque $x_j$ un tel arc, et on associe à $L$ le sous-graphe $\F(L)$ 
+dont les sommets sont tous les sommets de $G$ et les arcs sont les $(x_i,x_j)$ choisis.
+
+\begin{question}
+Montrer que $\F(L)$ est une forêt couvrante, c'est-à-dire un ensemble d'arbres disjoints couvrant le graphe.
+\end{question}
+
+\begin{center}
+\begin{picture}(75,35)(0,-5)
+	\node(n1)(0,20){$1$}
+	\node(n2)(0,0){$2$}
+	\node(n3)(15,10){$3$}
+	\node(n4)(30,10){$4$}
+	\node(n5)(45,20){$5$}
+	\node(n6)(45,0){$6$}
+	\node(n7)(60,30){$7$}
+	\node(n8)(75,30){$8$}
+	\node(n9)(67,20){$9$}
+	\node(n10)(60,0){$10$}
+	\node(n11)(75,0){$11$}
+
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n1,n3){}
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n3,n2){}
+	\drawedge(n2,n1){}
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n4,n5){}
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n4,n6){}
+	\drawedge(n1,n5){}
+	\drawedge(n3,n4){}
+	\drawedge(n6,n5){}
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n5,n9){}
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n6,n10){}
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n9,n8){}
+	\drawedge[AHLength=3,AHlength=4,linewidth=0.7](n8,n7){}
+	\drawedge(n7,n9){}
+	\drawedge[curvedepth=3,AHLength=3,AHlength=4,linewidth=0.7](n10,n11){}
+	\drawedge[curvedepth=3](n11,n10){}
+\end{picture}
+\end{center}
+
+Notons $r(x)$ le rang d'un sommet $x$ dans $L$: le rang de $x_i$ est $i$. 
+En dehors des arcs de $\F(L)$, le parcours $L$ permet de distinguer trois autres classes d'arcs dans G. 
+\begin{itemize}
+	\item Un arc $(x,y)$ est arrière si $y$ est un ascendant de $x$ dans $\F(L)$; 
+	\item Un arc $(x,y)$ est avant si $x$ est un ascendant de $y$ dans $\F(L)$; 
+	\item Un arc $(x,y)$ est transverse si ses deux extrémités appartiennent à deux arbres différents, ou si $x$ et $y$
+	ont un ancêtre commun $z$ dans $\F(L)$ distinct de $x$ et de $y$.
+\end{itemize}
+
+Dans l'exemple, pour le parcours $[4;5;9;8;7;6;10;11;1;3;2]$, 
+les arcs $(7,9)$, $(11,10)$ et $(2,1)$ sont arrières, 
+les arcs $(6,5)$, $(1,5)$ et $(3,4)$ sont transverses et il n'y a pas d'arc avant.
+
+\begin{question}
+Montrer que si $(x,y)$ est un arc transverse pour un parcours en profondeur $L$,
+alors $r(y) < r(x)$.
+\end{question}
+
+\begin{question}
+Soit $L$ un parcours en profondeur fixé. Montrer que $G$ est sans circuit si et seulement s'il n'existe pas d'arc arrière.
+En déduire un algorithme de complexité $O(n + m)$ qui détecte si un graphe possède un circuit.
+\end{question}
+
+
+%\begin{question}
+%Montrer que si $G = (V,E)$ est sans circuit, alors il existe $u \in V$ tel que $d(u) = 0$.
+%\end{question}
+%
+%\begin{question}
+%Montrer que $G = (V,E)$ est sans circuit si et seulement si 
+%\begin{enumerate}
+% \item il existe $u \in V$ tel que $d(u) = 0$;
+% \item pour tout $u \in V$ tel que $d(u) = 0$, le graphe $G$ privé de $u$ (on retire $u$ et toutes les arêtes partant ou arrivant en $u$) est sans circuit.
+%\end{enumerate}
+%\end{question}
+%
+%\begin{question}
+%En déduire un algorithme de complexité $O((n + m)^2)$ qui teste si un graphe orienté possède un circuit.
+%\end{question}
+%
+%On fait mieux : 
+%
+%\begin{question}
+%Un graphe $G = (V,E)$ est sans circuit si et seulement s'il existe une permutation $\sigma = (u_1,u_2,\dots,u_n)$ tel que pour tout $i \leq n$, dans le graphe $G_i$ où les $i-1$ sommets $u_1,\dots,u_{i-1}$ sont retirés, on a $d_{G_i}(u_i) = 0$.
+%\end{question}
+%
+%\begin{question}
+%En déduire un algorithme de complexité $O((n + m))$, qui teste si un graphe orienté possède un circuit, en effectuant deux parcours.
+%\'Ecrire une fonction \code{test\_cyclique} qui étant donné un graphe orienté, 
+%retourne le booléen $\mathit{true}$ si le graphe ne possède pas de cycle, $\mathit{false}$ sinon.
+%\end{question}
+
+\section{Questions difficiles}
+
+\begin{question}
+Revenons sur les calculs de distances.
+On a défini une structure algébrique : le semi-anneau $(\{0,1\},\oplus,\otimes)$, on a fait du calcul matriciel, 
+puis on a interprété les matrices obtenues en termes de chemins.
+Considérons maintenant que les arcs sont valués, par une fonction $v : E \to \mathbb{R}$.
+Comment calculer le poids minimal d'un chemin de $u$ à $v$? Le poids maximal?
+La longueur des $p$ plus courts chemins?
+\end{question}
+
+\begin{question}
+Il y a une troisième application du parcours en profondeur : le calcul des composantes fortement connexes dans un graphe orienté.
+On définit la notion de connexité forte de la même manière que dans le cas non-orienté, 
+mais ici l'existence d'un chemin de $u$ vers $v$ n'implique pas l'existence d'un chemin de $v$ vers $u$.
+Trouver un algorithme en $O(m + n)$ qui calcule les composantes fortement connexes d'un graphe orienté, 
+en utilisant deux parcours en profondeur successifs.
+En cas de manque d'inspiration, se reporter au cours d'algorithmique de Beauquier, Berstel et Chrétienne, à partir de la page 130
+(PDF disponible sur la page du cours).
+\end{question}
+
+\begin{question}
+Dessiner un chameau.
+\end{question}
+
+\end{document}

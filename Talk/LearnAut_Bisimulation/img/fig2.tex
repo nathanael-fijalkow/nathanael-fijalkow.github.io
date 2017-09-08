@@ -1,0 +1,25 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsmath,amssymb}
+
+
+\begin{document}
+
+\begin{picture}(60,30)(-10,5)
+	\gasset{Nw=5,Nh=5}
+
+  	\node[Nmarks=i](0)(0,20){$p$}
+  	\node(1)(15,30){}
+  	\node(2)(15,10){}
+
+  	\drawedge(0,1){$\textcolor{blue}{\frac{2}{3}}$}
+  	\drawedge[ELside=r](0,2){$\textcolor{blue}{\frac{1}{3}}$}
+
+  	\node[Nmarks=i](0b)(30,20){$q$}
+  	\node(1b)(45,20){}
+
+  	\drawedge(0b,1b){$\textcolor{blue}{1}$}
+\end{picture}
+\end{document}

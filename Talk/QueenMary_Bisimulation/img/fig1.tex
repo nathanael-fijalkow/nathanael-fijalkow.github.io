@@ -1,0 +1,31 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\definecolor{light-gray}{gray}{0.95}
+\definecolor{very-light-gray}{gray}{0.8}
+
+\begin{document}
+
+\begin{picture}(100,45)(0,0)
+	\gasset{Nadjust=wh,Nfill=y,fillcolor=gray,Nframe=n}
+
+    \drawpolygon[fillcolor=light-gray,arcradius=.3](10,22)(30,42)(50,22)
+    \drawpolygon[fillcolor=light-gray,arcradius=.3](50,22)(70,42)(90,22)
+
+  	\node(p)(30,40){$p$}
+  	\node(q)(70,40){$q$}
+
+	\drawrect[Nfill=y,fillcolor=very-light-gray](10,18,90,22)
+	\put(12,19){$0$}
+	\put(87,19){$1$}
+
+	\node(x)(30,20){$x$}
+
+  	\node(top)(50,5){$\top$}
+
+	\drawedge[curvedepth=-3](x,top){$x$}
+\end{picture}
+
+\end{document}

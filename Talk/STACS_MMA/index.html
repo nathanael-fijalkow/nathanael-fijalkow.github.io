@@ -1,0 +1,271 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Characterisation of an Algebraic Algorithm for Probabilistic Automata</title>
+    
+    <meta name="description" content="Flides demo" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,1000,400italic,1000italic|PT+Serif:400,1000,400italic,1000italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="1000">
+	<h1>Characterisation of an Algebraic Algorithm for Probabilistic Automata</h1>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	</div>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<h3>STACS, Orléans, February 18th</h3>
+	</div>
+    </div>
+
+    <div id="main" class="step" data-x="0" data-y="0">
+	<table>
+		<tr>
+			<th class="left"><b>Probabilistic Automata</b></th>
+			<th class="right"><b>Profinite Techniques</b></th>
+		</tr>
+	</table>
+    </div>
+
+    <div id="pa" class="step" data-x="-3000" data-y="0">
+	<h2>Probabilistic Automata</h2>
+
+	<svg width="800" height="350">
+		<g class="token">
+			<text x="0" y="200">word read ""</text>
+			<text x="300" y="320" fill="red">1</text>
+			<text x="650" y="320" fill="red">0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "1"</text>
+			<text x="295" y="320" fill="red">.5</text>
+			<text x="645" y="320" fill="red">.5</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "11"</text>
+			<text x="290" y="320" fill="red">.25</text>
+			<text x="640" y="320" fill="red">.75</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "110"</text>
+			<text x="285" y="320" fill="red">.625</text>
+			<text x="635" y="320" fill="red">.375</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "1101"</text>
+			<text x="280" y="320" fill="red">.3125</text>
+			<text x="630" y="320" fill="red">.6875</text>
+		</g>
+		<image x="200" y="0" width="600" height="300" xlink:href="img/fig2.svg">
+	</svg>
+	
+	<br/>
+	<h3>Induces&nbsp;&nbsp; $f : A^* \to [0,1]$</h3>
+    </div>
+
+    <div id="value1" class="step" data-x="-3000" data-y="500">
+	<h2>Value $1$ Problem</h2>
+
+    <p><b>INPUT</b>: A probabilistic automaton
+    <p><b>OUTPUT</b>: Do there exist words accepted with probability arbitrarily close to $1$?
+    </div>
+
+    <div id="ex_value1" class="step" data-x="-3000" data-y="1200">
+	<img id="example_value1" src="img/pa.svg"></img>
+
+	<br/>
+	<br/>
+
+	<ul>
+		<li>No sequence of actions ensure to reach home almost surely</li>
+		<li>For every $\varepsilon > 0$, there exists a sequence of actions ensuring to reach home with probability at least $1 - \varepsilon$</li>
+		<li>This is not true anymore if the probabilities change!</li>
+	</ul>
+    </div>
+
+    <div id="undec" class="step" data-x="-2000" data-y="-200">
+	<h2>S01E01: Undecidability</h2>
+
+    <i>Starring:</i> Hugo Gimbert and Youssouf Oualhadj, 2010
+
+    <br/><br/>
+    <h3><b>Theorem</b>: The value 1 problem is <i>undecidable</i></h3>
+    </div>
+
+    <div id="sharp_acyclic" class="step" data-x="-2000" data-y="100">
+	<h2>S01E02: $\sharp$-acyclic automata</h2>
+
+    <i>Starring:</i> Hugo Gimbert and Youssouf Oualhadj, 2010
+
+    <br/><br/>
+    <h3><b>Theorem</b>: The value 1 problem is decidable for <i>$\sharp$-acyclic automata</i></h3>
+    </div>
+
+    <div id="classes" class="step" data-x="-2000" data-y="500">
+	<h2>S01E03: The plot thickens</h2>
+
+    <p class="starring"><i>Starring:</i> Rohit Chadha, A. Prasad Sistla and Mahesh Viswanathan, Krishnendu Chatterjee and Mathieu Tracol, Nathana&euml;l Fijalkow, Hugo Gimbert and Youssouf Oualhadj, 2011
+
+    <br/><br/>
+    <h3><b>Theorem</b>: The value 1 problem is decidable for <i>hierarchical automata</i>, <i>simple automata</i> and <i>leaktight automata</i></h3>
+    </div>
+
+    <div id="fig" class="step" data-x="-2000" data-y="1000">
+    <center><img id="classes" src="img/history.svg"/></center>
+    </div>
+
+    <div id="leaktight_power" class="step" data-x="-2000" data-y="1600">
+	<h2>S01E04: Leaktight power</h2>
+
+    <i>Starring:</i> Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Youssouf Oualhadj, 2015
+
+    <br/><br/>
+    <h3><b>Theorem</b>: The class of <i>leaktight automata</i> contains all the others</h3>
+
+    <br/><br/>
+    <div class="slide_step">
+    <h3>What does the Markov Monoid Algorithm compute?</h3>
+    </div>
+
+    </div>
+
+    <div id="mma" class="step" data-x="-1000" data-y="100">
+	<h2>Markov Monoid Algorithm</h2>
+
+	<img id="mma" src="img/fig9.svg"/>
+	<div class="slide_step"><img id="mma_a" src="img/fig10.svg"/></div>
+	<div class="slide_step"><img id="mma_b" src="img/fig11.svg"/></div>
+	<div class="slide_step"><img id="mma_asharp" src="img/fig12.svg"/></div>
+	<div class="slide_step"><img id="mma_asharpb" src="img/fig13.svg"/></div>
+	<div class="slide_step"><img id="mma_asharpbsharp" src="img/fig14.svg"/></div>
+    </div>
+
+    <div id="characterisation" class="step" data-x="-1000" data-y="1200">
+	<h2>S01E05: Finale</h2>
+
+    The sequence $((a^n b)^n)_{n \in \mathbb{N}}$ is polynomial,  
+    the sequence $((a^n b)^{2^n})_{n \in \mathbb{N}}$ is not.  
+    <br/>
+    <br/>
+
+    <div class="slide_step">
+    <h3><b>Theorem</b>:<br/>
+    The Markov Monoid algorithm answers YES 
+    <br/>
+    if, and only if,
+    <br/>
+    there exists a polynomial sequence $(u_n)_{n \in \mathbb{N}}$ such that $\lim_n \mathbb{P}(u_n) = 1$
+    </h3>
+    </div>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    </div>
+	
+    <div id="ex_convergence_speeds" class="step" data-x="-400" data-y="1100" data-scale=".25">
+    <img id="example_value1" src="img/pa.svg"></img>
+    The sequence witnessing value 1 is $((\mathrm{drive}^n \cdot \mathrm{exit})^{2^n})_{n \in \mathbb{N}}$
+    </div>
+
+    <div id="optimality" class="step" data-x="-1000" data-y="1200">
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <h3><b>Theorem</b>:<br/>
+    Determining whether there exist two words $u,v$ such that $\lim_n \mathbb{P}((u^n v)^{2^n}) = 1$ is undecidable</h3>
+    </div>
+
+    <div id="overview_intermediate" class="step unclickable" data-x="-800" data-y="800" data-scale="4">
+    </div>
+
+    <div id="language" class="step" data-x="1000" data-y="200">
+	<h2>What is the right language for...</h2>
+
+	<ul>
+		<div class="slide_step"><li><b>Diplomacy</b>: French!</li></div>
+		<div class="slide_step"><li><b>Mathematics</b>: Set theory? A blackboard? Homotopy type theory?</li></div>
+		<div class="slide_step"><li><b>Automata and logics</b>: Profinite theory</li></div>
+		<div class="slide_step"><li><b>The value 1 problem</b>: Prostochastic theory</li></div>
+	</ul>
+
+    </div>
+
+    <div id="prostochastic" class="step" data-x="1000" data-y="900">
+	 <table>
+	  <tr>
+	    <th class="left">Profinite</th>
+	    <th class="right">Prostochastic</th>
+	  </tr>
+
+	  <tr>
+	    <td class="left"><div class="slide_step">A sequence converges if for every deterministic automaton, almost all words are accepted, or almost all words are rejected.</div></td>
+	    <td class="right"><div class="slide_step">A sequence $(u_n)_{n \in \mathbb{N}}$ converges if for every probabilistic automaton, $\lim_n \mathbb{P}(u_n)$ exists.</div></td>
+	  </tr>  
+
+	  <tr>
+            <td class="left"><div class="slide_step">Two sequences are equivalent if for every deterministic automaton, they agree on almost all words.</div></td>
+	    <td class="right"><div class="slide_step">Two sequences $(u_n)_{n \in \mathbb{N}}$ and $(v_n)_{n \in \mathbb{N}}$ are equivalent if for every probabilistic automaton,
+		$\lim_n \mathbb{P}(u_n) = \lim_n \mathbb{P}(v_n)$.</div></td>
+	  </tr>
+
+	  <tr>
+	    <td class="left"><div class="slide_step">A profinite word is an equivalence class of converging sequences.</div></td>
+	    <td class="right"><div class="slide_step">A prostochastic word is an equivalence class of converging sequences.</div></td>
+	  </tr>
+	</table>
+    </div>
+
+    <div id="reformulation" class="step" data-x="2000" data-y="300">
+	<h2>Emptiness problem</h2>
+
+	<br/>
+
+	<h3><b>Theorem</b>:
+	A probabilistic automaton has value 1
+	<br/>if, and only if,
+	<br/>it accepts a prostochastic word</h3>
+
+	<br/><br/>
+
+	<h3><b>Theorem</b>:
+	The Markov Monoid algorithm answers YES
+	<br/>if, and only if,
+	<br/>it accepts a <i>polynomial</i> prostochastic word</h3>
+    </div>
+
+    <div id="omega_power" class="step" data-x="2000" data-y="1000">
+	<img id="prostochastic" src="img/prostochastic.svg"/>
+    </div>
+
+    <div id="overview" class="step unclickable" data-x="-800" data-y="800" data-scale="4">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

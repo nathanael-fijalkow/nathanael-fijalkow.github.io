@@ -1,0 +1,123 @@
+(* TP 2 informatique MP/MP* HIV, 2010/2011 *)
+(* Nathanaël FIJALKOW *)
+
+(* Question 1 *)
+
+(* l'ordre d'evaluation des arguments *)
+
+(* Question 2 *)
+
+(* int : 6 *)
+
+(* Question 3 *)
+
+exception Trouve ;;
+let existe elt tableau =
+try 
+  for i = 0 to Array.length tableau - 1 do
+    if tableau.(i) = elt then raise Trouve ;
+  done ; false
+with Trouve -> true ;;
+
+(* Question 5 *)
+
+let nouvelle_matrice n p x =
+  let mat = Array.make n [||] in
+    for i = 0 to n-1 do
+      mat.(i) <- Array.make p x ;
+ done ; mat ;;
+
+let nouvelle_matrice n p x =
+Array.init n (fun _ -> Array.make p x) ;;
+
+(* Question 6 *)
+
+exception Fini;; 
+
+let prochain_zero nc grille i j =
+let rec boucle i' j' =
+if i' < nc
+  then 
+    if j' < nc
+      then (if grille.(i').(j') = 0 then (i',j') else boucle i' (j'+1))
+      else boucle (i'+1) 0
+  else raise Fini
+in boucle i j;;
+
+let choix_suivant nc grille liste_choix = match liste_choix with
+  | [] -> let (k,l) = prochain_zero nc grille 0 0 in [(k,l,1)]
+  | (i,j,_)::_ -> let (k,l) = prochain_zero nc grille i (j+1) in (k,l,1)::liste_choix ;;
+
+(* Question 7 *)
+
+exception Echec;;
+
+let rec changer_choix nc grille liste_choix = match liste_choix with
+  | [] -> raise Echec
+  | (i,j,k)::suite -> if k < nc then (i,j,k+1)::suite else changer_choix nc grille suite ;;
+
+(* Question 8 *)
+
+exception Erreur;;
+
+let rec insertion_tri liste elt = match liste with
+  | [] -> [elt]
+  | h::q when h < elt -> h :: insertion_tri q elt 
+  | h::q when h > elt -> elt :: liste 
+  | _ -> raise Erreur;;
+
+let verifier_ligne nc grille i =
+let rec boucle j liste_entiers_ligne =
+if j < nc
+  then boucle (j+1) 
+    (if grille.(i).(j) = 0 then liste_entiers_ligne else insertion_tri liste_entiers_ligne grille.(i).(j))
+  else ()
+in boucle 0 [];;
+
+let verifier_colonne nc grille j =
+let rec boucle i liste_entiers_colonne =
+if i < nc
+  then boucle (i+1) 
+    (if grille.(i).(j) = 0 then liste_entiers_colonne else insertion_tri liste_entiers_colonne grille.(i).(j))
+  else ()
+in boucle 0 [];;
+
+let verifier_carre n nc grille i j =
+let rec boucle i' j' liste_entiers_carre =
+if i' < i + n
+  then 
+    if j' < j + n
+      then boucle i' (j'+1) 
+        (if grille.(i').(j') = 0 then liste_entiers_carre else insertion_tri liste_entiers_carre grille.(i').(j'))
+      else boucle (i'+1) j liste_entiers_carre
+  else ()
+in boucle i j [];;
+
+let correct n nc grille liste_choix =
+let grille_remplie = retourner_solution nc grille liste_choix in
+try
+  for i = 0 to nc-1 do verifier_ligne nc grille_remplie i ; done;
+  for j = 0 to nc-1 do verifier_colonne nc grille_remplie j ; done;
+  for i = 0 to n-1 do for j = 0 to n-1 do 
+    verifier_carre n nc grille_remplie (n*i) (n*j);
+  done; done;
+  true
+with Erreur -> false ;;
+
+let retourner_solution nc grille liste_choix =
+let grille_remplie = Array.make_matrix nc nc 0 in
+for i = 0 to nc-1 do for j = 0 to nc-1 do grille_remplie.(i).(j) <- grille.(i).(j); done; done;
+List.iter (fun (i,j,k) -> grille_remplie.(i).(j) <- k;) liste_choix ;
+grille_remplie;;
+
+let resoudre_sudoku n grille =
+let nc = n*n in
+let rec boucle liste_choix =
+try
+  if correct n nc grille liste_choix
+    then boucle (choix_suivant nc grille liste_choix)
+    else boucle (changer_choix nc grille liste_choix)
+with | Fini -> retourner_solution nc grille liste_choix
+     | Echec -> failwith "pas de solution"
+in boucle [] ;;
+

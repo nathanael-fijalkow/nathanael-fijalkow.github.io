@@ -1,0 +1,44 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(125,40)(0,-12)
+	\gasset{Nadjust=h,loopdiam=5}
+
+	\node[Nmarks=ir,iangle=180](eps)(10,15){$\varepsilon$}
+	\node(a)(30,15){$a$}
+	\node(a2)(50,15){$a^2$}
+	\node(a3)(70,15){$a^3$}
+	\node(a4)(90,15){$a^4$}
+	\node(a5)(110,15){$a^5$}
+
+	\node[Nmarks=r](ab)(30,0){$ab$}
+	\node(a2b)(50,0){$a^2b$}
+	\node(a3b)(70,0){$a^3b$}
+	\node(a4b)(90,0){$a^4b$}
+	\node(a5b)(110,0){$a^5b$}
+
+	\put(115,14){$\cdots$}
+	\put(115,-1){$\cdots$}
+		
+	\drawedge[curvedepth=5](eps,a){$a$}
+	\drawedge[curvedepth=5](a,a2){$a$}
+	\drawedge[curvedepth=5](a2,a3){$a$}
+	\drawedge[curvedepth=5](a3,a4){$a$}
+	\drawedge[curvedepth=5](a4,a5){$a$}
+
+	\drawedge(a,ab){$b$}
+	\drawedge(a2,a2b){$b$}
+	\drawedge(a3,a3b){$b$}
+	\drawedge(a4,a4b){$b$}
+	\drawedge(a5,a5b){$b$}
+
+	\drawedge[curvedepth=5](a2b,ab){$b$}
+	\drawedge[curvedepth=5](a3b,a2b){$b$}
+	\drawedge[curvedepth=5](a4b,a3b){$b$}
+	\drawedge[curvedepth=5](a5b,a4b){$b$}
+\end{picture}
+\end{document}

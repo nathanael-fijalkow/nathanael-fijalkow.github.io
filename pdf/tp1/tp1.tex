@@ -1,0 +1,458 @@
+\documentclass{tpcaml}
+\tp{1}{Partir sur de bonnes bases}
+
+% TP CaML HIV 2010
+% par Nathanaël FIJALKOW
+% Utilise les classes LaTeX de Victor Nicollet
+
+\begin{document}
+  \maketitle
+
+Ce TP est largement inspiré de deux TP donnés par Gabriel Schérer.
+
+  \vskip 5pt
+Ces TP d'informatique servent à vous préparer pour les concours aux épreuves contenant de la programmation \caml :
+il s'agit principalement d'épreuves \emph{écrites} (Centrale, Mines-Ponts et surtout X), puisque seul au concours INFO des \'ENS
+il y a une épreuve sur machine. Donc l'objectif de ces TP est de vous apprendre bien sûr à programmer en \caml,
+mais surtout à écrire sur du papier (avec un crayon, si si) du code \caml\ lisible, clair, indenté, et à le commenter
+(fonctionnement, preuve de correction et terminaison, analyse de complexité).
+
+% De fait, peu importe si le code que vous écrivez sur une copie est effectivement syntaxiquement correct et compile :
+% il suffit d'en convaincre le correcteur (je vous garantis qu'aucun correcteur ne lira votre code).
+
+%C'est pourquoi ces TP seront divisés en deux parties : 
+%\begin{itemize}
+% \item la première heure, vous écrivez sur une feuille (toujours avec un crayon)
+%le code...
+% \item ... que vous testerez \emph{ensuite} pendant la seconde heure sur machine.
+%\end{itemize}
+%
+%J'espère qu'un jour, vous serez convaincu que cette méthode qui paraît laborieuse, permet d'éviter beaucoup de bugs
+%et d'écrire du code plus structuré. Plus un projet de programmation est long, plus longue doit être la phase de structuration
+%du code sur papier!
+%
+\vskip 3pt
+
+L'objectif de ce premier TP est modeste : implémenter une exponentiation rapide et un tri rapide.
+Ces deux fonctions servent très souvent, et vous serez certainement amenés
+à les recoder par la suite, parfois avec des variantes, donc il est important
+de bien en connaître les écueils.
+% \`A part la question difficile, les fonctions à coder sont relativement simples,
+% donc autant prendre de bonnes habitudes tout de suite et présenter agréablement le code.
+
+\section{Récursivité}
+
+En \em programmation \em on dit qu'une fonction est \em récursive \em lorsqu'elle apparaît dans sa 
+propre définition (cette phrase devrait faire hurler le matheux qui est en vous, mais qu'importe). 
+Cela est indiqué par le symbole \code{rec}, qui rend le nom de la fonction disponible 
+à l'intérieur de sa définition (sans lui, le nom ne serait disponible qu'après la définition).
+
+\begin{codesection}
+  let rec fact n = match n with\+\\
+    | 0 -> 1 \\
+    | \_ -> n * fact (n - 1) ;;
+\end{codesection}
+ 
+L'exemple ci-contre est une fonction récursive qui calcule $n!$.  
+Lorsque \code{fact n} est exécutée, elle va appeler \code{fact (n-1)}, qui va appeler
+\code{fact (n-2)} et ainsi de suite jusqu'à 0. Il va donc y avoir $n+1$ appels
+à \code{fact} pour calculer \code{fact n}.
+  
+\begin{question}
+\'Ecrire une fonction \code{fibo} récursive tel que \code{fibo n} calcule le $n$-ième terme de la suite de 
+Fibonaci, avec $u_0 = 0$ et $u_1 = 1$.
+\end{question}
+
+La fonction \code{fibo} que vous venez d'écrire a une complexité désastreuse, alors qu'elle ressemble fort
+à \code{fact}. Pourquoi? Analysons la pile de récursivité de ces deux fonctions.
+Pour \code{fact}, elle a la forme :
+$$\code{fact n} \ \rightarrow \ \code{fact (n - 1)} \ \rightarrow \dots \rightarrow \ \code{fact 0} $$
+Pour \code{fibo}, elle a une forme plus compliquée :
+$$\code{fibo n} \ \rightarrow \ 
+\begin{array}{c} \code{fibo (n-2)} \\ \code{fibo (n-1)} \end{array}
+\ \rightarrow \
+\begin{array}{c} \code{fibo (n-2)} \\ \code{fibo (n-3)} \\ \code{fibo (n-2)} \end{array}
+\ \rightarrow \
+\dots$$
+
+\begin{question}
+Quelle est la complexité de \code{fibo n} en fonction de $n$?
+Proposer une amélioration en utilisant des couples, quelle est sa complexité?
+\end{question}
+
+On s'intéresse maintenant au problème de l'exponentiation. On veut un algorithme
+qui étant donnés $x$ entier et $n \geq 0$, calcule $x^n$.
+On peut faire simple, et calculer $x^2$, puis $x^3$, puis $x^4$, jusqu'à $x^n$,
+mais ceci donne un algorithme linéaire, pas très satisfaisant.
+On utilise la récursivité : on sait que $x^0 = 1$, $x^{2n} = (x^n)^2$ et $x^{2n+1} = x \cdot (x^n)^2$.
+
+\begin{question}
+\'Ecrire une fonction \code{exponentiation} récursive tel que 
+\code{exponentiation x n} calcule $x^n$.
+\end{question}
+
+La fonction \code{exponentiation} que vous venez de coder
+vous sera d'une utilité constante, et certainement pas que cette année!
+
+\begin{question}
+On s'intéresse au nombre de multiplications effectuées par cet algorithme.
+Quelle est la complexité de \code{exponentiation x n} en fonction de $n$
+(ici, on ne demande qu'un ordre de grandeur)?
+\end{question}
+
+\section{Types somme}
+
+Un petit rappel sur les types. Parmi les types de bases, ceux que l'on utilise souvent sont :
+\code{int} (entier), 
+\code{float} (flottant), 
+\code{char} (caractère),
+\code{string} (chaîne de caractères) et \code{unit}.
+Il est possible en \caml de définir de nouveaux types.
+Si \code{t1} et \code{t2} sont des types \caml, \code{t1 * t2} est le type des couples
+d'un élément de type \code{t1} et d'un élément de type \code{t2}. Par
+exemple \code{(1, "blah") : int * string}. On peut faire des n-uplets
+à plus de deux membres, comme \code{(1, "blah", 3.5) : int * string * float}.
+Décrivons maintenant les types somme.
+
+\begin{codesection}
+\#type contact = Tel of int | Mail of string | Inconnu;;\\
+Type contact defined.\\ \\
+\#Mail "\mymail";;\\
+- : contact = Mail "\mymail" \\
+\#Inconnu;;\\
+- : contact = Inconnu
+\end{codesection}
+
+Un type somme est constitué d'un ensemble de valeurs associées à des \em
+constructeurs\em. Ci-contre, \code{contact} est décrit par trois
+constructeurs: \code{Tel}, associé à un entier, \code{Mail} associé
+à une chaîne de caractères, et \code{Inconnu} qui n'est associé à rien
+du tout; un contact sera donc soit un numéro de téléphone, soit une
+adresse mail, soit un inconnu.
+
+\subsection{Pattern matching}
+
+\begin{codesection}
+let contacter contact = match contact with\+ \\
+  | Mail m -> "Envoyer un mail à "\^{}m \\
+  | Tel t -> "Appeler le "\^{}(string\_of\_int t);;
+\end{codesection}
+
+En lisant un contact, on veut faire quelque chose comme
+``si c'est un numéro de téléphone, alors téléphoner, sinon envoyer un
+mail''. Ici l'instruction conditionnelle \code{if then else}
+n'est pas suffisante : \\
+on voudrait dire \code{if contact = Tel},
+mais ça ne marche pas, car contact est de la forme \code{Tel \emph{entier}}.
+Le \emph{pattern matching}, ou \emph{filtrage de motif}, donne cette liberté :
+``si contact est de la forme \code{Tel \emph{numéro}}, alors téléphoner à \code{numéro}''.
+
+\begin{center}
+\begin{minipage}{400pt}
+match $expr$ with \\
+$\mid pattern_1$ -> $expr_1$ \\
+$\vdots$ \\
+$\mid pattern_n$ -> $expr_n$ \\
+$\vdots$
+\end{minipage}
+\end{center}
+
+L'instruction essaye les motifs à gauche des \code{->}, de haut en
+bas; lorsqu'un premier motif $pattern_n$ correspond à la valeur $expr$ (il ``matche''),
+les variables présentes dans le motif $pattern_n$ reçoivent
+la valeur correspondant dans $expr$, et l'expression à droite du
+\code{->}, c'est-à-dire $expr_n$, est renvoyée.
+
+\begin{codesection}
+let est\_ce\_moi contact =\\
+  let mon\_tel = 0102030405 in\\
+  let mon\_mail = "\mymail" in\\
+  match contact with\+\\
+  | Mail mon\_mail -> true\\
+  | Tel mon\_tel -> true\\
+  | Mail \_ | Tel \_ | Inconnu -> false;;
+\end{codesection}
+
+Il faut bien comprendre que les motifs permettent à la fois de faire
+des choix (comme \code{if..then..else}) et de nommer des variables
+(les identifiants présents dans le motif). Le motif \code{Mail m}
+par exemple va déclarer une nouvelle variable \code{m} valant
+l'adresse mail du contact (si le contact est de la forme
+\code{Mail mail}). Elle ne fait pas référence à une variable
+\code{m} précédente (qui, si elle existe, sera écrasée).
+% En particulier, on ne peut pas mettre plusieurs fois la même variable
+% dans un seul motif.
+Il existe aussi un motif acceptant tout,
+et ne déclarant pas de nouvelle variable : \code{\_}.\\
+On peut aussi écrire des motifs pour les n-uplets : \code{($patt_1$,
+$patt_2$, ...)} est un motif correspondant aux n-uplets dont les
+membres correspondent aux motifs $patt_1$, $patt_2$, ...
+
+\begin{question}
+Pourquoi la fonction \code{est\_ce\_moi} ne fait pas ce qu'elle devrait?
+\end{question}
+
+\pagebreak
+\section{Listes}
+
+\subsection{Types récursifs}
+
+Il est possible d'utiliser un type dans sa propre définition, sans
+même spécifier un \code{rec}.
+
+\begin{codesection}
+type programme\_robot = \\
+Stop | Move of (int * int) * programme\_robot ;;
+\end{codesection}
+
+On programme un robot qui se déplace dans le plan. Un programme du
+robot peut consister en deux choses: la commande \code{Stop}, qui
+marque la fin du programme, et la commande \code{Move (p,suite)}, qui
+indique au robot de bouger de se rendre au point \code{p : int * int}
+et d'exécuter ensuite le programme \code{suite}.
+
+\vskip 1em
+\noindent Pour \code{`a} un type quelconque, le type \code{`a list} généralise le type précédent.
+La commande \code{Stop} est notée \code{[]}.
+Il s'agit de la liste vide, qui ne contient aucun élément.
+La commande \code{Move (x,p)} est notée \code{x\concat p},
+elle contient l'élément \code{x} appelé tête de la liste,
+et la liste \code{p} appelée queue de la liste.
+\code{[]} et \code{\concat} sont deux constructeurs,
+ils permettent à la fois d'écrire des expressions pour construire des listes,
+et des motifs pour les déconstruire.
+
+On utilise une abbréviation: la liste des entiers de 1 à 3,
+\code{1\concat (2\concat (3\concat []))} peut s'écrire de manière plus lisible
+comme: \code{\li 1; 2; 3\il}.
+
+% Contrairement aux tableaux, les listes ne peuvent pas être
+% modifiées. La manipulation des listes ne comporte donc que deux
+% possibilités: parcourir la liste pour en extraire des informations, ou
+% créer une nouvelle liste.
+
+\subsection{Parcourir une liste}
+
+\begin{codesection}
+  let rec length = function \+\\
+    | [] -> 0 \\
+    | h\concat t -> length t + 1;;
+\end{codesection}
+
+La fonction ci-contre calcule la longueur d'une liste en la
+parcourant, élément par élément.
+% Plus généralement, on parcourt une
+% liste comme on étudie un type récursif : on écrit une fonction qui
+% effectue un travail sur la tête de la liste et s'applique
+% récursivement sur la queue de la liste.
+
+Remarque : la forme \code{(function ...)} est équivalente à \code{(fun x -> match x with ...)},
+sans nommer de variable \code{x}. Attention, \code{function} prend implicitement un
+paramètre (comme \code{fun}), mais on ne le nomme pas, on lui applique
+directement des motifs.
+
+\subsection{Créer une liste}
+
+% On sait créer manuellement des listes de longueur donnée. Comment créer des
+% listes de longueur arbitraire?
+
+\begin{codesection}
+  let rec carres = function \+\\
+    | 0 -> {[]}\\
+    | n -> (n*n)\concat(carres (n-1));;
+\end{codesection}
+
+% Créer une liste est fondamentalement un problème récursif: si on
+% sait construire la queue de la liste, on peut construire la
+% liste en y ajoutant simplement la tête. 
+La fonction ci-contre calcule la liste des carrés des
+entiers plus petits que $n$.
+
+\begin{question}
+\'Ecrire une fonction qui calcule la liste des diviseurs premiers
+d'un entier $n$, apparaissant autant de fois dans la liste que dans
+$n$.
+\end{question}
+
+\subsection{Transformation de listes}
+
+On ne peut pas transformer les listes, puisqu'on ne peut pas les modifier! En 
+revanche, on peut créer une liste à partir des données lues dans une autre. Pour
+cela, il suffit en général d'écrire une fonction qui lit des données dans une
+liste, et qui renvoie une liste.
+
+\begin{question}
+La fonction \code{map} (du module \code{List}) prend en argument une fonction \code{f} \\et une liste \code{\li x1; x2; \ldots\ ; xn\il} et renvoie la liste
+\code{\li f(x1); f(x2); \ldots\ ; f(xn)\il}.
+\'Ecrire cette fonction.
+\end{question}
+
+\begin{question}
+Écrire une fonction \code{rev} qui retourne une liste.
+Votre fonction est-elle efficace? J'en doute. Voici un conseil:
+écrire une fonction \code{rev\_append} tel que \code{rev\_append l1 l2}
+retourne \code{l1} et la concatène à \code{l2}. Avec cette fonction,
+écrire une nouvelle fonction \code{rev}, linéaire.
+\end{question}
+
+On s'intéresse maintenant au problème de trier une liste.
+Nous supposerons ici qu'il s'agit d'une liste d'entiers, et on veut
+l'ordonner selon l'ordre naturel sur les entiers, croissant.
+
+\begin{question}
+\'Ecrire une fonction \code{insertion\_tri} qui, étant donnés une liste triée \code{liste} et un 
+élément \code{elt}, renvoie la liste triée contenant \code{elt} ainsi que les éléments
+de \code{liste} (on parle d'insérer un élément dans une liste triée).\\
+En déduire (et écrire) une fonction qui effectue le tri par insertion pour trier une liste.
+\end{question}
+
+Continuons avec le tri rapide. Rappelons le principe :
+étant donné une liste sous la forme \code{a::liste}, on se sert de \code{a}
+comme pivot. On construit deux listes, \code{linf} et \code{lsup},
+la première contenant les élements de \code{liste} strictement inférieur à \code{a},
+et la seconde tous les autres. On trie récursivement \code{linf} et \code{lsup},
+puis on concatène les résultats.
+
+\begin{question}
+\'Ecrire une fonction \code{pivot} qui, étant donné un élément \code{a} et une liste \code{liste},
+renvoie le couple de liste (\code{linf},\code{lsup}) comme décrit ci-dessus.\\
+En déduire (et écrire) une fonction qui effectue un tri rapide pour trier une liste.
+\end{question}
+
+% \begin{question}
+% Quelle est la complexité, en nombre de comparaisons, de ces deux tris, 
+% dans le pire cas, et dans le cas moyen 
+% (en supposant les éléments deux à deux distincts, et une distribution uniforme sur les ordres possibles)?
+% La preuve dans le cas moyen est calculatoire, mais faisable.
+% \end{question}
+
+\section{Question difficile}
+
+Considérons à nouveau le problème de l'exponentiation.
+On s'intéresse au nombre minimum de multiplications nécessaires pour calculer $x^n$.
+Pour définir le problème précisément, on suppose disposer d'une mémoire, qui initialement
+contient $x^0 = 1$ et $x^1 = x$. Chaque étape consiste à multiplier entre eux deux entiers
+disponibles dans la mémoire, et à ajouter l'entier obtenu à la mémoire.
+On ne s'intéresse qu'au nombre d'étapes minimal pour obtenir $x^n$,
+et pas aux coûts de gestion de cette mémoire.
+
+Reprenons l'analyse de l'algorithme récursif.
+Voici une autre façon de comprendre cet algorithme en considérant l'écriture binaire de $n$ en base $2$.
+On part du bit le plus faible :
+\begin{enumerate}
+ \item[(1)] si c'est un $0$, alors on calcule récursivement $x^{n/2}$ en supprimant ce bit (division par $2$),
+puis on retourne le carré de $x^{n/2}$, ce qui occasionne une multiplication supplémentaire;
+ \item[(2)] si c'est un $1$, alors on calcule récursivement $x^{n/2}$ en supprimant ce bit (division par $2$),
+puis on calcule le carré de $x^{n/2}$, que l'on multiplie à $x$,
+ce qui occasionne deux multiplications supplémentaires.
+\end{enumerate}
+
+\begin{question}
+Notons $k + 1$ le nombre de bits dans l'écriture binaire de $n$,
+et $j - 1$ le nombre de $1$. Exprimer le coût de l'algorithme en fonction de $j$ et $k$.
+Exprimer $k$ en fonction de $n$, et encadrer $j$.
+\end{question}
+
+\begin{question}
+\`A partir de l'analyse précédente; identifier les pires cas, en fonction de $n$, de l'algorithme récursif.
+Trouver une valeur de $n$ pour laquelle il existe un algorithme n'effectuant que des multiplications,
+calculant $x^n$ avec strictement moins de multiplications (indication : $n = 2^4 - 1$).
+\end{question}
+
+Considérons la question suivante :
+donner une méthode de construction d'un arbre (potentiellement infini) 
+étiqueté par l'ensemble des entiers naturels,
+dont le chemin depuis la racine à l'entier $n$ donne un chemin de multiplications optimal.
+
+\begin{question}
+Donald (Knuth, à qui avez-vous pensé?) propose l'arbre suivant, comment est-il construit,
+pourquoi n'est-il pas optimal? La plus petite valeur pour laquelle cet arbre n'est pas optimal
+est $19\ 879$...
+\end{question}
+
+\begin{center}
+\begin{picture}(150,50)(50,10)
+\gasset{Nw=5,Nh=5}
+\node(1)(150,60){1}
+
+\node(2)(150,50){2}
+
+\node(3)(120,40){3}
+\node(4)(170,40){4}
+
+\node(5)(85,30){5}
+\node(6)(155,30){6}
+\node(8)(180,30){8}
+
+\node(7)(70,20){7}
+\node(10)(100,20){10}
+\node(9)(145,20){9}
+\node(12)(160,20){12}
+\node(16)(183,20){16}
+
+\node(14)(60,10){14}
+\node(11)(80,10){11}
+\node(13)(95,10){13}
+\node(15)(115,10){15}
+\node(20)(130,10){20}
+\node(18)(145,10){18}
+\node(24)(160,10){24}
+\node(17)(175,10){17}
+\node(32)(190,10){32}
+
+\node(19)(50,0){19}
+\node(21)(60,0){21}
+\node(28)(70,0){28}
+\node(22)(80,0){22}
+\node(23)(90,0){23}
+\node(26)(100,0){26}
+\node(25)(110,0){25}
+\node(30)(120,0){30}
+\node(40)(130,0){40}
+\node(27)(140,0){27}
+\node(36)(150,0){36}
+\node(48)(160,0){48}
+\node(33)(170,0){33}
+\node(34)(180,0){34}
+\node(64)(190,0){64}
+
+\drawedge(1,2){}
+\drawedge(2,3){}
+\drawedge(2,4){}
+\drawedge(3,5){}
+\drawedge(3,6){}
+\drawedge(4,8){}
+\drawedge(5,7){}
+\drawedge(5,10){}
+\drawedge(6,9){}
+\drawedge(6,12){}
+\drawedge(8,16){}
+\drawedge(7,14){}
+\drawedge(10,11){}
+\drawedge(10,13){}
+\drawedge(10,15){}
+\drawedge(10,20){}
+\drawedge(9,18){}
+\drawedge(12,24){}
+\drawedge(16,17){}
+\drawedge(16,32){}
+\drawedge(14,19){}
+\drawedge(14,21){}
+\drawedge(14,28){}
+\drawedge(11,22){}
+\drawedge(13,23){}
+\drawedge(13,26){}
+\drawedge(15,25){}
+\drawedge(15,30){}
+\drawedge(20,40){}
+\drawedge(18,27){}
+\drawedge(18,36){}
+\drawedge(24,48){}
+\drawedge(17,33){}
+\drawedge(17,34){}
+\drawedge(32,64){}
+
+\end{picture}
+\end{center}
+
+\end{document}

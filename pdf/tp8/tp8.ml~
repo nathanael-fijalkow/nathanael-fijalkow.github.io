@@ -1,0 +1,84 @@
+(* Automates déterministes *)
+
+type 'a option = Some of 'a | None ;;
+type afd = { taille : int ;
+             transitions : (bool -> int option) array } ;;
+
+let accept auto etat lettre = 
+  match (auto.transitions.(etat) lettre) with
+    | Some _ -> true ;
+    | _ -> false ;;
+
+let calcul auto mot =
+  let n = Array.length mot in
+  let rec boucle k etat =
+    if k < n 
+    then 
+      match auto.transitions.(etat) mot.(k) with
+	| Some nv_etat -> boucle (k+1) nv_etat
+	| None -> None
+    else Some etat
+  in boucle 0 0 ;;
+
+let auto =
+{ taille = 5 ; transitions = [|
+(fun x -> if x then Some 1 else Some 2) ;
+(fun x -> if x then None else Some 1) ;
+(fun x -> if x then Some 3 else Some 4) ;
+(fun x -> if x then None else Some 4) ;
+(fun x -> if x then Some 3 else None) |] } ;;
+
+(* calcul auto [|true;false|] ;;
+calcul auto [|true;false;true|] ;;
+calcul auto [|false;true;false;true|] ;; *)
+
+(* Le mot minimal *)
+
+type expr = Vide | Epsilon | Lettre of bool | Union of expr * expr 
+| Concat of expr * expr | Etoile of expr ;;
+
+let rec est_vide = function 
+ | Vide -> true
+ | Epsilon | Lettre _ -> false 
+ | Union(e,e') -> est_vide e && lambda e' 
+ | Concat(e,e') -> lambda e || lambda e' 
+ | Etoile _ -> false ;;
+
+let rec longueur_mot_min = function 
+ | Vide -> None 
+ | Epsilon ->  Some 0 
+ | Lettre _ -> Some 1 
+ | Union(e,e') -> 
+     begin
+       match (longueur_mot_min e,longueur_mot_min e') with 
+       | None,None -> None 
+       | None,Some x' -> Some x' 
+       | Some x,None -> Some x 
+       | Some x,Some x' -> Some (min x x')
+     end
+ | Concat(e,e') -> 
+     begin
+       match (mu e,mu e') with 
+	 | None,_ | _,None -> None 
+	 | Some x,Some x' -> Some (x+x')
+     end
+ | Etoile _ -> Some 0 ;;
+
+(* Eleusis *)
+
+let jouer auto =
+  let rec boucle etat_courant = 
+    print_string "Proposer une carte (0 ou 1)   " ;
+    let carte = read_line () in
+      if carte = "0" || carte = "1"
+      then
+	let b = (carte = "0") in
+	match auto.transitions.(etat_courant) b with
+	  | Some nv_etat -> (print_string "Accepté\n" ; print_newline () ;
+			     boucle nv_etat)
+	  | None -> (print_string "Rejeté\n" ; print_newline(); 
+		     boucle etat_courant)
+      else print_string "Fini\n"
+  in boucle 0 ;;
+
+jouer auto ;;

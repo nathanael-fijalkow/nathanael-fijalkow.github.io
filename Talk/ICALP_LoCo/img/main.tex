@@ -1,0 +1,59 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{graphicx}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(110,60)(-10,-10)
+	\gasset{Nw=7,Nh=7}
+
+  	\node[linecolor=White](rootR)(47,38){}
+  	\node[linecolor=White](0R)(17,18){}
+  	\node[linecolor=White](1R)(77,18){}
+  	\node[linecolor=White](00R)(2,-2){}
+  	\node[linecolor=White](01R)(32,-2){}
+  	\node[linecolor=White](10R)(62,-2){}
+  	\node[linecolor=White](11R)(92,-2){}
+
+  	\node[linecolor=White](rootL)(41,39){}
+  	\node[linecolor=White](0L)(11,19){}
+  	\node[linecolor=White](1L)(71,19){}
+  	\node[linecolor=White](00L)(-4,-1){}
+  	\node[linecolor=White](01L)(26,-1){}
+  	\node[linecolor=White](10L)(56,-1){}
+  	\node[linecolor=White](11L)(86,-1){}
+
+  	\node[linecolor=White](root)(45,40){\includegraphics[width=12mm]{potato}}
+  	\node[linecolor=White](0)(15,20){\includegraphics[width=12mm]{potato}}
+  	\node[linecolor=White](1)(75,20){\includegraphics[width=12mm]{potato}}
+  	\node[linecolor=White](00)(0,0){\includegraphics[width=12mm]{potato}}
+  	\node[linecolor=White](01)(30,0){\includegraphics[width=12mm]{potato}}
+  	\node[linecolor=White](10)(60,0){\includegraphics[width=12mm]{potato}}
+  	\node[linecolor=White](11)(90,0){\includegraphics[width=12mm]{potato}}
+
+  	\drawedge(root,0){}
+  	\drawedge(root,1R){}
+  	\drawedge(0,00L){}
+  	\drawedge(0,01){}
+  	\drawedge(1,10R){}
+  	\drawedge(1,11L){}
+
+  	\drawedge(rootR,0R){}
+  	\drawedge(rootR,1L){}
+  	\drawedge(0R,00){}
+  	\drawedge(0R,01R){}
+  	\drawedge(1R,10L){}
+  	\drawedge(1R,11){}
+
+  	\drawedge(rootL,0L){}
+  	\drawedge(rootL,1){}
+  	\drawedge(0L,00R){}
+  	\drawedge(0L,01L){}
+  	\drawedge(1L,10){}
+  	\drawedge(1L,11R){}
+\end{picture}
+
+\end{document}
+

@@ -1,0 +1,332 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Algorithmic Properties of Probabilistic Automata by Nathanaël Fijalkow</title>
+    
+    <meta name="description" content="Algorithmic Properties of Probabilistic Automata" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+<div id="impress">
+
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+        <h1>Probabilistic Automata</h1>
+
+	<h2>Nathanaël Fijalkow</h2>
+	<h3><i>LIAFA, Paris 7 (France) and University of Warsaw (Poland)</i></h3>
+    </div>
+
+    <div id="pa" class="step" data-x="-1000" data-y="1500" data-scale="2">
+        <img id="pa" src="img/pa.svg"></img>
+    </div>
+
+    <div id="related" class="step" data-x="500" data-y="1500" data-scale="2">
+        <h2>Related Talks</h2>
+
+	<ul>
+		<li><i>Jacques Sakarovitch</i>: Equivalence of weighted automata: A survey of 54 years of research</li>
+		<li><i>Miko&#322;aj Boja&#324;czyk</i>: A theory of regular everything</li>
+		<li><i>Kim Larsen</i>: Synchronizing Words and Strategies for Quantitative Automata</li>
+		<li><i>Igor Potapov</i>: Reachability problems for words, matrices and maps</li>
+		<li><i>Paul Gastin</i>: 10 years of weighted logics for weighted automata</li>
+	</ul>
+    </div>
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="6">
+	<h1>Where the wild things are</h1>
+    </div>
+
+<!-- First part -->
+    <div id="left" class="step" data-x="-6500" data-y="0" data-scale="6">
+    </div>
+
+     <div id="binary" class="step" data-x="-8500" data-y="-1250" data-scale="2">
+	<h1>Binary decomposition</h1>
+
+	<i>Rabin:</i>
+        <img id="rabin" src="img/rabin.svg"></img>
+
+	<br/><i>Corollary</i> (Bertoni): Undecidability of the emptiness problem.
+    </div>
+
+    <div id="isolation" class="step" data-x="-6500" data-y="-2000" data-scale="2">
+	<h1>Isolation</h1>
+
+	The threshold 1/2 is isolated if there exists $\varepsilon > 0$ such that for all words $u$,
+	we have $\mathbb{P}(u) < 1/2 - \varepsilon$ or $\mathbb{P}(u) > 1/2 + \varepsilon$.
+
+	<br/><br/><i>Theorem</i> (Rabin): If 1/2 is isolated, then $L^{> 1/2}$ is regular.
+
+	<br/><br/><i>Theorem</i> (Bertoni): Determining if 1/2 is isolated is undecidable.	
+    </div>
+
+    <div id="non-regular" class="step" data-x="-4200" data-y="-1250" data-scale="2">
+	<h1>Universally non-regular automaton</h1>
+
+	<i>Double-Rabin:</i>
+        <img id="double-rabin" src="img/double-rabin.svg"></img>
+
+	<br/><i>Corollary</i> (Bertoni): Undecidability of the regularity problem.
+    </div>
+
+    <div id="proof-non-reg" class="step" data-x="-6500" data-y="-500" data-scale="1.8">
+	We show that for all x in (0,1), $L^{> x}$ is non-regular.
+
+	<br/><br/>
+	Let $u,v$ in $\{0,1\}^*$, we have $\mathbb{P}(u \cdot \sharp \cdot v) = \mathrm{bin}(u) \cdot \mathrm{bin}(v)$. 
+
+	<br/><br/>
+	For every $u,v$ in $\{0,1\}^*$ such that $\mathrm{bin}(u) < \mathrm{bin}(v) < x$,
+	there exists $w$ in $\{0,1\}^*$ such that $u \cdot \sharp \cdot w \in L^{> x}$ and $v \cdot \sharp \cdot w \notin L^{> x}$;
+	it suffices to choose $w$ such that $\mathrm{bin}(w)$ is in $\left(\frac{x}{\mathrm{bin}(v)},\frac{x}{\mathrm{bin}(u)}\right)$.
+
+	<br/><br/>
+	It follows that the left quotients $u^{-1} \cdot L^{> x}$ and $v^{-1} \cdot L^{> x}$ are distinct.
+    </div>
+
+    <div id="non-regular2" class="step" data-x="-4200" data-y="-1250" data-scale="2">
+	<h1>Universally non-regular automaton</h1>
+
+	<i>Double-Rabin:</i>
+        <img id="double-rabin" src="img/double-rabin.svg"></img>
+
+	<br/><i>Corollary</i> (Bertoni): Undecidability of the regularity problem.
+    </div>
+
+    <div id="counting" class="step" data-x="-4000" data-y="100" data-scale="2">
+	<h1>Two-way Counting</h1>
+
+	<i>Theorem</i> (Freivalds): There exists a <b>two-way</b> probabilistic automaton such that:
+	<ul>
+		<li>it accepts $0^n 1^n$ with probability at least 2/3,</li>
+		<li>it accepts $0^n 1^m$ with $n \neq m$, with probability at most 1/3.</li>
+	</ul>
+   </div>
+
+    <div id="counting-proof" class="step" data-x="-6000" data-y="800" data-scale="1">
+	On input $0^n 1^m$, play the following game:
+	<ul>
+		<li>for each $0$, flip a coin,</li>
+		<li>for each $1$, flip a coin.</li>
+	</ul>
+
+	<br/>A success for $0$ (resp. $1$) is when all coins turn up HEAD.
+	Count the successes up to some constant.
+
+	<br/><br/><ul>
+		<li>if $n = m$, the two experiments are the same,</li>
+		<li>if $n \neq m$, there is a bias: repeating this experiment enough time reveals the bias.</li>
+	</ul>
+   </div>
+
+    <div id="counting2" class="step" data-x="-4000" data-y="1200" data-scale="2">
+	<i>Corollary</i> (Freivalds): There is no algorithm with the following behaviour for <b>two-way</b> probabilistic automata: 
+	<ul>
+		<li>if there exists a word accepted with probability at least 2/3, answer YES,</li>
+		<li>if all words are accepted with probability at most 1/3, answer NO,</li>
+		<li>in any other case, do anything, including not terminating.</li>
+	</ul>
+   </div>
+
+    <div id="counting3" class="step" data-x="-4000" data-y="2500" data-scale="2">
+	<h1>One-way Counting</h1>
+
+<!--
+	<i>Theorem</i> (Condon - Lipton): There exists a probabilistic automaton with three outcomes: accept, reject, and inconclusive, such that:
+	<ul>
+		<li>for $0^n 1^n$, $\mathbb{P}(accept) = \mathbb{P}(reject) > 0$,</li>
+		<li>for $0^n 1^m$ with $n \neq m$, $\mathbb{P}(reject) > 10 \cdot \mathbb{P}(accept)$.</li>
+	</ul>
+	<br/>
+-->
+	<i>Theorem</i> (Condon - Lipton): There is no algorithm with the following behaviour: 
+	<ul>
+		<li>if there exists a word accepted with probability at least 2/3, answer YES,</li>
+		<li>if all words are accepted with probability at most 1/3, answer NO,</li>
+		<li>in any other case, do anything, including not terminating.</li>
+	</ul>
+
+    </div>
+
+    <div id="numberless" class="step" data-x="-6000" data-y="2000" data-scale="2">
+	<h1>Numberless problems</h1>
+
+	What about not specifying the numerical values in probabilistic transition functions?
+
+	<br/><br/><i>Theorem</i> (F., Gimbert, Horn, Oualhadj): Determining whether for all probabilistic transition functions,
+	$L^{> 1/2}$ is non-empty, is undecidable.
+    </div>
+
+    <div id="value1" class="step" data-x="-8500" data-y="1250" data-scale="2">
+	<h1>Convergence to 1</h1>
+
+        <img id="value1" src="img/value1.svg"></img>
+
+	<br/><br/><i>Corollary</i> (Gimbert - Oualhadj): Determining whether there exists a sequence of words whose probability converges to $1$ is undecidable.
+    </div>
+
+    <div id="value1-proof" class="step" data-x="-8500" data-y="2750" data-scale="1">
+	$$\left\{
+	\begin{array}{l}
+	\mathbb{P}(0 \xrightarrow{b a^n} L_1) = \frac{1}{2} \cdot x^n \\
+	\mathbb{P}(0 \xrightarrow{b a^n} R_1) = \frac{1}{2} \cdot (1-x)^n
+	\end{array}
+	\right.$$
+
+	$$\begin{array}{lll}
+	\mathbb{P}((b a^n)^N) & = & \sum_{k = 1}^{N-1} (1 - (p_n + q_n))^{k-1} \cdot p_n \\[1.5ex]
+	& = & p_n \cdot \frac{1 - (1 - (p_n + q_n))^{N-1}}{1 - (1 - (p_n + q_n))} \\[1.5ex]
+	& = & \frac{1}{1 + \frac{q_n}{p_n}} \cdot \left(1 - (1 - (p_n + q_n))^{N-1}\right) \\[1.5ex]
+	\end{array}$$
+
+	We now set $N = 2^n$: 
+	$$\lim_n \mathbb{P}((b a^n)^{2^n}) = 1.$$
+    </div>
+
+    <div id="value1-out" class="step" data-x="-8500" data-y="1250" data-scale="2">
+	<h1>Convergence to 1</h1>
+
+        <img id="value1" src="img/value1.svg"></img>
+
+	<br/><br/><i>Corollary</i> (Gimbert - Oualhadj): Determining whether there exists a sequence of words whose probability converges to $1$ is undecidable.
+    </div>
+
+    <div id="left-out" class="step" data-x="-6500" data-y="0" data-scale="6">
+    </div>
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="15">
+    </div>
+
+
+<!-- Second part -->
+    <div id="right" class="step" data-x="6000" data-y="500" data-scale="6">
+    </div>
+
+    <div id="history" class="step" data-x="3500" data-y="-1000" data-scale="2">
+	<h1>History</h1>
+
+	Determining whether there exists a sequence of words whose probability converges to $1$ is undecidable.
+	<img id="history" src="img/history.svg"></img>
+    </div>
+
+    <div id="mma" class="step" data-x="6000" data-y="-1000" data-scale="2">
+	<h1>Markov Monoid Algorithm</h1>
+
+	Computes a stabilisation monoid, generalising the transition monoid, but for probabilistic automata.
+
+	<br/><br/><i>Theorem</i> (F., Gimbert, Oualhadj): The Markov Monoid algorithm is correct for the class of leaktight automata.
+	<br/><br/><i>Theorem</i> (F., Gimbert, Kelmendi, Oualhadj): The Markov Monoid algorithm is the best algorithm <i>so far</i>.
+    </div>
+
+    <div id="characterisation" class="step" data-x="8500" data-y="-1000" data-scale="2">
+	<h1>Characterisation</h1>
+
+	The sequence $((a^n b)^n)_{n \in \mathbb{N}}$ is polynomial,  
+	the sequence $((a^n b)^{2^n})_{n \in \mathbb{N}}$ is not.  
+
+	<br/><br/><i>Theorem</i> (F.): The Markov Monoid algorithm answers YES if, and only if, there exists a polynomial sequence $(u_n)_{n \in \mathbb{N}}$
+	such that $\lim_n \mathbb{P}(u_n) = 1$.
+	<br/><br/><i>Theorem</i> (F.): Determining whether there exist two words $u,v$ such that $\lim_n \mathbb{P}((u^n v)^{2^n}) = 1$
+	is undecidable.
+    </div>
+
+    <div id="right" class="step" data-x="6000" data-y="500" data-scale="6">
+    </div>
+
+    <div id="prostochastic" class="step" data-x="3500" data-y="1000" data-scale="2">
+	<h1>Prostochastic Theory</h1>
+
+	 <table>
+	  <tr>
+	    <th width="50%" border="1">Profinite</th>
+	    <th width="50%">Prostochastic</th>
+	  </tr>
+	  <tr>
+	    <td>A sequence converges if for every deterministic automaton:
+		<ul>
+			<li>almost all words are accepted,</li> 
+			<li>or almost all words are rejected.</li>
+		</ul>
+	    </td>
+	    <td>A sequence $(u_n)_{n \in \mathbb{N}}$ converges if for every probabilistic automaton,
+		$\lim_n \mathbb{P}(u_n)$ exists.</td>
+	  </tr>  
+
+	  <tr>
+	    <td>Two sequences are equivalent if for every deterministic automaton, they agree on almost all words.</td>
+	    <td>Two sequences $(u_n)_{n \in \mathbb{N}}$ and $(v_n)_{n \in \mathbb{N}}$ are equivalent if for every probabilistic automaton, 
+		$\lim_n \mathbb{P}(u_n) = \lim_n \mathbb{P}(v_n)$.</td>
+	  </tr>
+
+	  <tr>
+	    <td>A profinite word is an equivalence class of converging sequences.</td>
+	    <td>A prostochastic word is an equivalence class of converging sequences.</td>
+	  </tr>
+	</table>
+
+    </div>
+
+    <div id="free_prostochastic_monoid" class="step" data-x="6000" data-y="1000" data-scale="2">
+	<h1>Free Prostochastic Monoid</h1>
+
+	<i>Theorem</i> (F.): The free prostochastic monoid, denoted $\mathcal{PA}$, is the set of all prostochastic words.
+	It forms a compact metric space, satisfying a universal property:
+
+	<br/><span>''Every morphism $\phi : A^* \to Stoch(\mathbb{R})$ extends uniquely to a continuous morphism $\widehat{\phi} : \mathcal{PA} \to Stoch(\mathbb{R})$.''</span>
+    </div>
+
+    <div id="reformulation" class="step" data-x="8500" data-y="1000" data-scale="2">
+	<h1>Reformulation</h1>
+
+	<i>Theorem</i> (F.) A probabilistic automaton has value $1$ if, and only if, it accepts a prostochastic word.
+	<br/><br/><i>Theorem</i> (F.) The Markov Monoid algorithm answers YES if, and only if, it accepts a <i>polynomial</i> prostochastic word.
+    </div>
+
+    <div id="omega_power" class="step" data-x="6000" data-y="2500" data-scale="2">
+	<!--<h1>The omega power</h1>-->
+	<img id="prostochastic" src="img/prostochastic.svg"></img>
+    </div>
+
+    <div id="right-out" class="step" data-x="6000" data-y="500" data-scale="6">
+    </div>
+
+<!-- Final overview -->
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="15">
+    </div>
+
+    <div id="open_problems" class="step" data-x="0" data-y="5000" data-scale="4">
+	<h1>Open Problems</h1>
+	<ul>
+		<li> What is a good algorithm for the emptiness problem?</li>
+		<li> Rabin's <i>seminal</i> paper asks for dynamic complexity of probabilistic languages!</li>
+		<!--<li> Is the emptiness problem decidable assuming isolated threshold?</li>-->
+		<li> What good is the prostochastic theory? Does it have a logical counterpart? What are relevant subclasses of probabilistic automata?</li>
+	</ul>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="15">
+    </div>
+</div>
+
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="js/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- 
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+
+</body>
+</html>

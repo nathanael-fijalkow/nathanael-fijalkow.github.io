@@ -1,0 +1,44 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsmath}
+
+
+\begin{document}
+
+\begin{picture}(57,18)(-10,-10)
+	\gasset{Nadjust=h}
+
+  	\node[Nmarks=i,iangle=225](0)(0,7){$q_0$}
+  	\node[Nmarks=i,iangle=225](1)(20,7){$q_1$}
+  	\node[Nmarks=f,fangle=-45](2)(40,7){$q_2$}
+
+  	\drawedge(0,1){$b:\varepsilon$}
+  	\drawedge(1,2){$b:\varepsilon$}
+
+	\drawloop[loopdiam=4,loopangle=90](0){$a,b:\varepsilon$}
+	\drawloop[loopdiam=4,loopangle=90](1){$a:i$}
+	\drawloop[loopdiam=4,loopangle=90](2){$a,b:\varepsilon$}
+\end{picture}
+
+\begin{picture}(48,37)(-12,0)
+	\gasset{Nadjust=h}
+
+  	\node[Nmarks=i,iangle=225](0)(0,17){$q_0$}
+  	\node(1)(20,27){$q_1$}
+  	\node[Nmarks=f,fangle=-45](2)(20,7){$q_2$}
+
+	\drawloop[loopdiam=4,loopangle=135](0){$a:i$}
+
+  	\drawedge[curvedepth=2](0,1){$a:r$}
+  	\drawedge[ELside=r](0,2){$b:r$}
+
+	\drawloop[loopdiam=4,loopangle=45](1){$a:\varepsilon$}
+
+  	\drawedge[curvedepth=2](1,0){$b:\varepsilon$}
+
+	\drawloop[loopdiam=4,loopangle=45](2){$a,b:\varepsilon$}
+\end{picture}
+
+\end{document}

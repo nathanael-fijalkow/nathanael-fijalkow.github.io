@@ -1,0 +1,32 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(100,55)(-15,-5)
+	\gasset{Nadjust=h}
+
+  	\node[Nmarks=i,iangle=-90](0)(30,15){$0$}
+  	\node(L1)(0,10){$L_1$}
+  	\node[Nmarks=f,fangle=180](L2)(0,30){$L_2$}
+  	\node(R1)(60,10){$R_1$}
+  	\node(R2)(60,30){$R_2$}
+
+	\drawloop(0){$a$}
+
+  	\drawedge[curvedepth=5,ELside=l](0,L1){$b,\frac{1}{2}$}
+  	\drawedge[curvedepth=5,ELside=l](L1,0){$a,1-x$}
+  	\drawedge(L1,L2){$b$}
+	\drawloop[loopangle=-135](L1){$a,x$}
+	\drawloop[loopangle=90](L2){$a,b$}
+
+  	\drawedge[curvedepth=-5,ELside=r](0,R1){$b,\frac{1}{2}$}
+  	\drawedge[curvedepth=-5,ELside=r](R1,0){$a,x$}
+  	\drawedge[ELside=r](R1,R2){$b$}
+	\drawloop[loopangle=-45](R1){$a,1-x$}
+	\drawloop(R2){$a,b$}
+\end{picture}
+
+\end{document}

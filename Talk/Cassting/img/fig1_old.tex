@@ -1,0 +1,81 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(120,30)(-10,0)
+	\gasset{Nh=3,Nw=3,Nadjust=w}
+
+	\rpnode[Nmarks=i,iangle=180,polyangle=45](w_0)(0,20)(4,2){}
+	\rpnode[polyangle=45](w_1)(10,20)(4,2){}
+	\rpnode[polyangle=45](w_2)(20,20)(4,2){}
+	\rpnode[polyangle=45](w_3)(30,20)(4,2){}
+	\rpnode[polyangle=45](w_4)(40,20)(4,2){}
+	\rpnode[polyangle=45](w_5)(50,20)(4,2){}
+	\rpnode[polyangle=45](w_6)(60,20)(4,2){}
+	\rpnode[polyangle=45](w_7)(70,20)(4,2){}
+	\rpnode[polyangle=45](w_8)(80,20)(4,2){}
+	\rpnode[polyangle=45](w_9)(90,20)(4,2){}
+	\node(w_10)(100,20){$F$}
+
+	\node(v_0)(5,10){$9$}
+	\node(v_1)(15,10){$8$}
+	\node(v_2)(25,10){$7$}
+	\node(v_3)(35,10){$6$}
+	\node(v_4)(45,10){$5$}
+	\node(v_5)(55,10){$4$}
+	\node(v_6)(65,10){$3$}
+	\node(v_7)(75,10){$2$}
+	\node(v_8)(85,10){$1$}
+	\node(v_9)(95,10){$0$}
+
+	\drawedge(w_0,w_1){}
+	\drawedge(w_1,w_2){}
+	\drawedge(w_2,w_3){}
+	\drawedge(w_3,w_4){}
+	\drawedge(w_4,w_5){}
+	\drawedge(w_5,w_6){}
+	\drawedge(w_6,w_7){}
+	\drawedge(w_7,w_8){}
+	\drawedge(w_8,w_9){}
+	\drawedge(w_9,w_10){}
+
+	\gasset{curvedepth=-1}
+	
+	\drawedge(w_0,v_0){}
+	\drawedge(w_1,v_1){}
+	\drawedge(w_2,v_2){}
+	\drawedge(w_3,v_3){}
+	\drawedge(w_4,v_4){}
+	\drawedge(w_5,v_5){}
+	\drawedge(w_6,v_6){}
+	\drawedge(w_7,v_7){}
+	\drawedge(w_8,v_8){}
+	\drawedge(w_9,v_9){}
+
+	\drawedge(v_0,w_1){$i$}
+	\drawedge(v_1,w_2){$i$}
+	\drawedge(v_2,w_3){$i$}
+	\drawedge(v_3,w_4){$i$}
+	\drawedge(v_4,w_5){$i$}
+	\drawedge(v_5,w_6){$i$}
+	\drawedge(v_6,w_7){$i$}
+	\drawedge(v_7,w_8){$i$}
+	\drawedge(v_8,w_9){$i$}
+	\drawedge(v_9,w_10){$i$}
+
+	\gasset{curvedepth=5}
+
+	\drawedge(v_2,v_0){$r$}
+	\drawedge(v_3,v_1){$r$}
+	\drawedge(v_4,v_2){$r$}
+	\drawedge(v_5,v_3){$r$}
+	\drawedge(v_6,v_4){$r$}
+	\drawedge(v_7,v_5){$r$}
+	\drawedge(v_8,v_6){$r$}
+	\drawedge(v_9,v_7){$r$}
+\end{picture}
+
+\end{document}

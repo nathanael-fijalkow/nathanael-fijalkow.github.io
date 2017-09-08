@@ -1,0 +1,327 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Equivalence for Markov Decision Processes</title>
+    
+    <meta name="description" content="Equivalence for Markov Decision Processes" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="-2000" data-scale="1">
+	<h2>Equivalence for Markov Decision Processes</h2>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	<br/>Research Fellow at the Alan Turing Institute
+	</div>
+
+	<br/>
+
+	<div class="slide_step">
+	<h4>Queen Mary University of London,<br/> Thursday 6th, 2017</h4>
+	</div>
+    </div>
+
+    <div id="lmc" class="step" data-x="0" data-y="-1300" data-scale="1">
+	<img id="markovchainactions" src="img/fig2.svg"/>
+    </div>
+
+    <div id="lmdp" class="step" data-x="0" data-y="-900" data-scale="1">
+	<img id="mdp" src="img/fig3.svg"/>
+    </div>
+	
+    <div id="view_models" class="step" data-x="0" data-y="-1100" data-scale="1.2">
+    </div>
+
+    <div id="reasoning" class="step" data-x="0" data-y="-100" data-scale="1">
+	<h2>Why?</h2>
+
+	<br/>
+	<img id="wordle" src="img/wordle.png"/>
+    </div>
+
+    <div id="overview_intermediate1" class="step" data-x="0" data-y="-1000" data-scale="3">
+    </div>
+
+    <div id="prob_bis" class="step" data-x="-2000" data-y="-2000" data-scale="1">
+	<h2>Probabilistic Bisimulation</h2>
+	(due to Larsen, Skou 91)
+    </div>
+
+    <div id="def_lts" class="step" data-x="-2300" data-y="-1600" data-scale=".5">
+	<h3>Bisimulation for Non-Deterministic Systems</h3>
+
+	<br/>
+	<b>Labelled Transition Systems</b>: $\Delta : Q \times A \to \mathcal{P}(Q)$
+	<br/>
+	<br/>
+	<b>Bisimulation game</b>: Duplicator claims that $p \equiv q$
+	<ul>
+		<li><red>Spoiler</red>: pick $a$ in $A$ and $p' \in Q$ such that $p' \in \Delta(p,a)$
+		<li><red>Duplicator</red>: $q' \in \Delta(q,a)$ and claims $p' \equiv q'$
+	</ul>
+	We say that $p$ and $q$ are bisimilar if Duplicator can play forever
+
+	<div class="slide_step">
+	<br/>
+	<br/>
+
+	<b>Coinductive definition</b>: If $p \equiv q$, then for all $a$ in $A$, for all $p' \in \Delta(p,a)$,
+	there exists $q' \in \Delta(q,a)$ such that $p' \equiv q'$
+	</div>
+    </div>
+
+    <div id="def" class="step" data-x="-1700" data-y="-1600" data-scale=".5">
+	<h3>Bisimulation for Labelled Markov Chains</h3>
+
+	<br/>
+	<b>Labelled Markov Chains</b>: $\Delta : Q \times A \to \mathcal{D}(Q)$
+	<br/>
+	<br/>
+	<b>Coinductive definition</b>: If $p \equiv q$, then for all $a$ in $A$, for all $C$ equivalence class of $\equiv$,
+	$$\Delta(p,a,C) = \Delta(q,a,C)$$
+
+	<div class="slide_step">
+	<br/>
+	<br/>
+	<b>Equivalent game</b>: Duplicator claims that $p \equiv q$
+	<ul>
+		<li><red>Spoiler</red>: pick $a$ in $A$ and $C \subseteq Q$ such that $\Delta(p,a,C) \neq \Delta(q,a,C)$
+		<li><red>Duplicator</red>: $p'$ in $C$, $q'$ not in $C$ and claim that $p' \equiv q'$
+	</ul>
+	</div>
+    </div>
+
+    <div id="example" class="step" data-x="-1700" data-y="-1300" data-scale=".25"">
+	<svg width="1000" height="500">
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="250" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="250" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="250" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+			<text x="110" y="440" fill="black">Spoiler's move was stupid!</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="50" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+		</g>
+		<g class="token">
+			<circle cx="250" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="50" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+		</g>
+		<image x="0" y="0" width="1000" height="300" xlink:href="img/fig5.svg">
+	</svg>
+    </div>
+
+    <div id="overview_intermediate2" class="step" data-x="-2000" data-y="-1700" data-scale="1">
+    </div>
+
+    <div id="properties" class="step" data-x="-2000" data-y="-800" data-scale="1">
+	<h2>25 years of research on Probabilistic Bisimulation</h2>
+	<br/>
+	
+	<ul>
+		<div class="slide_step"><li>Computable in PTIME, and PTIME-complete</div>
+		<div class="slide_step"><li>Extension to distances</div>
+		<div class="slide_step"><li>Extension to simulation with approximation techniques</div>
+		<div class="slide_step"><li>Extension to infinite and continuous-time Markov Chains</div>
+	</ul>
+    </div>
+
+    <div id="question" class="step" data-x="-1000" data-y="-2000" data-scale="1">
+	<h2>How to prove that two systems are not bisimilar?</h2>
+
+	<br/>
+
+	<div class="slide_step">Find a formula satisfying one but not the other!</div>
+
+	<br/>
+	<div class="slide_step">
+	<img id="example" src="img/fig5.svg"/>
+	</div>
+    </div>
+
+    <div id="logic" class="step" data-x="-1000" data-y="-1300" data-scale="1">
+	<h2>Logical Characterisation</h2>
+	\[
+	\phi\ =\ \top\ \mid\ \phi \wedge \phi\ \mid\ \langle a \rangle_{> p} \phi\
+	\]
+	<b>Theorem</b>: (Desharnais, Edalat, Panangaden 98)
+	<br/>
+	<i>Assumptions</i>: the state space is a <green>Polish space</green> and the set of labels is <red>countable</red>
+
+	<br/>
+	<br/>
+	Two states are bisimiliar if, and only if, they satisfy the same formulas of this logic
+    </div>
+
+    <div id="counter-example" class="step" data-x="-1000" data-y="-600" data-scale="1">
+	<h3>Why countability of the set of labels?</h3>
+	<br/>
+	<br/>
+
+	<img id="example" src="img/fig1.svg"/>
+
+	<ul>
+		<li>$p$ and $q$ are not bisimilar
+		<li>$p$ and $q$ satisfy the same formulas
+	</ul>
+
+    </div>
+
+    <div id="logic2" class="step" data-x="-1000" data-y="-50" data-scale="1">
+	<h3>Logical Characterisation, take 2</h3>
+	\[
+	\phi\ =\ \top\ \mid\ \phi \wedge \phi\ \mid\ \langle a \rangle_{> p} \phi\
+	\]
+	<b>Theorem</b>: (F., Klin, Panangaden)
+	<br/>
+	<i>Assumptions</i>: the state space is a <green>Polish space</green> and the transition function is <red>continuous</red>
+
+	<br/>
+	<br/>
+	Two states are bisimiliar if, and only if, they satisfy the same formulas of this logic
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="-1000" data-scale="3">
+    </div>
+
+    <div id="traces" class="step" data-x="1000" data-y="-2000" data-scale="1">
+	<h2>Reasoning on Traces</h2>
+
+	<br/>
+	<ul>
+		<div class="slide_step">
+		<li>Are two Markov Chains trace equivalent?
+		<br/><red>Decidable in PTIME (Schützenberger 61)</red>
+		</div>
+
+		<div class="slide_step">
+		<li>Given an MDP $M_1$ and a MC $M_2$, does there exist a strategy for $M_1$ making them trace equivalent?
+		<br/><red>Decidable in coNP (F., Kiefer, Shirmohammadi, FoSSaCS'16)</red>		
+		</div>
+
+		<div class="slide_step">
+		<li>Given an MDP $M_1$ and a MC $M_2$, are $M_1$ and $M_2$ trace equivalent for all strategies of $M_1$?
+		<br/><red>Undecidable (F., Kiefer, Shirmohammadi, FoSSaCS'16)</red>
+		</div>
+	</ul>
+    </div>
+
+    <div id="distribution_bisimulation" class="step" data-x="1000" data-y="-800" data-scale="1">
+	<h2>Key Notion: Bisimulation on Distributions</h2>
+	<br/>
+	(due to Hermanns, Krčál, Křetı́nský 2014)
+
+	<br/>
+	<br/>
+	Defined for MDP: $\Delta : Q \times A \to \text{Conv}(\mathcal{D}(Q))$
+	<br/>
+	<br/>
+	If $\delta \equiv \delta'$, then for all $a$ in $A$:
+	<ul>
+		<li>for all $\tau$ in $\Delta(\delta,a)$, there exists $\tau'$ in $\Delta(\delta',a)$ with $\tau \equiv \tau'$,
+		<li>for all $\tau'$ in $\Delta(\delta',a)$, there exists $\tau$ in $\Delta(\delta,a)$ with $\tau \equiv \tau'$.
+	</ul>		
+    </div>
+
+    <div id="fossacs" class="step" data-x="2000" data-y="-1500" data-scale="1">
+	<h2>From Traces to Bisimulation on Distributions</h2>
+
+	<b>Theorem</b> (folklore): For Markov Chains, bisimilarity on distributions is the same as trace equivalence.
+	<br/>
+	<br/>
+	<b>Theorem</b> (F., Kiefer, Shirmohammadi, FoSSaCS'16): 
+	<ul>
+		<li>Given MDP $M_1$ and MC $M_2$, $M_1$ bisimilar on distributions to $M_2$ iff $M_1$ can be refined into $M_2$.
+		<li>Bisimulation on distributions is decidable in coNP.
+	</ul>
+    </div>
+
+    <div id="logic_dist" class="step" data-x="2000" data-y="-500" data-scale="1">
+	<h2>Logical Characterisations</h2>
+	\[
+	\phi\ =\ \top\ \mid\ \phi \wedge \phi\ \mid\ \langle a \rangle \phi\ \mid\ \Sigma_{\ge p} \text{ for } p \in \mathbb{Q}
+	\]
+	<b>Theorem</b>: (F., Klin <red>@ Simons</red>)
+	Two distributions are bisimiliar if, and only if, they satisfy the same formulas of this logic
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">	
+	\[
+	\phi\ =\ \Sigma_{\ge p} \wedge \bigwedge_{a \in S} \langle a \rangle \phi \text{ for } p \in \mathbb{Q} \text{ and } S \subseteq A \text{ finite.}
+	\]
+	<b>Theorem</b>: (F., Klin <red>@ Simons</red>)
+	Two distributions trace refine each other if, and only if, they satisfy the same formulas of this fragment
+	</div>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="-1000" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,38 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\begin{document}
+
+\begin{picture}(70,30)(0,0)
+	\rpnode[Nmarks=i,polyangle=45](v_0)(7,5)(4,3){$F$}
+
+	\rpnode[polyangle=45](v_1)(20,5)(4,3){$F$}
+	\rpnode[polyangle=45](v_2)(35,5)(4,3){$F$}
+	\put(40,4.5){\begin{Huge}$\ldots$\end{Huge}}
+	\rpnode[polyangle=45](v_n)(55,5)(4,3){$F$}
+	\put(60,4.5){\begin{Huge}$\ldots$\end{Huge}}
+
+	\rpnode[polyangle=45](u_1)(20,15)(4,3){$F$}
+	\rpnode[polyangle=45](u_2)(35,15)(4,3){$F$}
+	\rpnode[polyangle=45](u_n)(55,15)(4,3){$F$}
+
+	\put(60,14.5){\begin{Huge}$\ldots$\end{Huge}}
+
+	\drawedge(v_0,v_1){}
+	\drawedge(v_1,v_2){}
+	\drawedge(v_1,u_1){}
+	\drawedge(v_2,u_2){}
+	\drawedge(v_n,u_n){}
+
+	\drawloop[loopdiam=3,loopangle=90,dash={3 1.5}{1.5}](u_1){$1$}
+	\drawloop[loopdiam=6,loopangle=90,dash={3 1.5}{1.5}](u_2){$2$}
+	\drawloop[loopdiam=10,loopangle=90,dash={3 1.5}{1.5}](u_n){$n$}
+\end{picture}
+
+\end{document}

@@ -1,0 +1,123 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Invariants</title>
+    
+    <meta name="description" content="Invariants" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,1000,400italic,1000italic|PT+Serif:400,1000,400italic,1000italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <!-- A slide is a div with class "step". It is located by data-x, data-y, data-z (if you like 3D) and data-scale -->
+    <!-- data-duration="0" means that when going to this slide, one does not have the zoom effect -->
+    <div id="title" class="step" data-duration="0" data-x="0" data-y="0">
+	<h2>Semi-Algebraic Invariants for the Kannan-Lipton Orbit Problem</h2>
+
+	<br/>
+
+	<h3>Nathana&euml;l Fijalkow</h3>
+
+	<br/>
+	<h4>University of Oxford, UK</h4>
+	<h4><i>Research Fellow @ Simons Institute, Berkeley</i></h4>
+	<h4>Alan Turing Institute of Data Science, London, UK</h4>
+
+    </div>
+
+    <div id="termination" class="step" data-x="0" data-y="1000">
+	<h2>Simple Linear Programs</h2>
+	<br/>
+
+	$x \rightarrow a ;$
+	<br/>
+	<b>while</b>$(x \neq b)\ \left\{ x \rightarrow Mx \right\}$
+
+	<br/>
+	<br/>
+
+	<red>Does this program terminate?</red>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<b>Theorem</b> (Kannan-Lipton, 80/86): Decidable in PTIME
+	</div>	
+    </div>
+
+    <div id="skolem" class="step" data-x="-1000" data-y="1000">
+	<h2>More complicated Linear Programs</h2>
+	<br/>
+
+	$x \rightarrow a$ ;
+	<br/>
+	<b>while</b>$(u \cdot x \neq 0)\ \left\{ x \rightarrow Mx \right\}$
+
+	<br/>
+	<br/>
+
+	<red>Does this program terminate?</red>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<b><red>OPEN</red></b> Skolem Problem
+	</div>	
+    </div>
+
+    <div id="invariant" class="step" data-x="1000" data-y="1000">
+	<h2>Invariants</h2>
+	<br/>
+
+	$x \rightarrow a;$
+	<br/>
+	<b>while</b>$(x \neq b)\ \left\{ x \rightarrow Mx \right\}$
+
+	<br/>
+	<br/>
+	<red>Can you convince me that this program terminates?</red>
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<b>Theorem</b> (F., Ohlmann, Ouakine, Pouly, Worrell): Decidable whether there exists a semi-algebraic invariant
+
+	<br/>
+	<br/>
+	<ul>
+		<li>Almost always: terminates iff existence of invariant
+		<li>Concrete checkable proof of termination
+		<li>Global reasoning
+	</ul>
+	</div>	
+    </div>
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="500" data-scale="2.5">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\newcommand{\ract}{\mathtt{r}}
+\newcommand{\iact}{\mathtt{i}}
+\newcommand{\eact}{\mathtt{\epsilon}}
+
+\begin{document}
+
+\begin{picture}(101,33)(-10,-5)
+	\rpnode[Nmarks=i,polyangle=45](push)(0,10)(4,4){}
+	\rpnode[polyangle=45](pop)(20,10)(4,4){}
+
+	\drawedge[curvedepth=2](push,pop){}
+	\drawedge[curvedepth=2](pop,push){$\bot$}
+	\drawloop[loopdiam=5,loopangle=90](push){$\push(a)$}
+	\drawloop[loopdiam=5,loopangle=90](pop){$\pop(a)$}
+
+
+	\rpnode[Nmarks=i,polyangle=45](v_0)(35,10)(4,4){}
+
+	\rpnode[polyangle=45](v_1)(50,20)(4,4){}
+	\rpnode[polyangle=45](v_2)(65,20)(4,4){}
+	\rpnode[polyangle=45](v_3)(80,20)(4,4){}
+	\put(86,20){\begin{large}$\ldots$\end{large}}
+
+	\rpnode[polyangle=45](u_1)(50,0)(4,4){}
+	\rpnode[polyangle=45](u_2)(65,0)(4,4){}
+	\rpnode[polyangle=45](u_3)(80,0)(4,4){}
+	\put(86,0){\begin{large}$\ldots$\end{large}}
+
+	\drawedge(v_0,v_1){}
+
+	\drawedge(v_1,v_2){}
+	\drawedge(v_2,v_3){}
+
+	\drawedge(u_3,u_2){}
+	\drawedge(u_2,u_1){}
+
+	\drawedge(v_1,u_1){}
+	\drawedge(v_2,u_2){}
+	\drawedge(v_3,u_3){}
+
+	\drawedge(u_1,v_0){}
+\end{picture}
+
+\end{document}

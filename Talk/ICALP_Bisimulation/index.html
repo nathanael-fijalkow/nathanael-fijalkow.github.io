@@ -1,0 +1,263 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Expressiveness of Probabilistic Modal Logics</title>
+    
+    <meta name="description" content="Probabilistic Bisimulation" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="-1500" data-y="-1000" data-scale="1">
+	<h2>Expressiveness of Probabilistic Modal Logics, <red>revisited</red></h2>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3><green>Nathana&euml;l Fijalkow</green>, <br/>Bartek Klin,</br> Prakash Panangaden</h3>
+	<br/>Research Fellow @ Alan Turing Institute, London
+	</div>
+
+	<br/>
+
+	<div class="slide_step">
+	<h4>ICALP, Warsaw, Tuesday July 11, 2017</h4>
+	</div>
+    </div>
+
+    <div id="lmc" class="step" data-x="-1500" data-y="-100" data-scale="1">
+	<h3>Labelled Markov Process</h3>
+
+	<img id="markovchainactions" src="img/fig2.svg"/>
+
+	<div class="slide_step">
+	We consider <green>continuous state space</green> (but <red>discrete time</red>):
+		$$(S,\Sigma) \text{ measurable space } \qquad \Delta : S \times A \times \Sigma \to [0,1]$$
+	$\Delta(q,a,T)$ is the probability to go to $T \in \Sigma$ from $q$ under action $a$
+	</div>	
+    </div>
+
+    <div id="logic" class="step" data-x="-1500" data-y="700" data-scale="1">
+	<h3>Probabilistic Modal Logics</h3>
+
+	<blue>
+	\[
+	\phi\ =\ \top\ \mid\ \phi \wedge \phi\ \mid\ \langle a \rangle_{> p} \phi\
+	\]
+	</blue>
+
+	<div class="slide_step">
+	
+		<b>Two Theorems</b> (Larsen & Skou 89, Desharnais et al,<red>...</red>):
+		<br/>
+		The state space is a <red>Polish space</red> (actually analytic space) and the set of actions is <red>countable</red>
+
+		<br/>
+		<br/>
+
+		<ul>
+			<li>Two states are <green>bisimiliar</green> if, and only if, they satisfy the same formulas of the modal logic (<blue>only conjunctions</blue>)
+			<li>A state <green>simulates</green> another if, and only if, it satisfies more formulas of the modal logic (<blue>conjunctions and disjunctions</blue>)
+		</ul>
+	</div>	
+
+    </div>
+
+    <div id="aesthetics" class="step" data-x="-200" data-y="0" data-scale="1.5" data-duration="0">
+	<h3>&#198;sthetics and Connections to Warsaw</h3>
+
+	<br/>
+	<red>This paper is about giving &aelig;sthetically pleasing proofs for the two theorems above using the topology of Polish spaces.</red>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+		<ul>
+			<li>20th century: Sierpi&#324;ski, Tarski, Mostowski, and others invented Polish spaces <red>in Warsaw</red>
+			<li>1997: <green>Prakash Panangaden</green> and coauthors introduced probabilistic bisimulation for continuous space Markov processes at LICS <red>in Warsaw</red>,
+			<blue>test-of-time award this year</blue>
+			<li>2012-2015: I took my PhD <red>in Warsaw</red> (and Paris)
+			<li>Since 2015: <green>Bartek Klin</green> is a professor <red>in Warsaw</red>
+		</ul>
+	</div>
+
+	<br/>
+	<img id="aesthetics" src="img/aesthetics.png"/>
+    </div>
+
+    <div id="def_lts" class="step" data-x="1000" data-y="-1000" data-duration="0" data-scale="1">
+	<h4>Bisimulation for Labelled Transition Systems</h4>
+
+	<br/>
+	<b>Labelled Transition Systems</b>: $\Delta : S \times A \to \mathcal{P}(S)$
+	<br/>
+	<br/>
+
+	<b>Bisimulation game</b>: Duplicator claims that $p \equiv q$
+	<ul>
+		<li><green>Spoiler</green>: pick $a$ in $A$ and $p' \in S$ such that $p' \in \Delta(p,a)$
+		<li><red>Duplicator</red>: $q' \in \Delta(q,a)$ and claims $p' \equiv q'$
+	</ul>
+	<br/>
+	We say that $p$ and $q$ are bisimilar if Duplicator can play forever
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+		<div class="left">
+			<b>Coinductive definition</b>: If $p \equiv q$, then for all $a$ in $A$, for all $p' \in \Delta(p,a)$,
+			there exists $q' \in \Delta(q,a)$ such that $p' \equiv q'$
+		</div> 
+		<div class="right">
+			<img id="lts" src="img/fig.svg"/>
+		</div> 
+	</div>
+
+    </div>
+
+    <div id="def" class="step" data-x="2000" data-y="-1000" data-scale="1">
+	<h4>Bisimulation for Labelled Markov Processes</h4>
+
+	<br/>
+	<b>Labelled Markov Processes</b>: $\Delta : S \times A \times \Sigma \to [0,1]$
+	<br/>
+	$\Delta(q,a,T)$ is the probability to go to $T \in \Sigma$ from $q$ under action $a$
+	<br/>
+	<br/>
+
+	<b>Coinductive definition</b>: If $p \equiv q$, then for all $a$ in $A$, for all $C \in \Sigma$ closed under $\equiv$,
+	$$\Delta(p,a,C) = \Delta(q,a,C)$$
+
+	<br/>
+
+	<div class="slide_step">
+	<b>Equivalent game</b>: Duplicator claims that $p \equiv q$
+	<ul>
+		<li><green>Spoiler</green>: pick $a$ in $A$ and $C \in \Sigma$ such that $\Delta(p,a,C) \neq \Delta(q,a,C)$
+		<li><red>Duplicator</red>: $p'$ in $C$, $q'$ not in $C$ and claim that $p' \equiv q'$
+	</ul>
+	<br/>
+	We say that $p$ and $q$ are bisimilar if Duplicator can play forever
+	</div>
+    </div>
+
+    <div id="example" class="step" data-x="2000" data-y="0" data-scale="1">
+	<b>Bisimulation game</b>: Duplicator claims that $p \equiv q$
+	<ul>
+		<li><green>Spoiler</green>: pick $a$ in $A$ and $C \in \Sigma$ such that $\Delta(p,a,C) \neq \Delta(q,a,C)$
+		<li><red>Duplicator</red>: $p'$ in $C$, $q'$ not in $C$ and claim that $p' \equiv q'$
+	</ul>
+	<svg width="1000" height="500">
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="250" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="250" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="250" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+			<text x="110" y="440" fill="black">Spoiler's move was stupid!</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="50" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+		</g>
+		<g class="token">
+			<circle cx="250" cy="150" r="20" fill="red"/>
+			<circle cx="900" cy="150" r="20" fill="red"/>
+			<circle cx="50" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="900" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+		</g>
+		<image x="0" y="0" width="1000" height="300" xlink:href="img/fig5.svg">
+	</svg>
+    </div>
+
+    <div id="proofs" class="step" data-x="1000" data-y="0" data-scale="1" data-duration="0">
+	<h3>Two identical proofs</h3>
+	<ul>
+		<li>Theorem 11 and 15 (<green>set-theoretic</green>)
+		<li>Theorem 12 and 16 (<red>topological</red>, for Polish spaces)
+	</ul>
+
+	<br/>
+
+	<div class="left">
+		<img id="bisim" src="img/theorem_bisim.png">
+	</div> 
+	<div class="right">
+		<img id="sim" src="img/theorem_sim.png">
+	</div> 
+    </div>
+
+    <div id="future" class="step" data-x="1000" data-y="800" data-scale="1">
+	<h3>Future Work</h3>
+
+	<ul>
+		<li>Extension to distances
+		<li>A quantitative bisimulation game?
+		<li>An event-bisimulation game?
+	<ul>
+
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="-200" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,11 @@
+
+<!--#set var="page" value="start" -->
+<!--#if expr="$QUERY_STRING = /page=(.*)/" -->
+<!--#set var="page" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$page=''" --><!--#set var="page" value="start" --><!--#endif -->
+
+<!--#if expr="$page = 'start' || $page = 'pub_year' || $page = 'pub_topic' || $page = 'talks' || $page = 'run' || $page = 'acme' || $page = 'stamina' || $page = 'flides'  || $page = 'teaching' || $page = 'politeia' || $page = 'tpcaml' || $page = 'phd' || $page = 'kwiatkowska'" -->
+<!--#include virtual="./${page}.html"-->
+<!--#endif -->

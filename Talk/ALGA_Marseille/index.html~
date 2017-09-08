@@ -1,0 +1,311 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>The Theory of Regular Cost Functions at no Extra Cost</title>
+    
+    <meta name="description" content="The Theory of Regular Cost Functions at no Extra Cost" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="-1000">
+	<h2>I couldn't decide!</h2>
+	<br/>
+	<div class="slide_step">
+	<h3><i>Option 1:</i> The Theory of Regular Cost Functions<br/> at No Extra Cost</h3>
+	</div>
+	<br/>
+	<div class="slide_step">
+	<h3><i>Option 2:</i> The Theory of Regular Cost Functions:<br/> No Pain, Full Gain</h3>
+	</div>
+	<br/><br/>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow,<br/> GT-ALGA, Marseille,<br/> 11 April 2016</h3>
+	</div>
+    </div>
+
+<!-- Section Star-height -->
+    <div id="star-height" class="step" data-duration="0" data-x="-1000" data-y="-2000">
+	<h2>The star-height problem</h2>
+    </div>
+
+    <div id="star-height-def" class="step" data-x="-1000" data-y="-1700">
+	<ul>
+		<li>$(a + b^*)^* + a b^*$ has star-height $2$
+		<li>$a^* b^* + (ba)^*$ has star-height $1$
+	</ul>
+
+	<br/>
+	<b>Star-height problem</b>: given a regular language $L$, what is the minimal star-height of a regular expression denoting $L$?
+    </div>
+
+    <div id="reduction_sh1" class="step" data-x="-1000" data-y="-1250">
+	<h2>Cost automata</h2>
+
+	<b>Theorem</b> (Hashiguchi): the star-height problem can be reduced to the boundedness problem of <i>cost automata</i>
+
+	<svg width="800" height="250">
+		<g class="token">
+			<text x="0" y="150">word read ""</text>
+			<circle cx="305" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "b"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "ba"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 1</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baa"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 2</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baaa"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 3</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baaab"</text>
+			<circle cx="725" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 3</text>
+		</g>
+		<image x="200" y="0" width="600" height="250" xlink:href="img/fig4.svg">
+	</svg>
+
+	<br/>
+	Induces&nbsp;&nbsp; $f : A^* \to \mathbb{N} \cup \{ \infty \}$
+	
+	$$f(w) = \text{min} \left\{ \text{max} \text{ counter value in } \rho \mid \rho \text{ accepting run} \right\}$$
+    </div>
+
+    <div id="reduction_sh2" class="step" data-x="-1000" data-y="-550">
+	<h2>Reduction</h2>
+
+	A string expression of height $h$ and width $m$ is
+	$$\bigcup w_1\ f_1^*\ w_2\ f_2^*\ \ldots\ w_i\ f_i^*$$
+	where:
+	<ul>
+		<li>$i \le m$
+		<li>$|w_\ell| \le m$
+		<li>$f_\ell$ are string expressions of height $h-1$ and width $m$
+	</ul>
+	 
+	</br>
+	<div class="slide_step">
+		<b>Proposition</b> (Kirsten 2005): For every regular language $L$ and $h \in \mathbb{N}$ one can compute a <i>cost automaton</i>
+		such that for every $w \in A^*$, the following are equivalent:
+		<ul>
+			<li> there is a string expression $e$ of height $h$ and width $m$ such that $w \in e \subseteq L$
+			<li> the automaton has a run on $w$ with value at most $m$
+		</ul>
+	</div>
+    </div>
+
+    <div id="reduction_sh3" class="step" data-x="-1000" data-y="250">
+	<h3>Boundedness of cost automata</h3>
+	$$\exists N \in \mathbb{N},\ \forall w \in A^*,\ f(w) \le N$$
+
+	<b>Remark</b>: generalises <i>universality</i>
+ 
+	</br></br>
+	<div class="slide_step">
+		<b>Proposition</b> (Boja&#324;czyk 2015): A cost automaton is bounded if, and only if, Eve wins the Gale-Stewart game where:
+		<ul>
+			<li> Adam outputs letters,
+			<li> Eve outputs <i>sets of</i> transitions.
+		</ul>
+
+		<img id="run-tree" src="img/fig6.svg"></img>
+
+		Eve wins if there exists $N$ such that:
+		<ul>
+			<li> at every point there exists an accepting run,
+			<li> in all runs the value of the counters are bounded by $N$.
+		</ul>
+	</div>
+    </div>
+
+    <div id="sh_final" class="step" data-x="-1000" data-y="850">
+	<h2>Bottom line</h2>
+
+	<h3>To solve the star-height problem,
+	<br/>it suffices to solve boundedness games</h3>
+
+	<div class="slide_step">
+	<br/><br/>
+	<b>Corollary</b>: the star-height problem is decidable.
+	</div>
+    </div>
+
+    <div id="overview_intermediate" class="step unclickable" data-x="0" data-y="-500" data-scale="4">
+    </div>
+
+<!-- Section HD -->
+    <div id="hd" class="step" data-duration="0" data-x="1000" data-y="-2000">
+	<h2>History-deterministic Automata</h2>
+    </div>
+
+    <div id="hd-def" class="step" data-x="1000" data-y="-1500">
+	<h2>An example</h2>
+	$$f(a^{n_1} b a^{n_2} b \cdots a^{n_k} b) = \text{min}\ n_\ell$$
+
+	$n = 2$
+	<svg width="900" height="400">
+		<g class="token">
+			<text x="0" y="50">word read ""</text>
+			<circle cx="100" cy="262" r="20" fill="red"/>
+			<circle cx="262" cy="262" r="20" fill="blue"/>
+			<circle cx="587" cy="262" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 0 (max = 0)</text>
+			<text x="100" y="130" fill="blue">counter value = 0 (max = 0)</text>
+			<text x="550" y="100" fill="green">counter value = 0</text>
+			<text x="580" y="130" fill="green">(max = 0)</text>
+		</g>
+		<g class="token">
+			<text x="0" y="50">word read "a"</text>
+			<circle cx="100" cy="262" r="20" fill="red"/>
+			<circle cx="262" cy="262" r="20" fill="blue"/>
+			<circle cx="587" cy="262" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 0 (max = 0)</text>
+			<text x="100" y="130" fill="blue">counter value = 1 (max = 1)</text>
+			<text x="550" y="100" fill="green">counter value = 1</text>
+			<text x="580" y="130" fill="green">(max = 1)</text>
+		</g>
+		<g class="token">
+			<text x="0" y="50">word read "aa"</text>
+			<circle cx="100" cy="262" r="20" fill="red"/>
+			<circle cx="262" cy="262" r="20" fill="blue"/>
+			<circle cx="587" cy="262" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 0 (max = 0)</text>
+			<text x="100" y="130" fill="blue">counter value = 2 (max = 2)</text>
+			<text x="550" y="100" fill="green">counter value = 2</text>
+			<text x="580" y="130" fill="green">(max = 2)</text>
+		</g>
+		<g class="token">
+			<text x="0" y="50">word read "aaa"</text>
+			<circle cx="100" cy="262" r="20" fill="red"/>
+			<circle cx="262" cy="262" r="20" fill="blue"/>
+			<circle cx="750" cy="181" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 0 (max = 0)</text>
+			<text x="100" y="130" fill="blue">counter value = 3 (max = 3)</text>
+			<text x="550" y="100" fill="green">counter value = 0</text>
+			<text x="580" y="130" fill="green">(max = 2)</text>
+		</g>
+		<g class="token">
+			<text x="0" y="50">word read "aaab"</text>
+			<circle cx="262" cy="262" r="20" fill="red"/>
+			<circle cx="424" cy="262" r="20" fill="blue"/>
+			<circle cx="587" cy="262" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 0 (max = 0)</text>
+			<text x="100" y="130" fill="blue">counter value = 3 (max = 3)</text>
+			<text x="550" y="100" fill="green">counter value = 0</text>
+			<text x="580" y="130" fill="green">(max = 2)</text>
+		</g>
+		<g class="token">
+			<text x="0" y="50">word read "aaaba"</text>
+			<circle cx="262" cy="262" r="20" fill="red"/>
+			<circle cx="424" cy="262" r="20" fill="blue"/>
+			<circle cx="587" cy="262" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 1 (max = 1)</text>
+			<text x="100" y="130" fill="blue">counter value = 3 (max = 3)</text>
+			<text x="550" y="100" fill="green">counter value = 1</text>
+			<text x="580" y="130" fill="green">(max = 2)</text>
+		</g>
+		<g class="token">
+			<text x="0" y="50">word read "aaabaa"</text>
+			<circle cx="262" cy="262" r="20" fill="red"/>
+			<circle cx="424" cy="262" r="20" fill="blue"/>
+			<circle cx="587" cy="262" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 2 (max = 2)</text>
+			<text x="100" y="130" fill="blue">counter value = 3 (max = 3)</text>
+			<text x="550" y="100" fill="green">counter value = 1</text>
+			<text x="580" y="130" fill="green">(max = 2)</text>
+		</g>
+		<g class="token">
+			<text x="0" y="50">word read "aaabaab"</text>
+			<circle cx="414" cy="262" r="20" fill="red"/>
+			<circle cx="434" cy="262" r="20" fill="blue"/>
+			<circle cx="750" cy="343" r="20" fill="green"/>
+			<text x="100" y="100" fill="red">counter value = 2 (max = 2)</text>
+			<text x="100" y="130" fill="blue">counter value = 3 (max = 3)</text>
+			<text x="550" y="100" fill="green">counter value = 0</text>
+			<text x="580" y="130" fill="green">(max = 2)</text>
+		</g>
+
+		<image x="0" y="100" width="900" height="300" xlink:href="img/fig5.svg">
+	</svg>
+
+    </div>
+
+    <div id="hd-construction" class="step" data-x="1000" data-y="-700">
+	<h3>Constructing history-deterministic automata</h3>
+
+	<b>Idea</b> (F., Colcombet 2016): composition of:
+	<ul>
+		<li> A history-deterministic automaton $\mathcal{B}$ that inputs letters and outputs a run tree.
+
+		<img id="run-tree" src="img/fig6.svg"></img>
+
+		<i>To prove that $\mathcal{B}$ is history-deterministic we need a positionality result for cost games</i>.
+
+		<li> A deterministic B-automaton $\mathcal{C}$ that inputs a run tree and checks whether all paths have small values.
+
+		<i>To obtain a deterministic B-automaton $\mathcal{C}$ we rely on Safra's construction used as a black-box</i>. 
+	</ul>
+    </div>
+
+    <div id="hd_final" class="step" data-x="1000" data-y="0">
+	<h2>Bottom line</h2>
+
+	<h3>To construct history-deterministic cost automata over finite words, 
+	it suffices to prove <i>positional determinacy</i> for cost games.</h3>
+    </div>
+
+    <div id="cost_games" class="step" data-x="0" data-y="0">
+	<h2>Cost Games</h2>
+
+	<br/>
+	<br/>
+
+	<img id="run-tree_directed" src="img/fig6bis.svg"></img>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="-500" data-scale="4">
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+
+

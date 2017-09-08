@@ -1,0 +1,28 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\begin{document}
+
+\begin{picture}(85,26)(-23,-8)
+	\gasset{Nh=6,Nw=6}
+
+	\node[Nmarks=i,iangle=-90](q)(0,5){$q$}
+	\rpnode[polyangle=45](F)(20,5)(4,4){$F$}
+	\rpnode[polyangle=45](p)(40,5)(4,4){$p$}
+
+	\drawedge[curvedepth=5](q,F){}
+	\drawedge[curvedepth=5](F,q){$\push(a)$}
+	\drawedge[curvedepth=5](F,p){$\pop(a)$}
+	\drawedge[curvedepth=5](p,F){}
+
+	\drawloop[loopangle=180](q){$\pop(a)$}
+	\drawloop[loopangle=0](p){$\pop(a)$}
+\end{picture}
+
+\end{document}

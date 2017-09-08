@@ -1,0 +1,38 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\begin{document}
+
+\begin{picture}(120,36)(-10,-7)
+	\gasset{Nw=6,Nh=6,loopdiam=5}
+	
+	\node[Nmarks=i,polyangle=45](push)(0,3){$i$}
+	\rpnode[polyangle=45](choix)(15,3)(4,4){}
+  	\node[Nadjust=w](check)(15,23){sh $\not\equiv 0 [q]$}
+	\node(s)(30,3){$s$}
+	\node(int)(50,3){}
+	\node(c)(70,3){$c$}
+  	\node(F)(85,3){$F$}
+  	\node[linecolor=White](to_i)(100,3){\large{\ to $i$}}
+ 	
+	\drawedge(choix,s){}
+	\drawedge(choix,check){}
+	\drawloop[loopangle=90](push){$\push(0)$}	
+	\drawedge(push,choix){$0$}
+	\drawloop[loopangle=90](s){$\pop(1)$}	
+	\drawedge(s,int){$\pop(0)$}
+	\drawedge(int,c){$\push(1)$}
+	\drawloop[loopangle=90](c){$\push(0)$}	
+	\drawedge[curvedepth=7](c,choix){}
+
+  	\drawedge(c,F){$\bot$}
+  	\drawedge(F,to_i){}
+\end{picture}
+
+\end{document}

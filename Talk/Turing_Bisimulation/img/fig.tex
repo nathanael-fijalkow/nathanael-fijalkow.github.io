@@ -1,0 +1,25 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsmath,amssymb}
+
+
+\begin{document}
+
+\begin{picture}(65,25)(-10,5)
+	\gasset{Nadjust=h}
+
+  	\rpnode[Nmarks=i,polyangle=90](0)(0,15)(3,4){}
+  	\rpnode[polyangle=90](1)(20,15)(3,4){}
+
+  	\drawedge[curvedepth=3](0,1){$\frac{1}{2}$}
+  	\drawedge[curvedepth=3](1,0){$\frac{2}{3}$}
+
+	\drawloop[loopdiam=4,loopangle=90](0){$\frac{1}{3}$}
+	\drawloop[loopdiam=4,loopangle=90](1){$\frac{1}{4}$}
+
+	\put(30,20){Markov Chain}
+	\put(30,15){$\Delta : Q \to \mathcal{D}(Q)$}
+\end{picture}
+\end{document}

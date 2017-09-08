@@ -1,0 +1,142 @@
+\documentclass{tpcaml}
+\tp{8}{Automates et Eleusis}
+
+% TP CaML HIV 2010
+% par Nathanaël FIJALKOW
+% Utilise les classes LaTeX de Victor Nicollet
+
+\begin{document}
+  \maketitle
+
+\section{Le plus petit mot}
+
+Nous nous intéressons au problème suivant: étant donné un langage rationnel 
+$L$, déterminer la longueur minimale d'un mot de $L$.
+Nous envisagerons deux situations: lorsque $L$ est donné par un automate déterministe, 
+et lorsque $L$ est décrit par une expression rationnelle.
+L'algorithme devra détecter le cas où $L$ est vide.
+
+\subsection{Expressions rationnelles}
+
+\begin{question}
+Définissez par induction structurelle une fonction des expressions rationnelles qui détermine si un langage est vide.
+\end{question}
+
+On définit le type des expressions rationnelles :
+\begin{codesection}
+type expr = Vide \\
+\ | Epsilon \\
+\ | Lettre of char \\
+\ | Union of expr * expr \\
+\ | Concat of expr * expr \\
+\ | Etoile of expr ;;
+\end{codesection}
+
+\begin{question}
+\'Ecrire la fonction \code{est\_vide} qui calcule la fonction précédente.
+\end{question}
+
+\begin{question}
+Définissez par induction structurelle une fonction des expressions rationnelles vers les entiers qui calcule le longueur du plus court mot de $L$ si le langage n'est pas vide, et $\infty$ sinon.
+\end{question}
+
+\begin{question}
+\'Ecrire la fonction \code{longueur\_mot\_min} qui calcule la fonction précédente.
+Elle retournera un objet de type \code{int option}.
+\end{question}
+
+\subsection{Automates déterministes}
+
+\begin{codesection}
+type automate = \\
+\quad \{ taille : int ;\\
+\quad	 \quad initial : int ;\\
+\quad    \quad transitions : (char * int) list vect ;\\
+\quad	 \quad final : bool vect \} ;;
+\end{codesection}
+
+\begin{question}
+\'Ecrire une fonction \code{est\_vide\_auto} qui détermine si le langage de l'automate est vide.
+\'Ecrire une fonction \code{longueur\_mot\_min\_auto } qui calcule la longueur du mot minimal accepté par l'automate. Elle retournera un objet de type \code{int option}.
+\end{question}
+
+\begin{question}
+\'Ecrire une fonction \code{langage\_auto} qui retourne la liste 
+de tous les mots de taille minimale reconnu par l'automate. Quelle est sa complexité?
+\end{question}
+
+\subsection{Les automates pour ne pas réfléchir}
+
+Un renard se cache dans une des cinq tanières, numérotées de $1$ à $5$. Chaque nuit, il doit changer de tanière, mais
+n'a le temps d'atteindre que l'une des deux tanières les plus proches 
+(par exemple, depuis la tanière $2$, le renard doit aller soit en $1$, soit en $3$).
+Depuis $1$, il doit aller en $2$, et depuis $5$, il doit aller en $4$.
+Chaque jour, le chasseur choisit une tanière et tue le renard s'il s'y trouve.
+Le chasseur a t-il une stratégie lui permettant de tuer le renard ? Combien de jours faut-il pour cela ?
+
+\section{Eleusis}
+
+La page d'homonymie de Wikipédia vous apprendra les diverses origines et utilisations du mot Eleusis. 
+On s'intéresse au jeu de cartes (par ailleurs édité pour le grand public). 
+Le principe est le suivant : un joueur, le Maître, choisit une règle (ici, un automate déterministe). 
+Les autres joueurs doivent deviner cette règle. Pour cela, chacun à leur tour, ils vont proposer une carte, $0$ ou $1$. 
+Si l'automate possède une transition depuis l'état courant pour la lettre proposée, 
+il répond "Accepté" et le nouvel état courant est mis à jour. 
+Sinon, il répond "Rejeté" et conserve l'état courant.
+\'Evidemment, l'état courant est conservé secret à tout moment par le Maître.
+
+Un joueur gagne si à partir d'un moment, toutes ses cartes sont acceptées 
+(ce qui est sensiblement différent d'avoir "deviné" la règle).
+
+%Dans le vrai jeu (celui qui est vendu dans le commerce), les joueurs peuvent interrompre le jeu et dire "j'ai trouvé", 
+%et il y a quelques règles supplémentaires. D'ailleurs, le vrai jeu n'utilise pas d'automates (allez savoir pourquoi...).
+
+Vous allez jouer à Eleusis, seul (le Maître contre vous).
+Avantage non négligeable : vous connaissez la taille de l'automate, qui est au plus $n$.
+Il s'agit de trouver une stratégie, simple et rapide, pour que toutes les cartes que vous proposez soient acceptées.
+
+\begin{codesection}
+let jouer auto =\\
+\  let rec boucle etat\_courant = \\
+\  print\_string "Proposer une carte (0 ou 1)   " ;\\
+\ \   try \\
+\ \ \      let carte = (read\_line ()).[0] in\\
+\ \ \      let nv\_etat = assoc carte auto.transitions.(etat\_courant) in \\
+\ \ \      print\_string "Accepté $\backslash n$" ; print\_newline () ; boucle nv\_etat\\
+\ \   with \\
+\ \ \      | Not\_found -> print\_string "Rejeté $\backslash n$" ; \\
+\ \ \ print\_newline() ; \\
+\ \ \ boucle etat\_courant\\
+\ \ \      | End\_of\_file -> print\_string "Fini $\backslash n$" ;\\
+\ \  in boucle auto.initial ;;  
+\end{codesection}
+
+\begin{question}
+Jouer (recopier le code ci-contre, programmer un automate et jouer avec l'automate du voisin) !
+\end{question}
+
+\begin{question}
+Existe t-il une stratégie gagnante ?
+\end{question}
+
+\begin{question}
+\'Ecrire une fonction \code{strategie}. 
+Elle prend en entrée une liste de couples \code{char * bool}, 
+le premier élément étant la carte proposée, et le second la réponse du Maître,
+et retourne une nouvelle carte à jouer.
+\end{question}
+
+\begin{question}
+\'Evaluer la complexité de votre stratégie : si on suppose que l'automate est de taille $n$, 
+combien de cartes au plus sont refusées? quelle est la complexité de calcul du prochain coup?
+\end{question}
+
+%\begin{question}
+%On considère le jeu à deux joueurs (en plus du Maître). 
+%Votre objectif est toujours d'avoir toutes vos cartes acceptées à partir d'un certain moment, 
+%et celui de votre adversaire est juste de vous en empêcher.
+%Existe t-il une stratégie gagnante?
+%\end{question}
+
+Merci à Axel Haddad et à Denis Kuperberg pour leurs contributions à l'étude d'Eleusis.
+\end{document}

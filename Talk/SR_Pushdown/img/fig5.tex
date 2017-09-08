@@ -1,0 +1,63 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\begin{document}
+
+\begin{picture}(124,85)(-10,-10)
+	\gasset{Nh=7,Nw=7}
+
+	\node[Nmarks=i,polyangle=45](F)(0,40){$F$}
+
+	\node[polyangle=45](q_1)(22,60){$q_1$}
+	\node[polyangle=45](q_2)(44,60){$q_2$}
+	\put(49,60){\begin{Huge}$\ldots$\end{Huge}}
+	\node[polyangle=45,Nadjust=w](q_n-1)(66,60){$q_{n-1}$}
+	\node[polyangle=45](q_n)(88,60){$q_n$}
+
+	\node[polyangle=45](p_0)(110,65){$p_0$}
+
+	\node[polyangle=45,Nadjust=w](p_n-1)(22,40){$p_{n-1}$}
+	\put(35,40){\begin{Huge}$\ldots$\end{Huge}}
+	\node[polyangle=45](p_2)(66,40){$p_2$}
+	\node[polyangle=45](p_1)(88,40){$p_1$}
+
+	\node[polyangle=45,Nadjust=w](r_n-1)(22,20){$r_{n-1}$}
+	\put(35,20){\begin{Huge}$\ldots$\end{Huge}}
+	\node[polyangle=45](r_2)(66,20){$r_2$}
+	\node[polyangle=45](r_1)(88,20){$r_1$}
+
+	\node[polyangle=45,Nadjust=w](s_n-1)(22,0){$s_{n-1}$}
+	\put(35,0){\begin{Huge}$\ldots$\end{Huge}}
+	\node[polyangle=45](s_2)(66,0){$s_2$}
+	\node[polyangle=45](s_1)(88,0){$s_1$}
+
+	\drawedge(F,q_1){$\push(0)$}
+	\drawedge(q_1,q_2){$\push(0)$}
+	\drawedge(q_n-1,q_n){$\push(0)$}
+
+	\drawedge[curvedepth=5](q_n,p_0){$\pop(0)$}
+	\drawedge[curvedepth=5](p_0,q_n){$\push(1)$}
+	
+	\drawedge[ELside=r](q_n,p_1){$\pop(1)$}
+	\drawedge[ELside=r](p_1,p_2){$\pop(1)$}
+	\drawedge(p_n-1,F){$\pop(1)$}
+
+	\drawedge[ELside=r](p_1,r_1){$\pop(0)$}
+	\drawedge[ELside=r](p_2,r_2){$\pop(0)$}
+	\drawedge[ELside=r](p_n-1,r_n-1){$\pop(0)$}
+
+	\drawedge[ELside=r](r_1,s_1){$\push(1)$}
+	\drawedge[ELside=r](r_2,s_2){$\push(1)$}
+	\drawedge[ELside=r](r_n-1,s_n-1){$\push(1)$}
+
+	\drawedge[ELside=r](s_2,s_1){$\push(0)$}
+	\drawedge[ELside=r,curvedepth=-10](s_1,q_n){$\push(0)$}
+\end{picture}
+
+\end{document}

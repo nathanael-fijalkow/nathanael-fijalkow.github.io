@@ -1,0 +1,284 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Online Space Complexity</title>
+    
+    <meta name="description" content="Online Space Complexity of Probabilistic Languages" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="200">
+	<h1>Online Space Complexity</h1>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	</div>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<h4>68NQRT, Rennes, March 10th, 2016</h4>
+	</div>
+    </div>
+
+    <div id="rabin" class="step" data-duration="0" data-x="-2000" data-y="-1700">
+	<img id="rabin" src="img/rabin.jpg"/>
+    </div>
+
+    <div id="pa" class="step" data-x="-2000" data-y="-1100">
+	<img id="pa" src="img/pa.png"/>
+    </div>
+
+    <div id="problem" class="step" data-x="-2000" data-y="-750">
+	<img id="problem" src="img/problem.png"/>
+    </div>
+
+    <div id="claim" class="step" data-x="-2000" data-y="-500">
+	<img id="claim" src="img/claim.png"/>
+    </div>
+
+    <div id="probabilistic_automata" class="step" data-x="-2000" data-y="0">
+	<h2>Probabilistic Automata</h2>
+
+	<br/>
+
+	<svg width="800" height="350">
+		<g class="token">
+			<text x="0" y="200">word read ""</text>
+			<text x="300" y="320" fill="red">1</text>
+			<text x="650" y="320" fill="red">0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "1"</text>
+			<text x="295" y="320" fill="red">.5</text>
+			<text x="645" y="320" fill="red">.5</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "11"</text>
+			<text x="290" y="320" fill="red">.25</text>
+			<text x="640" y="320" fill="red">.75</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "110"</text>
+			<text x="285" y="320" fill="red">.625</text>
+			<text x="635" y="320" fill="red">.375</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "1101"</text>
+			<text x="280" y="320" fill="red">.3125</text>
+			<text x="630" y="320" fill="red">.6875</text>
+		</g>
+		<image x="200" y="0" width="600" height="300" xlink:href="img/fig.svg">
+	</svg>
+	
+	<br/>
+	<div class="slide_step">
+		$$P_{\mathcal{A}}(a_1 \cdots a_n) = \frac{a_1}{2^n} + \cdots + \frac{a_n}{2^1}$$
+	</div>
+    </div>
+
+    <div id="karp" class="step" data-duration="0" data-x="-1000" data-y="-1700">
+	<img id="karp" src="img/karp.jpg"/>
+    </div>
+
+    <div id="definition_det" class="step" data-x="-1000" data-y="-750">
+	<h2>Deterministic Online Space Complexity</h2>
+
+	<br/>
+	For a fixed $L \subseteq A^*$,
+
+	<h4>what is the size of the smallest data structure maintaining the answer to the Boolean query <i>"is the word in $L$?"</i></h4>
+
+	<br/>
+	Karp (67): consider <i>infinite</i> automata, the size is 
+	$$n \mapsto \textrm{ number of states reachable by reading at most } n \textrm{ letters}$$
+
+	<div class="slide_step">
+	<table>
+		<tr>
+			<th><i>language</i></th>
+			<th class="right">
+			<i>deterministic online space complexity</i>
+			</th>
+		</tr>
+
+		<tr>
+			<td>regular</td>
+			<td class="right">constant</td>
+		</tr>
+		<tr>
+			<td>$\{w \mid |w|_a = |w|_b\}$</td>
+			<td class="right">linear</td>
+		</tr>
+		<tr>
+			<td>$\{w \mid |w|_a = |w|_b = |w|_c\}$</td>
+			<td class="right">quadratic</td>
+		</tr>
+		<tr>
+			<td>$\{w w \mid w \in A^*\}$</td>
+			<td class="right">exponential</td>
+		</tr>
+	</table>
+	</div>
+    </div>
+
+    <div id="myhill-nerode" class="step" data-x="-1000" data-y="100">
+	<h2>Myhill-Nerode point of view</h2>
+
+	<br/>
+	The size of the minimal deterministic automaton for $L$ is 
+	the number of left quotients: 
+	$$u^{-1} L = \{v \mid uv \in L\}$$
+
+	<div class="slide_step">
+	The deterministic OSC is 
+	$$n \mapsto \textrm{ number of left quotients of order } n$$
+	</div>
+    </div>
+
+    <div id="hartmanis" class="step" data-duration="0" data-x="0" data-y="-1700">
+	<img id="hartmanis" src="img/hartmanis.jpg"/>
+    </div>
+
+    <div id="theorem_prime_hartmanis" class="step" data-x="0" data-y="-1100">
+	<h3><b>Theorem (Hartmanis and Shank 1969)</b>: Prime does not have subexponential deterministic OSC</h3>
+    </div>
+
+    <div id="theorem_pa" class="step" data-x="0" data-y="-600">
+	<h3><b>Theorem</b>: there exists a probabilistic automaton which does not have subexponential deterministic OSC</h3>
+
+	<img id="example" width="80%" src="img/fig2.svg"/>
+
+	<div class="slide_step">
+	$$L = \left\{ u \sharp v \left| \mathrm{bin}(u) \cdot \mathrm{bin}(v) > \frac{1}{2}\right.\right\}$$
+	</div>
+    </div>
+
+    <div id="proof" class="step" data-x="400" data-y="-600" data-scale=".3">
+	After reading $u 1 \sharp$ and $u' 1 \sharp$, the two states must be different: 
+	<br/>
+	Indeed, there exists $v$ such that 
+	$$\begin{cases} \mathrm{bin}(u 1) \cdot \mathrm{bin}(v) < \frac{1}{2} \\ \mathrm{bin}(u' 1) \cdot \mathrm{bin}(v) > \frac{1}{2} \end{cases}$$
+    </div>
+
+    <div id="overview_intermediate" class="step" data-x="0" data-y="-200" data-scale="4">
+    </div>
+
+    <div id="kozen" class="step" data-duration="0" data-x="1000" data-y="-1700">
+	<center><img id="kozen" src="img/kozen.gif"/></center>
+    </div>
+
+    <div id="definition_alt" class="step" data-x="1000" data-y="-900">
+	<h2>Alternating Online Space Complexity</h2>
+
+	<br/>
+	$$\delta : Q \times A \to \mathbb{B}^+(Q)$$
+
+	The size is 
+	$$f : n \mapsto \textrm{ number of states reachable by reading at most } n \textrm{ letters}$$
+
+	<div class="slide_step">
+	<table>
+		<tr>
+			<th><i>language</i></th>
+			<th class="right">
+			<i>online space complexity</i>
+			</th>
+		</tr>
+
+		<tr>
+			<td>regular</td>
+			<td class="right">constant</td>
+		</tr>
+		<tr>
+			<td>$\{u \sharp v \mid u \neq v\}$</td>
+			<td class="right">non-deterministic linear</td>
+		</tr>
+		<tr>
+			<td>FreeGroup</td>
+			<td class="right">alternating linear</td>
+		</tr>
+	</table>
+	</div>
+    </div>
+
+    <div id="lower_bound" class="step" data-x="1000" data-y="-200">
+	<h2>Lower Bounds using Lattices of Languages</h2>
+
+	<br/>
+	<h5>Consider an alternating automaton of size $f$ recognising $L$
+	<br/>	
+	<b>Theorem</b>: The family of left quotients of order $n$ is contained in a latticed generated by $f(n)$ languages</h5>
+    </div>
+
+    <div id="dirichlet" class="step" data-duration="0" data-x="2000" data-y="-1700">
+	<center><img id="dirichlet" src="img/dirichlet.png"/></center>
+    </div>
+
+    <div id="query_table" class="step" data-x="2000" data-y="-900">
+	<h2>The Query Table method</h2>
+
+	<br/>
+	<h5>Consider an alternating automaton of size $f$ recognising $L$
+	<br/>	
+	<br/>
+	<b>Theorem</b>: The query table of order $n$ has size at most $2^{f(n)}$</h5>
+    </div>
+
+    <div id="rank" class="step" data-x="2000" data-y="-400">
+	<h2>The Rank method</h2>
+
+	A language is $L : A^* \to \{0,1\} \subseteq \mathbb{R}$
+	<br/>
+	<br/>
+	<h5>Consider an alternating automaton of size $f$ recognising $L$
+	<br/>
+	<br/>	
+	<b>Theorem</b>: The lattice of left quotients of order $n$ has rank at most $2^{f(n)} - 1$</h5>
+    </div>
+
+    <div id="overview_intermediate" class="step" data-x="0" data-y="-200" data-scale="4">
+    </div>
+
+    <div id="hierarchy" class="step" data-x="-1500" data-y="800">
+	<h2><b>Theorem</b>: The Polynomial Alternating Hierarchy of OSC is Infinite</h2>
+    </div>
+
+    <div id="prime_linear" class="step" data-x="1500" data-y="800">
+	<h2><b>Theorem</b>: Prime does not have sublinear alternating OSC</h2>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="-200" data-scale="4">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+
+

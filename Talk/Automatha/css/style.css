@@ -1,0 +1,439 @@
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style-type: circle;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+h1,h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+body {
+    font-family: 'PT Sans', sans-serif;
+    min-height: 740px;
+
+    background: rgb(215, 215, 215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+}
+
+b, strong { font-weight: bold }
+i, em { font-style: italic }
+
+a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0 0.1em;
+    background: rgba(255,255,255,0.5);
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.9);
+    border-radius: 0.2em;
+
+    -webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+}
+
+a:hover,
+a:focus {
+    background: rgba(255,255,255,1);
+    text-shadow: -1px -1px 2px rgba(100,100,100,0.5);
+}
+
+.step {
+    position: relative;
+    margin: 0px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+
+    font-family: 'PT Serif', georgia, serif;
+    font-size: 48px;
+    line-height: 1.5;
+
+    opacity: 0.05;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.step.active { 
+    opacity: 1;
+}
+
+/* Slides specific styling */
+
+#title {
+    width: 1000px;
+    height: 500px;
+}
+
+#title h1 {
+    font-size: 120px;
+}
+
+#title h2 {
+    text-align: right;
+    font-size: 40px;
+}
+
+#title h3 {
+    text-align: right;
+    font-size: 20px;
+}
+
+#pa {
+    width: 1000px;
+    height: 800px;
+} 
+
+#related {
+    width: 600px;
+    height: 400px;
+    font-size: 30px;
+}
+
+#related h2 {
+    font-size: 80px;
+}
+
+.flides-on-overview_start .step {
+    opacity: 0;
+}
+
+#overview_start {
+    width: 4000px;
+    height: 2000px;
+    opacity: 1;
+}
+
+#overview_start h1 {
+    font-size: 180px;
+}
+
+.flides-on-overview_start #title {
+    opacity: 1;
+}
+
+.flides-on-overview_start #pa {
+    opacity: 1;
+}
+
+.flides-on-overview_start #related {
+    opacity: 1;
+}
+
+.flides-on-overview_start #left {
+    opacity: 1;
+}
+
+.flides-on-overview_start #right {
+    opacity: 1;
+}
+
+
+/* First part */
+
+#left {
+    width: 1590px;
+    height: 1385px;
+
+    background-image: url("right.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#binary {
+    width: 1000px;
+    height: 800px;
+}
+
+#binary img {
+    width: 100%;
+    height: 70%;
+}
+
+#non-regular {
+    width: 1000px;
+    height: 800px;
+}
+
+#non-regular img {
+    width: 100%;
+    height: 70%;
+}
+
+#proof-non-reg {
+    width: 1000px;
+    height: 500px;
+    font-size: 30px;
+}
+
+#non-regular2 {
+    width: 1000px;
+    height: 800px;
+}
+
+#non-regular2 img {
+    width: 100%;
+    height: 70%;
+}
+
+#isolation {
+    width: 1200px;
+    height: 800px;
+}
+
+#numberless {
+    width: 1000px;
+    height: 600px;
+}
+
+#counting {
+    width: 1000px;
+}
+
+#counting-proof {
+    width: 1000px;
+}
+
+#counting2 {
+    width: 1000px;
+}
+
+#counting3 {
+    width: 1000px;
+}
+
+#value1 {
+    width: 1200px;
+    height: 800px;
+}
+
+#value1 img {
+    width: 100%;
+    height: 60%;
+}
+
+#value1-proof {
+    width: 1000px;
+    height: 1000px;
+}
+
+#value1-out {
+    width: 1200px;
+    height: 800px;
+}
+
+#value1-out img {
+    width: 100%;
+    height: 60%;
+}
+
+.flides-on-left-out #binary {
+    opacity: 1;
+}
+
+.flides-on-left-out #non-regular {
+    opacity: 1;
+}
+
+.flides-on-left-out #isolation {
+    opacity: 1;
+}
+
+.flides-on-left-out #counting {
+    opacity: 1;
+}
+
+.flides-on-left-out #numberless {
+    opacity: 1;
+}
+
+.flides-on-left-out #value1 {
+    opacity: 1;
+}
+
+.flides-on-left-out #left {
+    opacity: 0.1;
+}
+
+
+/* Second part */
+
+#right {
+    width: 1487px;
+    height: 1385px;
+
+    background-image: url("left.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#history {
+    width: 1000px;
+    height: 800px;
+}
+
+#history img {
+    height: 60%;
+}
+
+#mma {
+    width: 1000px;
+    height: 800px;
+}
+
+#characterisation {
+    width: 1000px;
+    height: 800px;
+}
+
+#prostochastic {
+    width: 1200px;
+    height: 900px;
+}
+
+#prostochastic table {
+    width: 100%;
+    font-size: 40px;
+}
+
+#prostochastic td {
+    padding: 15px;
+}
+
+#free_prostochastic_monoid {
+    width: 1000px;
+    height: 600px;
+}
+
+#free_prostochastic_monoid span {
+    text-align: center;
+}
+
+#reformulation {
+    width: 1000px;
+    height: 600px;
+}
+
+#omega_power {
+    height: 600px;
+}
+
+#omega_power img {
+    height: 100%;
+}
+
+.flides-on-right-out #history {
+    opacity: 1;
+}
+
+.flides-on-right-out #mma {
+    opacity: 1;
+}
+
+.flides-on-right-out #characterisation {
+    opacity: 1;
+}
+
+.flides-on-right-out #prostochastic {
+    opacity: 1;
+}
+
+.flides-on-right-out #free_prostochastic_monoid {
+    opacity: 1;
+}
+
+.flides-on-right-out #reformulation {
+    opacity: 1;
+}
+
+.flides-on-right-out #omega_power {
+    opacity: 1;
+}
+
+/* Open problems */
+
+#open_problems {
+    width: 1000px;
+    height: 800px;
+}
+
+/* Final overview */
+
+#overview { 
+    display: none;
+}
+
+.flides-on-overview #left {
+    opacity: 0.1;
+}
+
+.flides-on-overview #right {
+    opacity: 0.1;
+}
+
+.flides-on-overview #overview_start {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.flides-on-overview .step {
+    opacity: 1;
+    cursor: pointer;
+}
+

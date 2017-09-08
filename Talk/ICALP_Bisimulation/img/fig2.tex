@@ -1,0 +1,28 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsmath,amssymb}
+
+
+\begin{document}
+
+\begin{picture}(55,35)(-10,5)
+	\gasset{Nw=5,Nh=5}
+
+  	\node[Nmarks=i](0)(0,20){}
+  	\rpnode[polyangle=90](1)(20,30)(3,2){}
+  	\rpnode[polyangle=90](2)(20,10)(3,2){}
+  	\node(3)(40,20){}
+  	\node(4)(40,35){}
+  	\node(5)(40,10){}
+
+  	\drawedge(0,1){$a$}
+  	\drawedge(0,2){$b$}
+
+	\drawedge(1,4){$\frac{1}{3}$}
+	\drawedge(1,3){$\frac{1}{3}$}
+	\drawedge(2,5){$\frac{2}{5}$}
+	\drawedge[curvedepth=3](2,3){$\frac{1}{4}$}
+\end{picture}
+\end{document}

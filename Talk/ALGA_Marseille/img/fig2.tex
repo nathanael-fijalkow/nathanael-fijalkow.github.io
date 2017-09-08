@@ -1,0 +1,107 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(120,48)(-10,0)
+	\gasset{Nh=3,Nw=3,Nadjust=w}
+
+	\rpnode[Nmarks=i,iangle=180,polyangle=45](v_9)(0,20)(4,2.5){$v_9$}
+	\rpnode[polyangle=45](v_8)(10,20)(4,2.5){$v_8$}
+	\rpnode[polyangle=45](v_7)(20,20)(4,2.5){$v_7$}
+	\rpnode[polyangle=45](v_6)(30,20)(4,2.5){$v_6$}
+	\rpnode[polyangle=45](v_5)(40,20)(4,2.5){$v_5$}
+	\rpnode[polyangle=45](v_4)(50,20)(4,2.5){$v_4$}
+	\rpnode[polyangle=45](v_3)(60,20)(4,2.5){$v_3$}
+	\rpnode[polyangle=45](v_2)(70,20)(4,2.5){$v_2$}
+	\rpnode[polyangle=45](v_1)(80,20)(4,2.5){$v_1$}
+	\rpnode[polyangle=45](v_0)(90,20)(4,2.5){$v_0$}
+	\node(F)(100,20){$F$}
+
+	\node(u_9^0)(5,10){$u_{0,9}$}
+	\node(u_8^0)(15,10){$u_{0,8}$}
+	\node(u_7^0)(25,10){$u_{0,7}$}
+	\node(u_6^0)(35,10){$u_{0,6}$}
+	\node(u_5^0)(45,10){$u_{0,5}$}
+	\node(u_4^0)(55,10){$u_{0,4}$}
+	\node(u_3^0)(65,10){$u_{0,3}$}
+	\node(u_2^0)(75,10){$u_{0,2}$}
+	\node(u_1^0)(85,10){$u_{0,1}$}
+	\node(u_0^0)(95,10){$u_{0,0}$}
+
+	\node(u_10^1)(0,30){$u_{1,10}$}
+	\node(u_8^1)(20,30){$u_{1,8}$}
+	\node(u_6^1)(40,30){$u_{1,6}$}
+	\node(u_4^1)(60,30){$u_{1,4}$}
+	\node(u_2^1)(80,30){$u_{1,2}$}
+	\node(u_0^1)(95,30){$u_{1,0}$}
+	
+	\drawedge(v_9,v_8){}
+	\drawedge(v_8,v_7){}
+	\drawedge(v_7,v_6){}
+	\drawedge(v_6,v_5){}
+	\drawedge(v_5,v_4){}
+	\drawedge(v_4,v_3){}
+	\drawedge(v_3,v_2){}
+	\drawedge(v_2,v_1){}
+	\drawedge(v_1,v_0){}
+	\drawedge(v_0,F){}
+
+	\gasset{curvedepth=-1}
+	
+	\drawedge(v_9,u_9^0){}
+	\drawedge(v_8,u_8^0){}
+	\drawedge(v_7,u_7^0){}
+	\drawedge(v_6,u_6^0){}
+	\drawedge(v_5,u_5^0){}
+	\drawedge(v_4,u_4^0){}
+	\drawedge(v_3,u_3^0){}
+	\drawedge(v_2,u_2^0){}
+	\drawedge(v_1,u_1^0){}
+	\drawedge(v_0,u_0^0){}
+
+	\gasset{curvedepth=1}
+
+	\drawedge(v_8,u_8^1){}
+	\drawedge(v_6,u_6^1){}
+	\drawedge(v_4,u_4^1){}
+	\drawedge(v_2,u_2^1){}
+	\drawedge(v_0,u_0^1){}
+
+	\drawedge(u_9^0,v_8){$i$}
+	\drawedge(u_8^0,v_7){$i$}
+	\drawedge(u_7^0,v_6){$i$}
+	\drawedge(u_6^0,v_5){$i$}
+	\drawedge(u_5^0,v_4){$i$}
+	\drawedge(u_4^0,v_3){$i$}
+	\drawedge(u_3^0,v_2){$i$}
+	\drawedge(u_2^0,v_1){$i$}
+	\drawedge(u_1^0,v_0){$i$}
+	\drawedge(u_0^0,F){$i$}
+
+	\drawedge(u_10^1,v_8){$i$}
+	\drawedge(u_8^1,v_6){$i$}
+	\drawedge(u_6^1,v_4){$i$}
+	\drawedge(u_4^1,v_2){$i$}
+	\drawedge(u_2^1,v_0){$i$}
+	\drawedge(u_0^1,F){$i$}
+
+	\drawqbpedge(u_7^0,30,v_9,80){$r$}
+	\drawqbpedge(u_6^0,30,v_8,80){$r$}
+	\drawqbpedge(u_5^0,30,v_7,80){$r$}
+	\drawqbpedge(u_4^0,30,v_6,80){$r$}
+	\drawqbpedge(u_3^0,30,v_5,80){$r$}
+	\drawqbpedge(u_2^0,30,v_4,80){$r$}
+	\drawqbpedge(u_1^0,30,v_3,80){$r$}
+	\drawqbpedge(u_0^0,30,v_2,80){$r$}
+
+	\gasset{ELside=r}
+	
+	\drawqbpedge(u_4^1,-30,v_8,-80){$r$}
+	\drawqbpedge(u_2^1,-30,v_6,-80){$r$}
+	\drawqbpedge(u_0^1,-30,v_4,-80){$r$}
+\end{picture}
+
+\end{document}

@@ -1,0 +1,37 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\newcommand{\ract}{\mathtt{r}}
+\newcommand{\iact}{\mathtt{i}}
+\newcommand{\eact}{\mathtt{\epsilon}}
+
+\begin{document}
+
+\begin{picture}(93,33)(-27,-5)
+	\gasset{Nh=6,Nw=6}
+
+	\rpnode[Nmarks=i,iangle=90,polyangle=45](q_0)(0,20)(4,4){}
+	\rpnode[polyangle=45](q_1)(20,20)(4,4){}
+	\rpnode[polyangle=45](q_2)(20,0)(4,4){}
+	\rpnode[polyangle=45](q_3)(40,0)(4,4){}
+	\rpnode[polyangle=45](q_4)(45,20)(4,4){}
+
+	\drawloop[loopangle=180](q_0){$\push(a)$}
+	\drawloop[loopangle=180](q_2){$\push(b)$}
+	\drawloop[loopangle=0](q_3){$\pop(b),\iact$}
+	\drawloop[loopangle=0](q_4){}
+
+	\drawedge(q_0,q_1){}
+	\drawedge[ELside=r](q_1,q_2){$\pop(a)$}
+	\drawedge(q_2,q_3){}
+	\drawedge[curvedepth=-5](q_3,q_1){}
+	\drawedge(q_1,q_4){}
+\end{picture}
+
+\end{document}

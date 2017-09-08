@@ -1,0 +1,45 @@
+<h2>ACME: Automata with Counters, Monoids and Equivalence</h2>
+
+ACME is a tool implementing algebraic techniques to solve decision problems from automata theory.
+The core generic algorithm takes as input an automaton and computes its stabilization monoid,
+which is a generalization of its transition monoid.
+
+<!--
+<br/>
+
+Using the stabilization monoid, one can solve many problems:
+determine whether a B-automaton (which is a special kind of automata with counters) is limited, whether two B-automata are equivalent,
+and whether a probabilistic leaktight automaton has value 1.
+-->
+
+<br/>
+
+ACME has been written in <a href=http://ocaml.org/>OCaml</a>, by <a href=http://www.liafa.univ-paris-diderot.fr/~nath>Nathana&euml;l Fijalkow</a>
+and <a href=http://www.liafa.univ-paris-diderot.fr/~dkuperbe/>Denis Kuperberg</a>.
+
+<h3>Download</h3>
+
+The compressed folder is <a href="pdf/acme.tar.gz">here</a>, and the github directory <a href="https://github.com/nathanael-fijalkow/acme">here</a>.
+<br/>
+ACME uses <a href=http://www.graphviz.org/>graphviz</a> to visualize the automata and monoids produced.
+
+<h3>Documents</h3>
+You can find <a href="pdf/acme.pdf">here</a> (PDF) a description (ATVA'2014) tool paper, and <a href="pdf/acme_manual.pdf">here</a> (PDF) a manual.
+
+<h3>Installation and Use</h3>
+
+<ul>
+	<li><strong>Linux:</strong> Type "make linux" to compile, it produces the executable acme.</li>
+	<li><strong>Windows:</strong> You need the "make" utility package, which you can get <a href=http://gnuwin32.sourceforge.net/packages/make.htm>here</a>. Use "make win" to compile, it produces acme.exe.</li>
+</ul>
+
+<h3>Features</h3>
+We describe here the main available functions:
+<ul>
+	<li> <i>-sm:</i> Computes the stabilization monoid of a B-automaton and minimizes it.</li>
+	<li> <i>-equ:</i> Checks whether two B-automata are equivalent.</li>
+	<li> <i>-mma:</i> Runs the Markov Monoid algorithm on a probabilistic automaton.</li>
+	<li> <i>-fpp:</i> Checks whether a classical automaton has the finite power property, i.e. whether there exists n such that L^* = L^0 + L^1 + ... + L^n.</li>
+	<li> <i>-dotty:</i> Produces a file output.gv (DOT format) and output.ps, which can be visualized using <a href=http://www.graphviz.org/>graphviz</a>.</li>
+</ul>
+

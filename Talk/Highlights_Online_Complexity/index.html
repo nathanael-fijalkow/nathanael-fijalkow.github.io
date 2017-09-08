@@ -1,0 +1,135 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <title>Online Complexity by Nathanaël Fijalkow</title>
+    
+    <meta name="description" content="Online Complexity" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="0">
+	<h2>Online Complexity</h2>
+	<h3>Nathana&euml;l Fijalkow</h3>
+	<h4>Highlights'2015, Prague</h4>
+    </div>
+
+    <div id="global_view" class="step" data-x="0" data-y="0" data-scale="6">
+	<h1>Online Complexity</h1>
+    </div>
+
+    <div id="definition" class="step" data-x="-2500" data-y="-2000">
+	$$L \subseteq A^*$$
+	<h2>size of the smallest data structure maintaining the answer to the Boolean query 
+	<p><i>"is the prefix in $L$?"</i></h2>
+
+	<p>
+	<h3>the size is the number of different states after reading $n$ letters</h3>
+    </div>
+
+    <div id="examples" class="step" data-x="-2500" data-y="-1000">
+	<table>
+		<tr>
+			<th><i>language</i></th>
+			<th class="right">
+			<i>online complexity</i>
+			</th>
+		</tr>
+		<tr>
+			<td><h2>$\{a^n b^n \mid n \in \mathbb{N}\}$</h2>
+			<img id="example" src="img/fig1.svg"></img></td>
+			<td class="right">
+			linear
+			</td>
+		</tr>
+		<tr>
+			<td><h2>$\{w \mid |w|_a = |w|_b = |w|_c\}$</h2></td>
+			<td class="right">quadratic</td>
+		</tr>
+		<tr>
+			<td><h2>$\{w w \mid w \in A^*\}$</h2></td>
+			<td class="right">exponential</td>
+		</tr>
+	</table>
+    </div>
+
+    <div id="not" class="step" data-x="-3500" data-y="-1000">
+	Online complexity is not:
+		<ul>
+			<li>dynamic complexity</li>
+			<li>competitive ratios of online algorithms</li>
+			<li>streaming algorithms</li>
+		</ul>
+    </div>
+
+    <div id="remarks" class="step" data-x="-2500" data-y="0">
+	<h2><b>Theorem</b>: 
+		<ul>
+			<li>a language is regular if, and only if, it has constant online complexity,</li>
+			<li>all languages have exponential online complexity.</li>
+		</ul>
+	</h2>
+    </div>
+
+    <div id="global_view" class="step" data-x="0" data-y="0" data-scale="6">
+	<h1>Online Complexity</h1>
+    </div>
+
+    <div id="pa" class="step" data-x="1500" data-y="-2000">
+	<h1>Probabilistic Automata</h1>
+
+	<h2>Rabin (63): can we compute the acceptance probability in an online fashion?</h2>
+    </div>
+
+    <div id="exponential" class="step" data-x="2500" data-y="-2000">
+	<img id="example" src="img/fig2.svg"></img>
+
+	$$\mathbb{P}(u \sharp v) = bin(u) \cdot bin(v)$$
+
+	$$L = \left\{ u \sharp v \mid bin(u) \cdot bin(v) > \frac{1}{2}\right\}$$
+
+	<h2><b>Theorem</b>: 
+		this probabilistic automaton has exponential online complexity
+	</h2>
+    </div>
+
+    <div id="global_view" class="step" data-x="0" data-y="0" data-scale="6">
+	<h1>Online Complexity</h1>
+    </div>
+
+    <div id="research" class="step" data-x="2500" data-y="0">
+	<h1>Research Directions</h1>
+	<ul>
+		<li>a dichotomy theorem: every probabilistic automaton has either polynomial or exponential online complexity,</li>
+		<li>probabilistic automata exactly correspond to constant approximated online complexity,</li>
+		<li>logical characterisations of languages of linear, quadratic and polynomial online complexity.</li>
+	</ul>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="6">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

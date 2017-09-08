@@ -1,0 +1,28 @@
+\documentclass[convert]{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amssymb}
+
+\begin{document}
+
+\begin{picture}(48,45)(-10,-5)
+	\gasset{Nadjust=h,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=180](0)(0,20){$0$}
+  	\node(1)(20,10){$1$}
+  	\node[Nmarks=f,fangle=90](2)(20,30){$2$}
+
+	\drawloop(0){$a:0.5$}
+	\drawloop[loopangle=0](1){$a$}
+	\drawloop[loopangle=0](2){$a$}
+
+  	\drawedge[curvedepth=-2,ELside=r](0,1){$a:0.5$}
+  	\drawedge[curvedepth=-2,ELside=r](1,0){$b$}
+  	\drawedge(0,2){$b$}
+  	\drawedge(2,1){$b$}
+
+	\put(-10,0){$L(\mathcal{A}) = \left\{ u \in A^* \mid \mathbb{P}_{\mathcal{A}}(u) > \frac{1}{2} \right \}$}
+\end{picture}
+
+\end{document}

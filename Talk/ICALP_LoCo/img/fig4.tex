@@ -1,0 +1,43 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(92,35)(-8,-3)
+	\gasset{Nh=3,Nw=3,Nadjust=w}
+
+	\node[Nmarks=i](v_0)(0,0){$v_0$}
+	\node(v)(40,0){$v$}
+
+	\node(u_N)(0,15){$u_N$}
+	\node(u_N-1)(25,30){$u_{N-1}$}
+	\put(45,30){$\begin{Huge}\ldots\end{Huge}$}
+	\node(u_2)(65,30){$u_2$}
+	\node(u_1)(80,15){$u_1$}
+
+	\node(F)(80,0){$F$}
+
+	\drawedge[ELpos=30](v_0,v){$i^N$}
+	\drawedge[ELpos=70](v,F){$i^N$}
+
+	\gasset{curvedepth=2}
+	
+	\drawedge(v,u_N){}
+	\drawedge[ELpos=20,ELside=l](u_N,v){$r$}
+	\drawedge[ELpos=40,ELside=l](u_N,v){$i^{N-1}$}
+
+	\drawedge[ELpos=70](v,u_N-1){$i$}
+	\drawedge[ELpos=20,ELside=l](u_N-1,v){$r$}
+	\drawedge[ELpos=40,ELside=l](u_N-1,v){$i^{N-2}$}
+
+	\drawedge[ELpos=70](v,u_2){$i^{N-2}$}
+	\drawedge[ELpos=10,ELside=l](u_2,v){$r$}
+	\drawedge[ELpos=30,ELside=l](u_2,v){$i$}
+
+	\drawedge[ELpos=70](v,u_1){$i^{N-1}$}
+	\drawedge[ELpos=30,ELside=l](u_1,v){$r$}
+\end{picture}
+
+\end{document}

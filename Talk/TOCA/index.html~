@@ -1,0 +1,146 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Boundedness Pushdown Games</title>
+    
+    <meta name="description" content="Boundedness Pushdown Games" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <!-- A slide is a div with class "step". It is located by data-x, data-y, data-z (if you like 3D) and data-scale -->
+    <!-- data-duration="0" means that when going to this slide, one does not have the zoom effect -->
+    <div id="title" class="step" data-duration="0" data-x="0" data-y="0">
+	<h2>Boundedness Pushdown Games</h2>
+
+	<br/>
+
+	<h3>Miko&#322;aj Boja&#324;czyk, Krishnendu Chatterjee, <b>Nathana&euml;l Fijalkow</b></h3>
+
+	<br/>
+
+	<div class="slide_step">
+	<u>A reviewer:</u>
+ 	<br/>
+	<br/>
+
+	<i>''the subject of research sounds like a parody on esoteric models''</i>
+	<br/>
+	<br/>
+	<i>But the problem itself is a very nice riddle, (...) it’s nice to see technical acrobatics in action.</i>
+	</div>
+    </div>
+
+    <div id="pushdown" class="step" data-x="-1000" data-y="0">
+	<h2>Pushdown Games</h2>
+	<img id="fig1" src="img/fig1.svg"/> 
+    </div>
+
+    <div id="pushdown_boundedness" class="step" data-x="-1000" data-y="-700">
+	<h2>$\omega B$-regular Conditions</h2>
+
+	<br/><br/>
+	Typical examples:
+	<br/><br/>
+	<ul>
+		<li>$a^{n_1} b a^{n_2} b a^{n_3} b \cdots$ such that $\lim\inf n_i < \infty$
+		<li>If infinitely many $a$ then $b$ blocks have bounded size, otherwise $c$ blocks have bounded size
+	</ul>
+    </div>
+
+    <div id="automata" class="step" data-x="0" data-y="-700">
+	<h2>A Boundedness Game</h2>
+	<img id="fig" src="img/fig.svg"/>
+    </div>
+
+    <div id="non-det" class="step" data-x="1000" data-y="-200">
+	<h2>Non-determinism</h2>
+
+	<br/>
+
+	$\omega$-regular conditions = non-deterministic parity automata
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<b>Theorem</b> (Mc Naughton, Muller and Schupp): Determinisation of parity automata
+
+	<br/>
+	<br/>
+
+	To solve $\omega$-regular games: compose with <i>deterministic</i> automaton
+	</div>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	$\omega B$-regular conditions = non-deterministic $\omega B$ automata
+
+	<br/>
+	<br/>
+
+	<b>Theorem</b>: $\omega B$ automata cannot be determinised (at all)!
+	</div>
+    </div>
+
+    <div id="overview_intermediate" class="step unclickable" data-x="0" data-y="0" data-scale="2">
+    </div>
+
+    <div id="det" class="step" data-x="-500" data-y="800">
+	<h2>Quantitative Determinacy</h2>
+	<img id="fig" src="img/fig.svg"/>
+
+	<br/><br/>
+	Either Eve can ensure some bound, or Adam can ensure that the counter is unbounded.
+    </div>
+
+    <div id="results" class="step" data-x="500" data-y="800">
+	<h2>Results</h2>
+	
+	<br/>
+	Combining:
+
+	<ul>
+		<li>Quantitative determinacy for pushdown boundedness games
+		<li>Two-way cost automata (CSL-LICS'2014)
+		<li>History-determinacy cost automata (ICALP'2009)
+	</ul>
+	
+	<br/>
+	<br/>
+
+	We obtain:
+	<br/>
+	<b>Theorem</b>: Solving pushdown games with $\omega B$-regular conditions is decidable.
+    </div>
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="100" data-scale="2.5">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>

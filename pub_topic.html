@@ -1,0 +1,889 @@
+<p>Click <a href="?page=pub_year">here</a> for my publication list by year.
+
+<p>
+Here is an overview of some lines of works I have been involved in.
+
+<div id="accordion" class="panel-group">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#bisim" data-parent="#accordion">Probabilistic Bisimulation</button>
+  </div>
+
+  <div id="bisim" class="panel-collapse collapse">
+	<div class="panel-body">
+There are various notions of behavioural equivalence for stochastic systems, many of them related to the notion of <b>bisimulation</b>.
+The paper [FKS16] studies a notion of trace equivalence for Markov Decision Processes called <b>trace refinement</b>. The main results are that it is in general undecidable, 
+but becomes decidable in some cases. The key insight we obtain for the decidable case is to relate trace refinement to the notion of <b>probabilistic bisimulation on distributions</b>.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FKS16]</td>
+			<td class="entree">
+				<a name="FKS16"></a>Nathana&euml;l Fijalkow, Stefan Kiefer and Mahsa Shirmohammadi. 
+				<span class="titre">Trace Refinement in Labelled Markov Decision Processes</span>,
+				<span class="booktitle"><em>Foundations of Software Science and Computation Structures, FoSSaCS'2016</em></span>.
+				(<a class="link" href="pdf/bisimulation_fossacs_2016.pdf">Conference version</a> ; 
+				<a class="link" href="http://arxiv.org/abs/1510.09102">Technical report (ArXiV)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFKS16">Display/Hide the abstract</button>
+				<div id="abstractFKS16" class="collapse">
+					<i>Given two labelled Markov decision processes (MDPs), the trace-refinement problem asks whether for all strategies of the first MDP there exists a strategy of the second MDP such that the induced labelled Markov chains are trace-equivalent. We show that this problem is decidable in polynomial time if the second MDP is a Markov chain. The algorithm is based on new results on a particular notion of bisimulation between distributions over the states. However, we show that the general trace-refinement problem is undecidable, even if the first MDP is a Markov chain. Decidability of those problems has been open since 2008. We further study the decidability and complexity of the trace-refinement problem provided that the strategies are restricted to be memoryless.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+
+The paper [FKP17] revisits a classical result which says that two states are bisimilar if, and only if, they satisfy the same formulas of a very simple <b>probabilistic modal logic</b>.
+This result has been extended to simulation, and both results hold for general topological assumptions.
+In this paper, we give simple streamlined proof of this result using a new insight, which is a <b>probabilistic bisimulation game</b>.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FKP17]</td>
+			<td class="entree">
+				<a name="FKP17"></a>Nathana&euml;l Fijalkow, Bartek Klin and Prakash Panangaden. 
+				<span class="titre">Expressiveness of Probabilistic Modal Logics, Revisited</span>,
+				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2017</em></span>.
+				(<a class="link" href="pdf/bisim.pdf">Conference version</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFKP17">Display/Hide the abstract</button>
+				<div id="abstractFKP17" class="collapse">
+					<i>
+					Labelled Markov processes are probabilistic versions of labelled transition systems.  In general, the state space of a labelled Markov process may be a continuum.  						Logical characterizations of probabilistic bisimulation and simulation were given by Desharnais et al.
+					These results hold for systems defined on analytic state spaces and assume that there are countably many labels in the case of bisimulation 
+					and finitely many labels in the case of simulation.
+					<br/>
+					In this paper, we first revisit these results by giving simpler and more
+					streamlined proofs.  In particular, our proof for simulation has the same
+					structure as the one for bisimulation, relying on a new result of a
+					topological nature.  This departs from the known proof
+					for this result, which uses domain theory techniques and falls out of a
+					theory of approximation of Labelled Markov processes.
+					<br/>
+					Both our proofs assume the presence of countably many labels.  We
+					investigate the necessity of this assumption, and show that the
+					logical characterization of bisimulation may fail when there are
+					uncountably many labels.  However, with a stronger assumption on the
+					transition functions (continuity instead of just measurability), we can
+					regain the logical characterization result, for arbitrarily many labels.
+					These new results arose from a new game-theoretic way of understanding
+					probabilistic simulation and bisimulation.
+					</i>
+				</div>
+			</td>
+		</tr>
+
+	</table>
+	</div>
+  </div>
+
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#pa" data-parent="#accordion">Probabilistic Automata</button>
+  </div>
+
+  <div id="pa" class="panel-collapse collapse">
+	<div class="panel-body">
+
+<b>Probabilistic Automata</b> generalise classical automata by adding a probabilistic value for each transition.
+I am interested in algorithmic analysis of probabilistic automata, i.e. algorithms to determine whether a probabilistic automaton satisfies a given property.
+
+<br/><br/>
+Recently, I looked at probabilistic automata of bounded ambiguity, ie where each word has finitely many runs. 
+It turns out to define a very robust and well-behaved class of probabilistic automata, for which we construct efficient algorithms, see the paper [FRW17].
+
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FRW17]</td>
+			<td class="entree">
+				<a name="FKP17"></a>Nathana&euml;l Fijalkow, Cristian Riveros and James Worrell. 
+				<span class="titre">Probabilistic Automata of Bounded Ambiguity</span>,
+				<span class="booktitle"><em>International Conference on Concurrency Theory, CONCUR'2017</em></span>.
+				(<a class="link" href="pdf/pfa_amb.pdf">Conference version</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFRW17">Display/Hide the abstract</button>
+				<div id="abstractFRW17" class="collapse">
+					<i>
+  Probabilistic automata are a computational model introduced by
+  Michael Rabin, extending nondeterministic finite automata with
+  probabilistic transitions.  Despite its simplicity, this model is
+  very expressive and many of the associated algorithmic questions are
+  undecidable.  In this work we focus on the emptiness problem, which
+  asks whether a given probabilistic automaton accepts some word with
+  probability higher than a given threshold.  We consider a natural
+  and well-studied structural restriction on automata, namely the
+  degree of ambiguity, which is defined as the maximum number of
+  accepting runs over all words.  We observe that undecidability of
+  the emptiness problem requires infinite ambiguity and so we focus on
+  the case of finitely ambiguous probabilistic automata.
+<br/>
+  Our main results are to construct efficient algorithms for analysing
+  finitely ambiguous probabilistic automata through a reduction to a
+  multi-objective optimisation problem, called the stochastic path
+  problem.  We obtain a polynomial time algorithm for approximating
+  the value of finitely ambiguous probabilistic automata and a
+  quasi-polynomial time algorithm for the emptiness problem for
+  $2$-ambiguous probabilistic automata.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+<br/><br/>
+I focussed on the <b>value 1 problem</b>, which given a probabilistic automaton asks whether there exists a sequence of words whose acceptance probability converges to 1.
+This problem was shown undecidable by Gimbert and Oualhadj in 2010.
+
+The paper [FGO12] introduces the <b>Markov Monoid algorithm</b>, which computes the <b>stabilisation monoid</b> of a probabilistic automaton, generalising the transition monoid for non-deterministic automata.
+We show that the Markov Monoid algorithm solves the value 1 problem for the class of <b>leaktight automata</b> that we define.
+In the journal version [FGHO15], we show that the class of leaktight automata subsumes all other classes for which the value 1 is known to be decidable.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FGKO15]</td>
+			<td class="entree"><a name="FGKO15"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Youssouf Oualhadj. 
+				<span class="titre">Deciding the value 1 problem for probabilistic leaktight automata</span>,
+				<span class="booktitle"><em>Logical Methods in Computer Science, LMCS</em></span>. 
+				(<a class="link" href="http://arxiv.org/abs/1504.04136">Journal version (LMCS, on ArXiV)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGKO15">Display/Hide the abstract</button>
+				<div id="abstractFGKO15" class="collapse">
+					<i>The value 1 problem is a decision problem for probabilistic automata over finite words:
+					given a probabilistic automaton, are there words accepted with probability arbitrarily close to 1?
+					This problem was proved undecidable recently; to overcome this, several classes of probabilistic automata of different nature were proposed, 
+					for which the value 1 problem has been shown decidable.
+					In this paper, we introduce yet another class of probabilistic automata, called \textit{leaktight automata}, 
+					which strictly subsumes all classes of probabilistic automata whose value 1 problem is known to be decidable.
+					<br/>
+					We prove that for leaktight automata, the value 1 problem is decidable (in fact, PSPACE-complete) by constructing 
+					a saturation algorithm based on the computation of a monoid abstracting the behaviours of the automaton.
+					We rely on algebraic techniques developed by Simon to prove that this abstraction is complete.
+					Furthermore, we adapt this saturation algorithm to decide whether an automaton is leaktight.
+					<br/>
+					Finally, we show a reduction allowing to extend our decidability results from finite words to infinite ones, 
+					implying that the value 1 problem for probabilistic leaktight parity automata is decidable.
+					<br/><br/>
+					This is the journal version of [FGO12].
+					</i>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td class="labels">[FGO12]</td>
+			<td class="entree"><a name="FGO12-LICS"></a>Nathana&euml;l Fijalkow, Hugo Gimbert and Youssouf Oualhadj.
+				<span class="titre">Deciding the Value 1 Problem for Probabilistic Leaktight Automata</span>,
+				<span class="booktitle"><em>Logic in Computer Science, LICS'2012</em></span>.
+	 			(<a class="link" href="pdf/leaktight_lics.pdf">Conference version</a> ;
+				<a class="link" href="http://arxiv.org/abs/1504.04136">Journal version (LMCS)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGO12">Display/Hide the abstract</button>
+				<div id="abstractFGO12" class="collapse">
+					<i>The value 1 problem is a decision problem for probabilistic automata over finite words: 
+					given a probabilistic automaton, are there words accepted with probability arbitrarily close to 1? 
+					This problem was proved undecidable recently. 
+					We sharpen this result, showing that the undecidability result holds even if the probabilistic automata have only one probabilistic transition. 
+					Our main contribution is to introduce a new class of probabilistic automata, called leaktight automata, for which the value 1 problem is shown decidable 
+					(and PSPACE-complete). 
+					We construct an algorithm based on the computation of a monoid abstracting the behaviours of the automaton, 
+					and rely on algebraic techniques developed by Simon for the correctness proof. 
+					The class of leaktight automata is decidable in PSPACE, subsumes all subclasses of probabilistic automata whose value 1 problem is known to be decidable 
+					(in particular deterministic automata), and is closed under two natural composition operators.
+					</i>
+				</div>
+			</td>
+		</tr>	
+
+	</table>
+	<br/>
+
+The paper [FGHO14] looks at the value 1 problem for <b>parametric probabilistic automata</b>. Here probabilistic transitions are seen as parameters and can be chosen.
+Unfortunately, this problem remains undecidable in a strong sense.
+Although this does not appear explicitely in the paper, a motivation for studying parametric probabilistic automata was that it could lead to a better understanding of the Markov Monoid algorithm,
+as the latter does not use the value of the probabilistic transition, but just the boolean information whether they are 0 or not.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FGHO14]</td>
+			<td class="entree"><a name="FP14"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Florian Horn and Youssouf Oualhadj. 
+				<span class="titre">Two Recursively Inseparable Problems for Probabilistic Automata</span>,
+				<span class="booktitle"><em>39th International Symposium on Mathematical Foundations of Computer Science, MFCS'2014</em></span>.
+				(<a class="link" href="pdf/Inseparable_Problems_MFCS_2014.pdf">Conference version (full)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGHO14">Display/Hide the abstract</button>
+				<div id="abstractFGHO14" class="collapse">
+					<i>This paper introduces and investigates decision problems for numberless probabilistic automata, i.e. probabilistic automata 
+					where the support of each probabilistic transitions is specified, but the exact values of the probabilities are not.
+					<br/>
+					A numberless probabilistic automaton can be instantiated into a probabilistic automaton by specifying the exact values of the non-zero probabilistic transitions.
+					<br/>We show that the two following properties of numberless probabilistic automata are recursively inseparable:
+					<ul>
+						<li>all instances of the numberless automaton have value 1,</li>
+						<li>no instance of the numberless automaton has value 1.</li>
+					</ul>
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+
+The paper [Fij16b] and its journal version [Fij17] give a characterisation of the Markov Monoid algorithm, ie it shows that this algorithm captures exactly all polynomial sequences of words.
+The proof is carried out using a profinite theory for probabilistic automata that we call the <b>prostochastic theory</b>. This gives a set of definitions and notions used to phrase this characterisation proof. 
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[Fij17]</td>
+			<td class="entree"><a name="Fij17"></a>Nathana&euml;l Fijalkow. 
+				<span class="titre">Profinite Techniques for Probabilistic Automata and the Markov Monoid Algorithm</span>,
+				<span class="booktitle"><em>Theoretical Computer Science, TCS</em></span>. 
+				(<a class="link" href="pdf/prostochastic_full.pdf">Journal version (TCS)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFij17">Display/Hide the abstract</button>
+				<div id="abstractFij17" class="collapse">
+					<i>
+We consider the value 1 problem for probabilistic automata over finite words:
+it asks whether a given probabilistic automaton accepts words with probability arbitrarily close to 1.
+This problem is known to be undecidable.
+However, different algorithms have been proposed to partially solve it;
+it has been recently shown that the Markov Monoid algorithm, based on algebra, 
+is the most correct algorithm so far.
+The first contribution of this paper is to give a characterisation of the Markov Monoid algorithm.
+<br/>
+The second contribution is to develop a profinite theory for probabilistic automata, called the prostochastic theory.
+This new framework gives a topological account of the value 1 problem,
+which in this context is cast as an emptiness problem.
+The above characterisation is reformulated using the prostochastic theory, allowing us to give a simple and modular proof.
+					<br/><br/>
+					This is the journal version of [Fij16b].
+					</i>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td class="labels">[Fij16b]</td>
+			<td class="entree">
+				<a name="F16"></a>Nathana&euml;l Fijalkow. 
+				<span class="titre">Characterisation of an Algebraic Algorithm for Probabilistic Automata</span>,
+				<span class="booktitle"><em>Symposium on Theoretical Aspects of Computer Science, STACS'2016</em></span>.
+				(<a class="link" href="pdf/STACS_2016.pdf">Conference version</a> ; 
+				<!-- <a class="link" href="http://arxiv.org/abs/1501.02997">Technical report (ArXiV)</a> -->
+				<a class="link" href="http://www.cs.ox.ac.uk/people/nathanael.fijalkow/pdf/prostochastic_full.pdf">Technical report</a>)
+
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractF16b">Display/Hide the abstract</button>
+				<div id="abstractF16b" class="collapse">
+					<i>We consider the value 1 problem for probabilistic automata over finite words:
+it asks whether a given probabilistic automaton accepts words with probability arbitrarily close to 1.
+This problem is known to be undecidable.
+However, different algorithms have been proposed to partially solve it;
+it has been recently shown that the Markov Monoid algorithm, based on algebra, 
+is the most correct algorithm so far.
+The first contribution of this paper is to give a characterisation of the Markov Monoid algorithm.
+<br/>
+The second contribution is to develop a profinite theory for probabilistic automata, called the prostochastic theory.
+This new framework gives a topological account of the value 1 problem,
+which in this context is cast as an emptiness problem.
+The above characterisation is reformulated using the prostochastic theory, allowing to give a modular proof.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+
+The whole story above for the value 1 problem can be found in the second chapter of my PhD thesis [Fij15].
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[Fij15]</td>
+			<td class="entree">
+				<a name="Fji15"></a>Nathana&euml;l Fijalkow. 
+				<span class="titre">Counting and Randomising in Automata Theory</span>,
+				<span class="booktitle"><em>University of Paris 7 and University of Warsaw</em></span>.
+				(<a class="link" href="pdf/main.pdf">Final version</a> ; 
+				<a class="link" href="pdf/main_summary.pdf">Long summary</a> ; 
+				<a class="link" href="?page=phd">Dedicated page</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFij15">Display/Hide the abstract</button>
+				<div id="abstractFij15" class="collapse">
+					<i>This thesis is a contribution to the study of quantitative models of automata, and more specifically of automata with counters and probabilistic automata. They have been independently studied for decades, leading to deep theoretical insights of practical value.
+<br/>
+
+We investigate here two seemingly unrelated questions, the first about finite-memory determinacy for boundedness games, and the second about the value 1 problem for probabilistic automata. Some of the results are obtained by transferring techniques and ideas from one model to the other, revealing some connections between them.
+<br/>
+<br/>
+The first part of this document investigates finite-memory determinacy for boundedness games, which is motivated by, and belongs to, a research program launched ten years ago by Bojanczyk and Colcombet, aiming at understanding boundedness logics; the so-called MSO + U and cost-MSO. These two logics induce two related models of games with counters, for which we show both positive and negative results about their finite-memory determinacy.
+<br/>
+The main motivation for this investigation is the LoCo conjecture, stated by Colcombet and Loeding in 2010, and shown to imply the decidability of cost-MSO over infinite trees, which is the main open problem of this research program.
+We show that unfortunately the LoCo conjecture does not hold. On the positive side, we show a weaker statement: the LoCo conjecture holds for all thin tree arenas.
+<br/>
+<br/>
+
+The second part of this document is about the value 1 problem for probabilistic automata. The starting point is the undecidability of this problem, which was proved in 2010 by Gimbert and Oualhadj. The aim of the results presented here is to understand to what extent is the value 1 problem undecidable, by constructing an algorithm that partially solves it and arguing that it is in some sense optimal.
+<br/>
+The first step is the construction of the Markov Monoid algorithm, inspired by the notion of stabilisation monoids as introduced by Colcombet in the study of cost-MSO. We first prove that it is correct for a subclass of probabilistic automata that we define, called leaktight automata, relying on the notion of factorisation trees as developed by Imre Simon. We then show that all subclasses for which the value 1 problem was shown to be decidable are leaktight, implying that this algorithm is so far the best known algorithm.
+<br/>
+The second step aims at better understanding the Markov Monoid algorithm, using a new framework that we introduce, called the prostochastic theory. The prostochastic theory is a topological approach for probabilistic automata inspired by the profinite theory as developed by Almeida, Pin, Weil and others for classical automata, and used by Torunczyk for the study of MSO + U. In this context, the value 1 problem reformulates at an emptiness problem, providing theoretical foundations for reasoning about the Markov Monoid algorithm. Our main result is to give a characterisation of the Markov Monoid algorithm using the prostochastic theory. It says that the Markov Monoid algorithm captures exactly all polynomial behaviours; the undecidability result shows that combining polynomial and exponential behaviours leads to undecidability. The combination of these two results supports the claim that the Markov Monoid algorithm is optimal. 
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<br/><br/>
+
+I also considered other algorithmic properties of probabilistic automata. 
+The paper [FS15] gives a very simple proof that it is undecidable whether a probabilistic automaton accepts a regular language.
+The same example shows that it is undecidable whether a probabilistic automaton has a large <b>state complexity</b>, see [Fij16a].
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[Fij16a]</td>
+			<td class="entree">
+				<a name="F16"></a>Nathana&euml;l Fijalkow. 
+				<span class="titre">Online Space Complexity and Probabilistic Automata</span>,
+				<span class="booktitle"><em>Logical Foundations of Computer Science, LFCS'2016</em></span>.
+				(<a class="link" href="pdf/LFCS_2016.pdf">Conference version (full)</a>)
+
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractF16a">Display/Hide the abstract</button>
+				<div id="abstractF16a" class="collapse">
+					<i>In this paper, we define the online space complexity of languages,
+as the size of the smallest abstract machine processing words sequentially and able to determine at every point
+whether the word read so far belongs to the language or not.
+The first part of this paper motivates this model and provides examples and preliminary results.
+<br/>
+One source of inspiration for introducing the online space complexity of languages comes from a seminal paper of Rabin from 1963, introducing probabilistic automata,
+which suggests studying the online space complexity of probabilistic languages. 
+This is the purpose of the second part of the current paper.
+					</i>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="labels">[FS15]</td>
+			<td class="entree">
+				<a name="FS15"></a>Nathana&euml;l Fijalkow and Micha&#322; Skrzypczak. 
+				<span class="titre">Irregular Behaviours for Probabilistic Automata</span>,
+				<span class="booktitle"><em>Reachability Problems, RP'2015</em></span>.
+				(<a class="link" href="pdf/RP_2015.pdf">Conference version (full)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFS15">Display/Hide the abstract</button>
+				<div id="abstractFS15" class="collapse">
+					<i>We consider probabilistic automata over finite words. Such an automaton defines the language consisting of the set of words accepted with probability greater than a given threshold. We show the existence of a universally non-regular probabilistic automaton, i.e. an automaton such that the language it defines is non-regular for every threshold. As a corollary, we obtain an alternative and very simple proof of the undecidability of determining whether such a language is regular.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#dynamical" data-parent="#accordion">Dynamical Systems</button>
+  </div>
+
+  <div id="dynamical" class="panel-collapse collapse">
+	<div class="panel-body">
+
+
+The paper [FOOPW17] is the very first step of a long research agenda whose goal is to determine the existence of invariants for various transformations.
+In this paper we consider linear transformations and semi-algebraic invariants, and show that it is decidable whether there exists a semi-algebraic invariant
+witnessing that a point cannot be reached from another point.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FOOPW17]</td>
+			<td class="entree">
+				<a name="FOOPW17"></a>Nathana&euml;l Fijalkow, Pierre Ohlmann, Joël Ouaknine, Amaury Pouly and James Worrell. 
+				<span class="titre">Semialgebraic Invariant Synthesis for the Kannan-Lipton Orbit Problem</span>,
+				<span class="booktitle"><em>Symposium on Theoretical Aspects of Computer Science, STACS'2017</em></span>.
+				(<a class="link" href="pdf/invariants.pdf">Conference version</a> ; 
+				<a class="link" href="http://arxiv.org/abs/1701.02162">Technical report (ArXiV)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFOOPW17">Display/Hide the abstract</button>
+				<div id="abstractFOOPW17" class="collapse">
+					<i>The Orbit Problem consists of determining, given a linear transformation A on Q^d, together with vectors x and y, whether the orbit of x under repeated applications of A can ever reach y. This problem was famously shown to be decidable by Kannan and Lipton in the 1980s.
+
+In this paper, we are concerned with the problem of synthesising suitable invariants P included in R^d, i.e., sets that are stable under A and contain x and not y, thereby providing compact and versatile certificates of non-reachability. 
+We show that whether a given instance of the Orbit Problem admits a semialgebraic invariant is decidable, and moreover in positive instances we provide an algorithm to synthesise suitable invariants of polynomial size.
+
+It is worth noting that the existence of semilinear invariants, on the other hand, is (to the best of our knowledge) not known to be decidable.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#games" data-parent="#accordion">Games</button>
+  </div>
+
+  <div id="games" class="panel-collapse collapse">
+	<div class="panel-body">
+
+<b>Games</b> is a mathematical framework to model interactions between agents in a system. 
+I am interested in two types of results: algorithmic, ie construct algorithms to <b>solve games</b> and output optimal strategies, or <b>existence of simple strategies</b>.
+The latter often contributes to the former.
+
+<br/><br/>
+I focussed on the <b>LoCo conjecture</b>, which concerns the existence of finite-memory winning strategies in games with counters.
+
+<br/><br/>
+The paper [FZ12] and its journal version [FZ14] defines the class of parity games with costs, which unifies both parity games and finitary parity games.
+The main results are existence of positional strategies and optimal algorithms for these games.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FZ14]</td>
+			<td class="entree"><a name="FZ14"></a>Nathana&euml;l Fijalkow and Martin Zimmermann. 
+				<span class="titre">Parity and Streett Games with Costs</span>,
+				<span class="booktitle"><em>Logical Methods in Computer Science, LMCS</em></span>. 
+				(<a class="link" href="http://arxiv.org/abs/1207.0663">Journal version (LMCS, on ArXiV)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFZ14">Display/Hide the abstract</button>
+				<div id="abstractFZ14" class="collapse">
+					<i>We consider two-player games played on finite graphs equipped with costs on edges and introduce two winning conditions, cost-parity and cost-Streett, 
+					which require bounds on the cost between requests and their responses. 
+					Both conditions generalize the corresponding classical omega-regular conditions and the corresponding finitary conditions. 
+					For parity games with costs we show that the first player has positional winning strategies and that determining the winner lies in NP and coNP. 
+					For Streett games with costs we show that the first player has finite-state winning strategies and that determining the winner is EXPTIME-complete. 
+					The second player might need infinite memory in both games. Both types of games with costs can be solved by solving linearly many instances 
+					of their classical variants.
+					<br/><br/>
+					This is the journal version of [FZ12].
+					</i>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td class="labels">[FZ12]</td>
+			<td class="entree"><a name="FZ12"></a>Nathana&euml;l Fijalkow and Martin Zimmermann. 
+				<span class="titre">Cost-parity and Cost-Streett Games</span>,
+				<span class="booktitle"><em>Foundations of Software Technology and Theoretical Computer Science, FSTTCS'2012</em></span>. 
+				(<a class="link" href="pdf/cost_parity_games_fsttcs.pdf">Conference version with appendix</a> ;
+				<a class="link" href="http://arxiv.org/abs/1207.0663">Journal version (LMCS)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFZ12">Display/Hide the abstract</button>
+				<div id="abstractFZ12" class="collapse">
+					<i>We consider games played on graphs equipped with costs on edges, and introduce two winning conditions, cost-parity and cost-Streett, 
+					which require bounds on the cost between requests and their responses.
+					<br/>
+					Both conditions generalize the corresponding classical omega-regular conditions as well as the corresponding finitary conditions.
+					For cost-parity games we show that the first player has positional winning strategies and that determining the winner lies in NP and co-NP. 
+					For cost-Streett games we show that the first player has finite-state winning strategies and that determining the winner is EXPTIME-complete. 
+					This unifies the complexity results for the classical and finitary variants of these games. 
+					Both types of cost-games can be solved by solving linearly many instances of their classical variants.
+					</i>
+				</div>
+			</td>
+		</tr>	
+	</table>
+	<br/>
+
+The paper [CF13] continues the study of finitary parity games, now on the class of pushdown graphs.
+The paper contains two types of results: general finite-memory determinacy results for infinite games and algorithms for pushdown games with finitary parity conditions.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[CF13]</td>
+			<td class="entree"><a name="CF13"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
+				<span class="titre">Infinite-state games with finitary conditions</span>,
+				<span class="booktitle"><em>Computer Science Logic, CSL'2013</em></span>. 
+				(<a class="link" href="pdf/finitary_games_csl_2013.pdf">Conference version</a> ;
+				<a class="link" href="http://arxiv.org/abs/1301.2661">Technical report (ArXiV)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCF13">Display/Hide the abstract</button>
+				<div id="abstractCF13" class="collapse">
+					<i>We study two-player zero-sum games over infinite-state graphs equipped with finitary conditions. 
+					Such conditions refine the classical omega-regular conditions: instead of requiring that good events occur infinitely often, 
+					they ensure the existence of a bound B such that in the limit good events occur within B steps. 
+					<br/>
+					Our first contribution is to give (non-effective) characterizations of the winning regions for finitary games over countably infinite-state graphs. 
+					From these results we obtain the strategy complexity, i.e the memory required for winning strategies: 
+					we prove that memoryless strategies are sufficient for finitary Buchi, and finite memory suffices for finitary parity. 
+					<br/>
+					We then study pushdown games with finitary conditions, with two contributions. 
+					First we prove a collapse result for pushdown games with finitary conditions, implying the decidability of solving these games. 
+					Second we consider pushdown games with finitary parity along with stack boundedness conditions, and show that solving these games is EXPTIME-complete.
+					</i>
+				</div>
+			</td>
+		</tr>	
+	</table>
+	<br/>
+
+The paper [CFH14] gives a characterisation of the memory requirements for topologically closed winning conditions.
+A motivation for such a general result is the game of boundedness conditions, which say that a counter remains bounded, hence are topologically closed.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[CFH14]</td>
+			<td class="entree">
+				<a name="CFH14"></a>Thomas Colcombet, Nathana&euml;l Fijalkow and Florian Horn. 
+				<span class="titre">Playing Safe</span>,
+				<span class="booktitle"><em>Foundations of Software Technology and Theoretical Computer Science, FSTTCS'2014</em></span>.
+				(<a class="link" href="pdf/playing_safe.pdf">Conference version (full)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCFH14">Display/Hide the abstract</button>
+				<div id="abstractCFH14" class="collapse">
+					<i>We consider two-player games over graphs and give tight bounds on the memory size of strategies ensuring safety conditions. 
+					More specifically, we show that the minimal number of memory states of a strategy ensuring a safety condition is given by 
+					the size of the maximal antichain of left quotients with respect to language inclusion. 
+					This result holds for all safety conditions without any regularity assumptions, and for all (finite or infinite) graphs of finite degree.
+					<br/>
+					We give several applications of this general principle. In particular, we characterize the exact memory requirements 
+					for the opponent in generalized reachability games,
+					and we prove the existence of optimal positional strategies in games with counters.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+
+The paper [FHKS15] shows two results about the LoCo conjecture: a counter-example to the general case and a proof for the special case of thin trees.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FHKS15]</td>
+			<td class="entree">
+				<a name="FHKS15"></a>Nathana&euml;l Fijalkow, Florian Horn, Denis Kuperberg and Micha&#322; Skrzypczak. 
+				<span class="titre">Trading Bounds for Memory in Games with Counters</span>,
+				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2015</em></span>.
+				(<a class="link" href="pdf/LoCo_ICALP_2015.pdf">Conference version</a> ;
+				<a class="link" href="pdf/tech_report_loco.pdf">Technical report</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFHKS15">Display/Hide the abstract</button>
+				<div id="abstractFHKS15" class="collapse">
+					<i>We study two-player games with counters, where the objective of the first player is that the counter values remain bounded. 
+					We investigate the existence of a trade-off between the size of the memory and the bound achieved on the counters, 
+					which has been conjectured by Colcombet and Loeding.
+					<br/>
+					We show that unfortunately this conjecture does not hold: there is no trade-off between bounds and memory, even for finite arenas. 
+					On the positive side, we prove the existence of a trade-off for the special case of thin tree arenas.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+
+The material presented so far about games constitutes the first chapter of my PhD thesis [Fij15].
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[Fij15]</td>
+			<td class="entree">
+				<a name="Fji15"></a>Nathana&euml;l Fijalkow. 
+				<span class="titre">Counting and Randomising in Automata Theory</span>,
+				<span class="booktitle"><em>University of Paris 7 and University of Warsaw</em></span>.
+				(<a class="link" href="pdf/main.pdf">Final version</a> ; 
+				<a class="link" href="pdf/main_summary.pdf">Long summary</a> ; 
+				<a class="link" href="?page=phd">Dedicated page</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFij15">Display/Hide the abstract</button>
+				<div id="abstractFij15" class="collapse">
+					<i>This thesis is a contribution to the study of quantitative models of automata, and more specifically of automata with counters and probabilistic automata. They have been independently studied for decades, leading to deep theoretical insights of practical value.
+<br/>
+
+We investigate here two seemingly unrelated questions, the first about finite-memory determinacy for boundedness games, and the second about the value 1 problem for probabilistic automata. Some of the results are obtained by transferring techniques and ideas from one model to the other, revealing some connections between them.
+<br/>
+<br/>
+The first part of this document investigates finite-memory determinacy for boundedness games, which is motivated by, and belongs to, a research program launched ten years ago by Bojanczyk and Colcombet, aiming at understanding boundedness logics; the so-called MSO + U and cost-MSO. These two logics induce two related models of games with counters, for which we show both positive and negative results about their finite-memory determinacy.
+<br/>
+The main motivation for this investigation is the LoCo conjecture, stated by Colcombet and Loeding in 2010, and shown to imply the decidability of cost-MSO over infinite trees, which is the main open problem of this research program.
+We show that unfortunately the LoCo conjecture does not hold. On the positive side, we show a weaker statement: the LoCo conjecture holds for all thin tree arenas.
+<br/>
+<br/>
+
+The second part of this document is about the value 1 problem for probabilistic automata. The starting point is the undecidability of this problem, which was proved in 2010 by Gimbert and Oualhadj. The aim of the results presented here is to understand to what extent is the value 1 problem undecidable, by constructing an algorithm that partially solves it and arguing that it is in some sense optimal.
+<br/>
+The first step is the construction of the Markov Monoid algorithm, inspired by the notion of stabilisation monoids as introduced by Colcombet in the study of cost-MSO. We first prove that it is correct for a subclass of probabilistic automata that we define, called leaktight automata, relying on the notion of factorisation trees as developed by Imre Simon. We then show that all subclasses for which the value 1 problem was shown to be decidable are leaktight, implying that this algorithm is so far the best known algorithm.
+<br/>
+The second step aims at better understanding the Markov Monoid algorithm, using a new framework that we introduce, called the prostochastic theory. The prostochastic theory is a topological approach for probabilistic automata inspired by the profinite theory as developed by Almeida, Pin, Weil and others for classical automata, and used by Torunczyk for the study of MSO + U. In this context, the value 1 problem reformulates at an emptiness problem, providing theoretical foundations for reasoning about the Markov Monoid algorithm. Our main result is to give a characterisation of the Markov Monoid algorithm using the prostochastic theory. It says that the Markov Monoid algorithm captures exactly all polynomial behaviours; the undecidability result shows that combining polynomial and exponential behaviours leads to undecidability. The combination of these two results supports the claim that the Markov Monoid algorithm is optimal. 
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+
+The paper [CF16] gives a simple and direct construction for history-deterministic cost automata. This is achieved by a one-to-one correspondence between regular cost functions over finite words on one side
+and omega-regular languages on the other side.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[CF16]</td>
+			<td class="entree">
+				<a name="CF16"></a>Thomas Colcombet and Nathana&euml;l Fijalkow. 
+				<span class="titre">The Bridge between Omega-Regular Languages and the Theory of Regular Cost Functions</span>,
+				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2016</em></span>.
+				(<a class="link" href="pdf/hd.pdf">Conference version (full)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCF16">Display/Hide the abstract</button>
+				<div id="abstractCF16" class="collapse">
+					<i>In this paper, we exhibit a one-to-one correspondence between omega-regular languages and a subclass of regular cost functions over finite words, called omega-regular like cost functions. This bridge between the two models allows one to readily import classical results such as the last appearance record or the McNaughton-Safra constructions to the realm of regular cost functions. In combination with game theoretic techniques, this also yields a simple description of an optimal procedure of history-determinisation for cost automata, a central result in the theory of regular cost functions.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/><br/>
+
+The paper [CF11b] streamlines the reduction from parity games to simple stochastic games by discounting the discounted games.
+The paper [FH13] studies the generalised reachability games, whose conditions are conjunctions of reachability objectives.
+The paper [FPS13] gives an alternative method for deciding the emptiness of alternating automata without constructing an equivalent non-deterministic automaton.
+The method directly reduces to a game with imperfect information. We apply this method to alternating qualitative tree automata.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FPS13]</td>
+			<td class="entree"><a name="FPS13"></a>Nathana&euml;l Fijalkow, Sophie Pinchinat and Olivier Serre. 
+				<span class="titre">Emptiness Of Alternating Tree Automata Using Games With Imperfect Information</span>,
+				<span class="booktitle"><em>Foundations of Software Technology and Theoretical Computer Science, FSTTCS'2013</em></span>.
+				(<a class="link" href="http://drops.dagstuhl.de/opus/volltexte/2013/4381/">Conference version (full, conference website)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFPS13">Display/Hide the abstract</button>
+				<div id="abstractFPS13" class="collapse">
+					<i>We consider the emptiness problem for alternating parity tree automata, with two acceptance semantics: classical (all branches are accepted) and qualitative 
+					(almost all branches are accepted). 
+					<br/>
+					For the classical semantics, the usual technique to tackle this problem first removes alternation, going to non-determinism, 
+					and then checks emptiness by a reduction to a two-player perfect-information parity game. 
+					<br/>
+					Our first contribution is to give an alternative roadmap to this problem by directly reducing the emptiness problem to 
+					solving an imperfect-information two-player parity game. 
+					<br/>
+					For the qualitative semantics, no simulation of alternation by means of non-determinism is known; yet our new approach can successfully be applied. 
+					The key ingredient in the proof is a positionality result for stochastic games played on infinite arenas.
+					</i>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td class="labels">[FH13]</td>
+			<td class="entree"><a name="FH13-TSI"></a>Nathana&euml;l Fijalkow and Florian Horn. 
+				<span class="titre">Jeux d'accessibilit&eacute; g&eacute;n&eacute;ralis&eacute;e (in French)</span>,
+				<span class="booktitle"><em>Techniques et sciences informatiques (TSI), Num&eacute;ro sp&eacute;cial th&eacute;orie des jeux en informatique</em></span>. 
+				(<a class="link" href="pdf/jeux_accessibilite_generalisee_tsi.pdf">Journal version</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFH13">Display/Hide the abstract</button>
+				<div id="abstractFH13" class="collapse">
+					<i>Dans cet article, nous &eacute;tudions les jeux d'accessibilit&eacute; g&eacute;n&eacute;ralis&eacute;e : 
+					ce sont des jeux &agrave; deux joueurs &agrave; somme nulle, pour lesquels l'objectif du premier joueur, 
+					&egrave;ve, est donn&eacute; par une conjonction d'objectifs d'accessibilit&eacute;. 
+					Dans un premier temps, nous montrons que le probl&egrave;me de d&eacute;cider si &Egrave;ve a une strat&eacute;gie gagnante est PSPACE-complet, 
+					mais polynomial en fixant pour param&egrave;tre le nombre d’objectifs. 
+					De plus, nous montrons que pour les deux joueurs, les strat&eacute;gies gagnantes n&eacute;cessitent beaucoup de m&eacute;moire : 
+					des bornes sup&eacute;rieures et inf&eacute;rieures sont pr&eacute;sent&eacute;es. 
+					Dans un second temps, nous nous int&eacute;ressons &agrave; des restrictions de ces jeux pour lesquels nous cherchons des algorithmes efficaces 
+					pour d&eacute;cider du gagnant et construire des strat&eacute;gies gagnantes.
+					<br/><br/>
+					In this paper, we consider two-player zero-sum games with generalized reachability objectives, defined as conjunctions of reachability objectives. 
+					We first prove that deciding the winner in such games is PSPACE-complete, although it is fixed-parameter tractable with 
+					the number of reachability objectives as parameter. Moreover, we consider the memory requirements for both players and give 
+					matching upper and lower bounds on the size of winning strategies. 
+					In order to construct more efficient algorithms, we consider subclasses of generalized reachability games.
+					</i>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td class="labels">[CF11b]</td>
+			<td class="entree"><a name="CF11-GanDALF"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
+				<span class="titre">A reduction from parity games to simple stochastic games</span>, In
+				<span class="booktitle"><em>Games, Automata, Logics and Formal Verification, GanDALF'2011</em></span>.
+				(<a class="link" href="pdf/reduction_gandalf.pdf">Conference version</a> ; 
+				<a class="link" href="http://arxiv.org/abs/1106.1232">Technical report (ArXiV)</a>) 
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCF11b">Display/Hide the abstract</button>
+				<div id="abstractCF11b" class="collapse">
+					<i>Games on graphs provide a natural model for reactive non-terminating systems. 
+					In such games, the interaction of two players on an arena results in an infinite path that describes a run of the system. 
+					Different settings are used to model various open systems in computer science, as for instance turn-based or concurrent moves, 
+					and deterministic or stochastic transitions. 
+					In this paper, we are interested in turn-based games, and specifically in deterministic parity games and stochastic reachability games 
+					(also known as simple stochastic games). 
+					We present a simple, direct and efficient reduction from deterministic parity games to simple stochastic games: 
+					it yields an arena whose size is linear up to a logarithmic factor in size of the original arena.
+					</i>
+				</div>
+			</td>
+		</tr>	
+	</table>
+	</div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#tool" data-parent="#accordion">Tool Developments</button>
+  </div>
+
+  <div id="tool" class="panel-collapse collapse">
+	<div class="panel-body">
+
+The paper [FK14] presents Acme, followed by the paper [FGKK17] presenting Stamina, the first implementation ever of an algorithm solving the star-height problem!
+
+	<br/><br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FGKK17]</td>
+			<td class="entree">
+				<a name="FGKK17"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Denis Kuperberg. 
+				<span class="titre">Stamina: Stabilisation Monoids in Automata Theory</span>,
+				<span class="booktitle"><em>Conference on Implementation of Automata and Applications, CIAA'2017</em></span>.
+				(<a class="link" href="pdf/stamina.pdf">Conference version</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGKK17tool">Display/Hide the abstract</button>
+				<div id="abstractFGKK17tool" class="collapse">
+					<i>We present Stamina, a tool solving three algorithmic problems in automata theory.
+First, compute the star height of a regular language, i.e. the minimal number of nested Kleene stars needed for expressing the language 
+with a complement-free regular expression.
+Second, decide limitedness for regular cost functions.
+Third, decide whether a probabilistic leaktight automaton has value 1, i.e. whether a probabilistic leaktight automaton 
+accepts words with probability arbitrarily close to 1.
+<br/>
+All three problems reduce to the computation of the stabilisation monoid associated with an automaton, 
+which is computationally challenging because the monoid is exponentially larger than the automaton.
+The compact data structures used in Stamina, together with optimisations and heuristics, allow us to handle automata with several hundreds of states.
+This radically improves upon the performances of ACME, a similar tool solving a subset of these problems.
+<br/>
+The tool Stamina is open source and available from Github, details are given on the <a href="http://stamina.labri.fr">dedicated webpage</a>.
+					</i>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td class="labels">[FK14]</td>
+			<td class="entree">
+				<a name="FP14"></a>Nathana&euml;l Fijalkow and Denis Kuperberg. 
+				<span class="titre">ACME: Automata with Counters, Monoids and Equivalence</span>,
+				<span class="booktitle"><em>12th International Symposium on Automated Technology for Verification and Analysis, ATVA'2014</em></span>.
+				(<a class="link" href="?page=acme">Dedicated webpage</a> ; <a class="link" href="pdf/acme.pdf">Conference version</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFK14tool">Display/Hide the abstract</button>
+				<div id="abstractFK14tool" class="collapse">
+					<i>We present ACME, a tool implementing algebraic techniques to solve decision problems from automata theory.
+					The core generic algorithm takes as input an automaton and computes its stabilization monoid,
+					which is a generalization of its transition monoid.
+					<br/>
+					Using the stabilization monoid, one can solve many problems:
+					determine whether a B-automaton (which is a special kind of automata with counters) is limited, whether two B-automata are equivalent
+					and whether a probabilistic leaktight automaton has value 1.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#logics" data-parent="#accordion">Logics</button>
+  </div>
+
+  <div id="logics" class="panel-collapse collapse">
+	<div class="panel-body">
+
+
+The paper [FP14] and its journal version [FP17] studies monadic second-order logic over finite words extended with arbitrary monadic numerical predicates.
+It gives equivalent formalisms extending the classical ones, and show some properties of this logic.
+The paper [CF11a] studies the class of finitary languages from a formal language point of view, giving in particular regular expressions for them.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FP17]</td>
+			<td class="entree"><a name="FP17"></a>Nathana&euml;l Fijalkow and Charles Paperman. 
+				<span class="titre">Monadic Second-Order Logic with Arbitrary Monadic Predicates</span>,
+				<span class="booktitle"><em>Transactions on Computational Logic, ToCL</em></span>.
+				(<a class="link" href="pdf/msounary.pdf">Journal version</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFP17">Display/Hide the abstract</button>
+				<div id="abstractFP17" class="collapse">
+					<i>We study Monadic Second-Order Logic (MSO) over finite words, extended with (non-uniform arbitrary) monadic predicates. 
+					We show that it defines a class of languages that has algebraic, automata-theoretic and machine-independent characterizations. 
+					We consider the regularity question: given a language in this class, when is it regular? 
+					To answer this, we show a substitution property and the existence of a syntactical predicate.
+					<br/>
+					We give three applications. The first two are to give simple proofs of the Straubing and Crane Beach Conjectures for monadic predicates, 
+					and the third is to show that it is decidable whether a language defined by an MSO formula with morphic predicates is regular.
+					<br/><br/>
+					This is the journal version of [FP14].
+					</i>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="labels">[FP14]</td>
+			<td class="entree"><a name="FP14"></a>Nathana&euml;l Fijalkow and Charles Paperman. 
+				<span class="titre">Monadic Second-Order Logic with Arbitrary Monadic Predicates</span>,
+				<span class="booktitle"><em>39th International Symposium on Mathematical Foundations of Computer Science, MFCS'2014</em></span>.
+				(<a class="link" href="pdf/monadic_predicate_MFCS_2014.pdf">Conference version</a> ; 
+				<a class="link" href="pdf/tech_report_monadic_predicate.pdf">Technical report</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFP14">Display/Hide the abstract</button>
+				<div id="abstractFP14" class="collapse">
+					<i>We study Monadic Second-Order Logic (MSO) over finite words, extended with (non-uniform arbitrary) monadic predicates. 
+					We show that it defines a class of languages that has algebraic, automata-theoretic and machine-independent characterizations. 
+					We consider the regularity question: given a language in this class, when is it regular? 
+					To answer this, we show a substitution property and the existence of a syntactical predicate.
+					<br/>
+					We give three applications. The first two are to give simple proofs of the Straubing and Crane Beach Conjectures for monadic predicates, 
+					and the third is to show that it is decidable whether a language defined by an MSO formula with morphic predicates is regular.
+					</i>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="labels">[CF11a]</td>
+			<td class="entree"><a name="CF11-LATA"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
+				<span class="titre">Finitary languages</span>, In
+				<span class="booktitle"><em>Language and Automata Theory and Applications, LATA'2011</em></span>.
+				(<a class="link" href="pdf/finitary_lata.pdf">Conference version</a> ; 
+				<a class="link" href="http://arxiv.org/abs/1101.1727">Technical report (ArXiV)</a>) 
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCF11a">Display/Hide the abstract</button>
+				<div id="abstractCF11a" class="collapse">
+					<i>The class of omega-regular languages provides a robust specification language in verification. 
+					Every omega-regular condition can be decomposed into a safety part and a liveness part. 
+					The liveness part ensures that something good happens "eventually". 
+					Finitary liveness was proposed by Alur and Henzinger as a stronger formulation of liveness. 
+					It requires that there exists an unknown, fixed bound b such that something good happens within b transitions. 
+					In this work we consider automata with finitary acceptance conditions defined by finitary Buchi, parity and Streett languages. 
+					We study languages expressible by such automata: we give their topological complexity and present a regular-expression characterization. 
+					We compare the expressive power of finitary automata and give optimal algorithms for classical decisions questions. 
+					We show that the finitary languages are Sigma 2-complete; we present a complete picture of the expressive power of various classes of automata with finitary 
+					and infinitary acceptance conditions; 
+					we show that the languages defined by finitary parity automata exactly characterize the star-free fragment of omega B-regular languages; 
+					and we show that emptiness is NLOGSPACE-complete and universality as well as language inclusion are PSPACE-complete for finitary parity and Streett automata.
+					</i>
+				</div>
+			</td>
+		</tr>	
+	</table>
+	</div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,261 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Probabilistic Bisimulation</title>
+    
+    <meta name="description" content="Probabilistic Bisimulation" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="2000" data-y="-50" data-scale=".25">
+	<h2>Bisimulation for Stochastic Systems</h2>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	<br/><i>Formerly</i>: University of Oxford, UK
+	<br/><i>Now</i>: <red>Research Fellow @ Simons</red>
+	<br/><i>Next</i>: Alan Turing Institute of Data Science, London, UK
+	</div>
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<h4>Simons Institute for the Theory of Computing, Berkeley, November 7th, 2016</h4>
+	</div>
+    </div>
+
+    <div id="mc" class="step" data-x="1750" data-y="-100" data-scale=".25">
+	<svg width="1000" height="400">
+		<g class="token">
+			<text x="120" y="320" fill="red">1</text>
+			<text x="360" y="320" fill="red">0</text>
+			<text x="500" y="320" fill="red">1</text>
+		</g>
+		<g class="token">
+			<text x="110" y="320" fill="red">1/3</text>
+			<text x="350" y="320" fill="red">1/2</text>
+			<text x="500" y="320" fill="red">5/6</text>
+		</g>
+		<g class="token">
+			<text x="100" y="320" fill="red">4/9</text>
+			<text x="340" y="320" fill="red">7/24</text>
+			<text x="500" y="320" fill="red">0.736111</text>
+		</g>
+		<image x="-100" y="0" width="1000" height="300" xlink:href="img/fig.svg">
+	</svg>
+    </div>
+
+    <div id="lmc" class="step" data-x="1750" data-y="-20" data-scale=".25">
+	<img id="markovchainactions" src="img/fig2.svg"/>
+	Induces a function $\ f : A^* \to [0,1]$
+    </div>
+
+    <div id="lmdp" class="step" data-x="1750" data-y="100" data-scale=".25">
+	<img id="mdp" src="img/fig3.svg"/>
+	A strategy $\ \sigma : (Q \times A)^* \to \mathcal{D}(Q)$ induces a Markov Chain
+    </div>
+	
+    <div id="reasoning" class="step" data-x="2220" data-y="-100" data-scale=".25">
+	<h2>Reasoning about Stochastic Models</h2>
+
+	<br/>
+	<ul>
+		<div class="slide_step">
+		<li>Are two Labelled Markov Chains ($\Delta : Q \times A \to \mathcal{D}(Q)$) equivalent?
+		<br/><red>Decidable in PTIME (Schützenberger 61)</red>
+		</div>
+
+		<div class="slide_step">
+		<li>Given an MDP $M_1$ and a MC $M_2$, does there exist a strategy for $M_1$ making them equivalent?
+		<br/><red>Decidable in coNP (F., Kiefer, Shirmohammadi, FoSSaCS'16)</red>		
+		</div>
+
+		<div class="slide_step">
+		<li>Given an MDP $M_1$ and a MC $M_2$, are $M_1$ and $M_2$ equivalent for all strategies of $M_1$?
+		<br/><red>Undecidable (F., Kiefer, Shirmohammadi, FoSSaCS'16)</red>
+		</div>
+	</ul>
+    </div>
+
+    <div id="distribution_bisimulation" class="step" data-x="2220" data-y="100" data-scale=".25">
+	<h2>Key Notion: Bisimulation on Distributions</h2>
+	<br/>
+	(due to Hermanns, Krčál, Křetı́nský 2014)
+
+	<br/>
+	<br/>
+	Defined for MDP: $\Delta : Q \times A \to \text{Conv}(\mathcal{D}(Q))$
+	<br/>
+	<br/>
+	If $\delta \equiv \delta'$, then for all $a$ in $A$:
+	<ul>
+		<li>for all $\tau$ in $\Delta(\delta,a)$, there exists $\tau'$ in $\Delta(\delta',a)$ with $\tau \equiv \tau'$,
+		<li>for all $\tau'$ in $\Delta(\delta',a)$, there exists $\tau$ in $\Delta(\delta,a)$ with $\tau \equiv \tau'$.
+	</ul>		
+    </div>
+
+    <div id="fossacs" class="step" data-x="2000" data-y="100" data-scale=".25">
+	<b>Theorem</b> (folklore): $M_1,M_2$ two Labelled Markov Chains, bisimilarity on distributions is the same as equivalence.
+	<br/>
+	<br/>
+	<b>Theorem</b> (F., Kiefer, Shirmohammadi, FoSSaCS'16): 
+	<ul>
+		<li>Given MDP $M_1$ and MC $M_2$, $M_1$ bisimilar on distributions to $M_2$ iff $M_1$ can be refined into $M_2$.
+		<li>Bisimulation on distributions is decidable in coNP.
+	</ul>
+    </div>
+
+    <div id="overview_small" class="step" data-x="2000" data-y="0" data-scale=".5">
+    </div>
+
+    <div id="title_second" class="step" data-x="1000" data-y="0">
+	<h2>My Copernican Revolution about Probabilistic Bisimulation</h2>
+    </div>
+
+    <div id="overview_intermediate" class="step" data-x="1000" data-y="0" data-scale="3">
+    </div>
+
+    <div id="def" class="step" data-x="0" data-y="-1000" data-scale="1">
+	<h2>Probabilistic Bisimulation</h2>
+	<br/>
+	(due to Larsen, Skou 91)
+
+	<br/>
+	<br/>
+	Defined for <b>Labelled Markov Chains</b>: $\Delta : Q \times A \to \mathcal{D}(Q)$
+	<br/>
+	<br/>
+
+	<b>Definition</b>: If $p \equiv q$, then for all $a$ in $A$, for all $C$ equivalence class of $\equiv$,
+	$$\Delta(p,a,C) = \Delta(q,a,C)$$		
+    </div>
+
+    <div id="example" class="step" data-x="800" data-y="-1000" data-scale=".5">
+	<h2>The two bisimulations are different</h2>
+
+	<img id="example" src="img/fig4.svg"/>
+    </div>
+
+    <div id="def" class="step" data-x="0" data-y="-1000" data-scale="1">
+	<h2>Probabilistic Bisimulation</h2>
+	<br/>
+	(due to Larsen, Skou 91)
+
+	<br/>
+	<br/>
+	Defined for <b>Labelled Markov Chains</b>: $\Delta : Q \times A \to \mathcal{D}(Q)$
+	<br/>
+	<br/>
+
+	<b>Definition</b>: If $p \equiv q$, then for all $a$ in $A$, for all $C$ equivalence class of $\equiv$,
+	$$\Delta(p,a,C) = \Delta(q,a,C)$$		
+    </div>
+
+    <div id="games" class="step" data-x="0" data-y="-200" data-scale="1">
+	<h2>Spoiler and Duplicator</h2>
+	<br/>
+
+	Defined for <b>Labelled Markov Chains</b>: $\Delta : Q \times A \to \mathcal{D}(Q)$
+
+	<br/>
+	<br/>
+	<b>Definition</b>: if $p \equiv q$, then for all $a$ in $A$, for all $C$ equivalence class of $\equiv$,
+	$$\Delta(p,a,C) = \Delta(q,a,C)$$		
+
+	<br/>
+	<b>Equivalent game</b>: Duplicator claims that $p \equiv q$
+	<ul>
+		<li><red>Spoiler</red>: pick $a$ in $A$ and $C \subseteq Q$ such that $\Delta(p,a,C) \neq \Delta(q,a,C)$
+		<li><red>Duplicator</red>: $p'$ in $C$, $q'$ not in $C$ and claim that $p' \equiv q'$
+	</ul>
+    </div>
+
+    <div id="properties" class="step" data-x="0" data-y="600" data-scale="1">
+	<h2>25 years of research on Probabilistic Bisimulation</h2>
+	<br/>
+	
+	<ul>
+		<div class="slide_step"><li>Computable in PTIME, and PTIME-complete</div>
+		<div class="slide_step"><li>Logical characterisation</div>
+		<div class="slide_step"><li>Extension to distances</div>
+		<div class="slide_step"><li>Extension to simulation with approximation techniques</div>
+		<div class="slide_step"><li>Extension to infinite and continuous-time Markov Chains</div>
+	</ul>
+    </div>
+
+    <div id="question" class="step" data-x="1300" data-y="800" data-scale="2" data-fixed="1">
+	<h2>What are the properties of the new planet?</h2>
+    </div>
+
+    <div id="overview" class="step" data-x="1000" data-y="0" data-scale="3">
+    </div>
+
+    <div id="two_notions" class="step" data-x="1000" data-y="-600" data-scale="1">
+	<h2>Two notions</h2>
+
+	$M_1,M_2$ two MDP
+
+	<ul>
+		<li><red>Trace refinement</red>: there exists a strategy for $M_1$, such that for all strategies for $M_2$, they are equivalent, and the other way around
+		<li><red>Bisimulation on Distribution</red>
+	</ul>
+    </div>
+
+    <div id="logic" class="step" data-x="2000" data-y="-700" data-scale="1">
+	<h2>Logical Characterisations</h2>
+	\[
+	\phi\ =\ \top\ \mid\ \phi \wedge \phi\ \mid\ \langle a \rangle \phi\ \mid\ \Sigma_{\ge p} \text{ for } p \in \mathbb{Q}
+	\]
+	<b>Theorem</b>: (F., Klin <red>@ Simons</red>)
+	Two distributions are bisimiliar if, and only if, they satisfy the same formulas of this logic
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">	
+	\[
+	\phi\ =\ \Sigma_{\ge p} \wedge \bigwedge_{a \in S} \langle a \rangle \phi \text{ for } p \in \mathbb{Q} \text{ and } S \subseteq A \text{ finite.}
+	\]
+	<b>Theorem</b>: (F., Klin <red>@ Simons</red>)
+	Two distributions trace refine each other if, and only if, they satisfy the same formulas of this fragment
+
+	<br/>
+	<br/>
+	The relation corresponding to the fragment is undecidable, the one corresponding to the full logic is decidable!
+	</div>
+    </div>
+
+    <div id="overview" class="step" data-x="1000" data-y="0" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+
+

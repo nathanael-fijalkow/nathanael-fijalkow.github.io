@@ -1,0 +1,27 @@
+1 Definitions
+L subset A^*
+Online Complexity of L: size of the data structure maintaining answers to the boolean query "is the prefix in L?"
+
+Number of different states after reading n letters 
+
+Examples:
+(i) a^n b^n: linear
+(ii) as many a's as b's as c's: quadratic
+(iii) squares: exponential
+
+Theorem
+(i) REG = Constant Online Complexity
+(ii) DetPushdown subset Linear Online Complexity
+(iii) The maximal complexity is exponential
+
+
+2 Online Complexity of Probabilistic Automata
+Question asked by Rabin
+
+Theorem There exists a probabilistic language of exponential online complexity
+
+3 Research Directions / Latest Results
+
+- Dichotomy for PA: either polynomial or exponential
+- Extend the framework to quantitative framework up to approximation,
+and prove ProbREG = Constant Approximated Online Complexity

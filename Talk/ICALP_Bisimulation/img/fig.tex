@@ -1,0 +1,25 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsmath,amssymb}
+
+
+\begin{document}
+
+\begin{picture}(25,30)(0,0)
+	\gasset{Nw=5,Nh=5}
+
+  	\node(p)(5,25){$p$}
+  	\node(p')(5,5){$p'$}
+  	\node(q)(20,25){$q$}
+  	\node(q')(20,5){$q'$}
+
+  	\drawedge(p,p'){$a$}
+  	\drawedge[ELside=r,dash={1}0](q,q'){$\exists$}
+  	\drawedge[dash={1}0](q,q'){$a$}
+
+  	\put(11,24){$\equiv$}
+  	\put(11,4){$\equiv$}
+\end{picture}
+\end{document}

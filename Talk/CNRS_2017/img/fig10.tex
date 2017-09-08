@@ -1,0 +1,98 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\tr}[1]{\langle #1 \rangle}
+
+\begin{document}
+
+\begin{picture}(95,62)(-25,-2)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-20,52){$\tr{a}$}
+
+  	\node(0)(20,53){$0$}
+  	\node(1)(40,53){$1$}
+  	\node[Nmarks=f,fangle=0,fillcolor=Green](F)(60,53){$F$}
+  	\node(bottom)(0,53){$\perp$}
+
+	\drawloop(0){}
+	\drawloop(1){}
+	\drawloop[loopangle=90](F){}
+	\drawloop[loopangle=90](bottom){}
+
+
+  	\drawedge(0,1){}
+
+
+
+	\put(-20,40){$\tr{b}$}
+
+  	\node(0)(20,41){$0$}
+  	\node(1)(40,41){$1$}
+  	\node[Nmarks=f,fangle=0,fillcolor=Green](F)(60,41){$F$}
+  	\node(bottom)(0,41){$\perp$}
+
+	\drawloop[loopangle=90](F){}
+	\drawloop[loopangle=90](bottom){}
+
+
+  	\drawedge(0,bottom){}
+  	\drawedge(1,0){}
+  	\drawedge(1,F){}
+
+
+
+	\put(-20,28){$\tr{a^\sharp}$}
+
+  	\node(0)(20,29){$0$}
+  	\node(1)(40,29){$1$}
+  	\node[Nmarks=f,fangle=0,fillcolor=Green](F)(60,29){$F$}
+  	\node(bottom)(0,29){$\perp$}
+
+	\drawloop(1){}
+	\drawloop[loopangle=90](F){}
+	\drawloop[loopangle=90](bottom){}
+
+
+  	\drawedge(0,1){}
+
+
+
+
+	\put(-22,16){$\tr{a^\sharp \cdot b}$}
+
+  	\node(0)(20,17){$0$}
+  	\node(1)(40,17){$1$}
+  	\node[Nmarks=f,fangle=0,fillcolor=Green](F)(60,17){$F$}
+  	\node(bottom)(0,17){$\perp$}
+
+	\drawloop(0){}
+	\drawloop[loopangle=90](F){}
+	\drawloop[loopangle=90](bottom){}
+
+
+  	\drawedge[curvedepth=-4](0,F){}
+  	\drawedge(1,0){}
+  	\drawedge(1,F){}
+
+
+
+	\put(-25,4){$\tr{(a^\sharp \cdot b)^\sharp}$}
+
+  	\node(0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=f,fangle=0,fillcolor=Green](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop[loopangle=90](F){}
+	\drawloop[loopangle=90](bottom){}
+
+
+  	\drawedge[curvedepth=-4](0,F){}
+  	\drawedge(1,F){}
+
+\end{picture}
+
+\end{document}

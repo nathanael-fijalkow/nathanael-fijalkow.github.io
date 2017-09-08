@@ -1,0 +1,43 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\push}{\mathrm{push}}
+\newcommand{\pop}{\mathrm{pop}}
+\newcommand{\Skip}{\mathrm{skip}}
+
+\begin{document}
+
+\begin{picture}(110,60)(-12,-7)
+	\node[Nmarks=i,polyangle=45](push)(0,20){$i$}
+	\drawloop[loopangle=90](push){$\push(a)$}
+
+	\rpnode[polyangle=45](c)(15,20)(4,4){}
+
+	\rpnode[polyangle=45](12)(35,40)(4,4){$1$}
+	\rpnode[polyangle=45](02)(55,40)(4,4){$0$}
+	
+	\drawedge(push,c){$a$}
+
+	\drawedge(c,12){$\pop(a)$}
+	\drawedge[curvedepth=5](12,02){$\pop(a)$}
+	\drawedge[curvedepth=5](02,12){$\pop(a)$}
+
+	\rpnode[polyangle=45](13)(35,10)(4,4){$1$}
+	\rpnode[polyangle=45](03)(55,20)(4,4){$0$}
+	\rpnode[polyangle=45](23)(55,0)(4,4){$2$}
+ 	
+	\drawedge[ELside=r](c,13){$\pop(a)$}
+	\drawedge[ELside=r](23,03){$\pop(a)$}
+	\drawedge[ELside=r](03,13){$\pop(a)$}
+	\drawedge[ELside=r](13,23){$\pop(a)$}
+
+  	\node(invisible)(75,20){$F$}
+  	\node[linecolor=White](toi)(90,20){\large{\ to $i$}}
+  	\drawedge(02,invisible){$\bot$}
+  	\drawedge(03,invisible){$\bot$}
+  	\drawedge(invisible,toi){}
+\end{picture}
+
+\end{document}

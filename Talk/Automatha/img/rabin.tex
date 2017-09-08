@@ -1,0 +1,32 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\usepackage{amssymb}
+
+\newcommand{\smaller}{\mathrm{S}}
+\newcommand{\bigger}{\mathrm{B}}
+\newcommand{\start}{\mathrm{start}}
+\newcommand{\ed}{\mathrm{end}}
+
+\begin{document}
+
+\begin{picture}(52,33)(-10,-5)
+	\gasset{Nadjust=h}
+
+  	\node[Nmarks=i](0)(0,15){$q_0$}
+  	\node[Nmarks=f,fangle=0](1)(30,15){$q_1$}
+
+  	\drawedge[curvedepth=5](0,1){$1,\frac{1}{2}$}
+  	\drawedge[curvedepth=5](1,0){$0,\frac{1}{2}$}
+
+	\drawloop[loopdiam=4,loopangle=90](0){$1,\frac{1}{2}$}
+	\drawloop[loopdiam=4,loopangle=90](1){$1$}
+	\drawloop[loopdiam=4,loopangle=-90](0){$0$}
+	\drawloop[loopdiam=4,loopangle=-90](1){$0,\frac{1}{2}$}
+
+	\put(-5,-2){$\mathbb{P}(b_1 \cdots b_n) = \frac{b_1}{2^n} + \cdots + \frac{b_n}{2^1}$}
+\end{picture}
+
+\end{document}

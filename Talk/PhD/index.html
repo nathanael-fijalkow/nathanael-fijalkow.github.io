@@ -1,0 +1,797 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>PhD Defense</title>
+    
+    <meta name="description" content="PhD Defense" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+    </head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="-1000" data-y="0">
+	<h2>Conteurs et allée&nbsp;A hantée au riz des autos mates</h2>
+	<br/>
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	<h4>October 16th, 2015, Paris</h4>
+	</div>
+	<br/>
+
+	<div class="slide_step">
+	<br/>
+	<h2>PhD Defense</h2>
+	<br/>
+	</div>
+    </div>
+
+    <div id="title2" class="step" data-x="250" data-y="0">
+	<h2>Counting and Randomising in Automata Theory</h2>
+
+	<br/>
+
+	<h3>Nathana&euml;l Fijalkow</h3>
+	<h4>October 16th, 2015, Paris</h4>
+
+	<br/>
+	<br/>
+	<h2>PhD Defense</h2>
+    </div>
+
+    <div id="automata" class="step" data-x="1500" data-y="0">
+	<img id="strip" src="img/strip.svg"/>
+    </div>
+
+    <div id="automata_ex" class="step" data-x="1500" data-y="-60" data-scale=".2">
+	<img id="example_automaton" src="img/fig3.svg"/>
+	<h3>Induces $L \subseteq A^*$</h3>
+    </div>
+
+    <div id="automata_counters" class="step" data-x="1470" data-y="0" data-scale=".05">
+	<h2>Automata with Counters</h2>
+
+	<br/>
+
+	<svg width="800" height="250">
+		<g class="token">
+			<text x="0" y="150">word read ""</text>
+			<circle cx="305" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "b"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "ba"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 1</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baa"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 2</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baaa"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 3</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baaab"</text>
+			<circle cx="725" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 3</text>
+		</g>
+		<image x="200" y="0" width="600" height="250" xlink:href="img/fig4.svg">
+	</svg>
+	
+	<br/>
+	<h3>Induces&nbsp;&nbsp; $f : A^* \to \mathbb{N} \cup \{ \infty \}$</h3>
+    </div>
+
+    <div id="probabilistic_automata" class="step" data-x="1520" data-y="0" data-scale=".05">
+	<h2>Probabilistic Automata</h2>
+
+	<br/>
+
+	<svg width="800" height="350">
+		<g class="token">
+			<text x="0" y="200">word read ""</text>
+			<text x="300" y="320" fill="red">1</text>
+			<text x="650" y="320" fill="red">0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "1"</text>
+			<text x="295" y="320" fill="red">.5</text>
+			<text x="645" y="320" fill="red">.5</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "11"</text>
+			<text x="290" y="320" fill="red">.25</text>
+			<text x="640" y="320" fill="red">.75</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "110"</text>
+			<text x="285" y="320" fill="red">.625</text>
+			<text x="635" y="320" fill="red">.375</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "1101"</text>
+			<text x="280" y="320" fill="red">.3125</text>
+			<text x="630" y="320" fill="red">.6875</text>
+		</g>
+		<image x="200" y="0" width="600" height="300" xlink:href="img/fig2.svg">
+	</svg>
+	
+	<br/>
+	<h3>Induces&nbsp;&nbsp; $f : A^* \to [0,1]$</h3>
+    </div>
+
+    <div id="contributions" class="step" data-x="3000" data-y="0">
+	<h2>Contributions</h2>
+
+	<table class="contributions">
+		<tr>
+			<th class="left"><b>Finite-memory Determinacy for Games with Counters</b></th>
+			<th class="right"><b>The Value 1 Problem for Probabilistic Automata</b></th>
+		</tr>
+		<tr>
+			<td class="left hidden">
+				<ul>
+					<li>A positive instance: cost-parity games <i>(with Zimmermann)</i></li>
+					<li>Collapse for pushdown graphs <i>(with Chatterjee)</i></li>
+					<li>Memory characterisation for topologically closed conditions <i>(with Colcombet &amp; Horn)</i></li>
+					<li>Memoryless strategies for stochastic infinite games <i>(with Pinchinat &amp; Serre)</i></li>
+					<li>A counter-example to the LoCo conjecture <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+					<li>The LoCo conjecture over thin trees <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+				</ul>
+			</td>
+			<td class="right hidden">
+				<ul>
+					<li>The Markov Monoid algorithm <i>(with Gimbert &amp; Oualhadj)</i></li>
+					<li>Leaktight automata: extending and unifying results <i>(with Gimbert, Oualhadj &amp; Kelmendi)</i></li>
+					<li>Undecidability of the numberless problems <i>(with Gimbert, Horn &amp; Oualhadj)</i></li>
+					<li>Undecidability of the regularity problem <i>(with Skrzypczak)</i></li>
+					<li>A characterisation: convergence speeds</li>
+					<li>The prostochastic theory</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    </div>
+
+    <div class="section" id="sec1">
+
+    <div id="boundedness_questions" class="step sec1" data-x="2480" data-y="-310" data-scale=".3">
+		<h2>Boundedness Questions</h2>
+
+		<br/>
+		<h3>Given a function&nbsp;&nbsp; $f : A^* \to \mathbb{N}$, is it bounded?</h3>
+		<br/>
+		<ul>
+			<li>
+		<div class="slide_step">
+		<b>Success story:</b> <i>Hashiguchi (1990), Leung (1991), Simon (1994), Kirsten (2005)</i>
+
+		<br/>
+		Reducing the star-height problem to boundedness of automata with counters
+		</div>
+			</li>
+
+			<li>
+		<div class="slide_step">
+		<b>Extensions:</b> <i>Boja&#324;czyk (2004), Colcombet (2008)</i>
+
+		<br/>
+		MSO + U and cost MSO: logical formalisms to express boundedness questions
+		</div>
+			</li>
+		</ul>
+    </div>
+	
+    <div id="loco_conjecture" class="step sec1" data-x="2390" data-y="-150" data-scale=".1">
+		<h2>The LoCo Conjecture</h2>
+
+		<br/>
+		<br/>
+
+		<b>Theorem</b> [<i>Colcombet and Loeding (2008)</i>]
+		<p> LoCo Conjecture
+		<p> $\implies$ decidability of cost MSO over infinite trees
+		<p> $\implies$ decidability of the Mostowski index
+    </div>
+
+    <div id="parity_games" class="step sec1" data-x="2470" data-y="-150" data-scale=".1">
+		<h2>Parity Games</h2>
+
+		<br/>
+		<svg width="700" height="500">
+			<text x="0" y="100">Eve</text>
+			<circle cx="120" cy="90" r="20" style="fill:white;stroke-width:2;stroke:black"/>
+
+			<text x="0" y="200">Adam</text>
+			<rect x="105" y="175" width="30" height="30" style="fill:white;stroke-width:2;stroke:black"/>
+
+			<circle class="token" cx="305" cy="209" r="20" fill="green"/>
+			<circle class="token" cx="472" cy="209" r="20" fill="green"/>
+			<circle class="token" cx="638" cy="209" r="20" fill="green"/>
+			<image x="200" y="0" width="500" height="500" xlink:href="img/parity_games.svg">
+		</svg>
+
+		<div class="slide_step">
+		Strategy in general form $\sigma : V^+ \rightarrow E$
+		<p>Positional (memoryless) strategies $\sigma : V \rightarrow E$
+		</div>
+		<br/>
+		<div class="slide_step">
+		<b>Theorem</b>
+		In parity games, both players have memoryless winning strategies.
+		</div>
+    </div>
+
+    <div id="games_counters" class="step sec1" data-x="2550" data-y="-150" data-scale=".1">
+		<h2>Boundedness Games</h2>
+
+		<br/>
+
+		<center><img id="example_game" src="img/fig5.svg"/></center>
+
+		<b>Winning condition:</b> parity <i>and</i> all counters are bounded
+    </div>
+
+    <div id="semantics" class="step sec1" data-x="2380" data-y="-60" data-scale=".1">
+		<h2>Two Semantics</h2>
+
+		<br/>
+		<center>
+		Eve wins means:
+		<table>
+			<tr>
+				<td class="left"><center><img id="thomas" src="img/thomas.png"/><br/><i>(&agrave; la cost-MSO)</i></center><br/></td>
+				<td class="right"><center><img id="mikolaj" src="img/mikolaj.png"/><br/><i>(&agrave; la MSO + U)</i></center><br/></td>
+			</tr>
+			<tr>
+				<td class="left">$\exists \sigma$ (strategy for Eve), 
+					<p>&nbsp;&nbsp;&nbsp;$\exists N \in \mathbb{N}$,
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\forall \pi$ (paths),</td>
+				<td class="right">$\exists \sigma$ (strategy for Eve), 
+					<p>&nbsp;&nbsp;&nbsp;$\forall \pi$ (paths),
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\exists N \in \mathbb{N}$,</td>
+			</tr>
+		</table>
+		$\pi$ satisfies parity <i>and</i> B(N) (<i>i.e.</i> each counter is bounded by $N$)
+		</center>
+    </div>
+
+    <div id="example" class="step sec1" data-x="2460" data-y="-60" data-scale=".1">
+		<h2>Example</h2>
+
+		<br/>
+		Eve wants to ensure:
+		<ul>
+			<li> The counter value is bounded by N,</li>
+			<li> <b><i>and</i></b> the state F is visited infinitely many times</li>
+		</ul>
+
+		<img id="example_loco" src="img/fig6.svg"></img>
+		<br/><br/>
+		<center>
+		<table>
+			<tr>
+				<th class="left"><center>Memory</center></th>
+				<th class="right"><center>Bound</center></th>
+			</tr>
+			<tr>
+				<td class="left"><center>$N+1$</center></td>
+				<td class="right"><center>$N$</center></td>
+			</tr>
+			<tr>
+				<td class="left"><center><i>$2$</i></center></td>
+				<td class="right"><center><i>$2N-1$</i></center></td>
+			</tr>
+			<tr>
+				<td class="left"><center>$1$</center></td>
+				<td class="right"><center>$\infty$</center></td>
+			</tr>
+		</table>	
+    </div>
+
+    <div id="loco_conjecture_statement" class="step sec1" data-x="2550" data-y="-60" data-scale=".1">
+		<h2>The LoCo Conjecture</h2>
+
+		<br/>
+		Finite-memory strategies
+		$$\left \{
+			\begin{array}{c}
+			\sigma : V \times M \rightarrow E \\
+			\mu : M \times E \rightarrow M
+		\end{array}
+		\right.$$
+
+		<div class="slide_step">
+		<br/>
+		<h3>(Simplified) statement</h3>
+
+		<p>$\forall c$ (number of priorities), $\forall k$ (number of counters),
+		<p>&nbsp;&nbsp;&nbsp;$\exists \alpha : \mathbb{N} \to \mathbb{N}$ (trade-off function), $\exists m \in \mathbb{N}$,
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\forall G$ (games), $\forall N \in \mathbb{N}$,
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:40pt">(</span>$\exists \sigma$ strategy for $B(N) \cap \mathrm{Parity}$
+		<p>$\implies \exists \sigma$ strategy for $B(\alpha(N)) \cap \mathrm{Parity}$ with $m$ memory states<span style="font-size:40pt">)</span>
+		</div>
+    </div>
+
+    <!-- end of section 1 -->
+    </div>
+
+    <div id="contributions1" class="step" data-x="3000" data-y="0">
+	<h2>Contributions</h2>
+
+	<table class="contributions">
+		<tr>
+			<th class="left"><b>Finite-memory Determinacy for Games with Counters</b></th>
+			<th class="right"><b>The Value 1 Problem for Probabilistic Automata</b></th>
+		</tr>
+		<tr>
+			<td class="left">
+				<ul>
+					<li class="hidden">A positive instance: cost-parity games <i>(with Zimmermann)</i></li></div>
+					<li class="hidden">Collapse for pushdown graphs <i>(with Chatterjee)</i></li></div>
+					<li class="hidden">Memory characterisation for topologically closed conditions <i>(with Colcombet &amp; Horn)</i></li></div>
+					<li class="hidden">Memoryless strategies for stochastic infinite games <i>(with Pinchinat &amp; Serre)</i></li></div>
+					<div class="slide_step"><li>A counter-example to the LoCo conjecture <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li></div>
+					<div class="slide_step"><li>The LoCo conjecture over thin trees <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li></div>
+				</ul>
+			</td>
+			<td class="right hidden">
+				<ul>
+					<li>The Markov Monoid algorithm <i>(with Gimbert &amp; Oualhadj)</i></li>
+					<li>Leaktight automata: extending and unifying results <i>(with Gimbert, Oualhadj &amp; Kelmendi)</i></li>
+					<li>Undecidability of the numberless problems <i>(with Gimbert, Horn &amp; Oualhadj)</i></li>
+					<li>Undecidability of the regularity problem <i>(with Skrzypczak)</i></li>
+					<li>A characterisation: convergence speeds</li>
+					<li>The prostochastic theory</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    </div>
+
+    <div class="section" id="sec2">
+
+    <div id="negative" class="step sec2" data-x="2480" data-y="50" data-scale=".2">
+	<h3><b>Theorem</b></h3>
+	The LoCo conjecture does not hold
+
+	<br/><br/>
+	<p>The constant is at least 3:
+	<img id="counter_example_1" src="img/fig7.svg"/>
+    </div>
+
+    <div id="negative2" class="step sec2" data-x="2480" data-y="250" data-scale=".2">
+	<p><b>Idea</b>: play $K$ copies of the previous game with different <i>timelines</i> 
+
+	<img id="counter_example_2" src="img/fig8.svg"/>
+    </div>
+
+    <div id="positive" class="step sec2" data-x="2480" data-y="410" data-scale=".2">
+	<h3><b>Theorem</b></h3>
+	The LoCo conjecture holds over <b>thin</b> tree graphs
+	<img id="potato" src="img/potato_tree.svg"/>
+    </div>
+
+    <!-- end of section 2 -->
+    </div>
+
+    <div id="contributions2" class="step" data-x="3000" data-y="0">
+	<h2>Contributions</h2>
+
+	<table class="contributions">
+		<tr>
+			<th class="left"><b>Finite-memory Determinacy for Games with Counters</b></th>
+			<th class="right"><b>The Value 1 Problem for Probabilistic Automata</b></th>
+		</tr>
+		<tr>
+			<td class="left">
+				<ul>
+					<li>A positive instance: cost-parity games <i>(with Zimmermann)</i></li>
+					<li>Collapse for pushdown graphs <i>(with Chatterjee)</i></li>
+					<li>Memory characterisation for topologically closed conditions <i>(with Colcombet &amp; Horn)</i></li>
+					<li>Memoryless strategies for stochastic infinite games <i>(with Pinchinat &amp; Serre)</i></li>
+					<li>A counter-example to the LoCo conjecture <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+					<li>The LoCo conjecture over thin trees <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+				</ul>
+			</td>
+			<td class="right hidden">
+				<ul>
+					<li>The Markov Monoid algorithm <i>(with Gimbert &amp; Oualhadj)</i></li>
+					<li>Leaktight automata: extending and unifying results <i>(with Gimbert, Oualhadj &amp; Kelmendi)</i></li>
+					<li>Undecidability of the numberless problems <i>(with Gimbert, Horn &amp; Oualhadj)</i></li>
+					<li>Undecidability of the regularity problem <i>(with Skrzypczak)</i></li>
+					<li>A characterisation: convergence speeds</li>
+					<li>The prostochastic theory</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    </div>
+
+    <div id="contributions3" class="step" data-x="3000" data-y="0">
+	<h2>Contributions</h2>
+
+	<table class="contributions">
+		<tr>
+			<th class="left"><b>Finite-memory Determinacy for Games with Counters</b></th>
+			<th class="right"><b>The Value 1 Problem for Probabilistic Automata</b></th>
+		</tr>
+		<tr>
+			<td class="left hidden">
+				<ul>
+					<li>A positive instance: cost-parity games <i>(with Zimmermann)</i></li>
+					<li>Collapse for pushdown graphs <i>(with Chatterjee)</i></li>
+					<li>Memory characterisation for topologically closed conditions <i>(with Colcombet &amp; Horn)</i></li>
+					<li>Memoryless strategies for stochastic infinite games <i>(with Pinchinat &amp; Serre)</i></li>
+					<li>A counter-example to the LoCo conjecture <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+					<li>The LoCo conjecture over thin trees <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+				</ul>
+			</td>
+			<td class="right hidden">
+				<ul>
+					<li>The Markov Monoid algorithm <i>(with Gimbert &amp; Oualhadj)</i></li>
+					<li>Leaktight automata: extending and unifying results <i>(with Gimbert, Oualhadj &amp; Kelmendi)</i></li>
+					<li>Undecidability of the numberless problems <i>(with Gimbert, Horn &amp; Oualhadj)</i></li>
+					<li>Undecidability of the regularity problem <i>(with Skrzypczak)</i></li>
+					<li>A characterisation: convergence speeds</li>
+					<li>The prostochastic theory</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    </div>
+
+    <div class="section" id="sec3">
+
+    <div id="value1" class="step sec3" data-x="3540" data-y="-300" data-scale=".3">
+		<h2>An Unboundednes Question</h2>
+
+		<br/>
+
+		<h3>Given a probabilistic automaton, do there exist words accepted with probability arbitrarily close to $1$?</h3>
+
+		<br/>
+		<div class="slide_step">
+		<b>Sad story:</b> <i>Gimbert and Oualhadj (2010)</i>
+
+		<br/>
+		It is <b>undecidable</b>!
+		</div>
+
+		<div class="slide_step">
+		<h3>But to <i>what extent</i>?</h3>
+		</div>
+    </div>
+
+    <div id="value1_ex" class="step sec3" data-x="3660" data-y="-240" data-scale=".1">
+	<img id="example_value1" src="img/pa.svg"></img>
+
+	<br/>
+	<br/>
+
+	<ul>
+		<li>No sequence of actions ensure to reach home almost surely</li>
+		<li>For every $\varepsilon > 0$, there exists a sequence of actions ensuring to reach home with probability at least $1 - \varepsilon$</li>
+		<li>This is not true anymore if the probabilities change!</li>
+	</ul>
+    </div>
+
+    <!-- end of section 3 -->
+    </div>
+
+    <div id="contributions4" class="step" data-x="3000" data-y="0">
+	<h2>Contributions</h2>
+
+	<table class="contributions">
+		<tr>
+			<th class="left"><b>Finite-memory Determinacy for Games with Counters</b></th>
+			<th class="right"><b>The Value 1 Problem for Probabilistic Automata</b></th>
+		</tr>
+		<tr>
+			<td class="left hidden">
+				<ul>
+					<li>A positive instance: cost-parity games <i>(with Zimmermann)</i></li>
+					<li>Collapse for pushdown graphs <i>(with Chatterjee)</i></li>
+					<li>Memory characterisation for topologically closed conditions <i>(with Colcombet &amp; Horn)</i></li>
+					<li>Memoryless strategies for stochastic infinite games <i>(with Pinchinat &amp; Serre)</i></li>
+					<li>A counter-example to the LoCo conjecture <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+					<li>The LoCo conjecture over thin trees <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+				</ul>
+			</td>
+			<td class="right">
+				<ul>
+					<div class="slide_step"><li>The Markov Monoid algorithm <i>(with Gimbert &amp; Oualhadj)</i></li></div>
+					<li class="hidden">Leaktight automata: extending and unifying results <i>(with Gimbert, Oualhadj &amp; Kelmendi)</i></li>
+					<li class="hidden">Undecidability of the numberless problems <i>(with Gimbert, Horn &amp; Oualhadj)</i></li>
+					<li class="hidden">Undecidability of the regularity problem <i>(with Skrzypczak)</i></li>
+					<li class="hidden">A characterisation: convergence speeds</li>
+					<li class="hidden">The prostochastic theory</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    </div>
+
+    <div class="section" id="sec4">
+
+    <div id="mma" class="step sec4" data-x="3450" data-y="-110" data-scale=".1">
+	<h2>An example</h2>
+
+	<img id="mma" src="img/fig9.svg"/>
+	<div class="slide_step"><img id="mma_a" src="img/fig10.svg"/></div>
+	<div class="slide_step"><img id="mma_b" src="img/fig11.svg"/></div>
+	<div class="slide_step"><img id="mma_asharp" src="img/fig12.svg"/></div>
+	<div class="slide_step"><img id="mma_asharpb" src="img/fig13.svg"/></div>
+	<div class="slide_step"><img id="mma_asharpbsharp" src="img/fig14.svg"/></div>
+    </div>
+
+    <div id="mma2" class="step sec4" data-x="3540" data-y="-110" data-scale=".1">
+	<h2>Markov Monoid algorithm</h2>
+
+	<br/>
+	The Markov Monoid is a <i>stabilisation monoid</i>:
+	<ul>
+		<li>binary composition</li>
+		<li>stabilisation, denoted $\sharp$ (<b>intuition</b>: $u^\sharp = \lim_n u^n$)</li>
+	</ul>
+	It satisfies some natural axioms:
+	$$u \cdot (v \cdot u)^\sharp = (u \cdot v)^\sharp \cdot u$$
+
+<!--
+	$$\begin{array}{c}
+		(u^\sharp)^\sharp = u^\sharp \\
+		u \cdot (v \cdot u)^\sharp = (u \cdot v)^\sharp \cdot u
+	\end{array}$$
+-->	
+	<div class="slide_step">
+	If there exists an element $M$ such that
+		$$\forall t \in Q, M(s_0, t) = 1 \implies t \in F$$
+	then the Markov Monoid algorithm answers "$\mathcal{A}$ has value 1", otherwise "$\mathcal{A}$ does not have value 1".
+	</div>
+    </div>
+
+    <!-- end of section 4 -->
+    </div>
+
+    <div id="contributions5" class="step" data-x="3000" data-y="0">
+	<h2>Contributions</h2>
+
+	<table class="contributions">
+		<tr>
+			<th class="left"><b>Finite-memory Determinacy for Games with Counters</b></th>
+			<th class="right"><b>The Value 1 Problem for Probabilistic Automata</b></th>
+		</tr>
+		<tr>
+			<td class="left hidden">
+				<ul>
+					<li>A positive instance: cost-parity games <i>(with Zimmermann)</i></li>
+					<li>Collapse for pushdown graphs <i>(with Chatterjee)</i></li>
+					<li>Memory characterisation for topologically closed conditions <i>(with Colcombet &amp; Horn)</i></li>
+					<li>Memoryless strategies for stochastic infinite games <i>(with Pinchinat &amp; Serre)</i></li>
+					<li>A counter-example to the LoCo conjecture <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+					<li>The LoCo conjecture over thin trees <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+				</ul>
+			</td>
+			<td class="right">
+				<ul>
+					<li>The Markov Monoid algorithm <i>(with Gimbert &amp; Oualhadj)</i></li>
+					<div class="slide_step"><li>Leaktight automata: extending and unifying results <i>(with Gimbert, Oualhadj &amp; Kelmendi)</i></li></div>
+					<li class="hidden">Undecidability of the numberless problems <i>(with Gimbert, Horn &amp; Oualhadj)</i></li>
+					<li class="hidden">Undecidability of the regularity problem <i>(with Skrzypczak)</i></li>
+					<li class="hidden">A characterisation: convergence speeds</li>
+					<li class="hidden">The prostochastic theory</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    </div>
+
+    <div class="section" id="sec5">
+
+    <div id="leaktight" class="step sec5" data-x="3450" data-y="20" data-scale=".1">
+    <h2>Leaktight automata</h2>
+
+    <br/>
+    <h3><b>Theorem</b></h3> The Markov Monoid algorithm is correct for <i>leaktight automata</i>
+
+    <div class="slide_step"><center><img id="classes" src="img/history.svg"/></center></div>
+
+    </div>
+
+    <div id="next" class="step sec5" data-x="3540" data-y="20" data-scale=".1">
+    <h2>Unifying results</h2>
+
+    <br/>
+    <br/>
+    <h3><b>Theorem</b></h3> All classes for which the value 1 problem is decidable are strictly included in the class of <i>leaktight automata</i>
+
+    <br/>
+    <br/>
+    <div class="slide_step">
+    <h3>Is the class of leaktight automata maximal?</h3>
+    </div>
+    <br/>
+    <div class="slide_step">
+    <h3><i>What does the Markov Monoid algorithm compute</i>?</h3>
+    </div>
+    </div>
+
+    <!-- end of section 5 -->
+    </div>
+
+    <div id="contributions6" class="step" data-x="3000" data-y="0">
+	<h2>Contributions</h2>
+
+	<table class="contributions">
+		<tr>
+			<th class="left"><b>Finite-memory Determinacy for Games with Counters</b></th>
+			<th class="right"><b>The Value 1 Problem for Probabilistic Automata</b></th>
+		</tr>
+		<tr>
+			<td class="left hidden">
+				<ul>
+					<li>A positive instance: cost-parity games <i>(with Zimmermann)</i></li>
+					<li>Collapse for pushdown graphs <i>(with Chatterjee)</i></li>
+					<li>Memory characterisation for topologically closed conditions <i>(with Colcombet &amp; Horn)</i></li>
+					<li>Memoryless strategies for stochastic infinite games <i>(with Pinchinat &amp; Serre)</i></li>
+					<li>A counter-example to the LoCo conjecture <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+					<li>The LoCo conjecture over thin trees <i>(with Kuperberg, Horn &amp; Skrzypczak)</i></li>
+				</ul>
+			</td>
+			<td class="right">
+				<ul>
+					<li>The Markov Monoid algorithm <i>(with Gimbert &amp; Oualhadj)</i></li>
+					<li>Leaktight automata: extending and unifying results <i>(with Gimbert, Oualhadj &amp; Kelmendi)</i></li>
+					<li class="hidden">Undecidability of the numberless problems <i>(with Gimbert, Horn &amp; Oualhadj)</i></li>
+					<li class="hidden">Undecidability of the regularity problem <i>(with Skrzypczak)</i></li></div>
+					<div class="slide_step"><li>A characterisation: convergence speeds</li></div>
+					<div class="slide_step"><li>The prostochastic theory</li></div>
+				</ul>
+			</td>
+		</tr>
+	</table>
+    </div>
+
+    <div class="section" id="sec6">
+
+    <div id="value1_ex_completed" class="step sec6" data-x="3450" data-y="150" data-scale=".1">
+	<h2>Convergence speeds</h2>
+	<br/>
+
+	<img id="example_value1" src="img/pa.svg"></img>
+	The sequence witnessing value 1 is $((\mathrm{drive}^n \cdot \mathrm{exit})^{2^n})_{n \in \mathbb{N}}$
+    </div>
+
+    <div id="characterisation" class="step sec6" data-x="3540" data-y="150" data-scale=".1">
+	<h2>Characterisation</h2>
+
+	<br/>
+
+	The sequence $((a^n b)^n)_{n \in \mathbb{N}}$ is polynomial,  
+	the sequence $((a^n b)^{2^n})_{n \in \mathbb{N}}$ is not.  
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<h3><b>Theorem</b></h3>
+	The Markov Monoid algorithm answers YES 
+	<br/>
+	<center>if, and only if,</center> 
+	there exists a polynomial sequence $(u_n)_{n \in \mathbb{N}}$
+	such that $\lim_n \mathbb{P}(u_n) = 1$
+	</div>
+    </div>
+
+    <div id="optimality" class="step sec6" data-x="3630" data-y="150" data-scale=".1">
+	<h2>Optimality</h2>
+
+	<br/>
+
+	<h3><b>Theorem</b></h3>
+	Determining whether there exist two words $u,v$ such that $\lim_n \mathbb{P}((u^n v)^{2^n}) = 1$ is undecidable
+
+	<br/>
+	<br/>
+	<h3>The Markov Monoid algorithm is <i>in some sense</i> optimal</h3>
+    </div>
+
+    <div id="prostochastic" class="step sec6" data-x="3450" data-y="250" data-scale=".1">
+	<h2>Prostochastic Theory</h2>
+
+	<br/>
+	 <table>
+	  <tr>
+	    <th class="left">Profinite</th>
+	    <th class="right">Prostochastic</th>
+	  </tr>
+
+	  <tr>
+	    <td class="left"><div class="slide_step">A sequence converges if for every deterministic automaton, almost all words are accepted, or almost all words are rejected.</div></td>
+	    <td class="right"><div class="slide_step">A sequence $(u_n)_{n \in \mathbb{N}}$ converges if for every probabilistic automaton, $\lim_n \mathbb{P}(u_n)$ exists.</div></td>
+	  </tr>  
+
+	  <tr>
+            <td class="left"><div class="slide_step">Two sequences are equivalent if for every deterministic automaton, they agree on almost all words.</div></td>
+	    <td class="right"><div class="slide_step">Two sequences $(u_n)_{n \in \mathbb{N}}$ and $(v_n)_{n \in \mathbb{N}}$ are equivalent if for every probabilistic automaton,
+		$\lim_n \mathbb{P}(u_n) = \lim_n \mathbb{P}(v_n)$.</div></td>
+	  </tr>
+
+	  <tr>
+	    <td class="left"><div class="slide_step">A profinite word is an equivalence class of converging sequences.</div></td>
+	    <td class="right"><div class="slide_step">A prostochastic word is an equivalence class of converging sequences.</div></td>
+	  </tr>
+	</table>
+    </div>
+
+    <div id="free_prostochastic_monoid" class="step sec6" data-x="3540" data-y="250" data-scale=".1">
+	<h2>Free Prostochastic Monoid</h2>
+
+	<br/>
+
+	<h3><b>Theorem</b></h3>
+	The free prostochastic monoid, denoted $\mathcal{PA}$, is the set of all prostochastic words.
+	It forms a compact metric space, satisfying a universal property:
+
+	<br/><span>''Every morphism $\phi : A^* \to Stoch(\mathbb{R})$ extends uniquely to a continuous morphism $\widehat{\phi} : \mathcal{PA} \to Stoch(\mathbb{R})$.''</span>
+    </div>
+
+    <div id="reformulation" class="step sec6" data-x="3630" data-y="250" data-scale=".1">
+	<h2>Reformulation</h2>
+
+	<br/>
+
+	<h3><b>Theorem</b></h3>
+	A probabilistic automaton has value 1
+	<p><center>if, and only if,</center> 
+	<p>it accepts a prostochastic word
+
+	<br/><br/>
+
+	<h3><b>Theorem</b></h3>
+	The Markov Monoid algorithm answers YES
+	<p><center>if, and only if,</center>
+	<p>it accepts a <i>polynomial</i> prostochastic word
+    </div>
+
+    <div id="omega_power" class="step sec6" data-x="3500" data-y="350" data-scale=".2">
+	<img id="prostochastic" src="img/prostochastic.svg"/>
+    </div>
+
+    <!-- end of section 6 -->
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="0">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
