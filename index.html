@@ -32,71 +32,57 @@
 
 <body> 
 
-
-
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="?page=#">Nathana&euml;l Fijalkow</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="?page=#">Home</a></li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Publications <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="?page=pub_year">by year</a></li>
-                <li><a href="?page=pub_topic">by topic</a></li>
-              </ul>
-            </li>
-
-            <li><a href="?page=talks">Talks</a></li>
-
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Softwares <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="?page=acme">ACME</a></li>
-                <li><a href="?page=stamina">Stamina</a></li>
-                <li><a href="?page=flides">Flides</a></li>
-              </ul>
-            </li>
-
-            <li><a href="?page=teaching">Enseignement (FR)</a></li>
-
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-
-<!--#include virtual="./nav.html"-->
-<?php 
-	include "nav.php" ;
-	echo "hello" ;
-?>
+<div id="nav"></div>
 
 <div class="container-fluid">
 
 	<div class="jumbotron">
 		<div class="row">
-			<!--#include virtual="./main.html"-->
+			<div id="main"></div>
 		</div>
 	</div>
 
 </div>
 
-<!--#include virtual="./footer.html"-->
+<div id="footer"></div>
 
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script>
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if(results == null)
+		return "start.html"
+	else if (results[1] == 'start' 
+		|| results[1] == 'pub_year' 
+		|| results[1] == 'pub_topic' 
+		|| results[1] == 'talks' 
+		|| results[1] == 'run' 
+		|| results[1] == 'acme' 
+		|| results[1] == 'stamina' 
+		|| results[1] == 'flides'
+		|| results[1] == 'teaching' 
+		|| results[1] == 'politeia' 
+		|| results[1] == 'tpcaml' 
+		|| results[1] == 'phd' 
+		|| results[1] == 'kwiatkowska')
+		return (results[1] + ".html")
+	else
+		return "start.html" ;
+}
+
+$(document).ready(function() {
+    $('#nav').load('nav.html');
+    $('#footer').load('footer.html');
+
+    if($.urlParam("page"))
+	$('#main').load($.urlParam("page"))
+    else
+	$('#main').load("start.html");
+
+});
+</script>
 
 </body>
 </html>
