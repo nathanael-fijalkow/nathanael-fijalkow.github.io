@@ -1,3 +1,32 @@
+<!--
+<script>
+$(document).ready(function() {
+    $('#abstractCF11a').on('shown.bs.collapse', function() {
+		if ($(this).hasClass('jump-to')) {
+		        window.location = '#abstractCF11a' ;
+			$(this).removeClass('jump-to');
+		} ;
+    });
+});
+</script>
+
+<script>
+$('.category').css('background-color','yellow'); 
+
+$(document).ready(function() {
+    .on('shown.bs.collapse', ('.jump-to'),function() {
+		alert("hell");
+	        window.location = '#abstractCF11a' ;
+		$(this).removeClass('jump-to');
+    });
+});
+</script>
+
+<a href="#" onclick="$('#conferences').collapse('show') ; $('#abstractCF11a').collapse('show') ; $('#abstractCF11a').addClass('jump-to')" >
+[CF11a]
+</a>
+-->
+
 <p>
 Click <a href="?page=pub_topic">here</a> for selected and grouped papers
 
@@ -24,7 +53,7 @@ Below is a list of my publications by type, see also my <a href="http://www.info
 		<tr>
 			<td class="labels">[Fij15]</td>
 			<td class="entree">
-				<a name="Fji15"></a>Nathana&euml;l Fijalkow. 
+				<a id="Fji15"></a>Nathana&euml;l Fijalkow. 
 				<span class="titre">Counting and Randomising in Automata Theory</span>,
 				<span class="booktitle"><em>University of Paris 7 and University of Warsaw</em></span>.
 				(<a class="link" href="pdf/main.pdf">Final version</a> ; 
@@ -87,7 +116,7 @@ The second step aims at better understanding the Markov Monoid algorithm, using 
 		<tr>
 			<td class="labels">[FRW17]</td>
 			<td class="entree">
-				<a name="FKP17"></a>Nathana&euml;l Fijalkow, Cristian Riveros and James Worrell. 
+				<a id="FKP17"></a>Nathana&euml;l Fijalkow, Cristian Riveros and James Worrell. 
 				<span class="titre">Probabilistic Automata of Bounded Ambiguity</span>,
 				<span class="booktitle"><em>International Conference on Concurrency Theory, CONCUR'2017</em></span>.
 				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=7771">Conference version: Dagstuhl link</a>)
@@ -123,7 +152,7 @@ The second step aims at better understanding the Markov Monoid algorithm, using 
 		<tr>
 			<td class="labels">[FKP17]</td>
 			<td class="entree">
-				<a name="FKP17"></a>Nathana&euml;l Fijalkow, Bartek Klin and Prakash Panangaden. 
+				<a id="FKP17"></a>Nathana&euml;l Fijalkow, Bartek Klin and Prakash Panangaden. 
 				<span class="titre">Expressiveness of Probabilistic Modal Logics, Revisited</span>,
 				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2017</em></span>.
 				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=7368">Conference version: Dagstuhl link</a>)
@@ -162,7 +191,7 @@ The second step aims at better understanding the Markov Monoid algorithm, using 
 		<tr>
 			<td class="labels">[FGKK17]</td>
 			<td class="entree">
-				<a name="FGKK17"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Denis Kuperberg. 
+				<a id="FGKK17"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Denis Kuperberg. 
 				<span class="titre">Stamina: Stabilisation Monoids in Automata Theory</span>,
 				<span class="booktitle"><em>Conference on Implementation of Automata and Applications, CIAA'2017</em></span>.
 				(<a class="link" href="pdf/stamina.pdf">Conference version: internal link</a>)
@@ -190,7 +219,7 @@ The tool Stamina is open source and available from Github, details are given on 
 		<tr>
 			<td class="labels">[FOOPW17]</td>
 			<td class="entree">
-				<a name="FOOPW17"></a>Nathana&euml;l Fijalkow, Pierre Ohlmann, Jo&euml;l Ouaknine, Amaury Pouly and James Worrell. 
+				<a id="FOOPW17"></a>Nathana&euml;l Fijalkow, Pierre Ohlmann, Jo&euml;l Ouaknine, Amaury Pouly and James Worrell. 
 				<span class="titre">Semialgebraic Invariant Synthesis for the Kannan-Lipton Orbit Problem</span>,
 				<span class="booktitle"><em>Symposium on Theoretical Aspects of Computer Science, STACS'2017</em></span>.
 				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=7005">Conference version: Dagstuhl link</a>)
@@ -219,7 +248,7 @@ It is worth noting that the existence of semilinear invariants, on the other han
 		<tr>
 			<td class="labels">[CF16]</td>
 			<td class="entree">
-				<a name="CF16"></a>Thomas Colcombet and Nathana&euml;l Fijalkow. 
+				<a id="CF16"></a>Thomas Colcombet and Nathana&euml;l Fijalkow. 
 				<span class="titre">The Bridge between Omega-Regular Languages and the Theory of Regular Cost Functions</span>,
 				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2016</em></span>.
 				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=6261">Conference version: Dagstuhl link</a>)
@@ -235,7 +264,7 @@ It is worth noting that the existence of semilinear invariants, on the other han
 		<tr>
 			<td class="labels">[FKS16]</td>
 			<td class="entree">
-				<a name="FKS16"></a>Nathana&euml;l Fijalkow, Stefan Kiefer and Mahsa Shirmohammadi. 
+				<a id="FKS16"></a>Nathana&euml;l Fijalkow, Stefan Kiefer and Mahsa Shirmohammadi. 
 				<span class="titre">Trace Refinement in Labelled Markov Decision Processes</span>,
 				<span class="booktitle"><em>Foundations of Software Science and Computation Structures, FoSSaCS'2016</em></span>.
 				(<a class="link" href="http://arxiv.org/abs/1510.09102">ArXiv</a>)
@@ -251,7 +280,7 @@ It is worth noting that the existence of semilinear invariants, on the other han
 		<tr>
 			<td class="labels">[Fij16b]</td>
 			<td class="entree">
-				<a name="F16"></a>Nathana&euml;l Fijalkow. 
+				<a id="F16"></a>Nathana&euml;l Fijalkow. 
 				<span class="titre">Characterisation of an Algebraic Algorithm for Probabilistic Automata</span>,
 				<span class="booktitle"><em>Symposium on Theoretical Aspects of Computer Science, STACS'2016</em></span>.
 				(<a class="link" href="http://arxiv.org/abs/1501.02997">ArXiv</a> ;
@@ -280,7 +309,7 @@ The above characterisation is reformulated using the prostochastic theory, allow
 		<tr>
 			<td class="labels">[Fij16a]</td>
 			<td class="entree">
-				<a name="F16"></a>Nathana&euml;l Fijalkow. 
+				<a id="F16"></a>Nathana&euml;l Fijalkow. 
 				<span class="titre">Online Space Complexity and Probabilistic Automata</span>,
 				<span class="booktitle"><em>Logical Foundations of Computer Science, LFCS'2016</em></span>.
 				(<a class="link" href="pdf/LFCS_2016.pdf">Conference version: internal link</a>)
@@ -310,7 +339,7 @@ This is the purpose of the second part of the current paper.
 		<tr>
 			<td class="labels">[FS15]</td>
 			<td class="entree">
-				<a name="FS15"></a>Nathana&euml;l Fijalkow and Micha&#322; Skrzypczak. 
+				<a id="FS15"></a>Nathana&euml;l Fijalkow and Micha&#322; Skrzypczak. 
 				<span class="titre">Irregular Behaviours for Probabilistic Automata</span>,
 				<span class="booktitle"><em>Reachability Problems, RP'2015</em></span>.
 				(<a class="link" href="pdf/RP_2015.pdf">Conference version: internal link</a>)
@@ -326,11 +355,10 @@ This is the purpose of the second part of the current paper.
 		<tr>
 			<td class="labels">[FHKS15]</td>
 			<td class="entree">
-				<a name="FHKS15"></a>Nathana&euml;l Fijalkow, Florian Horn, Denis Kuperberg and Micha&#322; Skrzypczak. 
+				<a id="FHKS15"></a>Nathana&euml;l Fijalkow, Florian Horn, Denis Kuperberg and Micha&#322; Skrzypczak. 
 				<span class="titre">Trading Bounds for Memory in Games with Counters</span>,
 				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2015</em></span>.
-				(<a class="link" href="pdf/LoCo_ICALP_2015.pdf">Conference version: internal link</a> ;
-				<a class="link" href="pdf/tech_report_loco.pdf">Technical report: internal link</a>)
+				(<a class="link" href="https://arxiv.org/abs/1709.03121">ArXiv</a>)
 				<br/>
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFHKS15">Display/Hide the abstract</button>
 				<div id="abstractFHKS15" class="collapse">
@@ -354,7 +382,7 @@ This is the purpose of the second part of the current paper.
 		<tr>
 			<td class="labels">[CFH14]</td>
 			<td class="entree">
-				<a name="CFH14"></a>Thomas Colcombet, Nathana&euml;l Fijalkow and Florian Horn. 
+				<a id="CFH14"></a>Thomas Colcombet, Nathana&euml;l Fijalkow and Florian Horn. 
 				<span class="titre">Playing Safe</span>,
 				<span class="booktitle"><em>Foundations of Software Technology and Theoretical Computer Science, FSTTCS'2014</em></span>.
 				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=4857">Conference version: Dagstuhl link</a>)
@@ -376,11 +404,10 @@ This is the purpose of the second part of the current paper.
 
 		<tr>
 			<td class="labels">[FP14]</td>
-			<td class="entree"><a name="FP14"></a>Nathana&euml;l Fijalkow and Charles Paperman. 
+			<td class="entree"><a id="FP14"></a>Nathana&euml;l Fijalkow and Charles Paperman. 
 				<span class="titre">Monadic Second-Order Logic with Arbitrary Monadic Predicates</span>,
 				<span class="booktitle"><em>39th International Symposium on Mathematical Foundations of Computer Science, MFCS'2014</em></span>.
-				(<a class="link" href="pdf/monadic_predicate_MFCS_2014.pdf">Conference version: internal link</a> ; 
-				<a class="link" href="pdf/msounary.pdf">Journal version (internal link)</a>)
+				(<a class="link" href="https://arxiv.org/abs/1709.03117">ArXiv</a>)
 				<br/>
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFP14">Display/Hide the abstract</button>
 				<div id="abstractFP14" class="collapse">
@@ -398,10 +425,10 @@ This is the purpose of the second part of the current paper.
 
 		<tr>
 			<td class="labels">[FGHO14]</td>
-			<td class="entree"><a name="FP14"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Florian Horn and Youssouf Oualhadj. 
+			<td class="entree"><a id="FP14"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Florian Horn and Youssouf Oualhadj. 
 				<span class="titre">Two Recursively Inseparable Problems for Probabilistic Automata</span>,
 				<span class="booktitle"><em>39th International Symposium on Mathematical Foundations of Computer Science, MFCS'2014</em></span>.
-				(<a class="link" href="pdf/Inseparable_Problems_MFCS_2014.pdf">Conference version: internal link</a>)
+				(<a class="link" href="https://arxiv.org/abs/1709.03122">ArXiv</a>)
 				<br/>
 				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGHO14">Display/Hide the abstract</button>
 				<div id="abstractFGHO14" class="collapse">
@@ -422,7 +449,7 @@ This is the purpose of the second part of the current paper.
 		<tr>
 			<td class="labels">[FK14]</td>
 			<td class="entree">
-				<a name="FP14"></a>Nathana&euml;l Fijalkow and Denis Kuperberg. 
+				<a id="FP14"></a>Nathana&euml;l Fijalkow and Denis Kuperberg. 
 				<span class="titre">ACME: Automata with Counters, Monoids and Equivalence</span>,
 				<span class="booktitle"><em>12th International Symposium on Automated Technology for Verification and Analysis, ATVA'2014</em></span>.
 				(<a class="link" href="?page=acme">Dedicated webpage</a> ; <a class="link" href="pdf/acme.pdf">Conference version: internal link</a>)
@@ -448,7 +475,7 @@ This is the purpose of the second part of the current paper.
 		</tr>
 		<tr>
 			<td class="labels">[FPS13]</td>
-			<td class="entree"><a name="FPS13"></a>Nathana&euml;l Fijalkow, Sophie Pinchinat and Olivier Serre. 
+			<td class="entree"><a id="FPS13"></a>Nathana&euml;l Fijalkow, Sophie Pinchinat and Olivier Serre. 
 				<span class="titre">Emptiness Of Alternating Tree Automata Using Games With Imperfect Information</span>,
 				<span class="booktitle"><em>Foundations of Software Technology and Theoretical Computer Science, FSTTCS'2013</em></span>.
 				(<a class="link" href="http://drops.dagstuhl.de/opus/volltexte/2013/4381/">Conference version: Dagstuhl link</a>)
@@ -473,7 +500,7 @@ This is the purpose of the second part of the current paper.
 
 		<tr>
 			<td class="labels">[CF13]</td>
-			<td class="entree"><a name="CF13"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
+			<td class="entree"><a id="CF13"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
 				<span class="titre">Infinite-state games with finitary conditions</span>,
 				<span class="booktitle"><em>Computer Science Logic, CSL'2013</em></span>. 
 				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=4197">Conference version: Dagstuhl link</a> ;
@@ -505,7 +532,7 @@ This is the purpose of the second part of the current paper.
 
 		<tr>
 			<td class="labels">[FZ12]</td>
-			<td class="entree"><a name="FZ12"></a>Nathana&euml;l Fijalkow and Martin Zimmermann. 
+			<td class="entree"><a id="FZ12"></a>Nathana&euml;l Fijalkow and Martin Zimmermann. 
 				<span class="titre">Cost-parity and Cost-Streett Games</span>,
 				<span class="booktitle"><em>Foundations of Software Technology and Theoretical Computer Science, FSTTCS'2012</em></span>. 
 				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=3853">Conference version: Dagstuhl link</a> ;
@@ -528,7 +555,7 @@ This is the purpose of the second part of the current paper.
 
 		<tr>
 			<td class="labels">[FGO12]</td>
-			<td class="entree"><a name="FGO12-LICS"></a>Nathana&euml;l Fijalkow, Hugo Gimbert and Youssouf Oualhadj.
+			<td class="entree"><a id="FGO12-LICS"></a>Nathana&euml;l Fijalkow, Hugo Gimbert and Youssouf Oualhadj.
 				<span class="titre">Deciding the Value 1 Problem for Probabilistic Leaktight Automata</span>,
 				<span class="booktitle"><em>Logic in Computer Science, LICS'2012</em></span>.
 	 			(<a class="link" href="http://arxiv.org/abs/1504.04136">ArXiv</a>)
@@ -558,7 +585,7 @@ This is the purpose of the second part of the current paper.
 
 		<tr>
 			<td class="labels">[CF11b]</td>
-			<td class="entree"><a name="CF11-GanDALF"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
+			<td class="entree"><a id="CF11-GanDALF"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
 				<span class="titre">A reduction from parity games to simple stochastic games</span>, In
 				<span class="booktitle"><em>Games, Automata, Logics and Formal Verification, GanDALF'2011</em></span>.
 				(<a class="link" href="http://arxiv.org/abs/1106.1232">ArXiv</a>) 
@@ -580,7 +607,8 @@ This is the purpose of the second part of the current paper.
 
 		<tr>
 			<td class="labels">[CF11a]</td>
-			<td class="entree"><a name="CF11-LATA"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
+			<td class="entree">
+				<a id="CF11a"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
 				<span class="titre">Finitary languages</span>, In
 				<span class="booktitle"><em>Language and Automata Theory and Applications, LATA'2011</em></span>.
 				(<a class="link" href="http://arxiv.org/abs/1101.1727">ArXiv</a>) 
@@ -625,7 +653,8 @@ This is the purpose of the second part of the current paper.
 		</tr>
 		<tr>
 			<td class="labels">[Fij17]</td>
-			<td class="entree"><a name="Fij17"></a>Nathana&euml;l Fijalkow. 
+			<td class="entree">
+				<a id="Fij17"></a>Nathana&euml;l Fijalkow. 
 				<span class="titre">Profinite Techniques for Probabilistic Automata and the Markov Monoid Algorithm</span>,
 				<span class="booktitle"><em>Theoretical Computer Science, TCS</em></span>. 
 				(<a class="link" href="https://arxiv.org/abs/1501.02997">ArXiv</a>)
@@ -654,7 +683,8 @@ The above characterisation is reformulated using the prostochastic theory, allow
 
 		<tr>
 			<td class="labels">[FP17]</td>
-			<td class="entree"><a name="FP17"></a>Nathana&euml;l Fijalkow and Charles Paperman. 
+			<td class="entree">
+				<a id="FP17"></a>Nathana&euml;l Fijalkow and Charles Paperman. 
 				<span class="titre">Monadic Second-Order Logic with Arbitrary Monadic Predicates</span>,
 				<span class="booktitle"><em>Transactions on Computational Logic, ToCL</em></span>.
 				(<a class="link" href="pdf/msounary.pdf">Technical report: internal link</a>)
@@ -682,7 +712,8 @@ The above characterisation is reformulated using the prostochastic theory, allow
 		</tr>
 		<tr>
 			<td class="labels">[FGKO15]</td>
-			<td class="entree"><a name="FGKO15"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Youssouf Oualhadj. 
+			<td class="entree">
+				<a id="FGKO15"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Youssouf Oualhadj. 
 				<span class="titre">Deciding the value 1 problem for probabilistic leaktight automata</span>,
 				<span class="booktitle"><em>Logical Methods in Computer Science, LMCS</em></span>. 
 				(<a class="link" href="http://arxiv.org/abs/1504.04136">ArXiv</a>)
@@ -718,7 +749,8 @@ The above characterisation is reformulated using the prostochastic theory, allow
 
 		<tr>
 			<td class="labels">[FZ14]</td>
-			<td class="entree"><a name="FZ14"></a>Nathana&euml;l Fijalkow and Martin Zimmermann. 
+			<td class="entree">
+				<a id="FZ14"></a>Nathana&euml;l Fijalkow and Martin Zimmermann. 
 				<span class="titre">Parity and Streett Games with Costs</span>,
 				<span class="booktitle"><em>Logical Methods in Computer Science, LMCS</em></span>. 
 				(<a class="link" href="http://arxiv.org/abs/1207.0663">ArXiv</a>)
@@ -747,7 +779,8 @@ The above characterisation is reformulated using the prostochastic theory, allow
 
 		<tr>
 			<td class="labels">[FH13]</td>
-			<td class="entree"><a name="FH13-TSI"></a>Nathana&euml;l Fijalkow and Florian Horn. 
+			<td class="entree">
+				<a id="FH13"></a>Nathana&euml;l Fijalkow and Florian Horn. 
 				<span class="titre">Jeux d'accessibilit&eacute; g&eacute;n&eacute;ralis&eacute;e (in French)</span>,
 				<span class="booktitle"><em>Techniques et sciences informatiques (TSI), Num&eacute;ro sp&eacute;cial th&eacute;orie des jeux en informatique</em></span>. 
 				(<a class="link" href="pdf/jeux_accessibilite_generalisee_tsi.pdf">Journal version: internal link</a>)
@@ -797,7 +830,7 @@ The above characterisation is reformulated using the prostochastic theory, allow
 		<tr>
 			<td class="labels">[FGKK17]</td>
 			<td class="entree">
-				<a name="FGKK17"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Denis Kuperberg. 
+				<a id="FGKK17"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Denis Kuperberg. 
 				<span class="titre">Stamina: Stabilisation Monoids in Automata Theory</span>,
 				<span class="booktitle"><em>Conference on Implementation of Automata and Applications, CIAA'2017</em></span>.
 				(<a class="link" href="http://stamina.labri.fr">Dedicated webpage</a> ; <a class="link" href="pdf/stamina.pdf">Conference version: internal link</a>)
@@ -831,7 +864,7 @@ The tool Stamina is open source and available from Github, details are given on 
 		<tr>
 			<td class="labels">[FK14]</td>
 			<td class="entree">
-				<a name="FP14"></a>Nathana&euml;l Fijalkow and Denis Kuperberg. 
+				<a id="FP14"></a>Nathana&euml;l Fijalkow and Denis Kuperberg. 
 				<span class="titre">ACME: Automata with Counters, Monoids and Equivalence</span>,
 				<span class="booktitle"><em>12th International Symposium on Automated Technology for Verification and Analysis, ATVA'2014</em></span>.
 				(<a class="link" href="?page=acme">Dedicated webpage</a> ; <a class="link" href="pdf/acme.pdf">Conference version: internal link</a>)
@@ -872,7 +905,8 @@ The tool Stamina is open source and available from Github, details are given on 
 
 		<tr>
 			<td class="labels">[FH10]</td>
-			<td class="entree"><a name="FH10-Technical-Report"></a>Nathana&euml;l Fijalkow and Florian Horn. 
+			<td class="entree">
+				<a id="FH10"></a>Nathana&euml;l Fijalkow and Florian Horn. 
 				<span class="titre">The surprizing complexity of generalized reachability games</span>,
 				<span class="booktitle"><em>Technical report</em></span>. 
 				(<a class="link" href="http://arxiv.org/abs/1010.2420">ArXiv</a>)
@@ -908,7 +942,8 @@ The tool Stamina is open source and available from Github, details are given on 
 	<table border="0" cellpadding="2" width="100%">
 		<tr>
 			<td class="labels">[RMS-122-1]</td>
-			<td class="entree"><a name="RMS-122-1"></a>Nathana&euml;l Fijalkow.
+			<td class="entree">
+				<a id="RMS-122-1"></a>Nathana&euml;l Fijalkow.
 				<span class="titre">Conjugation (conjugaison)</span>,
 				<span class="booktitle"><em>Revue des Math&eacute;matiques Sp&eacute;ciales, RMS 122-1</em></span>. 
 				(<a class="link" href="pdf/conjugaison.pdf">Internal link</a>, in French)
@@ -917,7 +952,8 @@ The tool Stamina is open source and available from Github, details are given on 
 
 		<tr>
 			<td class="labels">[RMS-118-4]</td>
-			<td class="entree"><a name="RMS-118-4"></a>Nathana&euml;l Fijalkow and Quentin Martin-Laval.
+			<td class="entree">
+				<a id="RMS-118-4"></a>Nathana&euml;l Fijalkow and Quentin Martin-Laval.
 				<span class="titre">A Geometric Approach to 2*2 Matrices' Equivalence Classes (une &eacute;tude g&eacute;om&eacute;trique des classes de similitude des matrices 2x2)
 				</span>,
 				<span class="booktitle"><em>Revue des Math&eacute;matiques Sp&eacute;ciales, RMS 118-4</em></span>. 
