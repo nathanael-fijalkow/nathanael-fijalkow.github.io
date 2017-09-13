@@ -1,0 +1,23 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{amsmath,amssymb}
+
+
+\begin{document}
+
+\begin{picture}(70,15)(-7,8)
+	\gasset{Nadjust=w}
+	
+	\node(0)(5,15){$\color{red}{\text{bad priority}}$}
+	\node(1)(25,15){$q_0$}
+	\node(2)(50,15){$\color{green}{\text{good priority}}$}
+
+  	\drawedge[curvedepth=-3,ELside=r,ELpos=35](1,0){$r$}
+  	\drawedge[curvedepth=-3](0,1){}
+
+  	\drawedge[curvedepth=3,ELpos=35](1,2){$i$}
+  	\drawedge[curvedepth=3](2,1){}
+\end{picture}
+\end{document}

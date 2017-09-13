@@ -1,0 +1,214 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Boundedness Games</title>
+    
+    <meta name="description" content="Boundedness Games" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="-2000" data-scale="1">
+	<h2>Boundedness Games</h2>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	<br/>Research Fellow @ Alan Turing Institute
+	<br/>Affiliated to Warwick
+	</div>
+
+	<br/>
+
+	<div class="slide_step">
+	<h4>Highlights, Wednesday 13th September, 2017</h4>
+	</div>
+    </div>
+
+    <div id="mikolaj_thomas" class="step" data-x="0" data-y="-1200" data-scale="1">
+	<h3>''You shall solve hard problems by reducing them to <red>boundedness questions</red>''</h3>
+
+	<br/>
+
+	<blue>Miko&#322;aj Boja&#324;czyk, Thomas Colcombet</blue>
+
+	<br/>
+	<br/>
+
+	<p align="center">
+	<img id="mikolaj" src="img/mikolaj.png"/>
+	<img id="thomas" src="img/thomas.png"/>
+    </div>
+
+    <div id="fairy_tale" class="step" data-x="-1000" data-y="-2000" data-scale="1" data-duration="0">
+	<h2>The fairy tale</h2>
+
+	<img id="fairies" src="img/fairies.png"/>
+    </div>
+
+    <div id="star-height" class="step" data-x="-1000" data-y="-1200">
+	<h3>The star-height problem</h3>
+
+	<ul>
+		<li>$(a + b^*)^* + a b^*$ has star-height $2$
+		<li>$a^* b^* + (ba)^*$ has star-height $1$
+	</ul>
+
+	<br/>
+	<b>Star-height problem</b>: given a regular language $L$, what is the minimal star-height of a regular expression denoting $L$?
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	<red><b>Theorem</b></red> (Hashiguchi): the star-height problem can be reduced to the boundedness problem of <blue><i>cost automata</i></blue>
+	over finite words
+
+	<svg width="800" height="250">
+		<g class="token">
+			<text x="0" y="150">word read ""</text>
+			<circle cx="305" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "b"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "ba"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 1</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baa"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 2</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baaa"</text>
+			<circle cx="515" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 3</text>
+		</g>
+		<g class="token">
+			<text x="0" y="150">word read "baaab"</text>
+			<circle cx="725" cy="146" r="20" fill="red"/>
+			<text x="200" y="240" fill="red">counter value = 3</text>
+		</g>
+		<image x="200" y="0" width="600" height="250" xlink:href="img/fig4.svg">
+	</svg>
+
+	<br/>
+	Induces&nbsp;&nbsp; $f : A^* \to \mathbb{N} \cup \{ \infty \}$
+	
+	$$f(w) = \text{min} \left\{ \text{max} \text{ counter value in } \rho \mid \rho \text{ accepting run} \right\}$$
+	</div>
+    </div>
+
+    <div id="mostowski_index" class="step" data-x="-1000" data-y="-300" data-scale="1">
+	<h3>The Mostowski index problem</h3>
+
+	<ul>
+		<li>$\mu X\ \nu Y\ \phi(X,Y)$ computes greatest, then least fixpoint
+		<li>$\nu X\ \mu Y\ \phi(X,Y)$ computes least, then greatest fixpoint
+	</ul>
+
+	<br/><br/>
+
+	<b>Mostowski index problem</b>: given a property over graphs, what is the minimal alternation of a modal $\mu$-calculus formula denoting it?
+
+	<br/><br/>
+	<div class="slide_step">
+	<img id="fairies" src="img/fairy.jpg"/>
+	<br/>
+
+	<red><b>Theorem</b></red> (Colcombet, Loeding): the Mostowski index problem can be reduced to the boundedness problem of <blue><i>cost automata</i></blue>
+	over infinite trees, <green>which is not known to be decidable</green>
+	</div>
+    </div>
+	
+    <div id="forest" class="step" data-x="1000" data-y="-2000" data-scale="1" data-duration="0">
+	<h2>Next: the forest</h2>
+
+	<img id="forest" src="img/forest.jpg"/>
+    </div>
+
+    <div id="inspiration" class="step" data-x="1000" data-y="-1200" data-scale="1">
+	<h3>Inspiration from another fairy tale</h3>
+
+	<br/>
+	<img id="beauty_beast" src="img/beauty_and_beast.jpg"/>
+	<br/>
+	<br/>
+
+	<red><b>Lesson learned from the past decades</b></red>:
+	<br/>the two ingredients for dealing with tree automata are
+	<ul>
+		<li><blue>determinisation of parity automata over infinite words</blue>
+		<li><green>positional determinacy of parity games</green>
+	</ul>
+
+	<div class="slide_step">
+	<br/>
+	<br/>
+	<red><b>Theorem</b></red> (Colcombet): cost automata over infinite words can be made <blue>history-deterministic</blue>
+	</div>
+    </div>
+
+    <div id="path" class="step" data-x="1000" data-y="-600" data-scale="1">
+	<h3>A path out of the forest: finite-memory determinacy for parity games with counters</h3>
+
+	<br/>
+	<img id="game" src="img/fig.svg"/>
+	Eve's dilemma: ensure parity <red>AND</red> keep the counter bounded
+   </div>
+
+    <div id="results" class="step" data-x="1000" data-y="0" data-scale="1">
+	<h3>The story so far</h3>
+
+	<br/>
+	<red><b>Theorem</b></red> (Vanden Boom): Buechi games with counters are finite-memory determined
+	<br/>
+	<br/>
+	<red><b>Theorem</b></red> (F., Horn, Kuperberg, Skrzypczak): 
+	<ul>
+		<li>Parity games with counters are finite-memory determined <blue>over thin tree graphs</blue>
+		<li>Reachability games with counters are <red>NOT</red> finite-memory determined <blue>over finite graphs</blue>
+	</ul>
+	<br/>
+	<br/>
+	<red><b>Theorem</b></red> (F.): 
+	Parity games with counters are finite-memory determined <blue>over tree graphs</blue> <green>for Eve</green>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="-1000" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+
+
