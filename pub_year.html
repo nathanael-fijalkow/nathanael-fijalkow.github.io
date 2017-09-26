@@ -9,23 +9,17 @@ $(document).ready(function() {
     });
 });
 </script>
+	$('#abstractCF11a').addClass('jump-to') ;
+-->
 
-<script>
-$('.category').css('background-color','yellow'); 
-
-$(document).ready(function() {
-    .on('shown.bs.collapse', ('.jump-to'),function() {
-		alert("hell");
-	        window.location = '#abstractCF11a' ;
-		$(this).removeClass('jump-to');
-    });
-});
-</script>
-
-<a href="#" onclick="$('#conferences').collapse('show') ; $('#abstractCF11a').collapse('show') ; $('#abstractCF11a').addClass('jump-to')" >
+<a href="#" onclick=" 
+	window.location = '#abstractCF11a' ;
+	$('#conferences').collapse('show') ; 
+	$('#abstractCF11a').collapse('show') ;
+	$('#conferences,#abstractCF11a').on('shown.bs.collapse', function() { window.location = '#abstractCF11a' ; }) ;
+	return false" >
 [CF11a]
 </a>
--->
 
 <p>
 Click <a href="?page=pub_topic">here</a> for selected and grouped papers
