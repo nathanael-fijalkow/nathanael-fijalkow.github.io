@@ -1,0 +1,34 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\newcommand{\tr}[1]{\langle #1 \rangle}
+
+\begin{document}
+
+\begin{picture}(55,55)(-10,0)
+	\gasset{Nw=6,Nh=6,loopdiam=5}
+	
+  	\rpnode[polyangle=45](1)(30,15)(4,4){}
+  	\node(2)(20,30){}
+  	\node(3)(40,30){}
+  	\rpnode[Nmarks=i,iangle=180,polyangle=45](4)(0,30)(4,4){}
+  	\rpnode[polyangle=45](5)(10,50)(4,4){}
+  	\node(6)(10,10){}
+  	\rpnode[polyangle=45](7)(30,50)(4,4){}
+
+  	\drawedge(1,2){}
+  	\drawedge[curvedepth=3](1,3){}
+	\drawloop[loopangle=90](2){}
+  	\drawedge(2,3){}
+  	\drawedge(2,6){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(4,2){}
+  	\drawedge[curvedepth=5](4,5){}
+  	\drawedge[curvedepth=5](5,4){}
+	\drawloop[loopangle=-90](6){}
+  	\drawedge(7,5){}
+\end{picture}
+
+\end{document}
