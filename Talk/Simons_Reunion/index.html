@@ -1,0 +1,397 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Reasoning with time and probability: semi-Markov processes</title>
+    
+    <meta name="description" content="Semi-Markov processes" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="title" class="step" data-x="0" data-y="-1000" data-scale="1">
+	<h2>Reasoning with <green>time</green> and <red>probability</red></h2>
+	<br/>
+
+	<div class="slide_step">
+	<h3>Nathana&euml;l Fijalkow</h3>
+	<br/>Research Fellow @ Alan Turing Institute of data science, London
+	<br/>CNRS, LaBRI, Bordeaux
+	</div>
+
+	<br/>
+
+	<div class="slide_step">
+	<h3>Simons Institute, Berkeley, December 12, 2017
+	</div>
+    </div>
+
+
+    <div id="people" class="step" data-x="0" data-y="-200" data-scale="1">
+	<h2>Joint work with</h2>
+	<br/>
+	<div class="left">
+		<img id="bisim" src="img/prakash.jpg">
+	</div> 
+	<div class="right">
+		<img id="sim" src="img/bartek.jpg">
+	</div> 
+	<br/>
+	Published in ICALP'2017
+    </div>
+
+
+    <div id="main_result" class="step" data-x="0" data-y="600" data-scale="1">
+	<h2>Hennessy and Milner's theorem</h2>
+
+	<br/>
+	Let $p$ and $q$ be two states in some process
+	<br/>
+	<br/>
+	<h3>
+	<red>there exists</red> a bisimulation between $p$ and $q$
+	<br/>$\iff$<br/>
+	<green>for all</green> formulas,<br/> $p$ and $q$ agree
+	</h3>
+    </div>
+
+
+    <div id="discrete_discrete" class="step" data-x="-2000" data-y="-1500" data-scale="1" data-duration="0">
+	<h2>Reasoning with <green>discrete time</green> and <red>discrete space</red></h2>
+	<br/>
+	<img id="example_discrete" src="img/example_discrete.svg">
+	$\Delta(q,a,p)$ is the probability to go to $p$ from $q$ under action $a$
+    </div>
+
+
+    <div id="discrete_continuous" class="step" data-x="-2000" data-y="-500" data-scale="1">
+	<h2>Reasoning with <green>discrete time</green> and <red>continuous space</red></h2>
+	<br/>
+
+	<img id="example_continuous" src="img/example_continuous.svg">
+	$\Delta(q,a,C)$ is the probability to go to $C \in \Sigma$ from $q$ under action $a$
+    </div>
+
+
+    <div id="bisim" class="step" data-x="-2000" data-y="500" data-scale="1">
+	<h2>Probabilistic bisimulation</h2>
+	<br/>
+	<red>Test-of-time award LICS 2017</red>
+	<br/>
+	<br/>
+	Let $\equiv\ \subseteq S \times S$ be an equivalence relation
+	<br/>
+	<b>Intuition</b>: $\equiv$ is a bisimulation iff the quotient of $\mathcal{M}$ by $\equiv$ is well defined.
+	<br/>
+
+	<div class="slide_step">
+	<ul>
+		<li> $C \in \Sigma$ is closed under $\equiv$ if: $p \in C$ and $p \equiv q$ imply $q \in C$
+		<li> $\equiv$ is a <blue>bisimulation</blue> if:
+		<br/> if $p \equiv q$, then for all $a$ in $A$, for all $C \in \Sigma$ closed under $\equiv$,
+			$$\Delta(p,a,C) = \Delta(q,a,C)$$
+		<li> $p$ and $q$ are <green>bisimilar</green> if there exists a bisimulation $\equiv$ such that $p \equiv q$
+	</ul>
+	</div>
+    </div>
+
+
+    <div id="game" class="step" data-x="-2000" data-y="1500" data-scale="1">
+	<h2>Game</h2>
+	<br/>
+
+	Duplicator claims that $p \equiv q$
+	<ul>
+		<li><green>Spoiler</green>: pick $a$ in $A$ and $C \in \Sigma$ such that $\Delta(p,a,C) \neq \Delta(q,a,C)$
+		<li><red>Duplicator</red>: $p'$ in $C$, $q'$ not in $C$ and claim that $p' \equiv q'$
+	</ul>
+	<br/>
+	<b>Fact</b>: $p$ and $q$ are bisimilar if Duplicator can play forever
+
+	<svg width="1000" height="500">
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="787" cy="150" r="20" fill="red"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="787" cy="150" r="20" fill="red"/>
+			<circle cx="236" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="787" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="787" cy="150" r="20" fill="red"/>
+			<circle cx="236" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="787" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="787" cy="150" r="20" fill="red"/>
+			<circle cx="236" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="787" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+			<text x="110" y="440" fill="black">Spoiler's move was stupid, let's rewind!</text>
+		</g>
+		<g class="token">
+			<circle cx="50" cy="150" r="20" fill="red"/>
+			<circle cx="787" cy="150" r="20" fill="red"/>
+			<circle cx="50" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="787" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+		</g>
+		<g class="token">
+			<circle cx="236" cy="150" r="20" fill="red"/>
+			<circle cx="787" cy="150" r="20" fill="red"/>
+			<circle cx="50" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<circle cx="787" cy="150" r="40" stroke="green" stroke-width="10" fill="none"/>
+			<text x="110" y="320" fill="red">Duplicator claims they are bisimilar</text>
+			<text x="110" y="360" fill="green">Spoiler picks a set of green states</text>
+			<text x="110" y="400" fill="red">Duplicator picks a green state and a non-green state</text>
+		</g>
+		<image x="20" y="-19" width="1000" height="300" xlink:href="img/example_bisimulation.svg">
+	</svg>
+    </div>
+
+
+
+
+    <div id="previous_result" class="step" data-x="-1000" data-y="-1500" data-scale="1" data-duration="0">
+	<h2>What was known</h2>
+	<br/>
+
+	<blue>
+	\[
+	\phi\ =\ \top\ \mid\ \phi \wedge \phi\ \mid\ \langle a \rangle_{> p} \phi\
+	\]
+	</blue>
+
+	<div class="slide_step">
+	
+		<b>Theorems</b> (Larsen & Skou 89, Desharnais et al,...):
+		<br/>
+		The state space is an <red>analytic space</red> and the set of actions is <green>countable</green>.
+
+		<br/>
+		<br/>
+
+		<ul>
+			<li>Two states are <green>bisimiliar</green> if, and only if, they satisfy the same formulas of the modal logic (<blue>only conjunctions</blue>)
+			<li>A state <green>simulates</green> another if, and only if, it satisfies more formulas of the modal logic (<blue>conjunctions and disjunctions</blue>)
+		</ul>
+	</div>	
+    </div>
+
+
+    <div id="counter_example" class="step" data-x="-1000" data-y="-700" data-scale="1">
+	<h2>Beyond countable set of labels</h2>
+	<br/>
+	<img id="counter_example" src="img/counter_example.svg">
+	<br/>
+	$p$ and $q$ are <red>NOT</red> bisimilar, unless we restrict to countably many labels!
+    </div>
+
+
+    <div id="topology" class="step" data-x="-1000" data-y="100" data-scale="1">
+	<h2>Reducing to a topological question</h2>
+	<br/>
+	
+	The crucial point is to understand the structure of <red>countably generated $\sigma$-algebras</red> in $(S,\Sigma)$,
+	which the <green>unique structure theorem</green> of analytic spaces nicely describes.
+    </div>
+
+
+    <div id="aesthetics" class="step" data-x="-1000" data-y="1000" data-scale="1">
+	<h2>&#198;sthetics</h2>
+	<br/>
+
+	We gave <red>&aelig;sthetically pleasing</red> <blue>uniform</blue> proofs for bisimulation <green>and</green> simulation using the topology of analytic spaces.
+
+	<br/>
+	<br/>
+
+	<div class="left">
+		<img id="bisim" src="img/theorem_bisim.png">
+	</div> 
+	<div class="right">
+		<img id="sim" src="img/theorem_sim.png">
+	</div> 
+    </div>
+
+
+
+
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="4">
+    </div>
+
+
+
+
+
+
+
+    <div id="continuous_continuous" class="step" data-x="1000" data-y="-1500" data-scale="1">
+	<h2>Reasoning with <blue>continuous</blue> <green>time</green> and <red>space</red></h2>
+	<br/>
+	<img id="semiMarkov" src="img/example_semi.svg">
+	<br/>
+	Transition and timing are <blue>independent!</blue>
+    </div>
+
+
+    <div id="ctmc" class="step" data-x="1000" data-y="-700" data-scale="1">
+	<h2>Example: CTMC</h2>
+	<br/>
+	<img id="CTMC" src="img/CTMC.svg">
+	<br/>
+	<br/>
+	Exponential distribution: $$\rho(t) = 1 - \exp(-\lambda t)$$
+    </div>
+
+
+    <div id="first_attempt" class="step" data-x="1000" data-y="0" data-scale="1">
+	<h2>A first attempt</h2>
+	<br/>
+	<b>Definition</b>:
+	$\equiv$ is a <blue>bisimulation</blue> if:
+	<br/> if $p \equiv q$, then for all $a$ in $A$, for all $C \in \Sigma$ closed under $\equiv$,
+	$$\Delta(p,a,C) = \Delta(q,a,C)$$
+	and
+	<red>$$\rho(p) = \rho(q)$$</red>
+
+	<div class="slide_step">
+	This amounts to <green>treat $\rho$ as additional labels</green> to distinguish states.
+	</div>
+    </div>
+
+
+    <div id="problem" class="step" data-x="1000" data-y="700" data-scale="1">
+	<h2>Problem</h2>
+	<br/>
+	<img id="problem" src="img/problem.svg">
+	<br/>
+	<br/>
+	Arguably, $p$ and $q$ <red>should be</red> bisimilar! 
+    </div>
+
+
+
+
+    <div id="solution" class="step" data-x="2000" data-y="-1500" data-scale="1" data-duration="0">
+	<h2>Solution</h2>
+	<br/>
+	<h3><blue>Accumulate time!</blue></h3>
+	<br/>
+
+	Given a <green>semi-Markov process</green> $\mathcal{M} = (S,\Delta,\rho)$,
+	define the <red>Markov process</red> $\mathcal{M}' = (S \times \mathbb{R}_{\ge 0}, \Delta')$ such that:
+	<div class="slide_step">
+	<br/>
+	for $C \in \Sigma_{\text{state}}$ and $I \in \Sigma_{\text{time}}$,
+	$$\Delta'((s,t),\ a,\ C \times I) = \Delta(s,\ a,\ C) \cdot \rho(s, I - t)$$
+	</div>
+    </div>
+
+
+    <div id="bisimulation_inherited" class="step" data-x="2000" data-y="-800" data-scale="1">
+	<h2>Deriving bisimulation</h2>
+	<br/>
+
+	<b>Definition</b>:
+	$\equiv\ \subseteq (S \times \mathbb{R}_{\ge 0}) \times (S \times \mathbb{R}_{\ge 0})$ is a <blue>bisimulation</blue> if:
+	<br/><br/> if $p,t \equiv q,t'$, then for all $a$ in $A$, for all $C \in \Sigma_{\text{state}}$ and $I \in \Sigma_{\text{time}}$
+	such that $C \times I$ is closed under $\equiv$,
+	$$\Delta(p,\ a,\ C) \cdot \rho(p,\ I - t) = \Delta(q,\ a,\ C) \cdot \rho(q,\ I - t')$$
+    </div>
+
+
+    <div id="logic_inherited" class="step" data-x="2000" data-y="-100" data-scale="1">
+	<h2>Modal logic inherited</h2>
+	<br/>
+	<blue>
+	\[
+	\phi\ =\ \top\ \mid\ \phi \wedge \phi\ \mid\ \langle a \rangle_{> p} \phi\
+	\]
+	</blue>
+
+	<b>Definition</b>:
+	$$q,t \models \langle a \rangle_{> p} \phi\ \text{ if }\ \Delta(q,\ a, [\phi]) > p,$$
+	where
+	$$[\phi] = \{ (p,u) \mid (p,u) \models \phi \}$$
+    </div>
+
+
+    <div id="theorem_free" class="step" data-x="2000" data-y="500" data-scale="1">
+	<h2><red>Results for free</red></h2>
+	<br/>
+
+	<b>Theorem</b>:
+	<br/>
+	The state space is an <red>analytic space</red> and the set of actions is <green>countable</green>.
+
+	<br/>
+	<br/>
+
+	<ul>
+		<li>Two states are <green>bisimiliar</green> if, and only if, they satisfy the same formulas of the modal logic (<blue>only conjunctions</blue>)
+		<li>A state <green>simulates</green> another if, and only if, it satisfies more formulas of the modal logic (<blue>conjunctions and disjunctions</blue>)
+	</ul>	
+    </div>
+
+
+
+
+
+    <div id="future" class="step" data-x="500" data-y="1500" data-scale="2" data-duration="0">
+	<h2>For the next semester at Simons?</h2>
+    </div>
+
+    <div id="future2" class="step" data-x="2000" data-y="1500" data-scale="2">
+	<ul>
+		<li> efficient <green>algorithms for (bi)simulation</green> checking of semi-Markov processes
+		<li> <blue>trace-based</blue> semantics and <blue>metrics</blue> for semi-Markov processes
+		<li> <red>duality principle</red>: construct an algorithm such that 
+		if $p$ and $q$ are bisimilar, output a bisimilation, otherwise a distinguishing formula
+	<ul>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="4">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+</body>
+</html>
+
+
