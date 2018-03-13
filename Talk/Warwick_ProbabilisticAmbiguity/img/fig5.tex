@@ -1,0 +1,57 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\definecolor{light-gray}{gray}{0.5}
+\definecolor{very-light-gray}{gray}{0.8}
+
+\begin{document}
+
+\begin{picture}(33,42)(-5,-6)
+	\gasset{Nw=1,Nh=1,Nframe=n,Nfill=y}
+
+	\put(7,29){$\varepsilon$}
+	\put(24,5){$\varepsilon$}
+	
+    \drawpolygon[fillcolor=very-light-gray,Nframe=n,arcradius=.3](22.4,5.4)(24.4,7.4)(19,20)(17,18)
+    \drawpolygon[fillcolor=very-light-gray,Nframe=n,arcradius=.3](8,27)(10,29)(19,20)(17,18)
+
+    \drawline(0,0)(25,0)
+    \drawline(0,0)(0,35)
+
+  	\node[fillcolor=red](p1)(15,21){}
+
+  	\node(p2)(8,16.2){}
+
+  	\node[Nw=1.5,Nh=1.5](p3c)(8,27){}
+  	\node[fillcolor=red](p3)(8,27){}
+  	\node[fillcolor=blue](p3p)(10,29){}
+
+  	\node[Nw=1.5,Nh=1.5](p4c)(17,18){}
+  	\node[fillcolor=red](p4)(17,18){}
+  	\node[fillcolor=blue](p4p)(19,20){}
+
+  	\node[Nw=1.5,Nh=1.5](p5c)(22.4,5.4){}
+  	\node[fillcolor=red](p5)(22.4,5.4){}
+  	\node[fillcolor=blue](p5p)(24.4,7.4){}
+
+	\gasset{Nh=3,Nw=.2}
+  	\node(x1)(10,0){}
+	\put(8,-5){$.1$}
+  	\node(x3)(20,0){}
+	\put(18,-5){$.2$}
+
+	\gasset{Nw=3,Nh=.2}
+  	\node(y1)(0,20){}
+	\put(-5,19){$.2$}
+  	\node(y3)(0,30){}
+	\put(-5,29){$.3$}
+
+	\drawedge[AHnb=0](p3,p4){}
+	\drawedge[AHnb=0](p4,p5){}
+	\drawedge[AHnb=0](p3p,p4p){}
+	\drawedge[AHnb=0](p4p,p5p){}
+\end{picture}
+
+\end{document}

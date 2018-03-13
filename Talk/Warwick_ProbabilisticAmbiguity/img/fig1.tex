@@ -1,0 +1,30 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\definecolor{light-gray}{gray}{0.5}
+\definecolor{very-light-gray}{gray}{0.8}
+
+\begin{document}
+
+\begin{picture}(90,60)(0,0)
+	\gasset{Nframe=n,Nfill=y,fillcolor=very-light-gray}
+
+  	\node[fillcolor=light-gray](p1)(5,30){$s$}
+  	\node(p2)(45,55){$p$}
+  	\node(p3)(45,5){$q$}
+  	\node[fillcolor=light-gray](p4)(85,30){$t$}
+
+	\drawedge(p1,p2){$\color{red}{(.4,.6)}$}
+	\drawedge[ELside=l,curvedepth=3](p1,p3){$(.2,.3)$}
+	\drawedge[ELside=r,curvedepth=-3](p1,p3){$(.3,.2)$}
+
+	\drawedge(p2,p4){$(.5,.35)$}
+	\drawedge[ELside=l,curvedepth=3](p2,p3){$(.5,.3)$}
+	\drawedge[ELside=r,curvedepth=-3](p2,p3){$\color{red}{(.9,.1)}$}
+
+	\drawedge(p3,p4){$\color{red}{(.9,.9)}$}
+\end{picture}
+
+\end{document}
