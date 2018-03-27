@@ -171,8 +171,16 @@
 	<br/>
 	Problem: what is $\textit{Cat Images}$?
 	<br/>
-	<br/>
 	<h3><red>How to measure the progress<br/> of a generative model?</red></h3>
+	<br/>
+	<div class="slide_step">
+	<b>GAN idea</b>: a model is good if it is hard to <green>distinguish</green> from an actual distribution of cat images
+	</div>	
+	<br/>
+	<div class="slide_step">
+	We introduce a neural net in charge of <green>discriminating</green>
+	</div>	
+
     </div>
 
     <div id="art" class="step" data-x="200" data-y="600" data-scale=".6">
@@ -183,14 +191,15 @@
 	<div class="slide_step">
 	An art teacher can generate $\textit{Beautiful Images}$ through a distribution $\textit{Art}$
 	</div>	
+
 	<div class="slide_step">
 	<br/>
-	<b>Procedure</b>:
+	<b>Idea</b>:
 	<ul>
-		<li><blue>Train the teacher</blue> to distinguish $\textit{Artist}$ from $\textit{Art}$,
-		creating a distribution $\textit{Grade}$
-		<li><green>Train the student</green> to get good grades
-		<li><red>Repeat</red> until exhaustion of the teacher
+		<li>Train a <blue>teacher</blue> to distinguish $\textit{Artist}$ from $\textit{Art}$
+		<li>Train the <green>student</green> to get good grades
+	</ul>
+	<red>Hopefully</red> if the teacher fails, then the student became a good artist! 
 	</div>	
 
     </div>
@@ -204,7 +213,7 @@
 	</ul>
 
 	<br/><br/>
-	<center>It <blue>almost always</blue> converges to a <blue>good</blue> equilibrium!</center>
+	<center>There <blue>almost always</blue> exists a <blue>good</blue> equilibrium!</center>
 
 	<div class="slide_step">
 	<h2>Why?</h2>
@@ -225,8 +234,8 @@
 	<h3>What about <green>automata</green>?</h3>
 	<ul>
 		<li>existence of an equilibrium?
-		<li>convergence speed to the equilibrium?
-		<li>what is the right distance between distributions?
+		<li>how to compute this equilibrium?
+		<li>what is the right distance between distributions for training?
 	</ul>
 
 	</div>
