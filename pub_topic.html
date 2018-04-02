@@ -3,100 +3,101 @@
 <p>
 Here is an overview of some lines of works I have been involved in.
 
+<p>
+A model featured in many of my papers is <b>probabilistic automata</b>, which generalise classical automata by adding a probabilistic value for each transition.
+I am interested in algorithmic analysis of probabilistic automata, i.e. algorithms to determine whether a probabilistic automaton satisfies a given property.
+<p>
+The second theme of my research is <b>games</b>, which is a mathematical framework to model interactions between agents in a system. 
+I am interested in two types of results: algorithmic, ie construct algorithms to <b>solve games</b> and output optimal strategies, or <b>existence of simple strategies</b>.
+
 <div id="accordion" class="panel-group">
 
 <div class="panel panel-default">
   <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#bisim" data-parent="#accordion">Probabilistic Bisimulation</button>
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#state_complexity" data-parent="#accordion">State complexity</button>
   </div>
 
-  <div id="bisim" class="panel-collapse collapse">
+  <div id="state_complexity" class="panel-collapse collapse">
 	<div class="panel-body">
-There are various notions of behavioural equivalence for stochastic systems, many of them related to the notion of <b>bisimulation</b>.
-The paper [FKS16] studies a notion of trace equivalence for Markov Decision Processes called <b>trace refinement</b>. The main results are that it is in general undecidable, 
-but becomes decidable in some cases. The key insight we obtain for the decidable case is to relate trace refinement to the notion of <b>probabilistic bisimulation on distributions</b>.
+The paper [Fij18] initiates the study of the state complexity for alternating automata.
 	<br/>
 	<table border="0" cellpadding="2" width="100%">
 		<tr>
-			<td class="labels">[FKS16]</td>
-			<td class="entree">
-				<a name="FKS16"></a>Nathana&euml;l Fijalkow, Stefan Kiefer and Mahsa Shirmohammadi. 
-				<span class="titre">Trace Refinement in Labelled Markov Decision Processes</span>,
-				<span class="booktitle"><em>Foundations of Software Science and Computation Structures, FoSSaCS'2016</em></span>.
-				(<a class="link" href="http://arxiv.org/abs/1510.09102">Technical report (ArXiv)</a>)
+			<td class="labels">[Fij18]</td>
+			<td class="entree"><a id="Fij18-LICS"></a>Nathana&euml;l Fijalkow.
+				<span class="titre">The State Complexity of Alternating Automata</span>,
+				<span class="booktitle"><em>Logic in Computer Science, LICS'2018</em></span>.
+	 			(<a class="link" href="https://nathanael-fijalkow.github.io/pdf/alternating_state_complexity.pdf">PDF</a>)
 				<br/>
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFKS16">Display/Hide the abstract</button>
-				<div id="abstractFKS16" class="collapse">
-					<i>Given two labelled Markov decision processes (MDPs), the trace-refinement problem asks whether for all strategies of the first MDP there exists a strategy of the second MDP such that the induced labelled Markov chains are trace-equivalent. We show that this problem is decidable in polynomial time if the second MDP is a Markov chain. The algorithm is based on new results on a particular notion of bisimulation between distributions over the states. However, we show that the general trace-refinement problem is undecidable, even if the first MDP is a Markov chain. Decidability of those problems has been open since 2008. We further study the decidability and complexity of the trace-refinement problem provided that the strategies are restricted to be memoryless.
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFij18">Display/Hide the abstract</button>
+				<div id="abstractFij18" class="collapse">
+					<i>This paper studies the complexity of languages of finite words using automata theory. To go beyond the class of regular languages, we consider infinite automata and the notion of state complexity defined by Karp. We look at alternating automata as introduced by Chandra, Kozen and Stockmeyer: such machines run independent computations on the word and gather their answers through boolean combinations.
+<br/>
+We devise a lower bound technique relying on boundedly generated lattices of languages, and give two applications of this technique. The first is a hierarchy theorem, stating that there are languages of arbitrarily high polynomial alternating state complexity, and the second is a linear lower bound on the alternating state complexity of the prime numbers written in binary. This second result strengthens a result of Hartmanis and Shank from 1968, which implies an exponentially worse lower bound for the same model.
+					</i>
+				</div>
+			</td>
+		</tr>	
+	</table>
+
+The paper [FS15] gives a very simple proof that it is undecidable whether a probabilistic automaton accepts a regular language.
+The same example shows that it is undecidable whether a probabilistic automaton has a large <b>state complexity</b>, see [Fij16a].
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[Fij16a]</td>
+			<td class="entree">
+				<a name="F16"></a>Nathana&euml;l Fijalkow. 
+				<span class="titre">Online Space Complexity and Probabilistic Automata</span>,
+				<span class="booktitle"><em>Logical Foundations of Computer Science, LFCS'2016</em></span>.
+				(<a class="link" href="pdf/LFCS_2016.pdf">Conference version (full)</a>)
+
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractF16a">Display/Hide the abstract</button>
+				<div id="abstractF16a" class="collapse">
+					<i>In this paper, we define the online space complexity of languages,
+as the size of the smallest abstract machine processing words sequentially and able to determine at every point
+whether the word read so far belongs to the language or not.
+The first part of this paper motivates this model and provides examples and preliminary results.
+<br/>
+One source of inspiration for introducing the online space complexity of languages comes from a seminal paper of Rabin from 1963, introducing probabilistic automata,
+which suggests studying the online space complexity of probabilistic languages. 
+This is the purpose of the second part of the current paper.
+					</i>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="labels">[FS15]</td>
+			<td class="entree">
+				<a name="FS15"></a>Nathana&euml;l Fijalkow and Micha&#322; Skrzypczak. 
+				<span class="titre">Irregular Behaviours for Probabilistic Automata</span>,
+				<span class="booktitle"><em>Reachability Problems, RP'2015</em></span>.
+				(<a class="link" href="pdf/RP_2015.pdf">Conference version (full)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFS15">Display/Hide the abstract</button>
+				<div id="abstractFS15" class="collapse">
+					<i>We consider probabilistic automata over finite words. Such an automaton defines the language consisting of the set of words accepted with probability greater than a given threshold. We show the existence of a universally non-regular probabilistic automaton, i.e. an automaton such that the language it defines is non-regular for every threshold. As a corollary, we obtain an alternative and very simple proof of the undecidability of determining whether such a language is regular.
 					</i>
 				</div>
 			</td>
 		</tr>
 	</table>
-	<br/>
 
-The paper [FKP17] revisits a classical result which says that two states are bisimilar if, and only if, they satisfy the same formulas of a very simple <b>probabilistic modal logic</b>.
-This result has been extended to simulation, and both results hold for general topological assumptions.
-In this paper, we give simple streamlined proof of this result using a new insight, which is a <b>probabilistic bisimulation game</b>.
-	<br/>
-	<table border="0" cellpadding="2" width="100%">
-		<tr>
-			<td class="labels">[FKP17]</td>
-			<td class="entree">
-				<a name="FKP17"></a>Nathana&euml;l Fijalkow, Bartek Klin and Prakash Panangaden. 
-				<span class="titre">Expressiveness of Probabilistic Modal Logics, Revisited</span>,
-				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2017</em></span>.
-				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=7368">Conference version (full)</a>)
-				<br/>
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFKP17">Display/Hide the abstract</button>
-				<div id="abstractFKP17" class="collapse">
-					<i>
-					Labelled Markov processes are probabilistic versions of labelled transition systems.  In general, the state space of a labelled Markov process may be a continuum.  						Logical characterizations of probabilistic bisimulation and simulation were given by Desharnais et al.
-					These results hold for systems defined on analytic state spaces and assume that there are countably many labels in the case of bisimulation 
-					and finitely many labels in the case of simulation.
-					<br/>
-					In this paper, we first revisit these results by giving simpler and more
-					streamlined proofs.  In particular, our proof for simulation has the same
-					structure as the one for bisimulation, relying on a new result of a
-					topological nature.  This departs from the known proof
-					for this result, which uses domain theory techniques and falls out of a
-					theory of approximation of Labelled Markov processes.
-					<br/>
-					Both our proofs assume the presence of countably many labels.  We
-					investigate the necessity of this assumption, and show that the
-					logical characterization of bisimulation may fail when there are
-					uncountably many labels.  However, with a stronger assumption on the
-					transition functions (continuity instead of just measurability), we can
-					regain the logical characterization result, for arbitrarily many labels.
-					These new results arose from a new game-theoretic way of understanding
-					probabilistic simulation and bisimulation.
-					</i>
-				</div>
-			</td>
-		</tr>
-
-	</table>
 	</div>
   </div>
 
 </div>
 
-
 <div class="panel panel-default">
   <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#pa" data-parent="#accordion">Probabilistic Automata</button>
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#algo_pa" data-parent="#accordion">Algorithms for probabilistic automata</button>
   </div>
 
-  <div id="pa" class="panel-collapse collapse">
+  <div id="algo_pa" class="panel-collapse collapse">
 	<div class="panel-body">
-
-<b>Probabilistic Automata</b> generalise classical automata by adding a probabilistic value for each transition.
-I am interested in algorithmic analysis of probabilistic automata, i.e. algorithms to determine whether a probabilistic automaton satisfies a given property.
-
-<br/><br/>
-Recently, I looked at probabilistic automata of bounded ambiguity, ie where each word has finitely many runs. 
+I looked at probabilistic automata of bounded ambiguity, ie where each word has finitely many runs. 
 It turns out to define a very robust and well-behaved class of probabilistic automata, for which we construct efficient algorithms, see the paper [FRW17].
-
 	<br/>
 	<table border="0" cellpadding="2" width="100%">
 		<tr>
@@ -136,8 +137,115 @@ It turns out to define a very robust and well-behaved class of probabilistic aut
 		</tr>
 	</table>
 
-<br/><br/>
-I focussed on the <b>value 1 problem</b>, which given a probabilistic automaton asks whether there exists a sequence of words whose acceptance probability converges to 1.
+The paper [Fij17] revisits undecidability results for probabilistic automata.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[Fij17]</td>
+			<td class="entree">
+				<a id="Fji17"></a>Nathana&euml;l Fijalkow. 
+				<span class="titre">Undecidable problems for probabilistic automata</span>,
+				<span class="booktitle"><em>Automata column in SIGLOG news</em></span>.
+				(<a class="link" href="http://siglog.org/download/14th-newsletter-october-2017/?wpdmdl=395">Online version</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFij17">Display/Hide the abstract</button>
+				<div id="abstractFij17" class="collapse">
+					<i>The model of probabilistic automata was introduced by Rabin in 1963. Ever since, undecidability results were obtained for this model, showing that although simple, it is very expressive. This paper provides streamlined constructions implying the most important negative results, including the celebrated inapproximability result of Condon and Lipton.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	</div>
+  </div>
+
+</div>
+
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#bisim" data-parent="#accordion">Probabilistic bisimulation</button>
+  </div>
+
+  <div id="bisim" class="panel-collapse collapse">
+	<div class="panel-body">
+There are various notions of behavioural equivalence for stochastic systems, many of them related to the notion of <b>bisimulation</b>.
+	<br/>
+The paper [FKP17] revisits a classical result which says that two states are bisimilar if, and only if, they satisfy the same formulas of a very simple <b>probabilistic modal logic</b>.
+This result has been extended to simulation, and both results hold for general topological assumptions.
+In this paper, we give simple streamlined proof of this result using a new insight, which is a <b>probabilistic bisimulation game</b>.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FKP17]</td>
+			<td class="entree">
+				<a name="FKP17"></a>Nathana&euml;l Fijalkow, Bartek Klin and Prakash Panangaden. 
+				<span class="titre">Expressiveness of Probabilistic Modal Logics, Revisited</span>,
+				<span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2017</em></span>.
+				(<a class="link" href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=7368">Conference version (full)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFKP17">Display/Hide the abstract</button>
+				<div id="abstractFKP17" class="collapse">
+					<i>
+					Labelled Markov processes are probabilistic versions of labelled transition systems.  In general, the state space of a labelled Markov process may be a continuum.  						Logical characterizations of probabilistic bisimulation and simulation were given by Desharnais et al.
+					These results hold for systems defined on analytic state spaces and assume that there are countably many labels in the case of bisimulation 
+					and finitely many labels in the case of simulation.
+					<br/>
+					In this paper, we first revisit these results by giving simpler and more
+					streamlined proofs.  In particular, our proof for simulation has the same
+					structure as the one for bisimulation, relying on a new result of a
+					topological nature.  This departs from the known proof
+					for this result, which uses domain theory techniques and falls out of a
+					theory of approximation of Labelled Markov processes.
+					<br/>
+					Both our proofs assume the presence of countably many labels.  We
+					investigate the necessity of this assumption, and show that the
+					logical characterization of bisimulation may fail when there are
+					uncountably many labels.  However, with a stronger assumption on the
+					transition functions (continuity instead of just measurability), we can
+					regain the logical characterization result, for arbitrarily many labels.
+					These new results arose from a new game-theoretic way of understanding
+					probabilistic simulation and bisimulation.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<br/>
+The paper [FKS16] studies a notion of trace equivalence for Markov Decision Processes called <b>trace refinement</b>. The main results are that it is in general undecidable, 
+but becomes decidable in some cases. The key insight we obtain for the decidable case is to relate trace refinement to the notion of <b>probabilistic bisimulation on distributions</b>.
+	<br/>
+	<table border="0" cellpadding="2" width="100%">
+		<tr>
+			<td class="labels">[FKS16]</td>
+			<td class="entree">
+				<a name="FKS16"></a>Nathana&euml;l Fijalkow, Stefan Kiefer and Mahsa Shirmohammadi. 
+				<span class="titre">Trace Refinement in Labelled Markov Decision Processes</span>,
+				<span class="booktitle"><em>Foundations of Software Science and Computation Structures, FoSSaCS'2016</em></span>.
+				(<a class="link" href="http://arxiv.org/abs/1510.09102">Technical report (ArXiv)</a>)
+				<br/>
+				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFKS16">Display/Hide the abstract</button>
+				<div id="abstractFKS16" class="collapse">
+					<i>Given two labelled Markov decision processes (MDPs), the trace-refinement problem asks whether for all strategies of the first MDP there exists a strategy of the second MDP such that the induced labelled Markov chains are trace-equivalent. We show that this problem is decidable in polynomial time if the second MDP is a Markov chain. The algorithm is based on new results on a particular notion of bisimulation between distributions over the states. However, we show that the general trace-refinement problem is undecidable, even if the first MDP is a Markov chain. Decidability of those problems has been open since 2008. We further study the decidability and complexity of the trace-refinement problem provided that the strategies are restricted to be memoryless.
+					</i>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	</div>
+  </div>
+
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#pa" data-parent="#accordion">The value 1 problem for probabilistic automata</button>
+  </div>
+
+  <div id="pa" class="panel-collapse collapse">
+	<div class="panel-body">
+The <b>value 1 problem</b> asks, given a probabilistic automaton, whether there exists a sequence of words whose acceptance probability converges to 1.
 This problem was shown undecidable by Gimbert and Oualhadj in 2010.
 
 The paper [FGO12] introduces the <b>Markov Monoid algorithm</b>, which computes the <b>stabilisation monoid</b> of a probabilistic automaton, generalising the transition monoid for non-deterministic automata.
@@ -334,52 +442,6 @@ The second step aims at better understanding the Markov Monoid algorithm, using 
 		</tr>
 	</table>
 
-	<br/><br/>
-
-I also considered other algorithmic properties of probabilistic automata. 
-The paper [FS15] gives a very simple proof that it is undecidable whether a probabilistic automaton accepts a regular language.
-The same example shows that it is undecidable whether a probabilistic automaton has a large <b>state complexity</b>, see [Fij16a].
-	<br/>
-	<table border="0" cellpadding="2" width="100%">
-		<tr>
-			<td class="labels">[Fij16a]</td>
-			<td class="entree">
-				<a name="F16"></a>Nathana&euml;l Fijalkow. 
-				<span class="titre">Online Space Complexity and Probabilistic Automata</span>,
-				<span class="booktitle"><em>Logical Foundations of Computer Science, LFCS'2016</em></span>.
-				(<a class="link" href="pdf/LFCS_2016.pdf">Conference version (full)</a>)
-
-				<br/>
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractF16a">Display/Hide the abstract</button>
-				<div id="abstractF16a" class="collapse">
-					<i>In this paper, we define the online space complexity of languages,
-as the size of the smallest abstract machine processing words sequentially and able to determine at every point
-whether the word read so far belongs to the language or not.
-The first part of this paper motivates this model and provides examples and preliminary results.
-<br/>
-One source of inspiration for introducing the online space complexity of languages comes from a seminal paper of Rabin from 1963, introducing probabilistic automata,
-which suggests studying the online space complexity of probabilistic languages. 
-This is the purpose of the second part of the current paper.
-					</i>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="labels">[FS15]</td>
-			<td class="entree">
-				<a name="FS15"></a>Nathana&euml;l Fijalkow and Micha&#322; Skrzypczak. 
-				<span class="titre">Irregular Behaviours for Probabilistic Automata</span>,
-				<span class="booktitle"><em>Reachability Problems, RP'2015</em></span>.
-				(<a class="link" href="pdf/RP_2015.pdf">Conference version (full)</a>)
-				<br/>
-				<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFS15">Display/Hide the abstract</button>
-				<div id="abstractFS15" class="collapse">
-					<i>We consider probabilistic automata over finite words. Such an automaton defines the language consisting of the set of words accepted with probability greater than a given threshold. We show the existence of a universally non-regular probabilistic automaton, i.e. an automaton such that the language it defines is non-regular for every threshold. As a corollary, we obtain an alternative and very simple proof of the undecidability of determining whether such a language is regular.
-					</i>
-				</div>
-			</td>
-		</tr>
-	</table>
 	</div>
   </div>
 </div>
@@ -387,7 +449,7 @@ This is the purpose of the second part of the current paper.
 
 <div class="panel panel-default">
   <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#dynamical" data-parent="#accordion">Dynamical Systems</button>
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#dynamical" data-parent="#accordion">Dynamical systems</button>
   </div>
 
   <div id="dynamical" class="panel-collapse collapse">
@@ -427,17 +489,11 @@ It is worth noting that the existence of semilinear invariants, on the other han
 
 <div class="panel panel-default">
   <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#games" data-parent="#accordion">Games</button>
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#games" data-parent="#accordion">Games with counters</button>
   </div>
 
   <div id="games" class="panel-collapse collapse">
 	<div class="panel-body">
-
-<b>Games</b> is a mathematical framework to model interactions between agents in a system. 
-I am interested in two types of results: algorithmic, ie construct algorithms to <b>solve games</b> and output optimal strategies, or <b>existence of simple strategies</b>.
-The latter often contributes to the former.
-
-<br/><br/>
 I focussed on the <b>LoCo conjecture</b>, which concerns the existence of finite-memory winning strategies in games with counters.
 
 <br/><br/>
@@ -640,8 +696,17 @@ and omega-regular languages on the other side.
 			</td>
 		</tr>
 	</table>
-	<br/><br/>
+	</div>
+  </div>
+</div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#parity_games" data-parent="#accordion">Parity and stochastic games</button>
+  </div>
+
+  <div id="parity_games" class="panel-collapse collapse">
+	<div class="panel-body">
 The paper [CF11b] streamlines the reduction from parity games to simple stochastic games by discounting the discounted games.
 The paper [FH13] studies the generalised reachability games, whose conditions are conjunctions of reachability objectives.
 The paper [FPS13] gives an alternative method for deciding the emptiness of alternating automata without constructing an equivalent non-deterministic automaton.
@@ -730,7 +795,7 @@ The method directly reduces to a game with imperfect information. We apply this 
 
 <div class="panel panel-default">
   <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#tool" data-parent="#accordion">Tool Developments</button>
+	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#tool" data-parent="#accordion">Tool developments</button>
   </div>
 
   <div id="tool" class="panel-collapse collapse">
@@ -802,7 +867,6 @@ The tool Stamina is open source and available from Github, details are given on 
 
   <div id="logics" class="panel-collapse collapse">
 	<div class="panel-body">
-
 
 The paper [FP14] and its journal version [FP17] studies monadic second-order logic over finite words extended with arbitrary monadic numerical predicates.
 It gives equivalent formalisms extending the classical ones, and show some properties of this logic.
