@@ -1,0 +1,258 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>GT Verif</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-800">
+	<h2>Nathana&euml;l Fijalkow</h2>
+	<h3>CNRS, LaBRI, Bordeaux, and The Alan Turing Institute of data science, London</h3>
+    </div>
+
+
+
+
+
+
+    <div id="title_intro" class="step" data-fixed="1" data-duration="0" data-x="-1000" data-y="-600">
+	<h2>Introduction</h2>
+    </div>
+
+    <div id="setting" class="step" data-x="-1400" data-y="-400" data-scale=".6">
+	<h3>Image <red>classifier</red></h3>
+
+	$$f : \textit{Images} \to \left\{\textit{Cat},\textit{Dog}\right\}$$
+
+	<br/>
+	For mathematical purposes:
+	$$\textit{Images} = \mathbb{R}^d$$
+	$$\textit{Cat} = 0 \text{ and } \textit{Dog} = 1$$
+    </div>
+
+    <div id="network" class="step" data-x="-1400" data-y="-100" data-scale=".6">
+	<h3>Neural network</h3>
+
+	<center><img id="gate" src="img/gate.svg"/></center>	
+    </div>
+
+    <div id="architecture" class="step" data-x="-800" data-y="-400" data-scale=".6">
+	<h3>Architecture</h3>
+
+	<center><img id="architecture" src="img/neural_network.svg"/></center>	
+    </div>
+
+    <div id="training" class="step" data-x="-800" data-y="-100" data-scale=".6">
+
+	<center><img id="setting" src="img/learning.svg"/></center>	
+    </div>
+
+
+
+
+
+    <div id="overview_1" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+
+    <div id="title_verif" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-400">
+	<h2>Safety Verification of Neural Networks</h2>
+    </div>
+
+
+    <div id="model-checking" class="step" data-x="0" data-y="0">
+	<h3>Model-checking problem</h3>
+
+	<b>INPUT</b>: a (trained) neural net representing $f : \mathbb{R}^d \to \mathbb{R}^d$
+	and a specification 
+	$$\phi(x) \implies \psi(f(x))$$
+
+	<b>OUTPUT</b>: does $f$ meet the specification?
+
+	<br/>
+	<br/>
+	<div class="slide_step">
+	<b>Theorem</b>: <green>NP-complete</green>
+	</div>	
+    </div>
+
+
+
+
+
+    <div id="overview_2" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+    <div id="title_oxford" class="step" data-fixed="1" data-duration="0" data-x="-1000" data-y="300">
+	<h2>The inductive approach</h2>
+    </div>
+
+    <div id="oxford" class="step" data-x="-1300" data-y="600" data-scale=".6">
+	Based on the CAV 2017 paper
+
+	<h3>Safety verification for deep neural networks</h3>
+	
+	<br/>Marta Kwiatkowska, Xiaowei Huang, Sen Wang, Min Wu and Matthew Wicker
+    </div>
+
+    <div id="adversarial" class="step" data-x="-900" data-y="600" data-scale=".6">
+	<h3>Finding adversarial examples</h3>
+
+	<center><img id="MNIST" src="img/MNIST.png"/></center>	
+    </div>
+
+    <div id="idea" class="step" data-x="-400" data-y="600" data-scale=".6">
+	<h3>Approach</h3>
+
+	<ul>
+		<li>Define a set of manipulations on images
+		<li>Given $x$, does there exist a safe region around $x$?
+		<li>Construct regions inductively in a backward fashion walking up the layers
+		<li>Computational tasks expressed in a SMT solver
+	</ul>
+    </div>
+
+
+
+
+
+    <div id="overview_3" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+
+
+    <div id="title_stanford" class="step" data-fixed="1" data-duration="0" data-x="1000" data-y="300">
+	<h2>The simplex approach</h2>
+    </div>
+
+    <div id="stanford" class="step" data-x="200" data-y="600" data-scale=".6">
+	Based on the CAV 2017 paper
+
+	<h3>Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</h3>
+	
+	<br/>Guy Katz, Clark Barrett, David Dill, Kyle Julian and Mykel Kochenderfer
+    </div>
+
+    <div id="objective" class="step" data-x="750" data-y="600" data-scale=".6">
+	<h3>Objective</h3>
+
+	Model-checking specifications
+
+	$$\phi(x) \implies \psi(f(x))$$
+	
+	with $\phi,\psi$ boolean combinations of linear inequalities
+    </div>
+
+    <div id="killer_app" class="step" data-x="1100" data-y="600" data-scale=".6">
+	<center><img id="ACAS" src="img/ACAS.png"/></center>	
+    </div>
+
+    <div id="approach2" class="step" data-x="1600" data-y="600" data-scale=".6">
+	<h3>Approach</h3>
+
+	<ul>
+		<li>Express in SMT with explicit ReLU
+		<li>Simplex-based algorithm with lazy evaluation for ReLU
+		<li>Floating point arithmetic for performances
+	</ul>
+    </div>
+
+
+
+
+    <div id="overview_4" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+    <div id="title_generative" class="step" data-fixed="1" data-duration="0" data-x="1000" data-y="-600">
+	<h2>Generative models</h2>
+    </div>
+
+    <div id="generative" class="step" data-x="800" data-y="-400" data-scale=".6">
+	$$f : \textit{Random Seeds} \to \textit{Cat Images}$$
+
+	<br/>
+	For mathematical purposes:
+	$$\textit{Random Seeds} = \mathbb{R}^d$$
+	$$\textit{Cat Images} \subset \mathbb{R}^d$$
+    </div>
+
+    <div id="openai" class="step" data-x="800" data-y="0" data-scale=".6">
+	<h3>OpenAI.com</h3>
+
+	<center><img id="openai" src="img/gen_models_anim_2.gif"/></center>	
+    </div>
+
+    <div id="perplexity" class="step" data-x="1400" data-y="-400" data-scale=".6">
+	<h3>Perplexity</h3>
+
+	<br/>
+	Problem: what is $\textit{Cat Images}$?
+	<br/>
+	<h3><red>How to measure the progress<br/> of a generative model?</red></h3>
+	<br/>
+	<div class="slide_step">
+	<b>GAN idea</b>: a model is good if it is hard to <green>distinguish</green> from an actual distribution of cat images:
+	a neural net in charge of <green>discriminating</green>
+	</div>	
+
+    </div>
+
+    <div id="questions_final" class="step" data-x="1400" data-y="0" data-scale=".6">
+	<h3>Questions</h3>
+
+	Arora et al in <a href="https://arxiv.org/abs/1703.00573">ICML'17</a> ask:
+	<ul>
+		<li>what is the quality of the distribution learned by the neural network?
+		<li>how do we check whether a distribution is <blue>good</blue>?
+	</ul>
+		
+    </div>
+
+
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
