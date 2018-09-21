@@ -34,7 +34,8 @@
     <div id="intro1" class="step" data-x="0" data-y="0">
 	<h3>Main objective</h3>
 
-	<h4>Develop algorithms for answering <blue>boundedness questions</blue>:</h4>
+	<br/>
+	<h4>Develop algorithms for answering <blue>boundedness questions</blue></h4>
 
 		<b>Input:</b> $L$ a language <br/>
 		<b>Question:</b> 
@@ -42,25 +43,30 @@
 
     </div>
 
-    <div id="intro2" class="step" data-x="0" data-y="300">
-	<h3>This talk focusses on a key notion</h3>
-	<br/>
-	
-	<h3><red>History-deterministic cost automata</red></h3>
-    </div>
-
-    <div id="intro3" class="step" data-x="0" data-y="600">
+    <div id="intro2" class="step" data-x="0" data-y="450">
 	<h3>Invitation au voyage</h3>
+
 	<br/>
-	
-	It turned out that the theory of regular cost functions is a <green>very conservative</green>
-	extension of classical automata theory: (almost) every notion is reflected here!
+	<red>Main point</red>: the theory of regular cost functions gave <blue>solutions</blue> to problems
+	in automata theory, database theory, logic...
 
 	<br/><br/>
+
 	<div class="slide_step">
-		The consequence is that it requires <red>deeply understanding</red> (hence revisiting) automata theory!
+	<red>Second point</red>: it turned out that the theory of regular cost functions is a <green>very conservative</green>
+	extension of classical automata theory: (almost) every notion is reflected here!
+	</div>
+
+	<br/>
+
+	<div class="slide_step">
+	The consequence is that it requires <red>deeply understanding</red> (hence revisiting) automata theory!
 	</div>
 	
+    </div>
+
+    <div id="HD" class="step" data-fixed="1" data-x="1000" data-y="-900">
+	<h25>History-deterministic automata</h25>
     </div>
 
 
@@ -184,6 +190,7 @@
 	Cost-MSO: MSO + $\text{Card}(X) \le N$ (<red>positively</red>)
 
 	<br/>
+	<br/>
 	<div class="slide_step">
 		<h3>Boundedness problem for cost-MSO</h3>
 		<b>Input:</b> $\phi$ cost-MSO formula <br/>
@@ -194,6 +201,7 @@
 
     <div id="costMSO-results" class="step" data-x="-600" data-y="600" data-scale=".3">
 	<h2>Main result</h2>
+	<br/>
 
 	<center><img id="triangle" src="img/triangle.svg"/></center>	
     </div>
@@ -282,7 +290,7 @@
 	<h2>An example</h2>
 	$$f(a^{n_1} b a^{n_2} b \cdots a^{n_k} b) = \text{min}\ n_\ell$$
 
-	<red>Promise: $f(w) = 2$</red>. Non-determinism is resolved on-the-fly!
+	<red>Promise: $f(w) = 2$.</red> Non-determinism is resolved on-the-fly!
 
 	<svg width="900" height="400">
 		<g class="token">
@@ -376,12 +384,34 @@
 	Positionality for B-games <br/>implies that<br/> $\mathcal{B}$ is history-deterministic</h4>
     </div>
 
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
+    </div>
 
+
+    <div id="assume-guarantee" class="step" data-duration="0" data-x="-1500" data-y="0" data-scale=".5">
+	<h3>Application:</h3>
+	<h4>Assume-Guarantee Synthesis for Prompt LTL</h4>
+
+	<br/>
+	Prompt LTL: LTL + $F^{\le N}$
+	<br/>
+	<br/>
+	
+	<div class="slide_step">
+	<b>Input:</b> $\phi,\psi$ prompt LTL formulae <br/>
+	<b>Question:</b> construct a system $S$ such that
+	$$\forall N \in \mathbb{N}, \exists N' \in \mathbb{N},\ \ S,N \models \phi \implies S,N' \models \psi$$
+	</div>
+
+	<div class="slide_step">
+	<b>Theorem</b>: (F., Maubert, Vardi)<br/>
+	Assume-Guarantee Synthesis for Prompt LTL is effective
+	</div>
+    </div>
 
 
     <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
     </div>
-
 
 </div>
 
