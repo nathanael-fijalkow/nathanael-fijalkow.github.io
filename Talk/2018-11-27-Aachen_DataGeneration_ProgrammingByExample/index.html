@@ -1,0 +1,214 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Data generation for programming by example</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="0">
+	<h2>Nathana&euml;l Fijalkow</h2>
+	<h3>CNRS, LaBRI, Bordeaux, <br/> and The Alan Turing Institute, London</h3>
+	<br/>
+	<h3>Joint work with Judith Clymo, Haik Manukian, Adria Gascon, and Brooks Paige</h3>
+    </div>
+
+    <div id="PBE" class="step" data-fixed="1" data-duration="0" data-x="-1200" data-y="-800">
+	<h2>Programming by example</h2>
+    </div>
+
+
+
+
+
+    <div id="problem" class="step" data-x="-1300" data-y="-400">
+	<h3>Problem</h3>
+	<br/>
+	<b>INPUT</b>: <blue>a few</blue> input / output pairs
+	<br/>
+	<b>OUTPUT</b>: synthetise a program
+    </div>
+
+    <div id="dsl" class="step" data-x="-700" data-y="-400">
+	<h3>The domain specific language (DSL)</h3>
+	<br/>
+	<red>DeepCoder</red>: Learning to Write Programs (ICLR 2017)
+	<br/>
+	<center>
+	<img id="examples" src="img/examples.png"></img>
+	</center>
+
+    </div>
+
+    <div id="FlashFill" class="step" data-x="-1200" data-y="100">
+	<h3>FlashFill (Gulwani, Microsoft Research)</h3>
+	<br/>
+	Included in Microsoft Excel 2013!
+	<center>
+	<img id="FlashFill1" src="img/FlashFill.png"></img>
+	<img id="FlashFill2" src="img/FlashFill2.png"></img>
+	</center>
+	<blue>Correct with one I/O in 60% of the cases!</blue>
+    </div>
+
+    <div id="general_strategy" class="step" data-x="-1200" data-y="700">
+	<h3>PL and ML meet</h3>
+	<br/>
+	<center>
+	<img id="general_strategy" src="img/strategy.png"></img>
+	</center>
+    </div>
+
+    <div id="overview1" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+
+
+    <div id="DG" class="step" data-fixed="1" data-duration="0" data-x="1200" data-y="-800">
+	<h2>Data generation</h2>
+    </div>
+
+
+
+
+    <div id="feynman" class="step" data-x="1200" data-y="-600">
+	<center>
+	<b>Feynman</b>: What I cannot create, I do not understand.
+	</center>
+    </div>
+
+    <div id="data_geenration_obj" class="step" data-x="1200" data-y="-300">
+	The learning model should learn <red>the DSL</red>, not <green>the data generation</green>.
+	<br/>
+	<br/>
+	<center>
+	<b>Confucius</b>: When a wise man points at the moon, the imbecile examines the finger.
+	</center>
+	<br/>
+	<div class="slide_step">	
+	Why?
+	<ul>
+		<li>To obtain <blue>generalisable</blue> models (unseen data)
+		<li>Otherwise the setting <blue>does not make sense</blue>!
+	</ul>
+	</div>
+    </div>
+
+    <div id="objectives" class="step" data-x="1200" data-y="100">
+	<h3>Objectives of data generation</h3>
+	<ul>
+		<li>Find <red>informative</red> programs and I/O with varied behaviours
+		<li>Beware of the <green>aliasing problem</green> (when two programs agree on I/O)
+	</ul>
+    </div>
+
+    <div id="closer_look" class="step" data-x="1200" data-y="350">
+	<h3>A closer look at our DSL</h3>
+	The choice of DSL makes data generation hard!
+	<ul>
+		<li>Many partial functions: take, access
+		<li>Functions like scanl1(*) and drop are a nightmare
+	</ul>
+    </div>
+
+    <div id="methods" class="step" data-duration="0" data-x="300" data-y="-700">
+	<h3>Four <red>data generation</red> methods</h3>
+	<b>Problem</b>: given a program, find interesting I/O
+	<br/>
+	<br/>
+	<ul>
+		<li>Domain restriction (original DeepCoder approach)
+		<li>Non-uniform sampling
+		<li>Constraint-based (leveraging z3)
+		<li>Semantic variation
+	</ul>
+    </div>
+
+    <div id="methods_zoom" class="step" data-scale=".3" data-x="300" data-y="-450">
+	<center>
+	<img id="method" src="img/method.png"></img>
+	</center>
+    </div>
+
+    <div id="overview1" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+    <div id="Exp" class="step" data-fixed="1" data-duration="0" data-x="-200" data-y="400">
+	<h2>Experiments</h2>
+    </div>
+
+
+
+
+
+    <div id="aliasing" class="step" data-x="-450" data-y="700" data-scale=".8">
+	<h3>Aliasing</h3>
+	<br/>
+	<center>
+	<img id="aliasing" src="img/aliasing.png"></img>
+	</center>
+    </div>
+
+    <div id="distribution" class="step" data-x="100" data-y="700" data-scale=".8">
+	<h3>Input distribution</h3>
+	<br/>
+	<center>
+	<img id="input_distribution" src="img/unconditional_input_hist.png"></img>
+	</center>
+    </div>
+
+    <div id="timing" class="step" data-x="600" data-y="700" data-scale=".8">
+	<h3>Timing distribution</h3>
+	<br/>
+	<center>
+	<img id="timing" src="img/combined_testSetPerformance_searchTime.png"></img>
+	</center>
+    </div>
+
+    <div id="courts" class="step" data-x="1200" data-y="700" data-scale=".8">
+	<h3>Home court / away court</h3>
+	<br/>
+	<center>
+	<img id="courts" src="img/top_k_plots.png"></img>
+	</center>
+    </div>
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
