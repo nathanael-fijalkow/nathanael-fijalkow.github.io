@@ -1,0 +1,322 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>{\usetheme{Bergen}}
+\usefonttheme{serif}
+\usecolortheme{beetle}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsthm,amssymb,amsmath,graphicx}
+%\usepackage[usenames]{color}
+\usepackage{gastex}
+
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\fin}{\mathrm{fin}}
+\newcommand{\bucf}{\mathrm{B\ddot{u}chi}(F)}
+\newcommand{\parp}{\mathrm{Parity}(p)}
+\newcommand{\infi}{\mathrm{Inf}}
+\newcommand{\distk}{\mathrm{dist}_k}
+\newcommand{\nextk}{\mathrm{next}_k}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\omegareg}{\omega\mathrm{-reg}}
+
+\newcommand{\DB}{\mathit{DB}}
+\newcommand{\DC}{\mathit{DC}}
+\newcommand{\DP}{\mathit{DP}}
+\newcommand{\DS}{\mathit{DS}}
+
+\newcommand{\DFB}{\mathit{DFB}}
+\newcommand{\DFC}{\mathit{DFC}}
+\newcommand{\DFP}{\mathit{DFP}}
+\newcommand{\DFS}{\mathit{DFS}}
+
+\newcommand{\NB}{\mathit{NB}}
+\newcommand{\NC}{\mathit{NC}}
+\newcommand{\NP}{\mathit{NP}}
+\newcommand{\NS}{\mathit{NS}}
+
+\newcommand{\NFB}{\mathit{NFB}}
+\newcommand{\NFC}{\mathit{NFC}}
+\newcommand{\NFP}{\mathit{NFP}}
+\newcommand{\NFS}{\mathit{NFS}}
+
+\title{Topological, Automata-Theoretic and Logical Characterization of Finitary Languages}
+\subtitle{Presentation for YR-CONCUR 2010}
+\author{Krishnendu Chatterjee \& \underline{Nathana\"el Fijalkow}}
+\institute{IST Austria (Institute of Science and Technology, Austria)}
+\date{September 4th, 2010}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Introduction: system specification}
+\transdissolve
+\begin{itemize}
+ \item infinite duration (e.g web server);
+ \item discrete time;
+ \item open: evolution depends on any number of agents (concurrent system);
+ \item agents may be controllable or not.
+\end{itemize}
+\pause
+\begin{itemize}
+ \item a finite alphabet $\Sigma$ represent properties;
+ \item runs are infinite words;
+ \item specification given as a language ($\omega$-regular language);
+ \item liveness properties: "something good happens eventually".
+\end{itemize}
+\end{frame}
+
+\section{Motives for finitary objectives}
+
+\begin{frame}{Classical liveness properties}
+A first example, B\"uchi:
+\begin{itemize}
+ \item a given set of properties appears infinitely often;
+\end{itemize}
+\pause
+\vskip2ex
+A second example, parity:
+\begin{itemize}
+ \item integers are assigned to letters, representing priority;
+ \item some integers appear infinitely often;
+ \item the least priority appearing infinitely often is even.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Drawback}
+B\"uchi: $F = \set{v_{2^k} \mid k \in \N}$
+\begin{figure}
+\begin{center}
+\begin{picture}(80,0)(2,0)
+	\gasset{Nw=8,Nh=8}
+
+	\node(0)(0,0){$v_0$}
+	\node(1)(15,0){$v_1$}
+	\drawedge(0,1){}
+	\node(2)(30,0){$v_2$}
+	\drawedge(1,2){}
+	\node[Nframe=n](3)(45,0){}
+	\drawedge(2,3){}
+
+	\put(43,-.5){\begin{Huge}$\ldots$\end{Huge}}
+
+	\node[Nframe=n](n-1)(50,0){}
+	\node(n)(65,0){$v_n$}
+	\drawedge(n-1,n){}
+	\node[Nframe=n](n+1)(80,0){}
+	\drawedge(n,n+1){}
+	\put(78,-.5){\begin{Huge}$\ldots$\end{Huge}}
+\end{picture}
+\end{center}
+\end{figure}
+The time until something good happens may be unbounded!
+\end{frame}
+
+\begin{frame}{A stronger formulation of liveness: finitary liveness~\cite{AH94}}
+Idea: there exists an unknown, fixed bound $b$ such that something good happens within $b$ transitions.
+\pause
+\vskip2ex
+It can be expressed as a finitary operator on languages:
+$$\fin(L) = \bigcup \set{M \mid M \textrm{ closed and } \omega \textrm{-regular}, M \subseteq L}$$
+\pause
+\begin{itemize}
+ \item closed: involves Cantor topology;
+ \item $\omega$-regular: involves $\omega$-regularity;
+ \item restriction operator: $\fin(L) \subseteq L$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Back to example}
+Finitary B\"uchi: $F = \set{v_{2^n} \mid n \in \N}$
+\begin{figure}
+\begin{center}
+\begin{picture}(80,0)(2,0)
+	\gasset{Nw=8,Nh=8}
+
+	\node(0)(0,0){$v_0$}
+	\node(1)(15,0){$v_1$}
+	\drawedge(0,1){}
+	\node(2)(30,0){$v_2$}
+	\drawedge(1,2){}
+	\node[Nframe=n](3)(45,0){}
+	\drawedge(2,3){}
+
+	\put(43,-.5){\begin{Huge}$\ldots$\end{Huge}}
+
+	\node[Nframe=n](n-1)(50,0){}
+	\node(n)(65,0){$v_n$}
+	\drawedge(n-1,n){}
+	\node[Nframe=n](n+1)(80,0){}
+	\drawedge(n,n+1){}
+	\put(78,-.5){\begin{Huge}$\ldots$\end{Huge}}
+\end{picture}
+\end{center}
+\end{figure}
+\vskip2ex
+Not satisfied!
+\end{frame}
+
+\section{Characterizations}
+
+\begin{frame}{Describing classical finitary objectives: B\"uchi}
+Let $F \subseteq \Sigma$,
+$$\bucf = \set{ w \mid \infi(w) \cap F \not= \emptyset}$$
+\pause
+\vskip1ex
+We define:
+$$\nextk (w,F) = \inf \set{k'-k \mid k' \geq k, w_{k'} \in F}$$
+\pause
+\begin{lemma}
+$$\fin(\bucf) = \set{w \mid \limsup_k \nextk (w,F) < \infty}$$
+\end{lemma}
+\end{frame}
+
+\begin{frame}{Describing classical finitary objectives: parity}
+Let $p : \Sigma \rightarrow \N$ a priority function,
+$$\parp = \set{w \mid \min(p(\infi(w))) \mbox{ is even}}$$
+\pause
+\vskip1ex
+We define:
+$$\distk (w,p) = \inf \set{k'-k \mid 
+\begin{array}{ll}
+k' \geq k, p(w_{k'}) \textrm{ even and } \\
+p(w_{k'}) \leq p(w_k)}
+\end{array}$$
+\pause
+\begin{lemma}
+$$\fin(\parp) = \set{ w \mid \limsup_k \distk (w,p) < \infty }$$
+\end{lemma}
+\end{frame}
+
+\begin{frame}{Notations for automata-theoretic characterization}
+$$\left \{ \begin{array}{c} D (deterministic) \\ N (non-deterministic) \end{array} \right \} \cdot
+\left \{ \begin{array}{c} \varepsilon (classical) \\ F (finitary) \end{array} \right \} \cdot
+\left \{ \begin{array}{c} B (Büchi) \\ P (parity) \end{array} \right \}$$
+\end{frame}
+
+\begin{frame}{}
+%\begin{figure}
+\begin{center}
+\setlength{\unitlength}{1cm}
+\begin{picture}(8,9)(1.6,0.4)
+% Ellipse:  u = 4.5  v = 4.5  a = 2.0  b = 2.0  phi = 0.0 Grad
+% DFB
+\put(3.8,2.7){$\DFB$}
+\qbezier(6.5, 4.5)(6.5, 5.3284)(5.9142, 5.9142)
+\qbezier(5.9142, 5.9142)(5.3284, 6.5)(4.5, 6.5)
+\qbezier(4.5, 6.5)(3.6716, 6.5)(3.0858, 5.9142)
+\qbezier(3.0858, 5.9142)(2.5, 5.3284)(2.5, 4.5)
+\qbezier(2.5, 4.5)(2.5, 3.6716)(3.0858, 3.0858)
+\qbezier(3.0858, 3.0858)(3.6716, 2.5)(4.5, 2.5)
+\qbezier(4.5, 2.5)(5.3284, 2.5)(5.9142, 3.0858)
+\qbezier(5.9142, 3.0858)(6.5, 3.6716)(6.5, 4.5)
+% Ellipse:  u = 3.0  v = 6.0  a = 2.0  b = 2.0  phi = 0.0 Grad
+% DB
+\put(1.7,7.2){$\DB$}
+\qbezier(5.0, 6.0)(5.0, 6.8284)(4.4142, 7.4142)
+\qbezier(4.4142, 7.4142)(3.8284, 8.0)(3.0, 8.0)
+\qbezier(3.0, 8.0)(2.1716, 8.0)(1.5858, 7.4142)
+\qbezier(1.5858, 7.4142)(1.0, 6.8284)(1.0, 6.0)
+\qbezier(1.0, 6.0)(1.0, 5.1716)(1.5858, 4.5858)
+\qbezier(1.5858, 4.5858)(2.1716, 4.0)(3.0, 4.0)
+\qbezier(3.0, 4.0)(3.8284, 4.0)(4.4142, 4.5858)
+\qbezier(4.4142, 4.5858)(5.0, 5.1716)(5.0, 6.0)
+% Ellipse:  u = 5.0  v = 5.0  a = 4.0  b = 2.5  phi = 45.0 Grad
+% DFP
+\put(2.6,1.9){$\DFP$}
+\qbezier(7.8284, 7.8284)(7.0962, 8.5607)(5.75, 8.25)
+\qbezier(5.75, 8.25)(4.4038, 7.9393)(3.2322, 6.7678)
+\qbezier(3.2322, 6.7678)(2.0607, 5.5962)(1.75, 4.25)
+\qbezier(1.75, 4.25)(1.4393, 2.9038)(2.1716, 2.1716)
+\qbezier(2.1716, 2.1716)(2.9038, 1.4393)(4.25, 1.75)
+\qbezier(4.25, 1.75)(5.5962, 2.0607)(6.7678, 3.2322)
+\qbezier(6.7678, 3.2322)(7.9393, 4.4038)(8.25, 5.75)
+\qbezier(8.25, 5.75)(8.5607, 7.0962)(7.8284, 7.8284)
+% Ellipse:  u = 5.0  v = 5.0  a = 5.0  b = 3.5  phi = 45.0 Grad
+% NFB = NFS = NFP
+\put(2.0,0.7){$\NFB = \NFP$}
+\qbezier(8.182, 8.182)(7.3033, 9.0607)(5.75, 8.75)
+\qbezier(5.75, 8.75)(4.1967, 8.4393)(2.8787, 7.1213)
+\qbezier(2.8787, 7.1213)(1.5607, 5.8033)(1.25, 4.25)
+\qbezier(1.25, 4.25)(0.9393, 2.6967)(1.818, 1.818)
+\qbezier(1.818, 1.818)(2.6967, 0.9393)(4.25, 1.25)
+\qbezier(4.25, 1.25)(5.8033, 1.5607)(7.1213, 2.8787)
+\qbezier(7.1213, 2.8787)(8.4393, 4.1967)(8.75, 5.75)
+\qbezier(8.75, 5.75)(9.0607, 7.3033)(8.182, 8.182)
+% Ellipse:  u = 5.0  v = 6.25  a = 5.0  b = 3.0  phi = 0.0 Grad
+% NB
+\put(0.1,6.35){$\NB$}
+\qbezier(10.0, 6.25)(10.0, 7.4926)(8.5355, 8.3713)
+\qbezier(8.5355, 8.3713)(7.0711, 9.25)(5.0, 9.25)
+\qbezier(5.0, 9.25)(2.9289, 9.25)(1.4645, 8.3713)
+\qbezier(1.4645, 8.3713)(0.0, 7.4926)(0.0, 6.25)
+\qbezier(0.0, 6.25)(0.0, 5.0074)(1.4645, 4.1287)
+\qbezier(1.4645, 4.1287)(2.9289, 3.25)(5.0, 3.25)
+\qbezier(5.0, 3.25)(7.0711, 3.25)(8.5355, 4.1287)
+\qbezier(8.5355, 4.1287)(10.0, 5.0074)(10.0, 6.25)
+\end{picture}
+\end{center}
+%\end{figure}
+
+\end{frame}
+
+\section{Our logical characterization}
+
+\begin{frame}{$\omega$-regular expressions}
+Regular expressions defines regular languages over finite words:
+$$L := \emptyset \mid \varepsilon \mid \sigma \mid L \cdot L \mid L^* \mid L + L; \quad \sigma \in \Sigma$$
+
+$\omega$-regular languages are finite union of $L \cdot L'^\omega$,
+where $L$ and $L'$ are regular languages of finite words.
+\end{frame}
+
+\begin{frame}{The bound operator $B$~\cite{BC06}}
+$$L^\omega = \set{u_0 \cdot u_1 \cdot \ldots \cdot u_k \ldots \mid u_0, u_1, \ldots, u_k,\ldots \in L}$$
+\pause
+$$L^B = \set{u_0 \cdot u_1 \cdot \ldots \cdot u_k \ldots \mid 
+\begin{array}{ll}
+u_0, u_1, \ldots, u_k,\ldots \in L \\
+\textrm{ and } (|u_n|)_{n \in \N} \textrm{ is bounded}
+\end{array}}$$
+\end{frame}
+
+\begin{frame}{Star-free $\omega B$-regular expressions}
+
+Star-free $\omega B$-regular languages are finite union of $L \cdot M^\omega$, 
+where $L$ is a regular language over finite words
+\vskip1ex
+and $M$ is a star-free $B$-regular language over infinite words.
+\vskip1ex
+Star-free $B$-regular languages are described by the grammar:
+$$M := \emptyset \mid \varepsilon \mid \sigma \mid M \cdot M \mid M^B \mid M + M; \quad \sigma \in \Sigma$$
+\pause
+(disclaimer: complete definitions require the use of infinite sequences of finite words)
+\pause
+
+\begin{theorem}
+$\NFP$ (non-deterministic finitary parity) has exactly the same expressive power as star-free $\omega B$-regular expressions.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Bibliography}
+\bibliography{bib}
+\bibliographystyle{alpha}
+\end{frame}
+
+\begin{frame}{The end}
+\begin{center}
+Thank you for your attention!
+\end{center}
+\end{frame}
+
+\end{document}

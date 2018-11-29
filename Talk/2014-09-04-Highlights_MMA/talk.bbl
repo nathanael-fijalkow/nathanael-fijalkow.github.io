@@ -1,0 +1,42 @@
+\begin{thebibliography}{FGKO14}
+
+\bibitem[BBG12]{BBG12}
+Christel Baier, Nathalie Bertrand, and Marcus Gr{\"o}{\ss}er.
+\newblock Probabilistic {$\omega$}-automata.
+\newblock {\em Journal of the ACM}, 59(1):1, 2012.
+
+\bibitem[CSV13]{CSV13}
+Rohit Chadha, A.~Prasad Sistla, and Mahesh Viswanathan.
+\newblock Probabilistic automata with isolated cut-points.
+\newblock In Krishnendu Chatterjee and Jiri Sgall, editors, {\em MFCS}, volume
+  8087 of {\em Lecture Notes in Computer Science}, pages 254--265. Springer,
+  2013.
+
+\bibitem[CT12]{CT12}
+Krishnendu Chatterjee and Mathieu Tracol.
+\newblock Decidable problems for probabilistic automata on infinite words.
+\newblock In {\em Logics in Computer Science}, 2012.
+
+\bibitem[FGKO14]{FGKO14}
+Nathana{\"e}l Fijalkow, Hugo Gimbert, Edon Kelmendi, and Youssouf Oualhadj.
+\newblock Deciding the value 1 problem for probabilistic leaktight automata.
+\newblock Unpublished, 2014.
+
+\bibitem[FGO12]{FGO12}
+Nathana{\"e}l Fijalkow, Hugo Gimbert, and Youssouf Oualhadj.
+\newblock Deciding the value 1 problem for probabilistic leaktight automata.
+\newblock In {\em Logics in Computer Science}, pages 295--304, 2012.
+
+\bibitem[Fij14]{F14}
+Nathana{\"e}l Fijalkow.
+\newblock On the optimality of the markov monoid algorithm.
+\newblock Unpublished, 2014.
+
+\bibitem[GO10]{GO10}
+Hugo Gimbert and Youssouf Oualhadj.
+\newblock Probabilistic automata on finite words: Decidable and undecidable
+  problems.
+\newblock In {\em International Colloquium on Automata, Languages and
+  Programming}, pages 527--538, 2010.
+
+\end{thebibliography}

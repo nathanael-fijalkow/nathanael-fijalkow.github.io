@@ -1,0 +1,6 @@
+latex main.tex
+latex main.tex
+dvips -o main.ps main.dvi
+
+
+

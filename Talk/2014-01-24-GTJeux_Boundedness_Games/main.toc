@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.24pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{The three ingredients to prove Rabin's theorem}{18}{0}{2}
+\beamer@sectionintoc {3}{Towards finite-memory determinacy for cost-parity games}{29}{0}{3}

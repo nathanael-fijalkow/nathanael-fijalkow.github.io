@@ -1,0 +1,574 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+\usefonttheme{serif}
+\usecolortheme{dove}
+\useinnertheme{rounded}
+%\useoutertheme{smoothbars}
+\setbeamercolor{item projected}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{footline}[frame number] 
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsthm,amssymb,amsmath,graphicx}
+\usepackage{color}
+\usepackage{gastex}
+
+\usepackage{pgfmath}
+\usepackage{tikz,ifthen}%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% A non-original creation by Nathana\"el Fijalkow and myself %
+
+\setbeamertemplate{frametitle}{%
+
+  \vskip-2pt%
+
+  \begin{beamercolorbox}[rightskip=2cm,leftskip=1em,dp=1ex,wd=12.8cm]{frametitle}%
+    \vskip2pt%
+    \usebeamercolor{frametitle}%
+    \begin{tikzpicture}[scale=1]%
+      \useasboundingbox (0,0) rectangle (0,0); %(-1,-1) rectangle (1,1);%
+      \ifthenelse{\insertframenumber<\inserttotalframenumber}%
+      { % uncomplete tart
+
+
+        \pgfmathsetmacro{\aimangle}{90-(\insertframenumber*360/\inserttotalframenumber)}
+        \fill [fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,.2) -- (11.8,.6) arc (90:\aimangle:0.4) -- cycle;%
+
+      }{ % the full tart
+        \fill[fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,0.2) circle (.4);%
+      }%
+      \fill[fill=frametitle.fg,thin, color=white,draw=black] (11.8,0.2) circle (.3);%
+      \node at (11.8, .2) [black,circle]{\normalsize\insertframenumber};
+
+
+    \end{tikzpicture}
+    \insertframetitle%
+    \vskip2pt%
+  \end{beamercolorbox}%
+}
+
+\renewcommand{\AA}{\mathcal{A}}
+
+\newcommand{\PSPACE}{\mathrm{PSPACE}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\JJ}{\mathcal{J}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MMAA}{\MM_\AA}
+\newcommand{\tr}[1]{\langle #1 \rangle}
+\newcommand{\prob}[1]{\mathbb{P}_{#1}}
+\newcommand{\stab}[1]{S(#1)}
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\val}[1]{\text{val}(#1)}
+\newcommand{\merge}{\textrm{merge}}
+\newcommand{\chck}{\textrm{check}}
+\newcommand{\apply}{\textrm{apply}}
+\newcommand{\finish}{\textrm{finish}}
+\newcommand{\wait}{\textrm{wait}}
+\newcommand{\delay}{\textrm{Delay}}
+   
+\title{Deciding the value $1$ problem \\ for probabilistic leaktight automata}
+\author{Nathana\"el Fijalkow, \\
+joint work with Hugo Gimbert and Youssouf Oualhadj}
+\institute{LIAFA, Universit\'e Paris 7, France,\\
+University of Warsaw, Poland.\\
+}
+\date{LICS, Dubrovnik, Croatia\\
+June 26th 2012}
+
+\setbeamertemplate{blocks}[rounded]%
+%[shadow=true]
+\setbeamercolor{block title}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=normal text.bg!95!black}
+
+\AtBeginSection[]
+{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+\addtocounter{framenumber}{-1}
+}
+\AtBeginSubsection[]
+{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+\addtocounter{framenumber}{-1}
+}
+
+\begin{document}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}[plain]
+  \titlepage
+%\begin{center}
+%\includegraphics[scale=0.2]{warsaw.eps}
+%\end{center}
+
+\end{frame}
+
+%\begin{frame}<beamer>{Outline}
+%\addtocounter{framenumber}{-1}
+%  \tableofcontents
+%\end{frame}
+
+%\section{The value $1$ problem for probabilistic automata}
+
+\begin{frame}{Probabilistic automata (Rabin, 1963)}
+\begin{figure}
+\begin{center}
+\begin{picture}(20,40)(0,-10)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=0](L1)(15,15){$1$}
+  	\node(L2)(0,30){$3$}
+  	\node[Nmarks=r](L3)(0,0){$2$}
+
+  	\drawedge(L1,L2){$b$}
+  	\drawedge[curvedepth=-5,ELside=r](L1,L3){$a,.4$}
+  	\drawedge[curvedepth=-5,ELside=r](L3,L1){$b$}
+	\drawloop(L1){$a,.6$}
+	\drawloop[loopangle=135](L2){$a,b$}
+	\drawloop[loopangle=215](L3){$a$}
+\end{picture}
+\end{center}
+\end{figure}
+$$\prob{\AA} : A^* \rightarrow [0,1]$$
+\end{frame}
+
+\begin{frame}{The value $1$ problem}
+The value $1$ problem is, given a probabilistic automaton $\AA$:
+\begin{center}
+``are there words accepted by $\AA$ with arbitrarily high probability?''
+\end{center}
+\pause
+
+\vskip2em
+Define $\val{\AA} = \sup_w \prob{\AA}(w)$.
+An equivalent formulation of this problem is:
+\begin{center}
+``$\val{\AA} \stackrel{?}{=} 1$''.
+\end{center}
+
+\pause
+\begin{theorem}[Gimbert, Oualhadj, 2010]
+The value $1$ problem is undecidable.
+\end{theorem}
+\end{frame}
+
+%\begin{frame}{A hint}
+%
+%\begin{figure}
+%\begin{center}
+%\begin{picture}(60,35)(0,0)
+%	\gasset{Nw=7,Nh=7}
+%
+%  	\node[Nmarks=i,iangle=-90](0)(30,15){$0$}
+%  	\node(L1)(0,10){$L_1$}
+%  	\node[Nmarks=r](L2)(0,30){$L_2$}
+%  	\node(R1)(60,10){$R_1$}
+%  	\node(R2)(60,30){$R_2$}
+%
+%	\drawloop(0){$a$}
+%
+%  	\drawedge[curvedepth=5,ELside=l](0,L1){$b,\frac{1}{2}$}
+%  	\drawedge[curvedepth=5,ELside=l](L1,0){$a,1-x$}
+%  	\drawedge(L1,L2){$b$}
+%	\drawloop[loopangle=-135](L1){$a,x$}
+%	\drawloop[loopangle=90](L2){$a,b$}
+%
+%  	\drawedge[curvedepth=-5,ELside=r](0,R1){$b,\frac{1}{2}$}
+%  	\drawedge[curvedepth=-5,ELside=r](R1,0){$a,x$}
+%  	\drawedge[ELside=r](R1,R2){$b$}
+%	\drawloop[loopangle=-45](R1){$a,1-x$}
+%	\drawloop(R2){$a,b$}
+%\end{picture}
+%\end{center}
+%\end{figure}
+%\pause
+%\begin{center}
+%has value $1$ if and only if $x > \frac{1}{2}$.
+%\end{center}
+%\end{frame}
+
+%\section{Towards an algebraic treatment of probabilistic automata}
+
+\begin{frame}{Our objective}
+Decide the value $1$ problem for a \textit{subclass} of probabilistic automata,
+by \textbf{algebraic} and \textbf{non-numerical} means.
+\pause
+
+\begin{itemize}
+	\item \textbf{algebraic:} focus on the automaton structure,
+	\item \textbf{non-numerical:} abstract away the values.
+\end{itemize}
+
+\pause
+Hence we consider non-deterministic automata:
+%we project $(\RR,+,\times)$ into the boolean semiring $(\set{0,1},+,\times)$.
+\begin{figure}
+\begin{center}
+\begin{picture}(20,15)(0,5)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=180](1)(0,5){$1$}
+  	\node[Nmarks=r](2)(20,5){$2$}
+
+	\drawloop(1){$a$}
+  	\drawedge(1,2){$a$}
+	\drawloop(2){$a$}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Weighted automata using algebra (Sch\"utzenberger)}
+\begin{figure}
+\begin{center}
+\begin{picture}(40,14)(0,0)
+	\gasset{Nw=6,Nh=6,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=180](0)(0,5){$1$}
+  	\node(1)(20,5){$2$}
+  	\node[Nmarks=r](F)(40,5){$F$}
+%  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){$a$}
+	\drawloop(1){$a$}
+	\drawloop[loopangle=0](F){$a,b$}
+%	\drawloop[loopangle=180](bottom){$a,b$}
+
+%  	\drawedge(0,bottom){$b$}
+  	\drawedge[curvedepth=2](0,1){$a$}
+  	\drawedge[curvedepth=2](1,0){$b$}
+  	\drawedge(1,F){$b$}
+\end{picture}
+\end{center}
+\end{figure}
+\vspace*{1em}
+
+$$\tr{a} = 
+\left(\begin{array}{ccc}
+1 & 1 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{array}\right)
+\qquad
+\tr{b} = 
+\left(\begin{array}{ccc}
+0 & 0 & 0 \\
+1 & 0 & 1 \\
+0 & 0 & 1
+\end{array}\right)$$
+
+\vspace*{1em}
+
+$$I \cdot \tr{abba} \cdot F = 1 \quad \textrm{ if and only if } \quad \prob{\AA}(abba) > 0$$
+\end{frame}
+
+\begin{frame}{The stabilization operation $\sharp$}
+\vspace*{3em}
+\begin{figure}
+\begin{center}
+\begin{picture}(20,10)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=180](1)(0,5){$1$}
+  	\node[Nmarks=r](2)(20,5){$2$}
+
+	\drawloop(1){$a$}
+  	\drawedge(1,2){$a$}
+	\drawloop(2){$a$}
+\end{picture}
+\end{center}
+\end{figure}
+\vspace*{1.5em}
+$$\only<1,2,3>{\tr{a} = 
+\left(\begin{array}{ccc}
+1 & 1 \\
+0 & 1
+\end{array}\right)}
+\qquad
+\only<2,3>{
+\tr{a^\sharp} = 
+\left(\begin{array}{ccc}
+0 & 1\\
+0 & 1
+\end{array}\right)}$$
+\vspace*{1em}
+
+In $\tr{a}$, the state $1$ is transient and the state $2$ is recurrent.
+
+%\vspace*{1em}
+\only<3>{$$``\  M^\sharp = \lim_n M^n \ "$$}
+%$$\only<3>{M^\sharp(s,t) = 
+%\left\{\begin{array}{ll}
+%1 & \textrm{if } M(s,t) = 1 \textrm{ and } t \textrm{ recurrent in } M,\\
+%0 & \textrm{otherwise.}
+%\end{array}\right.}$$
+\vspace*{10em}
+\end{frame}
+
+
+\begin{frame}{A saturation algorithm}
+Compute a monoid inside the \textbf{finite} monoid $\MM_{Q \times Q}(\set{0,1},+,\times)$.
+
+\begin{itemize}
+	\item Compute $\tr{a}$ for $a \in A$
+%$$\tr{a}(s,t) = 
+%\left\{\begin{array}{ll}
+%1 & \textrm{if } \prob{\AA}(s \xrightarrow{a} t) > 0,\\
+%0 & \textrm{otherwise.}
+%\end{array}\right.$$	
+	\item Close under product and stabilization.
+	\item \pause If there exists a matrix $M$ such that 
+	$$\forall t \in Q, \quad M(s_0,t) = 1 \Rightarrow t \in F$$
+	then ``$\AA$ has value $1$'',
+	otherwise ``$\AA$ does not have value $1$''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{An example}
+\begin{figure}
+\begin{center}
+\begin{picture}(40,10)(-22,-15)
+	\gasset{Nw=6,Nh=6,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=180](0)(0,5){$0$}
+  	\node(1)(20,5){$1$}
+  	\node[Nmarks=r](F)(40,5){$F$}
+%  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){$a$}
+	\drawloop(1){$a$}
+	\drawloop[loopangle=0](F){$a,b$}
+%	\drawloop[loopangle=180](bottom){$a,b$}
+
+%  	\drawedge(0,bottom){$b$}
+  	\drawedge[curvedepth=2](0,1){$a$}
+  	\drawedge[curvedepth=2](1,0){$b$}
+  	\drawedge(1,F){$b$}
+\end{picture}
+\invisible<1,5,6>{
+\begin{picture}(40,10)(20,0)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-20,4){$\tr{a}$}
+
+  	\node(0)(0,5){$0$}
+  	\node(1)(20,5){$1$}
+  	\node[Nmarks=r](F)(40,5){$F$}
+%  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){}
+	\drawloop(1){}
+	\drawloop[loopangle=0](F){}
+%	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge(0,1){}
+\end{picture}}
+\invisible<1,2,3,6>{
+\begin{picture}(40,10)(-22,0)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-20,4){$\tr{a^\sharp}$}
+
+  	\node(0)(0,5){$0$}
+  	\node(1)(20,5){$1$}
+  	\node[Nmarks=r](F)(40,5){$F$}
+%  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(1){}
+	\drawloop[loopangle=0](F){}
+%	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge(0,1){}
+\end{picture}}
+\invisible<1,2,4,6>{
+\begin{picture}(40,10)(20,10)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-20,4){$\tr{b}$}
+
+  	\node(0)(0,5){$0$}
+  	\node(1)(20,5){$1$}
+  	\node[Nmarks=r](F)(40,5){$F$}
+%  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop[loopangle=0](F){}
+%	\drawloop[loopangle=180](bottom){}
+
+%  	\drawedge(0,bottom){}
+  	\drawedge(1,0){}
+  	\drawedge(1,F){}
+\end{picture}}
+\invisible<1,2,3,4>{
+\begin{picture}(40,10)(-22,10)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-22,4){$\tr{a^\sharp \cdot b}$}
+
+  	\node(0)(0,5){$0$}
+  	\node(1)(20,5){$1$}
+  	\node[Nmarks=r](F)(40,5){$F$}
+%  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){}
+	\drawloop[loopangle=0](F){}
+%	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge[curvedepth=-4](0,F){}
+  	\drawedge(1,0){}
+  	\drawedge(1,F){}
+\end{picture}}
+\invisible<1,2,3,4,5>{
+\begin{picture}(40,10)(20,20)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-25,4){$\tr{(a^\sharp \cdot b)^\sharp}$}
+
+  	\node(0)(0,5){$0$}
+  	\node(1)(20,5){$1$}
+  	\node[Nmarks=r](F)(40,5){$F$}
+%  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop[loopangle=0](F){}
+%	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge[curvedepth=-4](0,F){}
+  	\drawedge(1,F){}
+\end{picture}}
+\end{center}
+\end{figure}
+\pause\pause\pause\pause\pause\pause
+\end{frame}
+
+\begin{frame}{Correct, but not complete}
+\begin{theorem}[Correctness]
+If the algorithm answers ``$\AA$ has value $1$'' then $\AA$ has value $1$.
+\end{theorem}
+\pause
+But the value $1$ problem is undecidable, so the converse cannot hold!
+\end{frame}
+
+%\begin{frame}{No completeness}
+%\begin{figure}
+%\begin{center}
+%\begin{picture}(60,35)(0,0)
+%	\gasset{Nw=7,Nh=7}
+%
+%  	\node[Nmarks=i,iangle=-90](0)(30,15){$0$}
+%  	\node(L1)(0,10){$L_1$}
+%  	\node[Nmarks=r](L2)(0,30){$L_2$}
+%  	\node(R1)(60,10){$R_1$}
+%  	\node(R2)(60,30){$R_2$}
+%
+%	\drawloop(0){$a$}
+%
+%  	\drawedge[curvedepth=5,ELside=l](0,L1){$b,\frac{1}{2}$}
+%  	\drawedge[curvedepth=5,ELside=l](L1,0){$a,1-x$}
+%  	\drawedge(L1,L2){$b$}
+%	\drawloop[loopangle=-135](L1){$a,x$}
+%	\drawloop[loopangle=90](L2){$a,b$}
+%
+%  	\drawedge[curvedepth=-5,ELside=r](0,R1){$b,\frac{1}{2}$}
+%  	\drawedge[curvedepth=-5,ELside=r](R1,0){$a,x$}
+%  	\drawedge[ELside=r](R1,R2){$b$}
+%	\drawloop[loopangle=-45](R1){$a,1-x$}
+%	\drawloop(R2){$a,b$}
+%\end{picture}
+%\end{center}
+%\end{figure}
+%
+%%For all matrices $M$,
+%%$$\exists t \in Q, \quad M(s_0,t) = 1 \wedge t \notin F$$
+%%but $\AA$ has value $1$. 
+%
+%Left and right parts are symmetric, so for all $M$:
+%$$M(0,L_2) = 1 \Longleftrightarrow M(0,R_2) = 1.$$
+%\end{frame}
+
+\begin{frame}{Completeness in the absence of leaks}
+
+\begin{definition}
+An automaton $\AA$ is leaktight if it has no leak.
+\end{definition}
+
+\begin{theorem}[Completeness]
+If $\AA$ is leaktight and has value $1$, \\
+\flushright{then the algorithm answers ``$\AA$ has value $1$''.}
+\end{theorem}
+
+
+\vskip2em
+The proof relies on Simon's factorization forest theorem.
+\end{frame}
+
+\begin{frame}{A leak}
+\begin{figure}
+\begin{center}
+\begin{picture}(50,30)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node(L1)(15,15){$1$}
+  	\node(L2)(0,30){$3$}
+  	\node(L3)(0,0){$2$}
+
+  	\drawedge(L1,L2){$b$}
+  	\drawedge[curvedepth=-5,ELside=r](L1,L3){$a$}
+  	\drawedge[curvedepth=-5,ELside=r](L3,L1){$b$}
+	\drawloop(L1){$a$}
+	\drawloop[loopangle=135](L2){$a,b$}
+	\drawloop[loopangle=215](L3){$a$}
+
+	\drawline[linewidth=.3,AHnb=0](26,-3)(26,40)
+
+\pause
+
+	\put(45,-10){$\tr{a^\sharp \cdot b}$}
+
+  	\node(L1b)(55,15){$1$}
+  	\node(L2b)(40,30){$3$}
+  	\node(L3b)(40,0){$2$}
+
+  	\drawedge(L3b,L1b){}
+	\drawloop(L1b){}
+	\drawloop[loopangle=135](L2b){}
+
+\only<3>{\drawedge[dash={1}0](L1b,L2b){$\varepsilon$}}
+\end{picture}
+\end{center}
+\end{figure}
+\pause
+\vskip2em
+\begin{center}
+There is a leak from $1$ to $3$.
+\end{center}
+\end{frame}
+
+\begin{frame}{Conclusion and perspectives}
+\vskip-1em
+\begin{itemize}
+	\item We defined a subclass of probabilistic automata which subsumes all subclasses of probabilistic automata
+whose value $1$ problem is known to be decidable,\vskip2em\pause
+	\item We defined an algebraic algorithm for the value $1$ problem 
+and proved its completeness for the class of leaktight automata.\vskip2em\pause
+	\item What does this algorithm actually compute? \vskip2em\pause
+	\item Can we use similar algorithms for other semirings?
+\end{itemize}
+\end{frame}
+
+\end{document}

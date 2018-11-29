@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{The three ingredients to prove Rabin's theorem}{20}{0}{2}
+\beamer@sectionintoc {3}{Towards finite-memory determinacy for $B$-parity games}{32}{0}{3}
+\beamer@sectionintoc {4}{The results obtained so far}{56}{0}{4}

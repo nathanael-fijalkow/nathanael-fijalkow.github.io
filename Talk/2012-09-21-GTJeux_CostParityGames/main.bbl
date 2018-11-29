@@ -1,0 +1,13 @@
+\begin{thebibliography}{AH94}
+
+\bibitem[AH94]{AH94}
+R.~Alur and T.A. Henzinger.
+\newblock Finitary fairness.
+\newblock In {\em LICS'94}, pages 52--61. IEEE, 1994.
+
+\bibitem[BC06]{BC06}
+Mikolaj Boja\'nczyk and Thomas Colcombet.
+\newblock Bounds in $\omega$-regularity.
+\newblock In {\em LICS'06}, pages 285--296. IEEE, 2006.
+
+\end{thebibliography}

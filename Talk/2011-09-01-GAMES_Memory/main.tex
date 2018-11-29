@@ -1,0 +1,648 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+\usefonttheme{serif}
+\usecolortheme{dove}
+\useinnertheme{rounded}
+\useoutertheme{smoothbars}
+\setbeamercolor{item projected}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsthm,amssymb,amsmath,graphicx}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,automata}
+%\usepackage[usenames]{color}
+\usepackage{gastex}
+
+\newcommand{\Aa}{\mathcal{A}}
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Reach}{\mathrm{Reach}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\Res}{\mathrm{Res}}
+
+\title{How much memory is needed to win\\ regular games?}
+\subtitle{GAMES 2011}
+\author{Thomas Colcombet, \underline{Nathana\"el Fijalkow} and Florian Horn}
+\institute{LIAFA, Paris}
+\date{September 1st, 2011}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Games}
+
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=8,Nh=8}
+	
+  	\node(Eve)(60,35){}
+	\put(66,34){controlled by Eve}
+  	\rpnode[polyangle=45](Adam)(60,25)(4,5){}
+	\put(66,24){controlled by Adam}
+
+  	\rpnode[polyangle=45](1)(30,15)(4,5){}
+  	\node(2)(20,30){}
+  	\node(3)(40,30){}
+  	\rpnode[Nmarks=i,iangle=180,polyangle=45](4)(0,30)(4,5){}
+  	\rpnode[polyangle=45](5)(10,50)(4,5){}
+  	\node(6)(10,10){}
+  	\rpnode[polyangle=45](7)(30,50)(4,5){}
+
+  	\drawedge(1,2){}
+  	\drawedge[curvedepth=3](1,3){}
+	\drawloop[loopangle=90](2){}
+  	\drawedge(2,3){}
+  	\drawedge(2,6){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(4,2){}
+  	\drawedge[curvedepth=5](4,5){}
+  	\drawedge[curvedepth=5](5,4){}
+	\drawloop[loopangle=-90](6){}
+  	\drawedge(7,5){}
+
+\only<3>{\drawedge[AHLength=3,AHlength=4,linecolor=red,linewidth=0.7](4,2){}}
+\only<5>{\drawedge[AHLength=3,AHlength=4,linecolor=red,linewidth=0.7](2,6){}}
+
+\only<2,3>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(0,30){}} %pebble on 4
+\only<4,5>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(20,30){}} %pebble on 2
+\only<6>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(10,10){}} %pebble on 6
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Introduction: reachability games}
+
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=8,Nh=8}
+
+  	\rpnode[polyangle=45](1)(30,15)(4,5){}
+  	\node(2)(20,30){}
+  	\node(3)(40,30){}
+  	\rpnode[Nmarks=i,iangle=180,polyangle=45](4)(0,30)(4,5){}
+  	\rpnode[polyangle=45](5)(10,50)(4,5){}
+  	\node(6)(10,10){}
+  	\rpnode[polyangle=45](7)(30,50)(4,5){}
+
+  	\drawedge(1,2){}
+  	\drawedge[curvedepth=3](1,3){}
+	\drawloop[loopangle=90](2){}
+  	\drawedge(2,3){}
+  	\drawedge(2,6){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(4,2){}
+  	\drawedge[curvedepth=5](4,5){}
+  	\drawedge[curvedepth=5](5,4){}
+	\drawloop[loopangle=-90](6){}
+  	\drawedge(7,5){}
+	
+	\put(50,35){Given {\color{red}{$F$}} $\subseteq Q$}
+\only<6>{
+	\put(50,25){{\color{red}{Memoryless}} winning strategies}
+	\put(50,20){$\sigma: V \rightarrow E$ and $\tau: V \rightarrow E$}
+}
+
+\only<2>{
+  	\rpnode[fillcolor=red,polyangle=45](2)(10,50)(4,5){}
+	\node[fillcolor=red](pebble)(10,10){}
+}
+
+\only<3,4,5,6>{
+  	\rpnode[fillcolor=red,polyangle=45](2)(10,50)(4,5){$0$}
+	\node[fillcolor=red](pebble)(10,10){$0$}
+}
+
+\only<4,5,6>{
+	\node[fillcolor=red](pebble)(20,30){$1$}
+  	\rpnode[fillcolor=red,polyangle=45](7)(30,50)(4,5){$1$}
+}
+
+\only<5,6>{
+  	\rpnode[fillcolor=red,polyangle=45](2)(0,30)(4,5){$2$}
+}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Introduction: regular games}
+
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+	\drawline[AHnb=0](55,60)(55,15)
+	\put(20,55){\large{arena}}
+	\put(68,55){\large{winning condition}}
+	
+  	\rpnode[polyangle=45,Nmarks=i,iangle=180](1)(0,30)(4,5){}
+  	\node(2)(20,30){}
+  	\node(3)(40,40){}
+
+  	\drawedge[curvedepth=5](1,2){$a$}
+  	\drawedge[curvedepth=-5](1,2){}
+  	\drawedge(2,3){$b$}
+	\drawloop[loopangle=-45](2){$a$}
+	\drawloop[loopangle=45](3){}
+	
+	\put(70,45){\huge{$L = a^+ \cdot b$}}
+
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=180](eps)(70,25){}
+  	\node(a)(85,25){}
+  	\node[Nmarks=f](ab)(100,25){$F$}
+
+  	\drawedge(eps,a){$a$}
+  	\drawedge(a,ab){$b$}
+	\drawloop[loopangle=90](a){$a$}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Regular games need memory}
+
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+	\drawline[AHnb=0](55,60)(55,15)
+	\put(20,55){\large{arena}}
+	\put(68,55){\large{winning condition}}
+	
+%  	\rpnode[polyangle=45,Nmarks=i,iangle=180](1)(0,30)(4,5){}
+  	\node[Nmarks=i,iangle=180](2)(20,30){}
+  	\node(3)(40,40){}
+
+%  	\drawedge[curvedepth=5](1,2){$a$}
+%  	\drawedge[curvedepth=-5](1,2){}
+  	\drawedge(2,3){$b$}
+	\drawloop[loopangle=-45](2){$a$}
+	\drawloop[loopangle=45](3){}
+	
+	\put(70,45){\huge{$L = a^+ \cdot b$}}
+
+	\gasset{Nw=6,Nh=6}
+
+\only<3,4,5>{
+
+  	\node[Nmarks=i,iangle=180](eps)(25,0){$\varepsilon$}
+	\put(20,-6){play $a$}
+
+  	\node(a)(40,0){$a$}
+	\put(35,-6){play $b$}
+
+	\node[linecolor=White](invisible)(55,0){}
+
+  	\drawedge(eps,a){$a$}
+  	\drawedge(a,invisible){$b$}
+
+	\put(10,10){A winning strategy for Eve uses two memory states.}
+	\put(55,-1){a memory structure}
+}
+
+\only<2,3>{
+	\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(20,30){}
+}
+
+\only<3>{
+	\node[linecolor=red,linewidth=0.5](pebble)(25,0){}
+}
+
+\only<4>{
+	\drawloop[loopangle=-45,AHLength=3,AHlength=4,linecolor=red,linewidth=0.5](2){}
+	\drawedge[AHLength=3,AHlength=4,linecolor=red,linewidth=0.5](eps,a){}
+} 
+
+\only<5>{
+	\drawedge[AHLength=3,AHlength=4,linecolor=red,linewidth=0.5](2,3){}
+	\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(20,30){}
+	\node[linecolor=red,linewidth=0.5](pebble)(40,0){}
+} 
+
+\end{picture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Introduction: how much memory is needed to win?}
+
+Question: given a regular language $L$, what is the memory required by winning strategies?
+
+\pause
+In other words, compute $m_L \in \N^*$ such that:\\
+\begin{itemize}
+	\item in any arena, if Eve wins the regular game for $L$, then she has a winning strategy with $m_L$ memory states,
+\pause
+	\item there is an arena where Eve wins but there are no winning strategies with less than $m_L$ memory states.
+\end{itemize}
+\end{frame}
+
+\section{Examples}
+
+\begin{frame}{A first remark}
+
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+	\drawline[AHnb=0](55,60)(55,15)
+	\put(20,55){\large{arena}}
+	\put(68,55){\large{winning condition}}
+	
+  	\rpnode[polyangle=45,Nmarks=i,iangle=180](1)(0,30)(4,5){}
+  	\node(2)(20,30){}
+  	\node(3)(40,40){}
+
+  	\drawedge[curvedepth=5](1,2){$a$}
+  	\drawedge[curvedepth=-5](1,2){}
+  	\drawedge(2,3){$b$}
+	\drawloop[loopangle=-45](2){$a$}
+	\drawloop[loopangle=45](3){}
+	
+	\put(70,45){\huge{$L = a^+ \cdot b$}}
+
+	\gasset{Nw=6,Nh=6}
+
+\only<2>{
+  	\node[Nmarks=i,iangle=180](eps)(70,25){}
+  	\node(a)(85,25){}
+  	\node[Nmarks=f](ab)(100,25){$F$}
+
+  	\drawedge(eps,a){$a$}
+  	\drawedge(a,ab){$b$}
+	\drawloop[loopangle=90](a){$a$}
+
+	\put(-5,5){Any deterministic automaton that recognizes $L$ is a good memory structure.}
+	\put(5,0){Proof: the synchronized product is a reachability game.}
+}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{An upper bound for both players}
+
+We describe a good memory structure for $L$ using left quotients:
+for $u \in \Sigma^*$, 
+$$u^{-1} L = \set{v \mid u \cdot v \in L}.$$
+
+%Intuitively, the left quotient $u^{-1} L$ represents the current objective Eve wants to fulfill
+%if the word $u$ has already been read along the play.
+
+\begin{itemize}
+	\item the initial memory state is $\varepsilon^{-1} L = L$,
+	\item each time a letter $a$ is read from $u^{-1} L$, 
+the memory is updated to $(u \cdot a)^{-1} L$.
+\end{itemize}
+
+\pause
+
+\begin{lemma}[An upper bound for both players]
+For all regular games $\G = (\Aa,\Reach(L))$,
+both players have winning strategies using this memory structure (denoted $\M_L$).
+\end{lemma}
+
+\end{frame}
+
+\begin{frame}{Another example}
+
+\begin{center}
+``read at most ten consecutive $b$'s, and then an $a$''.
+\end{center}
+$$L = a + b\cdot a + bb\cdot a + \ldots + b^{10} \cdot a.$$
+
+\pause
+In every regular game for $L$, Eve wins without memory.
+
+\pause
+This shows that the memory structure $\M_L$ is not optimal.
+
+\end{frame}
+
+\begin{frame}<beamer>{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{Playing safety}
+
+\begin{frame}{Order left quotients inclusion-wise}
+If Adam wins in $\G \times \M_L$ from $(q,u^{-1} L)$ and $v^{-1} L \subseteq u^{-1} L$, 
+then he wins from $(q,v^{-1} L)$ \pause \textit{using the same strategy}.
+
+\pause
+Let $k$ the maximal number of incomparable (with respect to inclusion) left quotients of $L$.
+
+\pause
+
+\begin{lemma}[A tighter upper bound for Adam]
+For all regular games $\G = (\Aa,\Reach(L))$,
+Adam has a winning strategy from his winning set that uses $k$ memory states.
+\end{lemma}
+
+\pause
+Idea: whenever in $(q,v^{-1} L)$, play as from $(q,u^{-1} L)$, where $u^{-1} L$ is maximal
+winning from $q$.
+\end{frame}
+
+\begin{frame}{Optimality}
+
+\begin{lemma}[Matching lower bound for Adam]
+For all regular languages $L$, 
+there exists an arena $\Aa$ such that Adam needs $k$ memory states to win in $\G = (\Aa,\Reach(L))$.
+\end{lemma}
+
+\pause 
+
+%Let $L$ be a regular language, and $u_1^{-1} L, \ldots, u_k^{-1} L$ incomparable left quotients of $L$.
+%For $i \neq j$, let $w_{i,j}$ in $u_j^{-1} L$ but not in $u_i^{-1} L$.
+%
+%We describe the arena. A play consists in three steps:
+%\begin{enumerate}
+%	\item Eve chooses a word $u_i$;
+%	\item Adam chooses between $k$ options;
+%	\item say Adam chose the $i$\textsuperscript{th} option, then Eve chooses between the $k-1$ words $w_{i,j}$ for $j \neq i$,
+%	and the play stops.
+%\end{enumerate}
+Exemplified: $L = (a+b)^* \cdot (aa + bb)$.
+%There are three non-final left quotients: $\varepsilon^{-1} L$, $a^{-1} L$ and $b^{-1} L$.
+
+\begin{center}
+\begin{picture}(100,30)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+	\drawline[AHnb=0](45,30)(45,0)
+	\put(0,30){\large{inclusion}}
+	\put(68,30){\large{arena}}
+	
+  	\node[Nmarks=i,iangle=180](1)(60,15){}
+  	\rpnode[polyangle=45](2)(80,15)(4,5){}
+  	\node[linecolor=White](invia)(100,20){}
+  	\node[linecolor=White](invib)(100,10){}
+
+  	\drawedge[curvedepth=5](1,2){$a$}
+  	\drawedge[curvedepth=-5,ELside=r](1,2){$b$}
+  	\drawedge(2,invia){$a$}
+  	\drawedge[ELside=r](2,invib){$b$}	
+
+	\gasset{Nw=6,Nh=6,Nadjust=w,linecolor=White}
+
+  	\node(eps)(0,15){$\varepsilon^{-1} L$}
+  	\node(a)(15,25){$\color{red}{a^{-1} L}$}
+  	\node(b)(15,5){$\color{red}{b^{-1} L}$}
+  	\node(F)(30,15){$(aa)^{-1} L$}
+
+	\gasset{linecolor=Black}
+
+  	\drawedge(eps,a){}
+  	\drawedge(eps,b){}
+  	\drawedge(a,F){}
+  	\drawedge(b,F){}
+
+%	\gasset{linecolor=Red}
+%
+%  	\drawedge[curvedepth=5](eps,a){$a$}
+%  	\drawedge[curvedepth=5](eps,b){$b$}
+%  	\drawloop[loopangle=90](a){$a$}
+%  	\drawloop[loopangle=-90](b){$b$}
+%  	\drawedge[curvedepth=5](a,F){$a$}
+%  	\drawedge[curvedepth=5](b,F){$b$}
+\end{picture}
+\end{center}
+
+\end{frame}
+
+\section{Playing reachability}
+
+\begin{frame}{A wrong intuition}
+
+If Eve wins in $\G \times \M_L$ from $(q,u^{-1} L)$ and $u^{-1} L \subseteq v^{-1} L$, 
+then she wins from $(q,v^{-1} L)$ \pause \ldots
+however the \textit{same strategy} might fail!
+
+\begin{center}
+\begin{picture}(110,60)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+	\drawline[AHnb=0](55,60)(55,15)
+	\put(20,55){\large{arena}}
+	\put(68,55){\large{winning condition}}
+	
+  	\node[Nmarks=i,iangle=180](2)(20,30){}
+  	\node(3)(40,40){}
+	\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(20,30){}
+
+  	\drawedge(2,3){$b$}
+	\drawloop[loopangle=-45](2){$a$}
+	\drawloop[loopangle=45](3){}
+	
+	\put(70,45){\huge{$L = a^+ \cdot b$}}
+	\put(65,32){\huge{$\varepsilon^{-1} L \subset a^{-1} L$}}
+\end{picture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{A global merging policy}
+$$L = (aab + baa) \cdot (a + b)^* \cdot c$$
+
+\begin{center}
+\begin{picture}(85,30)(0,0)
+	\gasset{Nw=6,Nh=6,Nadjust=w,linecolor=White}
+
+  	\node(eps)(0,15){$\varepsilon^{-1} L$}
+  	\node(a)(15,25){$a^{-1} L$}
+  	\node(b)(15,5){$b^{-1} L$}
+  	\node(aa)(40,5){$(aa)^{-1} L$}
+  	\node(bb)(40,25){$(bb)^{-1} L$}
+  	\node(aab)(65,15){$(aab)^{-1} L$}
+  	\node(F)(85,15){$F$}
+
+	\gasset{linecolor=Black}
+
+  	\drawedge(eps,a){}
+  	\drawedge(eps,b){}
+  	\drawedge(a,bb){}
+  	\drawedge(b,aa){}
+  	\drawedge(aa,aab){}
+  	\drawedge(bb,aab){}
+  	\drawedge(aab,F){}
+
+	\gasset{linecolor=Red}
+
+  	\drawedge[curvedepth=5](eps,a){$\color{red}{a}$}
+  	\drawedge[curvedepth=5,ELside=r](eps,b){$\color{red}{b}$}
+  	\drawedge[curvedepth=5](a,aa){$\color{red}{a}$}
+  	\drawedge[curvedepth=5](b,bb){$\color{red}{b}$}
+  	\drawedge[curvedepth=5](aa,aab){$\color{red}{b}$}
+  	\drawedge[curvedepth=5](bb,aab){$\color{red}{a}$}
+  	\drawedge[curvedepth=5](aab,F){$\color{red}{c}$}
+	\drawloop[loopangle=-90](aab){$\color{red}{a,b}$}
+
+	\gasset{linecolor=Blue}
+
+\only<4,5,6,7,8,9>{
+  	\node[Nadjust=w,linecolor=Green](invi1)(28.5,5){$\qquad \qquad \qquad \qquad \qquad$}
+  	\node[Nadjust=w,linecolor=Green](invi2)(28.5,25){$\qquad \qquad \qquad \qquad \qquad$}
+}
+\only<5,9>{
+  	\node(a)(15,25){$a^{-1} L$}
+}
+\only<6>{
+  	\node(aa)(40,5){$(aa)^{-1} L$}
+}
+\only<7>{
+  	\node(b)(15,5){$b^{-1} L$}
+}
+\only<8>{
+  	\node(bb)(40,25){$(bb)^{-1} L$}
+}
+
+\end{picture}
+\end{center}
+
+\only<2,3,4,5,6,7,8,9>{
+Eve can play from $(bb)^{-1} L$ as from $a^{-1} L$, hence merge the two memory states.
+}
+\only<3,4,5,6,7,8,9>{
+Similarly, she merges $(aa)^{-1} L$ and $b^{-1} L \ldots$
+}
+
+\end{frame}
+
+\section{Playing optimally in the stochastic case}
+
+\begin{frame}{Playing optimally in stochastic arenas}
+$L = (a + b)^* \cdot (aa + bb)$
+\begin{center}
+\begin{picture}(50,30)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+  	\rpnode[polyangle=0](1)(0,45)(3,5){}
+	\put(7,44){Stochastic vertex}
+
+  	\rpnode[Nmarks=i,iangle=180,polyangle=0](1)(0,15)(3,5){}
+  	\node(2)(20,15){}
+  	\rpnode[polyangle=0](3)(40,30)(3,5){}
+  	\node[linecolor=White](invi1)(55,35){}
+  	\node[linecolor=White](invi2)(55,25){}
+  	\node[linecolor=White](invia)(40,15){}
+  	\node[linecolor=White](invib)(40,0){}
+
+  	\drawedge[curvedepth=10](1,2){$a$}
+  	\drawedge[curvedepth=-10,ELside=r](1,2){$b$}
+  	\drawedge(1,2){$\varepsilon$}
+  	\drawedge(2,3){}
+  	\drawedge(2,invia){$a$}
+  	\drawedge[ELside=r](2,invib){$b$}	
+  	\drawedge(3,invi1){$aa$}
+  	\drawedge(3,invi2){}
+\end{picture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Upper bound for both players}
+
+Since stochastic reachability games enjoy memoryless determinacy:
+
+\begin{lemma}[Upper bound for both players]
+For all stochastic regular games $\G = (\Aa,\Reach(L))$,
+both players have winning strategies using $\M_L$ as memory structure.
+\end{lemma}
+
+\end{frame}
+
+
+\begin{frame}{Lower bound for Eve}
+
+\begin{lemma}[Memory lower bound in stochastic games for Eve]
+For all regular languages $L$, 
+let $n$ be the number of non-final left quotients of $L$,
+there exists an arena $\Aa$ such that Eve needs $n$ memory states to play optimally in $\G = (\Aa,\Reach(L))$.
+\end{lemma}
+
+Again, we order left quotients inclusion-wise.
+\end{frame}
+
+\begin{frame}{The construction exemplified}
+We construct an arena for the condition $L = (a + b)^* \cdot (aa + bb)$.
+
+\begin{center}
+\begin{picture}(100,40)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+	\drawline[AHnb=0](40,30)(40,0)
+	\put(10,30){\large{inclusion}}
+
+\only<2>{
+	\put(68,30){\large{arena}}
+	
+  	\rpnode[Nmarks=i,iangle=180,polyangle=0](1)(50,15)(3,5){}
+  	\node(2)(70,15){}
+  	\rpnode[polyangle=0](3)(90,30)(3,5){}
+  	\node[linecolor=White](invi1)(105,35){}
+  	\node[linecolor=White](invi2)(105,25){}
+  	\node[linecolor=White](invia)(90,15){}
+  	\node[linecolor=White](invib)(90,0){}
+
+  	\drawedge[curvedepth=10](1,2){$a$}
+  	\drawedge[curvedepth=-10,ELside=r](1,2){$b$}
+  	\drawedge(1,2){$\varepsilon$}
+  	\drawedge(2,3){}
+  	\drawedge(2,invia){$a$}
+  	\drawedge[ELside=r](2,invib){$b$}	
+  	\drawedge(3,invi1){$aa$}
+  	\drawedge(3,invi2){}
+}
+	\gasset{Nw=6,Nh=6,Nadjust=w,linecolor=White}
+
+  	\node(eps)(0,15){$\varepsilon^{-1} L$}
+  	\node(a)(15,25){$a^{-1} L$}
+  	\node(b)(15,5){$b^{-1} L$}
+  	\node(F)(30,15){$(aa)^{-1} L$}
+
+	\gasset{linecolor=Black}
+
+  	\drawedge(eps,a){}
+  	\drawedge(eps,b){}
+  	\drawedge(a,F){}
+  	\drawedge(b,F){}
+
+	\drawline[AHnb=0,dash={1}0](22,28)(22,-4)
+	\drawline[AHnb=0,dash={1}0](7,28)(7,-4)
+	\put(-1,-3){$2$}
+	\put(14,-3){$1$}
+	\put(25,-3){final}
+\end{picture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Adam case}
+
+The same applies to Adam, using a very similar construction.
+
+\pause 
+As opposed to the deterministic case, memory requirements are \textbf{symmetric} in stochastic regular games!
+\end{frame}
+
+\begin{frame}{The end}
+\begin{center}
+Thank you for your attention!
+\end{center}
+\end{frame}
+
+\end{document}

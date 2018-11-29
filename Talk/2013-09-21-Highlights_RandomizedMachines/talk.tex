@@ -1,0 +1,202 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+\usefonttheme{serif}
+\usecolortheme{dove}
+\useinnertheme{rounded}
+\setbeamercolor{item projected}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{multicol}
+\usepackage{framed}
+\usepackage{ulem}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usepackage{gastex}
+\usepackage{ulem}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{subfigure}
+\usepackage{wasysym}
+\usepackage{xspace}
+\usepackage{bbm}
+\usepackage{yfonts}
+\usepackage[bbgreekl]{mathbbol}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\usepackage{nicefrac}
+
+\newcommand{\prob}[1]{\mathbb{P}_{#1}}
+\newcommand{\A}{\mathcal{A}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% A non-original creation by Nathanaël Fijalkow and myself %
+
+\setbeamertemplate{frametitle}{%
+  \vskip-2pt%
+  \begin{beamercolorbox}[rightskip=2cm,leftskip=1em,dp=1ex,wd=12.8cm]{frametitle}%
+    \vskip2pt%
+    \usebeamercolor{frametitle}%
+    \begin{tikzpicture}[scale=1]%
+      \useasboundingbox (0,0) rectangle (0,0); %(-1,-1) rectangle (1,1);%
+      \ifthenelse{\insertframenumber<\inserttotalframenumber}%
+      { % uncomplete tart
+
+        \pgfmathsetmacro{\aimangle}{90-(\insertframenumber*360/\inserttotalframenumber)}
+        \fill [fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,.2) -- (11.8,.6) arc (90:\aimangle:0.4) -- cycle;%
+
+      }{ % the full tart
+        \fill[fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,0.2) circle (.4);%
+      }%
+      \fill[fill=frametitle.fg,thin, color=white,draw=black] (11.8,0.2) circle (.3);%
+      \node at (11.8, .2) [black,circle]{\normalsize\insertframenumber};
+
+    \end{tikzpicture}
+    \insertframetitle%
+    \vskip2pt%
+  \end{beamercolorbox}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{blocks}[rounded]%
+\setbeamercolor{block title}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=normal text.bg!95!black}
+
+\begin{document}
+
+\addtocounter{framenumber}{-1}
+
+\date{Highlights, September 21st, 2013}
+
+\author{\underline{Nathana\"el Fijalkow} \and Hugo Gimbert \and\\ Florian Horn \and Youssouf Oualhadj}
+
+\title{We tried and we tried,\\
+and we applied and implied,\\
+and still probabilistic automata\\
+we could not decide!}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+\tikzset{
+minimum height=.666cm,minimum width=.666cm,circle
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Probabilistic automata}
+
+\begin{figure}
+\begin{center}
+\begin{picture}(20,40)(0,-5)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=0](L1)(15,15){$1$}
+  	\node(L2)(0,30){$2$}
+  	\node[Nmarks=r](L3)(0,0){$3$}
+
+  	\drawedge(L1,L2){$b$}
+  	\drawedge[curvedepth=-5,ELside=r](L1,L3){$a,0.4$}
+  	\drawedge[curvedepth=-5,ELside=r](L3,L1){$b$}
+	\drawloop(L1){$a,0.6$}
+	\drawloop[loopangle=135](L2){$a,b$}
+	\drawloop[loopangle=215](L3){$a$}
+\end{picture}
+\end{center}
+\end{figure}
+
+\pause
+\begin{block}{Early results}
+	\begin{itemize}
+		\item (Paz, 71) The emptiness problem is undecidable;
+		\item (Rabin, 69) If $\lambda$ is isolated, $L_\lambda$ is regular;
+		\item (Bertoni, 74) The isolation problem is undecidable;
+		\item (Condon-Lipton, 89) The approximation problem is undecidable.
+	\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Recent results}
+
+The isolation problem for $\lambda = 1$ is
+\begin{center}
+``are there words accepted with probability arbitrarily close to $1$''.
+\end{center}
+
+\pause
+\begin{block}{Recent results}
+	\begin{itemize}
+		\item (Gimbert and Oualhadj, 2009) The value $1$ problem is undecidable;
+		\item Decidable classes: $\sharp$-acyclic $\subsetneq$ structurally simple $\subsetneq$ leaktight.
+	\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Undecidability results: towards fuzziness}
+
+\begin{itemize}
+	\item (Paz, 71) The emptiness problem:
+	\[
+	\exists w,\ \prob{\A}(w) \ge \frac{1}{2}
+	\]
+	\item (Bertoni, 74) The isolation problem:
+	\[
+	\forall \varepsilon, \exists w,\ \frac{1}{2} - \varepsilon \le \prob{\A}(w) \le \frac{1}{2} + \varepsilon
+	\]	
+	\item (Condon-Lipton, 89) The approximation problem:
+	\[
+	\exists w, \prob{\A}(w) \ge \frac{2}{3} \qquad \vee \qquad \forall w, \prob{\A}(w) \le \frac{1}{3}
+	\]
+	\item (Gimbert-Oualhadj, 2009) The value $1$ problem:
+	\[
+	\forall \varepsilon, \exists w,\ \prob{\A}(w) \ge 1 - \varepsilon
+	\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Research questions}
+\begin{block}{}
+	\begin{itemize}
+		\item What does the saturation algorithm compute?
+		\item What is decidable for probabilistic automata? 
+
+		\textcolor{red}{		
+		How much fuzziness is required to get decidability?
+		}
+	\end{itemize}
+\end{block}
+
+Numberless probabilistic automata: is the value $1$ problem decidable?
+\end{frame}
+
+\begin{frame}{Yet still PA we could not decide!}
+
+Randomized machines are deterministic automata with only \textit{one} random coin.
+\vskip1em
+
+\pause
+\begin{theorem}
+The emptiness problem, the isolation problem and the approximation problems
+are \textit{all} undecidable for randomized machines.
+\end{theorem}
+
+\pause
+\begin{corollary}
+The value $1$ problem for numberless probabilistic automata are undecidable.
+\end{corollary}
+
+\pause
+Conclusion: the saturation algorithm is useless.
+\end{frame}
+
+\end{document}

@@ -1,0 +1,22 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+\usepackage{graphicx}
+
+\newcommand{\tr}[1]{\langle #1 \rangle}
+
+\begin{document}
+
+\begin{picture}(35,21)(-2,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=180](0)(7,5){$1$}
+  	\node[Nmarks=r](1)(27,5){$2$}
+
+  	\drawedge(0,1){$a,.4$}
+	\drawloop(0){$a,.6$}
+	\drawloop(1){$a$}
+\end{picture}
+
+\end{document}

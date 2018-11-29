@@ -1,0 +1,316 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+}
+\usefonttheme{serif}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsthm,amssymb,amsmath}
+%\usepackage[usenames]{color}
+\usepackage{gastex}
+
+\newcommand{\set}[1]{\{ #1 \}}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\rew}{\mathrm{rew}}
+\newcommand{\IG}{\mathcal{I}_G}
+\newcommand{\IGloc}{\mathcal{I}_G^{\mathrm{loc}}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\St}{\mathcal{S}}
+\newcommand{\Strat}{\St_0(G)}
+\newcommand{\order}{\vartriangleleft}
+
+\title{Strategy improvement algorithm\\
+to solve parity games}
+\subtitle{Game theory course}
+\author{Nathanaël Fijalkow}
+\date{IST Austria, June 2010}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Introduction I: notations for parity games}
+\begin{itemize}
+ \item a parity game is a tuple $G = (V,V_0,V_1,E,\Omega)$ where $\Omega : V \to \N$ is the injective priority function;
+ \item infix notation $vEw$ stands for $(v,w) \in E$;
+ \item size of the parity game $G$ is $|G| = |E|$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Introduction II: notations for games related notions}
+\begin{itemize}
+ \item the two players are $0$ and $1$;
+ \item the winner of the play $v_0v_1v_2\ldots$ is $\max \set{p \mid \forall j \in \N, \exists k \geq j : \Omega(v_k) = p} \mod 2$;
+ \item strategies will be often denoted by $\sigma$ for $0$ and $\rho$ for $1$;
+ \item strategies are positional: $\sigma : V_0 \to V$ and $\rho : V_1 \to V$.
+ \item $W_0$ and $W_1$ are winning sets for $0$ and $1$, respectively;
+ \item $V_\oplus$ is the set of even priority vertices and $V_\ominus$ the set of odd priority vertices;
+ \item a strategy $\sigma$ for player $i$ induces a strategy subgame $G|_\sigma$;
+ \item set of strategies for player $i$ is denoted by $\St_i(G)$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Introduction III: pictorial representation}
+\begin{itemize}
+ \item nodes owned by $0$ are drawned as circles;
+ \item nodes owned by $1$ are drawned as rectangles;
+ \item all nodes are labeled with their respective priority.
+\end{itemize}
+
+\begin{center}
+\begin{picture}(80,25)(0,0)
+	\rpnode[polyangle=45](0)(20,20)(4,5){$0$}
+	\node(1)(40,20){$1$}
+	\node(2)(20,0){$2$}
+	\rpnode[polyangle=45](3)(40,0)(4,5){$3$}
+	\rpnode[polyangle=45](4)(60,10)(4,5){$4$}
+
+  	\drawedge(0,2){}
+  	\drawedge(0,3){}
+  	\drawedge(1,0){}
+  	\drawedge[curvedepth=5](1,3){}
+  	\drawedge(2,3){}
+  	\drawedge[curvedepth=5](2,4){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(3,4){}
+	\drawloop[loopangle=0](4){}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{The story in a nutshell: strategy improvement}
+\begin{frame}{Once}
+Pick a strategy $\iota_G$;
+\begin{center}
+\begin{picture}(80,25)(0,0)
+	\rpnode[polyangle=45](0)(20,20)(4,5){$0$}
+	\node(1)(40,20){$1$}
+	\node(2)(20,0){$2$}
+	\rpnode[polyangle=45](3)(40,0)(4,5){$3$}
+	\rpnode[polyangle=45](4)(60,10)(4,5){$4$}
+
+  	\drawedge(0,2){}
+  	\drawedge(0,3){}
+  	\drawedge[dash={1}0](1,0){}
+  	\drawedge[curvedepth=5,linecolor=Red](1,3){}
+  	\drawedge[dash={1}0](2,3){}
+  	\drawedge[curvedepth=5,linecolor=Red](2,4){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(3,4){}
+	\drawloop[loopangle=0](4){}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Once}
+Switch ``some'' nodes;
+\begin{center}
+\begin{picture}(80,25)(0,0)
+	\rpnode[polyangle=45](0)(20,20)(4,5){$0$}
+	\node(1)(40,20){$1$}
+	\node(2)(20,0){$2$}
+	\rpnode[polyangle=45](3)(40,0)(4,5){$3$}
+	\rpnode[polyangle=45](4)(60,10)(4,5){$4$}
+
+  	\drawedge(0,2){}
+  	\drawedge(0,3){}
+  	\drawedge[dash={1}0](1,0){}
+  	\drawedge[curvedepth=5,linecolor=Red](1,3){}
+  	\drawedge[linecolor=Green](2,3){}
+  	\drawedge[curvedepth=5,linecolor=Red](2,4){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(3,4){}
+	\drawloop[loopangle=0](4){}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Once}
+Repeatedly...
+\begin{center}
+\begin{picture}(80,25)(0,0)
+	\rpnode[polyangle=45](0)(20,20)(4,5){$0$}
+	\node(1)(40,20){$1$}
+	\node(2)(20,0){$2$}
+	\rpnode[polyangle=45](3)(40,0)(4,5){$3$}
+	\rpnode[polyangle=45](4)(60,10)(4,5){$4$}
+
+  	\drawedge(0,2){}
+  	\drawedge(0,3){}
+  	\drawedge[linecolor=Green](1,0){}
+  	\drawedge[curvedepth=5,linecolor=Red](1,3){}
+  	\drawedge[linecolor=Red](2,3){}
+  	\drawedge[curvedepth=5,dash={1}0](2,4){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(3,4){}
+	\drawloop[loopangle=0](4){}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Once}
+Until you're done.
+\begin{center}
+\begin{picture}(80,25)(0,0)
+	\rpnode[polyangle=45](0)(20,20)(4,5){$0$}
+	\node(1)(40,20){$1$}
+	\node(2)(20,0){$2$}
+	\rpnode[polyangle=45](3)(40,0)(4,5){$3$}
+	\rpnode[polyangle=45](4)(60,10)(4,5){$4$}
+
+  	\drawedge(0,2){}
+  	\drawedge(0,3){}
+  	\drawedge[linecolor=Red](1,0){}
+  	\drawedge[curvedepth=5,dash={1}0](1,3){}
+  	\drawedge[linecolor=Red](2,3){}
+  	\drawedge[curvedepth=5,dash={1}0](2,4){}
+  	\drawedge[curvedepth=5](3,1){}
+  	\drawedge(3,4){}
+	\drawloop[loopangle=0](4){}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Twice}
+\begin{enumerate}
+ \item pick a strategy $\iota_G$ maximizing the immediate reward;
+\pause
+ \item switch some nodes according to an optimizing policy:
+$$\IG : \Strat \to \Strat$$
+that optimize strategy valuations:
+$\Xi_{\sigma} \order \Xi_{\IG(\sigma)}$ \\
+(the strategy valuation of $\sigma$ is denoted by $\Xi_{\sigma}$.
+$\order$ is an order on strategy valuations, to be defined)
+\pause
+ \item until $\sigma$ is not improvable by $\IG$.
+\end{enumerate}
+\end{frame}
+
+\section{Strategy valuations}
+\begin{frame}{Strategy valuations}
+Intuitively, to assess a strategy $\sigma$, one is interested in, for each $v \in V$,
+the \emph{worst} play (consistent with $\sigma$) player $1$ can achieve from $v$.\\
+Hence $\Xi_{\sigma} : V \to$ ``set of plays consistent with $\sigma$''.
+\pause
+$$\Xi_{\sigma} : v \to \min_{\prec} \set{\mbox{plays consistent with } \sigma}$$
+\pause
+We are thus interested in comparing plays, with respect to an order $\prec$.
+\end{frame}
+
+\begin{frame}{Strategy valuations}
+Strategy valuations are pointwise:
+$$\Xi_{\sigma} \order \Xi_{\sigma'} \Longleftrightarrow (\Xi_{\sigma}(v) \preceq \Xi_{\sigma'}(v) \mbox{ for all } v \in V) 
+\mbox{ and } (\Xi_{\sigma} \neq \Xi_{\sigma'})$$
+\pause
+We write $v \prec_{\sigma} u$ to abbreviate $\Xi_{\sigma}(v) \prec \Xi_{\sigma}(u)$.
+\end{frame}
+
+\section{Improvement policies}
+\begin{frame}{Improvement policies}
+A strategy $\sigma$ is \emph{improvable} iff there is a node $v \in V_0$, a node $v \in V$ with $vEu$ and $\sigma(v) \neq u$ such that $\sigma(v) \prec_{\sigma} u$.
+\pause
+\vskip2ex
+An improvement policy is a map $\IG : \Strat \to \Strat$ fulfilling the following two conditions for every strategy $\sigma$:
+\begin{enumerate}
+ \item For every node $v \in V_0$, it holds that $\sigma(v) \preceq_{\sigma} \IG(\sigma)(v)$;
+ \item If $\sigma$ is improvable then there is a node $v \in V_0$ such that $\sigma(v) \prec_{\sigma} \IG(\sigma)(v)$.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{The locally optimizing policy}
+The locally optimizing policy $\IGloc$ selects the most profitable strategy decision in every point with respect to the current valuation:
+$$\IGloc(\sigma) : v \in V_0 \to \max_{\prec} \set{u \in vE \mid w \preceq_\sigma u}$$
+\end{frame}
+
+\section{Plays valuations}
+\begin{frame}{What do we store?}
+We now focus on the core problem: comparing plays (consistent with $\sigma$).\\
+\pause
+General shape of a play (both players play positionally):
+\begin{center}
+\begin{picture}(100,20)(0,-10)
+	\rpnode[arcradius=1](v)(20,0)(6,5){$v_0$}
+	\rpnode[arcradius=1](i)(60,0)(6,5){$v_k$}
+  
+	\drawedge[curvedepth=5,dash={2.5}0](v,i){}
+	\drawloop[dash={2.5}0,loopangle=0,loopdiam=15](i){}
+\end{picture}
+\end{center}
+where $v_k$ has the highest priority of the cycle.
+\end{frame}
+
+\begin{frame}{Some notations}
+\begin{itemize}
+ \item a loopless path in $G$ is an injective map $\pi : \set{0,\ldots,k-1} \to V$ conforming with $E$, i.e. $\pi(i)E\pi(i+1)$ for every $i < k-1$;
+ \item we sometimes write $\pi = v_0 v_1\dots v_{k-1}$ to denote the loopless path $\pi : i \to v_i$;
+ \item the set of loopless paths $\pi$ in a game $G$ originated from the node $v$ (i.e. $\pi(0) = v$) is denoted by $\Pi_G(v)$;
+ \item a node $v$ in $G$ is called \emph{dominating cycle node} iff there is a loopless path $\pi \in \Pi_G(v)$ such that $\pi(|\pi| - 1)E\pi(0)$
+and $\max \set{\Omega(\pi(i)) \mid i < |\pi|} = \Omega(v)$;
+ \item the set of dominating cycle nodes is denoted by $\C_G$.
+\end{itemize}
+\pause
+A play consistent with $\sigma$ from $v$ is then a loopless path $\pi = v_0 v_1 \ldots v_k \in \Pi_{G|_{\sigma}}(v)$ with $v_k \in \C_{G|_{\sigma}}$.\\
+\end{frame}
+
+\begin{frame}{The goal}
+\begin{enumerate}
+ \item being able to describe a tractable improvement policy satisfying $\Xi_\sigma \order \Xi_{\IG(\sigma)}$;
+ \item if $\sigma$ is a non-improvable strategy, then from $\Xi_\sigma$ one can in polynomial time derive $W_0$ and $W_1$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{First part of a valuation play}
+The most relevant part is $v_k$, since its priority parity says which player wins.\\
+\pause
+We define: $$\rew_G(v) = \left \{
+\begin{array}{cc}
+\Omega(v) & \mbox{ if } \Omega(v) \equiv 0 \mod 2 \\
+-\Omega(v) & \mbox{ if } \Omega(v) \equiv 1 \mod 2 \\
+\end{array}\right.$$
+Then $v \prec u \Longleftrightarrow \rew_G(v) < \rew_G(u)$.
+\end{frame}
+
+% \begin{frame}{First part of a valuation play: is it enough?}
+% \end{frame}
+
+\begin{frame}{Second part of a valuation play}
+The second part of a valuation play is the set of nodes on the way to the cycle.
+\vskip1ex
+One considers the node with the highest priority that occurs in only one of the two sets.
+The set owning that node is greater than the other if anf only if that node has an even priority.
+$$M \prec N \Longleftrightarrow
+\left \{
+\begin{array}{cl}
+(M \bigtriangleup N \neq \emptyset \mbox{ and } \max_{\Omega} (M \bigtriangleup N) \in N \cap V_\oplus) & \mbox{ or } \\
+(M \bigtriangleup N \neq \emptyset \mbox{ and } \max_{\Omega} (M \bigtriangleup N) \in M \cap V_\ominus) \\
+\end{array}
+\right.$$
+\end{frame}
+
+\begin{frame}{Third part of a valuation play}
+
+\end{frame}
+
+\begin{frame}{Finally, the lexicographic order $\order$}
+
+\end{frame}
+
+\end{document}

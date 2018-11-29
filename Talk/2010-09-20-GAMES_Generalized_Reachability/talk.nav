@@ -1,0 +1,57 @@
+\beamer@endinputifotherversion {3.07pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\sectionentry {1}{Generalized reachability games}{2}{Generalized reachability games}{0}}
+\headcommand {\beamer@sectionpages {1}{1}}
+\headcommand {\beamer@subsectionpages {1}{1}}
+\headcommand {\slideentry {1}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{3}{Games}}\headcommand {\beamer@subsectionpages {2}{2}}
+\headcommand {\slideentry {1}{1}{1}{3/3}{Games}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\slideentry {1}{1}{2}{4/4}{Games}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\slideentry {1}{1}{3}{5/10}{Games}{0}}
+\headcommand {\beamer@framepages {5}{10}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{11}{Reachability}}\headcommand {\beamer@subsectionpages {3}{10}}
+\headcommand {\slideentry {1}{2}{1}{11/11}{Reachability}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\slideentry {1}{2}{2}{12/15}{Reachability}{0}}
+\headcommand {\beamer@framepages {12}{15}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{16}{Generalized}}\headcommand {\beamer@subsectionpages {11}{15}}
+\headcommand {\slideentry {1}{3}{1}{16/16}{Generalized}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\slideentry {1}{3}{2}{17/17}{Generalized}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {1}{3}{3}{18/21}{Generalized}{0}}
+\headcommand {\beamer@framepages {18}{21}}
+\headcommand {\sectionentry {2}{Complexity}{22}{Complexity}{0}}
+\headcommand {\beamer@sectionpages {2}{21}}
+\headcommand {\beamer@subsectionpages {16}{21}}
+\headcommand {\slideentry {2}{0}{4}{22/22}{}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{23}{$\mathrm {PSPACE}$-hardness: encoding $\mathrm {QBF}$}}\headcommand {\beamer@subsectionpages {22}{22}}
+\headcommand {\slideentry {2}{1}{1}{23/23}{$\mathrm {PSPACE}$-hardness: encoding $\mathrm {QBF}$}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\slideentry {2}{1}{2}{24/26}{$\mathrm {PSPACE}$-hardness: encoding $\mathrm {QBF}$}{0}}
+\headcommand {\beamer@framepages {24}{26}}
+\headcommand {\slideentry {2}{1}{3}{27/28}{$\mathrm {PSPACE}$-hardness: encoding $\mathrm {QBF}$}{0}}
+\headcommand {\beamer@framepages {27}{28}}
+\headcommand {\slideentry {2}{1}{4}{29/31}{$\mathrm {PSPACE}$-hardness: encoding $\mathrm {QBF}$}{0}}
+\headcommand {\beamer@framepages {29}{31}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{32}{Memory requirements}}\headcommand {\beamer@subsectionpages {23}{31}}
+\headcommand {\slideentry {2}{2}{1}{32/32}{Memory requirements}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\slideentry {2}{2}{2}{33/33}{Memory requirements}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\slideentry {2}{2}{3}{34/34}{Memory requirements}{0}}
+\headcommand {\beamer@framepages {34}{34}}
+\headcommand {\slideentry {2}{2}{4}{35/35}{Memory requirements}{0}}
+\headcommand {\beamer@framepages {35}{35}}
+\headcommand {\slideentry {2}{2}{5}{36/36}{Memory requirements}{0}}
+\headcommand {\beamer@framepages {36}{36}}
+\headcommand {\beamer@partpages {1}{36}}
+\headcommand {\beamer@subsectionpages {32}{36}}
+\headcommand {\beamer@sectionpages {22}{36}}
+\headcommand {\beamer@documentpages {36}}
+\headcommand {\def \inserttotalframenumber {20}}

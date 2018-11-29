@@ -1,0 +1,81 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{gastex}
+
+\begin{document}
+
+\begin{picture}(120,28)(-10,5)
+	\gasset{Nh=3,Nw=3,Nadjust=wh}
+
+	\node[Nmarks=i,iangle=180](v_9)(0,20){$9$}
+	\node(v_8)(10,20){$8$}
+	\node(v_7)(20,20){$7$}
+	\node(v_6)(30,20){$6$}
+	\node(v_5)(40,20){$5$}
+	\node(v_4)(50,20){$4$}
+	\node(v_3)(60,20){$3$}
+	\node(v_2)(70,20){$2$}
+	\node(v_1)(80,20){$1$}
+	\node(v_0)(90,20){$0$}
+
+	\node(F)(100,20){$F$}
+
+	\rpnode[polyangle=45](u_9)(5,10)(4,2.5){}
+	\rpnode[polyangle=45](u_8)(15,10)(4,2.5){}
+	\rpnode[polyangle=45](u_7)(25,10)(4,2.5){}
+	\rpnode[polyangle=45](u_6)(35,10)(4,2.5){}
+	\rpnode[polyangle=45](u_5)(45,10)(4,2.5){}
+	\rpnode[polyangle=45](u_4)(55,10)(4,2.5){}
+	\rpnode[polyangle=45](u_3)(65,10)(4,2.5){}
+	\rpnode[polyangle=45](u_2)(75,10)(4,2.5){}
+	\rpnode[polyangle=45](u_1)(85,10)(4,2.5){}
+	\rpnode[polyangle=45](u_0)(95,10)(4,2.5){}
+
+	\drawedge(u_9,u_8){}
+	\drawedge(u_8,u_7){}
+	\drawedge(u_7,u_6){}
+	\drawedge(u_6,u_5){}
+	\drawedge(u_5,u_4){}
+	\drawedge(u_4,u_3){}
+	\drawedge(u_3,u_2){}
+	\drawedge(u_2,u_1){}
+	\drawedge(u_1,u_0){}
+
+	\gasset{curvedepth=-1}
+	
+	\drawedge(v_9,u_9){}
+	\drawedge(v_8,u_8){}
+	\drawedge(v_7,u_7){}
+	\drawedge(v_6,u_6){}
+	\drawedge(v_5,u_5){}
+	\drawedge(v_4,u_4){}
+	\drawedge(v_3,u_3){}
+	\drawedge(v_2,u_2){}
+	\drawedge(v_1,u_1){}
+	\drawedge(v_0,u_0){}
+
+	\drawedge(u_9,v_8){}
+	\drawedge(u_8,v_7){}
+	\drawedge(u_7,v_6){}
+	\drawedge(u_6,v_5){}
+	\drawedge(u_5,v_4){}
+	\drawedge(u_4,v_3){}
+	\drawedge(u_3,v_2){}
+	\drawedge(u_2,v_1){}
+	\drawedge(u_1,v_0){}
+	\drawedge(u_0,F){}
+
+	\drawqbpedge(v_7,130,v_9,80){$r$}
+	\drawqbpedge(v_6,130,v_8,80){$r$}
+	\drawqbpedge(v_5,130,v_7,80){$r$}
+	\drawqbpedge(v_4,130,v_6,80){$r$}
+	\drawqbpedge(v_3,130,v_5,80){$r$}
+	\drawqbpedge(v_2,130,v_4,80){$r$}
+	\drawqbpedge(v_1,130,v_3,80){$r$}
+	\drawqbpedge(v_0,130,v_2,80){$r$}
+
+	\drawloop[loopangle=0,loopdiam=3](F){}
+\end{picture}
+
+\end{document}

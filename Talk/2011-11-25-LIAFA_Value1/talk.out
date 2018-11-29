@@ -1,0 +1,11 @@
+\BOOKMARK [2][]{Outline0.1}{The value 1 problem for probabilistic automata}{}
+\BOOKMARK [3][]{Outline0.1.1.4}{Definitions}{Outline0.1}
+\BOOKMARK [3][]{Outline0.1.2.9}{Deciding the isolation problem}{Outline0.1}
+\BOOKMARK [2][]{Outline0.2}{An algebraic solution to the limitedness problem for distance automata}{}
+\BOOKMARK [3][]{Outline0.2.1.31}{Taking a step back: weighted automata}{Outline0.2}
+\BOOKMARK [3][]{Outline0.2.2.36}{Leung's algorithm}{Outline0.2}
+\BOOKMARK [2][]{Outline0.3}{Towards an algebraic treatment of probabilistic automata}{}
+\BOOKMARK [3][]{Outline0.3.1.52}{First tries}{Outline0.3}
+\BOOKMARK [3][]{Outline0.3.2.67}{Leaks}{Outline0.3}
+\BOOKMARK [3][]{Outline0.3.3.71}{The good semiring}{Outline0.3}
+\BOOKMARK [3][]{Outline0.3.4.80}{The completeness proof using Simon's theorem}{Outline0.3}

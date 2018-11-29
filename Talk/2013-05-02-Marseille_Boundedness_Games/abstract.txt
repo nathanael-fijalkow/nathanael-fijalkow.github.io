@@ -1,0 +1,11 @@
+Boundedness games
+
+In this talk, I will discuss some recent developments about boundedness games, which appear in different contexts, recently for instance in the study of regular cost-functions as defined by Thomas Colcombet.
+They are two-player games featuring counters that can be incremented, reset of left unchanged,
+and where the first player's objective is that the counters remain bounded along the play.
+They can be played over finite graphs or infinite graphs, for instance over pushdown graphs.
+I am interested in the following questions: deciding the winner, proving the existence of finite-memory strategies,
+and constructing such strategies.
+
+Based on joint works with Krishnendu Chatterjee, Thomas Colcombet, Florian Horn and Martin Zimmermann.
+

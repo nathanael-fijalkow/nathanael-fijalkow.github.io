@@ -1,0 +1,697 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+\usefonttheme{serif}
+\usecolortheme{dove}
+\useinnertheme{rounded}
+\useoutertheme{smoothbars}
+\setbeamercolor{item projected}{fg=black}
+
+%\sloppy
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsthm,amssymb,amsmath,graphicx}
+\usepackage{color}
+\usepackage{gastex}
+
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\PSPACE}{\mathrm{PSPACE}}
+\newcommand{\Reach}{\mathrm{Reach}}
+\newcommand{\QBF}{\mathrm{QBF}}
+\newcommand{\Attr}{\mathrm{Attr}}
+\newcommand{\NP}{\mathrm{NP}}
+\newcommand{\Poly}{\mathrm{P}}
+\newcommand{\F}{\mathcal{F}}
+
+
+\title{Exercices in reachability style}
+\author{\underline{Nathana\"el Fijalkow} \inst{1,2} \& Florian Horn \inst{1}}
+\institute{LIAFA \\ CNRS \& Université Denis Diderot - Paris 7, France \\
+\textbf{florian.horn@liafa.jussieu.fr}
+\and \'ENS Cachan \\ \'Ecole Normale Supérieure de Cachan, France \\
+\textbf{nathanael.fijalkow@gmail.com}}
+\date{November 19th, 2010}
+\subtitle{GASICS'2010 workshop}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Generalized reachability games}
+\subsection{Games}
+
+\begin{frame}{Players}
+Two players: \textbf{Eve} and \textbf{Adam}.
+\end{frame}
+
+\begin{frame}{Playing}
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=8,Nh=8}
+	
+  	\node(Eve)(10,65){}
+	\put(16,64){controlled by Eve}
+  	\rpnode[polyangle=45](Adam)(70,65)(4,5){}
+	\put(76,64){controlled by Adam}
+
+  	\node(1)(60,30){}
+  	\rpnode[polyangle=45](2)(50,15)(4,5){}
+  	\node(3)(40,30){}
+  	\rpnode[polyangle=45](4)(50,50)(4,5){}
+  	\rpnode[polyangle=45](5)(50,0)(4,5){}
+  	\node(6)(80,30){}
+  	\node(7)(20,30){}
+
+  	\drawedge(1,2){}
+  	\drawedge(1,4){}
+  	\drawedge(2,3){}
+  	\drawedge(2,5){}
+  	\drawedge(3,1){}
+  	\drawedge[curvedepth=-5](3,5){}
+  	\drawedge[curvedepth=10](4,6){}
+  	\drawedge[curvedepth=-10](4,7){}
+  	\drawedge[curvedepth=10](5,7){}
+  	\drawedge(6,4){}
+  	\drawedge(7,4){}
+  	\drawedge[curvedepth=10](6,5){}
+  	\drawedge[curvedepth=-5](5,1){}
+  	\drawedge(7,3){}
+	\drawloop[loopangle=90](4){}
+
+\only<3>{\drawedge[AHLength=3,AHlength=4,linecolor=red,linewidth=0.7](1,2){}}
+\only<5>{\drawedge[AHLength=3,AHlength=4,linecolor=red,linewidth=0.7](2,3){}}
+\only<7>{\drawedge[AHLength=3,AHlength=4,linecolor=red,linewidth=0.7](3,1){}}
+
+\only<2,3,8>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(60,30){}} %pebble on 1
+\only<4,5>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(50,15){}} %pebble on 2
+\only<6,7>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(40,30){}} %pebble on 3
+\end{picture}
+\end{center}
+\end{frame}
+
+
+\subsection{Reachability games}
+
+\begin{frame}{Solving reachability games}
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=8,Nh=8}
+
+	\put(0,50){Given {\color{red}{$F$}} $\subseteq Q$}
+  	\node(1)(60,30){}
+  	\rpnode[polyangle=45](2)(50,15)(4,5){}
+  	\node(3)(40,30){}
+  	\rpnode[polyangle=45](4)(50,50)(4,5){}
+  	\rpnode[polyangle=45](5)(50,0)(4,5){}
+  	\node(6)(80,30){}
+  	\node(7)(20,30){}
+
+  	\drawedge(1,2){}
+  	\drawedge(1,4){}
+  	\drawedge(2,3){}
+  	\drawedge(2,5){}
+  	\drawedge(3,1){}
+  	\drawedge[curvedepth=-5](3,5){}
+  	\drawedge[curvedepth=10](4,6){}
+  	\drawedge[curvedepth=-10](4,7){}
+  	\drawedge[curvedepth=10](5,7){}
+  	\drawedge(6,4){}
+  	\drawedge(7,4){}
+  	\drawedge[curvedepth=10](6,5){}
+  	\drawedge[curvedepth=-5](5,1){}
+  	\drawedge(7,3){}
+	\drawloop[loopangle=90](4){}
+	
+	\node[fillcolor=red](pebble)(60,30){$0$}
+  	\rpnode[fillcolor=red,polyangle=45](2)(50,15)(4,5){$0$}
+	\node[fillcolor=red](pebble)(40,30){$0$}
+
+\only<2,3,4>{
+	\node[fillcolor=red](pebble)(20,30){$1$}
+}
+
+\only<3,4>{
+  	\rpnode[fillcolor=red,polyangle=45](2)(50,0)(4,5){$2$}
+}
+
+\only<4>{
+  	\node[fillcolor=red](pebble)(80,30){$3$}
+}
+\end{picture}
+\end{center}
+\end{frame}
+
+\subsection{Generalized reachability games}
+
+\begin{frame}{Generalized reachability objectives}
+\begin{itemize}
+	\item Reachability objectives: given $F \subseteq Q$, reach at least one vertex in $F$;
+	\item Generalized reachability objectives: given $F_1,F_2,\dots,F_p \subseteq Q$, reach at least one vertex in each $F_i$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example}
+\begin{center}
+\begin{picture}(100,50)(0,0)
+	\gasset{Nw=8,Nh=8}
+
+	\put(0,60){Given {\color{red}{$F_1$}} and {\color{blue}{$F_2$}} $\subseteq Q$}
+
+  	\node(1)(60,30){}
+  	\rpnode[polyangle=45](2)(50,15)(4,5){}
+  	\node(3)(40,30){}
+  	\rpnode[polyangle=45](4)(50,50)(4,5){}
+  	\rpnode[polyangle=45](5)(50,0)(4,5){}
+  	\node(6)(80,30){}
+  	\node(7)(20,30){}
+
+  	\drawedge(1,4){}
+  	\drawedge(3,2){}
+  	\drawedge(2,5){}
+  	\drawedge(6,1){}
+  	\drawedge[curvedepth=3](2,1){}
+  	\drawedge[curvedepth=3](1,2){}
+  	\drawedge[curvedepth=5](5,3){}
+  	\drawedge[curvedepth=10](4,6){}
+  	\drawedge[curvedepth=-10](4,7){}
+  	\drawedge[curvedepth=10](5,7){}
+  	\drawedge[curvedepth=10](6,5){}
+  	\drawedge[curvedepth=3](7,3){}
+  	\drawedge[curvedepth=3](3,7){}
+	\drawloop[loopangle=90](4){}
+	
+	\node[fillcolor=red](pebble)(60,30){}
+  	\node[fillcolor=red](pebble)(40,30){}
+	\node[fillcolor=blue](pebble)(20,30){}
+
+\only<1>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(80,30){}} %pebble
+\only<2>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(50,0){}} %pebble
+\only<3>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(20,30){}} %pebble
+\only<4>{\node[fillcolor=magenta,Nw=4,Nh=4](pebble)(40,30){}} %pebble
+\end{picture}
+\end{center}
+\end{frame}
+
+\subsection{The surprizing complexity}
+
+\begin{frame}{Reduction from $\QBF$ to generalized reachability games}
+$\phi$ quantified boolean formula in conjunctive normal form:
+$$\phi = \forall x\ \exists y\ \forall z\ \ \color{red}{(x \vee \neg y)} \ 
+\color{black}{\wedge}\ \color{blue}{(\neg y \vee z)}$$
+\pause
+$$\color{red}{F_1 = \set{x,\neg y}} \hspace{2cm} \color{blue}{F_2 = \set{\neg y, z}}$$
+
+\only<2>{
+\begin{figure}
+\begin{center}
+\begin{picture}(80,20)(5,0)
+	\gasset{Nw=7,Nh=7}
+ 
+	\rpnode[polyangle=45,Nmarks=i](1)(0,10)(4,4){$\forall$}
+	\node[linecolor=red](x)(15,20){$x$}
+	\node(nx)(15,0){$\neg x$}
+
+	\drawedge(1,x){}
+	\drawedge(1,nx){}
+
+	\node(2)(30,10){$\exists$}
+	\node(y)(45,20){$y$}
+	\node[linecolor=red](ny)(45,0){$\neg y$}
+	\rmark[linecolor=blue](ny)
+	
+	\drawedge(x,2){}
+	\drawedge(nx,2){}
+	\drawedge(2,y){}
+	\drawedge(2,ny){}
+
+	\rpnode[polyangle=45](3)(60,10)(4,4){$\forall$}
+	\node[linecolor=blue](z)(75,20){$z$}
+	\node(nz)(75,0){$\neg z$}
+
+	\drawedge(y,3){}
+	\drawedge(ny,3){}
+	\drawedge(3,z){}
+	\drawedge(3,nz){}
+
+	\node(e)(90,10){}
+	\drawedge(z,e){}
+	\drawedge(nz,e){}
+	\drawloop[loopangle=0](e){}
+\end{picture}
+\end{center}
+\end{figure}}
+$$\textrm{Eve wins if and only if } \phi \textrm{ is true.}$$
+\end{frame}
+
+\begin{frame}{Complexity}
+\begin{theorem}[Complexity of generalized reachability games]
+\begin{itemize}
+	\item Solving two players generalized reachability games is $\PSPACE$-complete;
+	\item Solving one player (Eve) generalized reachability games is $\NP$-complete.
+\end{itemize}
+\end{theorem}
+\end{frame}
+
+\section{Weakening weak M\"uller games}
+
+\subsection{Weak M\"uller games}
+
+\begin{frame}{M\"uller games and weak M\"uller games}
+\begin{itemize}
+	\item M\"uller objectives: given $\F \subseteq 2^Q$, the set of vertices visited infinitely often is in $\F$;
+	\item weak M\"uller objectives: given $\F \subseteq 2^Q$, the set of visited vertices is in $\F$.
+\end{itemize}
+\pause
+\begin{theorem}[Complexity of M\"uller games]
+Solving M\"uller games, as well as weak M\"uller games, is $\PSPACE$-complete.
+\end{theorem}
+\pause
+How to weaken weak M\"uller games to get lower complexity?
+\end{frame}
+
+\subsection{Weakening}
+
+\begin{frame}{Downward-closed objectives}
+\begin{itemize}
+	\item A condition $\F \subseteq 2^Q$ is downward-closed if $Y \in \F, X \subseteq Y \Rightarrow X \in \F$;
+	\item weak M\"uller downward-closed objectives are generalized (existential) reachability objectives;
+	\item weak M\"uller upward-closed objectives are generalized universal reachability objectives.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Cutting on formulas}
+\begin{center}
+\begin{picture}(60,30)(0,0)
+ 	\gasset{Nadjust=w}
+  
+ 	\node(1g)(10,30){$\bigvee_i \Reach(v_i)$}
+ 	\node(1d)(50,30){$\wedge_i \Reach(v_i)$}
+
+ 	\node(2g)(10,10){$\vee_i \wedge_j \Reach(v_{i,j})$}
+ 	\node(2d)(50,10){$\wedge_i \vee_j \Reach(v_{i,j})$}
+ 	
+ 	\drawedge(1g,2g){}
+ 	\drawedge(1d,2g){}
+ 	\drawedge(1g,2d){}
+ 	\drawedge(1d,2d){} 
+
+\only<1>{
+ 	\gasset{Nw=.8,Nh=.8,Nfill=y,Nadjust=n}
+ 	\node(p1)(30,8){}
+ 	\node(p2)(30,4){}
+ 	\node(p3)(30,0){}
+
+ 	\node(p1)(10,4){}
+ 	\node(p2)(10,0){}
+ 	\node(p3)(10,-4){}
+
+ 	\node(p1)(50,4){}
+ 	\node(p2)(50,0){}
+ 	\node(p3)(50,-4){}
+ 		}
+
+ 	\gasset{Nfill=n}
+	\node[linecolor=White](foo)(30,35){}
+	
+	\only<2,3>{
+	\put(10,40){(existential) reachability}
+ 	\drawedge[linecolor=Red](foo,1g){}	
+	}
+
+	\only<3>{\put(2,35){\color{red}{polynomial}}}
+
+	\only<4,5>{
+	\put(10,40){universal reachability}
+ 	\drawedge[linecolor=Red](foo,1d){}	
+	}
+
+	\only<5>{\put(48,35){\color{red}{???}}}
+
+	\only<6,7>{
+	\put(0,40){generalized (existential) reachability}
+ 	\drawedge[linecolor=Red](foo,2d){}	
+	}
+
+	\only<7>{\put(38,2){\color{red}{$\PSPACE$-complete}}}
+
+	\only<8,9>{
+	\put(0,40){generalized universal reachability}
+ 	\drawedge[linecolor=Red](foo,2g){}	
+	}
+
+	\only<9>{\put(5,2){\color{red}{???}}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\subsection{Universal reachability games}
+
+\begin{frame}{Solving}
+\begin{center}
+\begin{picture}(60,30)(0,0)
+ 	\gasset{Nadjust=w}
+  
+ 	\node(1d)(50,30){$\wedge_i \Reach(v_i)$}
+\end{picture}
+\end{center}
+\pause
+\begin{theorem}[Complexity of universal reachability games]
+Solving universal generalized reachability games is in $\Poly$.
+Furthermore, Eve requires at most $k$ memory states, and Adam at most $2$.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Sketch of a proof}
+We consider two cases:
+\begin{itemize}
+	\item If there exists a permutation $f$ over $\set{1,\ldots,k}$ such that for all $1 \leq i \leq k-1$, we have $v_{f(i)} \in \Attr(v_{f(i+1)})$.\\
+\pause
+Then Eve wins from $\cap_i \Attr(v_i)$.
+\pause
+	\item Otherwise, there exists $v_i$ and $v_j$ such that $v_i \notin \Attr(v_j)$ and $v_j \notin \Attr(v_i)$.\\
+\pause
+A winning strategy for Adam is: "if $v_i$ or $v_j$ has been reached, then avoid the other".
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Completing the picture}
+\begin{center}
+\begin{picture}(60,30)(0,0)
+ 	\gasset{Nadjust=w}
+  
+ 	\node(1g)(10,30){$\bigvee_i \Reach(v_i)$}
+ 	\node(1d)(50,30){$\wedge_i \Reach(v_i)$}
+
+ 	\node(2g)(10,10){$\vee_i \wedge_j \Reach(v_{i,j})$}
+ 	\node(2d)(50,10){$\wedge_i \vee_j \Reach(v_{i,j})$}
+ 	
+ 	\drawedge(1g,2g){}
+ 	\drawedge(1d,2g){}
+ 	\drawedge(1g,2d){}
+ 	\drawedge(1d,2d){} 
+
+ 	\gasset{Nfill=n}
+	\node[linecolor=White](foo)(30,35){}
+
+	\put(0,35){\color{red}{polynomial}}
+	\put(42,35){\color{red}{polynomial}}
+	\put(38,2){\color{red}{$\PSPACE$-complete}}
+	\put(5,2){\color{red}{???}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\subsection{A possible complexity gap}
+
+\begin{frame}{Generalized universal games}
+\begin{center}
+\begin{picture}(60,30)(0,0)
+ 	\gasset{Nadjust=w}
+  
+ 	\node(2g)(10,10){$\vee_i \wedge_j \Reach(v_{i,j})$} 	
+\end{picture}
+\end{center}
+\pause
+\begin{theorem}[Complexity of generalized universal reachability games]
+Solving generalized universal games is $\PSPACE$-complete.
+\end{theorem}
+The proof is the same, using $\QBF$ in disjunctive normal form.
+\end{frame}
+
+\begin{frame}{but...}
+If we look carefully at our reduction, it does not imply that solving generalized reachability games where reachability sets have size $2$ is $\PSPACE$-hard.
+\pause
+$$\phi = \forall x\ \exists y\ \forall z\ \ \color{red}{(x \vee \neg y)} \ 
+\color{black}{\wedge}\ \color{blue}{(\neg y \vee z)}$$
+$$\color{red}{F_1 = \set{x,\neg y}} \hspace{2cm} \color{blue}{F_2 = \set{\neg y, z}}$$
+\begin{center}
+\begin{picture}(80,20)(5,0)
+	\gasset{Nw=7,Nh=7}
+ 
+	\rpnode[polyangle=45,Nmarks=i](1)(0,10)(4,4){$\forall$}
+	\node[linecolor=red](x)(15,20){$x$}
+	\node(nx)(15,0){$\neg x$}
+
+	\drawedge(1,x){}
+	\drawedge(1,nx){}
+
+	\node(2)(30,10){$\exists$}
+	\node(y)(45,20){$y$}
+	\node[linecolor=red](ny)(45,0){$\neg y$}
+	\rmark[linecolor=blue](ny)
+	
+	\drawedge(x,2){}
+	\drawedge(nx,2){}
+	\drawedge(2,y){}
+	\drawedge(2,ny){}
+
+	\rpnode[polyangle=45](3)(60,10)(4,4){$\forall$}
+	\node[linecolor=blue](z)(75,20){$z$}
+	\node(nz)(75,0){$\neg z$}
+
+	\drawedge(y,3){}
+	\drawedge(ny,3){}
+	\drawedge(3,z){}
+	\drawedge(3,nz){}
+
+	\node(e)(90,10){}
+	\drawedge(z,e){}
+	\drawedge(nz,e){}
+	\drawloop[loopangle=0](e){}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Generalized universal reachability games}
+
+\begin{theorem}[Complexity of restricted generalized universal reachability games]
+Solving generalized universal games where reachability sets have size $2$ is $\PSPACE$-complete.
+\end{theorem}
+\pause
+However, the problem is still open for generalized (existential) reachability games,
+\pause
+as well as for the dual version: generalized universal reachability games where there are two reachability sets.
+\end{frame}
+
+\begin{frame}{Completing the picture}
+\begin{center}
+\begin{picture}(60,30)(0,0)
+ 	\gasset{Nadjust=w}
+  
+ 	\node(1g)(10,30){$\bigvee_i \Reach(v_i)$}
+ 	\node(1d)(50,30){$\wedge_i \Reach(v_i)$}
+
+ 	\node(2g)(10,10){$\vee_i \wedge_j \Reach(v_{i,j})$}
+ 	\node(2d)(50,10){$\wedge_i \vee_j \Reach(v_{i,j})$}
+ 	
+ 	\drawedge(1g,2g){}
+ 	\drawedge(1d,2g){}
+ 	\drawedge(1g,2d){}
+ 	\drawedge(1d,2d){} 
+
+ 	\gasset{Nfill=n}
+	\node[linecolor=White](foo)(30,35){}
+
+	\put(0,35){\color{red}{polynomial}}
+	\put(42,35){\color{red}{polynomial}}
+	\put(38,2){\color{red}{$\PSPACE$-complete}}
+	\put(-4,2){\color{red}{$\PSPACE$-complete}}
+\end{picture}
+\end{center}
+\end{frame}
+
+\subsection{Memory requirements}
+
+\begin{frame}{Exponential lower bound for Eve, reachability sets of size $2$}
+\begin{center}
+\begin{picture}(60,70)(0,0)
+ 	\gasset{Nw=8,Nh=8}
+  
+ 	\rpnode[polyangle=45](1)(10,70)(4,5){start}
+ 	\rpnode[fillcolor=orange,polyangle=45](v1)(0,55)(4,5){$v_1$}
+ 	\rpnode[fillcolor=blue,polyangle=45](v2)(20,55)(4,5){$v_2$}
+ 
+ 	\drawedge(1,v1){}
+ 	\drawedge(1,v2){}
+ 
+ 	\rpnode[fillcolor=green,polyangle=45](v3)(0,40)(4,5){$v_3$}
+ 	\rpnode[fillcolor=red,polyangle=45](v4)(20,40)(4,5){$v_4$}
+
+	\node[linecolor=white](v5)(0,25){}
+	\node[linecolor=white](v6)(20,25){}
+	
+ 	\drawedge(v1,v3){}
+ 	\drawedge(v1,v4){}
+ 	\drawedge(v2,v3){}
+ 	\drawedge(v2,v4){}
+ 	\drawedge(v3,v5){}
+ 	\drawedge(v4,v6){}
+ 
+ 	\gasset{Nw=.8,Nh=.8,Nfill=y}
+ 	\node(p1)(10,30){}
+ 	\node(p2)(10,26){}
+ 	\node(p3)(10,22){}
+ 	\gasset{Nw=8,Nh=8,Nfill=n}
+ 
+ 	\rpnode[polyangle=45,Nadjust=w,fillcolor=pink](v2p-1)(0,15)(4,6){$v_{2p-1}$}
+ 	\rpnode[polyangle=45,Nadjust=w,fillcolor=magenta](v2p)(20,15)(4,6){$v_{2p}$}
+ 
+ 	\node(2)(50,10){m}
+ 	\drawedge[curvedepth=-12](v2p-1,2){}
+ 	\drawedge[curvedepth=-8](v2p,2){}
+ 
+ 	\node[fillcolor=orange](u1)(40,25){$u_1$}
+ 	\node[fillcolor=blue](u2)(60,25){$u_2$}
+ 
+ 	\drawedge(2,u1){}
+ 	\drawedge(2,u2){}
+ 
+ 	\node[fillcolor=green](u3)(40,40){$u_3$}
+ 	\node[fillcolor=red](u4)(60,40){$u_4$}
+
+	\node[linecolor=white](u5)(40,55){}
+	\node[linecolor=white](u6)(60,55){}
+ 
+ 	\drawedge(u1,u3){}
+ 	\drawedge(u1,u4){}
+ 	\drawedge(u2,u3){}
+ 	\drawedge(u2,u4){}
+ 	\drawedge(u3,u5){}
+ 	\drawedge(u4,u6){}
+ 
+ 	\gasset{Nw=.8,Nh=.8,Nfill=y}
+ 	\node(p1)(50,46){}
+ 	\node(p2)(50,50){}
+ 	\node(p3)(50,54){}
+ 	\gasset{Nw=9,Nh=8,Nfill=n}
+ 
+ 	\node[fillcolor=pink](u2p-1)(40,60){$u_{2p-1}$}
+ 	\node[fillcolor=magenta](u2p)(60,60){$u_{2p}$}
+ 
+ 	\drawloop[loopangle=90](u2p-1){}
+ 	\drawloop[loopangle=90](u2p){}
+\end{picture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Florian's piece of art; exponential lower bound for Eve}
+
+\begin{figure}
+\begin{center}
+\unitlength = 3.5mm
+\begin{picture}(16,24)(-8,-16)
+	\gasset{Nw=2,Nh=2,Nmr=2}
+
+	\node[Nmr=0](coeur)(0,0){}
+	\node[linecolor=white](racine)(1,-13){}
+					
+	\drawedge[curvedepth=1.4](racine,coeur){}
+
+	\gasset{Nw=1.5,Nh=1.5,Nmr=1.2}
+	
+	\node(a1)(0.59,6.05){}
+	\node[fillcolor=blue](b1)(2.52,5.54){}
+	\node(c1)(1.16,4.35){}
+	\node[fillcolor=green,Nw=1.5,Nh=1.5](c12)(1.16,4.35){}
+	\node[fillcolor=orange,Nw=1.1,Nh=1.1](c13)(1.16,4.35){}
+	\node[fillcolor=red,Nw=.7,Nh=.7](c14)(1.16,4.35){}
+	\node[fillcolor=pink,Nw=.3,Nh=.3](c15)(1.16,4.35){}
+
+	\drawedge[curvedepth=.7](coeur,a1){}
+	\drawedge[curvedepth=2](a1,b1){}
+	\drawedge[curvedepth=.7](b1,coeur){}
+	\drawedge[curvedepth=.4](a1,c1){}
+	\drawloop[loopangle=255,loopdiam=1](c1){}
+
+	\node(a2)(5.86,1.62){}
+	\node[fillcolor=green](b2)(6.07,-0.37){}
+	\node(c2)(4.48,0.47){}
+	\node[fillcolor=blue,Nw=1.5,Nh=1.5](c22)(4.48,0.47){}
+	\node[fillcolor=orange,Nw=1.1,Nh=1.1](c23)(4.48,0.47){}
+	\node[fillcolor=red,Nw=.7,Nh=.7](c24)(4.48,0.47){}
+	\node[fillcolor=pink,Nw=.3,Nh=.3](c25)(4.48,0.47){}
+
+	\drawedge[curvedepth=.7](coeur,a2){}
+	\drawedge[curvedepth=2](a2,b2){}
+	\drawedge[curvedepth=.7](b2,coeur){}
+	\drawedge[curvedepth=.4](a2,c2){}
+	\drawloop[loopangle=186,loopdiam=1](c2){}
+
+	\node(a3)(3.61,-4.89){}
+	\node[fillcolor=orange](b3)(1.83,-5.80){}
+	\node(c3)(2.04,-4.01){}
+	\node[fillcolor=blue,Nw=1.5,Nh=1.5](c12)(2.04,-4.01){}
+	\node[fillcolor=green,Nw=1.1,Nh=1.1](c13)(2.04,-4.01){}
+	\node[fillcolor=red,Nw=.7,Nh=.7](c14)(2.04,-4.01){}
+	\node[fillcolor=pink,Nw=.3,Nh=.3](c15)(2.04,-4.01){}
+
+	\drawedge[curvedepth=.7](coeur,a3){}
+	\drawedge[curvedepth=2](a3,b3){}
+	\drawedge[curvedepth=.7](b3,coeur){}
+	\drawedge[curvedepth=.4](a3,c3){}
+	\drawloop[loopangle=117,loopdiam=1](c3){}
+
+	\node(ai)(-4.49,-4.11){}
+	\node[fillcolor=red](bi)(-5.58,-2.43){}
+	\node(ci)(-3.77,-2.45){}
+	\node[fillcolor=blue,Nw=1.5,Nh=1.5](ci2)(-3.77,-2.45){}
+	\node[fillcolor=green,Nw=1.1,Nh=1.1](ci3)(-3.77,-2.45){}
+	\node[fillcolor=orange,Nw=.7,Nh=.7](ci4)(-3.77,-2.45){}
+	\node[fillcolor=pink,Nw=.3,Nh=.3](ci5)(-3.77,-2.45){}
+
+	\drawedge[curvedepth=.7](coeur,ai){}
+	\drawedge[curvedepth=2](ai,bi){}
+	\drawedge[curvedepth=.7](bi,coeur){}
+	\drawedge[curvedepth=.4](ai,ci){}
+	\drawloop[loopangle=33,loopdiam=1](ci){}
+
+	\node(ak)(-5.44,2.72){}
+	\node[fillcolor=pink](bk)(-4.27,4.34){}
+	\node(ck)(-3.64,2.65){}
+	\node[fillcolor=blue,Nw=1.5,Nh=1.5](ck2)(-3.64,2.65){}
+	\node[fillcolor=green,Nw=1.1,Nh=1.1](ck3)(-3.64,2.65){}
+	\node[fillcolor=orange,Nw=.7,Nh=.7](ck4)(-3.64,2.65){}
+	\node[fillcolor=red,Nw=.3,Nh=.3](ck5)(-3.64,2.65){}
+
+	\drawedge[curvedepth=.7](coeur,ak){}
+	\drawedge[curvedepth=2](ak,bk){}
+	\drawedge[curvedepth=.7](bk,coeur){}
+	\drawedge[curvedepth=.4](ak,ck){}
+	\drawloop[loopangle=324,loopdiam=1](ck){}
+\end{picture}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Conclusion and further work}
+\begin{itemize}
+	\item Many restrictions over weak M\"uller games are still $\PSPACE$-complete;
+	\item Open case: generalized reachability games where reachability sets have size $2$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The end.}
+Thank for your attention!
+\begin{center}
+\includegraphics[scale=0.4]{Eve_and_Adam.eps}
+\end{center}
+\end{frame}
+
+\end{document}

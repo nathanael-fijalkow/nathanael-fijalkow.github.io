@@ -1,0 +1,13 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {english}
+\beamer@sectionintoc {1}{The value $1$ problem for probabilistic automata}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Definitions}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Deciding the isolation problem}{9}{0}{1}
+\beamer@sectionintoc {2}{An algebraic solution to the limitedness problem for distance automata}{30}{0}{2}
+\beamer@subsectionintoc {2}{1}{Taking a step back: weighted automata}{31}{0}{2}
+\beamer@subsectionintoc {2}{2}{Leung's algorithm}{36}{0}{2}
+\beamer@sectionintoc {3}{Towards an algebraic treatment of probabilistic automata}{47}{0}{3}
+\beamer@subsectionintoc {3}{1}{First tries}{52}{0}{3}
+\beamer@subsectionintoc {3}{2}{Leaks}{67}{0}{3}
+\beamer@subsectionintoc {3}{3}{The good semiring}{71}{0}{3}
+\beamer@subsectionintoc {3}{4}{The completeness proof using Simon's theorem}{80}{0}{3}

@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {english}
+\beamer@sectionintoc {1}{A first attempt: get rid of numerical values}{9}{0}{1}
+\beamer@sectionintoc {2}{A second attempt: the Markov Monoid Algorithm}{13}{0}{2}
+\beamer@sectionintoc {3}{On the optimality of the Markov Monoid Algorithm}{40}{0}{3}
+\beamer@sectionintoc {4}{Implementation of the Markov Monoid Algorithm}{53}{0}{4}

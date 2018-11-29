@@ -1,0 +1,675 @@
+% \documentclass{beamer}
+% 
+% %\usepackage{beamerthemesplit}
+% \usepackage{latexsym,amsmath,amssymb}
+% \usetheme{Warsaw}
+% \usepackage[latin1]{inputenc}
+% \usepackage{epsfig}
+% 
+% \usepackage{amssymb}
+% 
+%    
+% \usepackage{graphicx}
+% \usepackage{multicol}
+% \usepackage{gastex}
+
+
+\documentclass[compress]{beamer}
+\usepackage{beamerthemesplit}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amscd}
+\usepackage[english]{babel}
+\usepackage{graphics}
+\usepackage{graphicx} 
+\usepackage{gastex}
+\usepackage{multicol}
+%\usepackage{xcolor}
+\usepackage{array}
+\usepackage{subfigure}
+\usepackage{wasysym}
+\usepackage{xspace}
+\usepackage{bbm}
+\usepackage{yfonts}
+\usepackage[bbgreekl]{mathbbol}
+\usepackage{rotating}
+
+\newcommand{\comment}[1]{\marginpar{\footnotesize #1}}
+\setcounter{tocdepth}{2}
+\setcounter{lofdepth}{2}
+\setcounter{secnumdepth}{3}
+\renewcommand{\subfigcapskip}{3mm}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\mode<presentation>
+{
+\setbeamertemplate{background canvas}[default]
+%\beamertemplatenavigationsymbolsempty
+%\setbeamertemplate{navigation symbols}{}
+\usetheme{Berlin}
+\usefonttheme[onlysmall]{structurebold}
+}
+
+\setbeamercovered{dynamic}
+
+\title{We tried and we tried\\and we applied and we implied\\but still, Probabilistic Automata we could not decide!}
+\author{Nathanaël Fijalkow and Florian Horn}
+\institute{\sc{Liafa} — CNRS \& Universit\'e Denis Diderot -Paris 7}
+\date{September 21st, 2013}
+
+\newcommand{\Green}{green!50!black}
+\newcommand{\Turquoise}{blue!50!green!50}
+\newcommand{\Red}{red!50!black}
+\newcommand{\lightgray}{gray!50!white}
+\newcommand{\Blue}{blue!50!black}
+\newcommand{\Violet}{red!50!blue}
+
+\newcommand{\pacman}{\includegraphics[scale=.5]{pacman.eps}}
+\newcommand{\boule}{\includegraphics[scale=.8]{boule.eps}}
+\newcommand{\powerball}{\includegraphics[scale=.8]{powerball.eps}}
+\newcommand{\fantome}{\includegraphics[scale=.5]{fantome.eps}}
+
+%======================================================================
+% Maths operators
+%======================================================================
+
+\newcommand{\sw}{\calF}
+\newcommand{\muller}{\calF}
+\newcommand{\mulleri}{\calF_i}
+\newcommand{\mullerAi}{\muller_{|A_i}}
+
+%======================================================================
+% Arenas, trees, and number for the bounds
+%======================================================================
+
+\newcommand{\F}{\ensuremath{\mathcal{F}}}
+\newcommand{\mf}{\ensuremath{m_\mathcal{F}}}
+\newcommand{\mfi}{m_{\muller_i}}
+\newcommand{\me}{\ensuremath{m_\mathcal{E}}}
+\newcommand{\re}{\ensuremath{r_\mathcal{E}}}
+\newcommand{\mfu}{\ensuremath{m_\mathcal{F}^U}}
+\newcommand{\rf}{\ensuremath{r_{\!{\mathcal{F}}}}}
+\newcommand{\rfi}{\ensuremath{r_{\!{\mathcal{F}_i}}}}
+\newcommand{\lf}{\ensuremath{\ell_\mathcal{F}}}
+\newcommand{\af}{\ensuremath{\mathcal{A}_\mathcal{F}}}
+\newcommand{\at}{\ensuremath{\mathcal{A}_\mathcal{T}}}
+\newcommand{\am}{\ensuremath{\mathcal{A_F}}}
+\newcommand{\are}{\ensuremath{\mathcal{A_E}}}
+\newcommand{\amr}{\ensuremath{\mathcal{A_F^*}}}
+\newcommand{\ad}{\ensuremath{\mathcal{A_D}}}
+\newcommand{\ram}{\rf}
+\newcommand{\m}{\ensuremath{\mathcal{F}}}
+\newcommand{\zm}{\ensuremath{\mathcal{Z_M}}}
+\newcommand{\zfc}{\ensuremath{\mathcal{Z_{F,C}}}}
+\newcommand{\zfco}{\ensuremath{\calZ_{\calF_1,\,\calC_1}}}
+\newcommand{\zfci}{\ensuremath{\calZ_{\calF_i,\,\calC_i}}}
+\newcommand{\zfcl}{\ensuremath{\calZ_{\calF_\ell,\,\calC_\ell}}}
+\newcommand{\dfc}{\ensuremath{\mathcal{D_{F\!,\, C}}}}
+\newcommand{\tfc}{\ensuremath{\mathcal{\widetilde{Z}_{F,C}}}}
+
+
+\newcommand{\win}[2]{\mathrm{Win}_{#1}^{{\tt #2}}}
+\newcommand{\winE}[1]{\win{E}{#1}}
+\newcommand{\winA}[1]{\win{A}{#1}}
+
+
+
+\newcommand{\qwin}[3]{\mathrm{Win}_{#1}^{{\tt #2, #3}}}
+\newcommand{\qwinE}[2]{\qwin{E}{#1}{#2}}
+\newcommand{\qwinA}[2]{\qwin{A}{#1}{#2}}
+\newcommand{\swinE}[1]{\qwinE{#1}{\forall}}
+\newcommand{\swinA}[1]{\qwinA{#1}{\forall}}
+\newcommand{\awinE}[1]{\qwinE{#1}{1}}
+\newcommand{\awinA}[1]{\qwinA{#1}{1}}
+\newcommand{\lwinE}[1]{\qwinE{#1}{\sim 1}}
+\newcommand{\lwinA}[1]{\qwinA{#1}{\sim 1}}
+\newcommand{\bwinE}[1]{\qwinE{#1}{\, \gg 0}}
+\newcommand{\bwinA}[1]{\qwinA{#1}{\, \gg 0}}
+\newcommand{\pwinE}[1]{\qwinE{#1}{\, > 0}}
+\newcommand{\pwinA}[1]{\qwinA{#1}{\, > 0}}
+\newcommand{\hwinE}[1]{\qwinE{#1}{\exists}}
+\newcommand{\hwinA}[1]{\qwinA{#1}{\exists}}
+
+
+\newcommand{\ewinE}[1]{\hwinE{#1}}
+\newcommand{\ewinA}[1]{\hwinA{#1}}
+% #2 : sure win (sure), almost-sure win (1), limit win (~1), bounded win (>0), positive win (\neq 0), existential win (exists)
+
+\newcommand{\ewinEWA}{\qwinE{\calW}{\exists}(\arena)}
+\newcommand{\ewinAWA}{\qwinA{\calW}{\exists}(\arena)}
+\newcommand{\awinEWA}{\awinE{\calW}(\arena)}
+\newcommand{\awinAWA}{\awinA{\calW}(\arena)}
+\newcommand{\lwinEWA}{\lwinE{\calW}(\arena)}
+\newcommand{\lwinAWA}{\lwinA{\calW}(\arena)}
+\newcommand{\hwinEWA}{\hwinE{\calW}(\arena)}
+\newcommand{\hwinAWA}{\hwinA{\calW}(\arena)}
+\newcommand{\bwinEWA}{\bwinE{\calW}(\arena)}
+\newcommand{\bwinAWA}{\bwinA{\calW}(\arena)}
+\newcommand{\pwinEWA}{\pwinE{\calW}(\arena)}
+\newcommand{\pwinAWA}{\pwinA{\calW}(\arena)}
+\newcommand{\swinEWA}{\qwinE{\calW}{\forall}(\arena)}
+\newcommand{\swinAWA}{\qwinA{\calW}{\forall}(\arena)}
+
+\newcommand{\sigman}{\sigma^\ttn}
+\newcommand{\taun}{\tau^\ttn}
+\newcommand{\sigmau}{\sigma^\ttu}
+\newcommand{\tauu}{\tau^\ttu}
+
+\newcommand{\psdtq}{\proba{\sigma_\deta}{\tau}{q}}
+\newcommand{\esdtq}{\esp{\sigma_\deta}{\tau}{q}}
+\newcommand{\deta}{{\downarrow\eta}}
+
+
+% \newcommand{\sfswinE}{W_E^{{\tt fS, sure}}}
+% \newcommand{\sfswinA}{W_A^{{\tt fS, sure}}}
+% \newcommand{\pfswinE}{W_E^{{\tt fS, >0}}}
+% \newcommand{\pfswinA}{W_A^{{\tt fS, >0}}}
+% \newcommand{\afswinE}{W_E^{{\tt fS, almost}}}
+% \newcommand{\afswinA}{W_E^{{\tt fS, almost}}}
+% % \newcommand{\winE}{W_E}
+% % \newcommand{\winA}{W_A}
+\newcommand{\SwinE}{\winE{\tt St}}
+\newcommand{\SwinA}{\winA{\tt St}}
+%\newcommand{\pwinE}{W_E^{>0}}
+%\newcommand{\awinE}{W_E^{{\tt almost}}}
+% \newcommand{\owinE}{W_E^{1}}
+% %\newcommand{\pwinA}{W_A^{>0}}
+% %\newcommand{\awinA}{W_A^{{\tt almost}}}
+% \newcommand{\owinA}{W_A^{1}}
+% % \newcommand{\swinE}{W_E^{{\tt sure}}}
+% % \newcommand{\swinA}{W_A^{{\tt sure}}}
+% \newcommand{\uwinE}{W_E^{{\tt unsure}}}
+% \newcommand{\uwinA}{W_A^{{\tt unsure}}}
+\newcommand{\wwinE}{\winE{\tt wP}}
+\newcommand{\wwinA}{\winA{\tt wP}}
+\newcommand{\bpwinE}{\winE{\tt bP}}
+\newcommand{\bpwinA}{\winA{\tt bP}}
+\newcommand{\sbwinE}{\swinE{\tt bP}}
+\newcommand{\hbwinA}{\hwinA{\tt bP}}
+\newcommand{\fpwinE}{\winE{\tt fP}}
+\newcommand{\sfpwinE}{\ewinE{\tt fP}}
+\newcommand{\pfpwinE}{\pwinE{\tt fP}}
+\newcommand{\fpwinA}{\winA{\tt fP}}
+\newcommand{\ufpwinA}{\ewinA{\tt fP}}
+\newcommand{\afpwinA}{\awinA{\tt fP}}
+\newcommand{\rrwinE}{\winE{\tt RR}}
+\newcommand{\rrwinA}{\winE{\tt RR}}
+\newcommand{\fswinE}{\winE{\tt fS}}
+\newcommand{\fswinA}{\winA{\tt fS}}
+
+\newcommand{\colours}{\calC}
+\newcommand{\letMC}{Let $\muller$ be a Muller condition over the set of colours $\colours$\xspace}
+
+\newcommand{\sat}{{\tt SAT}\xspace}
+\newcommand{\qbf}{{\tt QBF}\xspace}
+
+\newcommand{\ptime}{{\tt PTime}\xspace}
+\newcommand{\np}{{\tt NP}\xspace}
+\newcommand{\conp}{co-{\tt NP}\xspace}
+\newcommand{\npconp}{\np $\cap$ \conp\xspace}
+\newcommand{\DP}{{\tt DP}\xspace}
+\newcommand{\pspace}{{\tt PSpace}\xspace}
+\newcommand{\exptime}{{\tt ExpTime}\xspace}
+\newcommand{\expspace}{{\tt ExpSpace}\xspace}
+
+
+\renewcommand{\dag}{\calD}
+\newcommand{\rst}{\rho_{\sigma,\tau}}
+
+%\newcommand{\pst}{\ensuremath{\mathcal{P}(\Inf(\rho) = L \mid \sigma, \tau)}}
+\newcommand{\event}{P}
+\newcommand{\zhp}{$\frac{1}{2}$-player\xspace}
+\newcommand{\ohp}{$1\frac{1}{2}$-player\xspace}
+\newcommand{\thp}{$2\frac{1}{2}$-player\xspace}
+\newcommand{\tp}{2-player\xspace}
+\newcommand{\op}{1-player\xspace}
+\newcommand{\zp}{0-player\xspace}
+\newcommand{\zhpg}{$\frac{1}{2}$-player game\xspace}
+\newcommand{\ohpg}{$1\frac{1}{2}$-player game\xspace}
+\newcommand{\thpg}{$2\frac{1}{2}$-player game\xspace}
+\newcommand{\tpg}{2-player game\xspace}
+\newcommand{\opg}{1-player game\xspace}
+\newcommand{\zhpgs}{$\frac{1}{2}$-player games\xspace}
+\newcommand{\ohpgs}{$1\frac{1}{2}$-player games\xspace}
+\newcommand{\thpgs}{$2\frac{1}{2}$-player games\xspace}
+\newcommand{\tpgs}{2-player games\xspace}
+\newcommand{\opgs}{1-player games\xspace}
+\newcommand{\zpgs}{$0$-player games\xspace}
+
+
+
+\newcommand{\sq}{\sigma(q)}
+\newcommand{\tq}{\tau(q)}
+
+\renewcommand{\iff}{if and only if\xspace}
+\newcommand{\thpA}{$\calA = (\states,\sE,\sA,\sR,\edges,p,\chi)$}
+
+\newcommand{\prefix}[2]{\mathop{\mathrm{pre}}(#1,#2)}
+
+\newcommand{\branches}{\calB}
+\newcommand{\branchb}{b = (A_0) E_1 A_1 \ldots E_k (A_k)}
+\newcommand{\sbranchb}{b = E_1 A_1 \ldots E_k (A_k)}
+
+
+\newcommand{\pdist}{\mathop\mathrm{Pdist}}
+\newcommand{\sdist}{\mathop\mathrm{Sdist}}
+
+\newcommand{\rr}{Request-Response\xspace}
+
+\newcommand{\parena}{(\arena,\chi)}
+\newcommand{\sarena}{(\arena,\streett)}
+\newcommand{\streett}{\calS}
+
+\newcommand{\sgameG}[1]{$\calG = (\calQ,\calQ_E,\calQ_A,\calQ_R,\calT,p,#1)$}
+\newcommand{\rgameG}{$\game = (\arena,\target)$\xspace}
+\newcommand{\MgameG}{$\calG = (\arena,\muller)$}
+%\newcommand{\rgameG}{$\calG = (\calQ,\calQ_E,\calQ_A,\calQ_R,\circledcirc,\calT)$}
+\newcommand{\proba}[3]{\bbP^{#1,#2}_{#3}}
+\newcommand{\pst}{\bbP^{\sigma,\tau}_{{\tt root}}}
+\newcommand{\pstq}{\proba{\sigma}{\tau}{q}}
+\newcommand{\pstw}{\proba{\sigma}{\tau}{w}}
+\newcommand{\esp}[3]{\bbE^{#1,#2}_{#3}}
+\newcommand{\evstq}{\esp{\varsigma}{\tau}{q}}
+
+\newcommand{\val}{\mathbf{v}}
+\newcommand{\ssg}{\thp reachability game\xspace}
+\newcommand{\ssgs}{\thp reachability games\xspace}
+\newcommand{\nrg}{normalized reachability game\xspace}
+\newcommand{\nrgs}{normalized reachability games\xspace}
+
+\newcommand{\game}{\calG}
+\newcommand{\states}{\calQ}
+\newcommand{\se}{\states_E}
+\newcommand{\sa}{\states_A}
+\newcommand{\sr}{\states_R}
+\newcommand{\edges}{\calT}
+\newcommand{\trans}{\delta}
+\newcommand{\col}{\chi}
+
+\newcommand{\sE}{\se}
+\newcommand{\sA}{\sa}
+\newcommand{\sR}{\sr}
+
+\newcommand{\bbgame}{\bbG}
+\newcommand{\bbarena}{\bbA}
+\newcommand{\bbstates}{\bbQ}
+\newcommand{\bbse}{\bbstates_E}
+\newcommand{\bbsa}{\bbstates_A}
+\newcommand{\bbsr}{\bbstates_R}
+\newcommand{\bbedges}{\bbT}
+\newcommand{\bbtrans}{\bbdelta}
+\newcommand{\bbcol}{\bbchi}
+
+\newcommand{\ggame}{\gothG}
+\newcommand{\garena}{\gothA}
+\newcommand{\gstates}{\gothQ}
+\newcommand{\gse}{\gstates_E}
+\newcommand{\gsa}{\gstates_A}
+\newcommand{\gsr}{\gstates_R}
+\newcommand{\gedges}{\gothT}
+\newcommand{\gtrans}{\gothdelta}
+\newcommand{\gcol}{\gothchi}
+
+
+
+\newcommand{\letrgameG}{Let \rgameG be a \ssg\xspace}
+\newcommand{\letsrgameG}{Let \rgameG be a \thp stopping reachability game\xspace}
+\newcommand{\letMgameG}{Let \MgameG be a \thp Muller game on $\colours$\xspace}
+\newcommand{\letarena}{Let $\arena$ be an arena on $\colours$\xspace}
+\newcommand{\letparena}{Let $\parena$ be a parity arena\xspace}
+\newcommand{\letsarena}{Let $\sarena$ be a Streett arena of order $k$\xspace}
+\newcommand{\letmullerC}{Let $\muller$ be a Muller condition over $\colours$\xspace}
+\newcommand{\TP}{threshold problem}
+\newcommand{\bestrategys}{$\sigma$ be a strategy for Eve\xspace}
+\newcommand{\bestrategyt}{$\tau$ be a strategy for Adam\xspace}
+\newcommand{\bestrategies}{$\sigma$ and $\tau$ be strategies for Eve and Adam\xspace}
+\newcommand{\si}{strategy improvement\xspace}
+\newcommand{\sia}{\si algorithm\xspace}
+
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+
+\newcommand{\wrt}{with respect to\xspace}
+\newcommand{\vst}{v_{\sigma,\tau}}
+\newcommand{\vs}{v_{\sigma}}
+\newcommand{\vt}{v_{\tau}}
+\newcommand{\edeux}{\frac{\eta}{2}}
+\newcommand{\osq}{\Omega^{\sigma}_q}
+\newcommand{\ost}{\Omega^{\sigma,\tau}}
+\newcommand{\ostq}{\Omega^{\sigma,\tau}_q}
+\newcommand{\ovst}{\Omega^{\varsigma,\tau}}
+\newcommand{\pvstq}{\proba{\varsigma}{\tau}{q}}
+\newcommand{\letqtau}{Let $q$ be a state of $\states$, and $\tau$ be a strategy for Adam\xspace}
+\newcommand{\mustq}{\mu^{\sigma,\tau}_q}
+
+%======================================================================
+% Permutation concepts
+%======================================================================
+\newcommand{\permut}{permutation over the states of $\sR$\xspace}
+
+\newcommand{\spi}{{\sigma_\pi}}
+\newcommand{\tpi}{{\tau_\pi}}
+\newcommand{\vpi}{{v_\pi}}
+\newcommand{\valpi}{\vpi}
+\newcommand{\wpi}{{W_\pi}}
+\newcommand{\wmu}{{W_\mu}}
+\newcommand{\wkappa}{{W_\kappa}}
+
+\newcommand{\wpo}{with probability one\xspace} % remplacer wpo par wcp dans la partie finitary
+\newcommand{\arena}{\calA}
+\newcommand{\arenai}{\arena_i}
+
+\newcommand{\gamei}{\game_i}
+
+
+%======================================================================
+% Operateurs mathematiques
+%======================================================================
+\newcommand{\attr}{\mathrm{Attr}}
+\newcommand{\attrE}{\attr_E}
+\newcommand{\attrA}{\attr_A}
+
+\newcommand{\Attr}[4]{\mathrm{Attr}_{#1}^{#2,{\tt{#3}}}(#4)}
+\newcommand{\AttrE}[3]{\Attr{E}{#1}{#2}{#3}}
+\newcommand{\AttrA}[3]{\Attr{A}{#1}{#2}{#3}}
+\newcommand{\sAttrE}[2]{\AttrE{#1}{\forall}#2}
+\newcommand{\sAttrA}[2]{\AttrA{#1}{\forall}#2}
+\newcommand{\aAttrE}[2]{\AttrE{#1}{1}#2}
+\newcommand{\aAttrA}[2]{\AttrA{#1}{1}#2}
+\newcommand{\pAttrE}[2]{\attrE(#1,#2)}
+\newcommand{\pAttrA}[2]{\attrA(#1,#2)}
+\newcommand{\dAttrE}[2]{\detE(#1,#2)}
+\newcommand{\dAttrA}[2]{\AttrA{#1}{det}{#2}}
+\newcommand{\detE}{\mathrm{Det}_E}
+
+
+\newcommand{\wAttrE}{\pAttrE}
+\newcommand{\wAttrA}{\pAttrA}
+
+\newcommand{\Inf}{\mathop{\mathrm{Inf}}}
+\newcommand{\Pick}{\mathop{\mathrm{Pick}}}
+\newcommand{\Picks}{\mathop{\mathrm{Pick^*}}}
+\newcommand{\Occ}{\mathop{\mathrm{Occ}}}
+\newcommand{\Supp}{\mathop{\mathrm{Supp}}}
+
+
+\newcommand{\Avoid}{\mathop{\mathrm{Avoid}}}
+\newcommand{\Recur}{\mathop{\mathrm{Recur}}}
+\DeclareMathOperator{\reach}{Reach}
+\DeclareMathOperator{\reachn}{Reach_{<n}}
+\newcommand{\SAttr}{\mathop{\mathrm{Attr^{sure}}}}
+
+%======================================================================
+% \mathcal and \mathbb shortcuts
+%======================================================================
+\newcommand{\calA}{{\cal A}}
+\newcommand{\calB}{{\cal B}}
+\newcommand{\calC}{{\cal C}}
+\newcommand{\calD}{{\cal D}}
+\newcommand{\calE}{{\cal E}}
+\newcommand{\calF}{{\cal F}}
+\newcommand{\calG}{{\cal G}}
+\newcommand{\calH}{{\cal H}}
+\newcommand{\calI}{{\cal I}}
+\newcommand{\calJ}{{\cal J}}
+\newcommand{\calK}{{\cal K}}
+\newcommand{\calL}{{\cal L}}
+\newcommand{\calM}{{\cal M}}
+\newcommand{\calN}{{\cal N}}
+\newcommand{\calO}{{\cal O}}
+\newcommand{\calP}{{\cal P}}
+\newcommand{\calQ}{{\cal Q}}
+\newcommand{\calR}{{\cal R}}
+\newcommand{\calS}{{\cal S}}
+\newcommand{\calT}{{\cal T}}
+\newcommand{\calU}{{\cal U}}
+\newcommand{\calV}{{\cal V}}
+\newcommand{\calW}{{\cal W}}
+\newcommand{\calX}{{\cal X}}
+\newcommand{\calY}{{\cal Y}}
+\newcommand{\calZ}{{\cal Z}}
+
+\newcommand{\ttA}{{\tt A}}
+\newcommand{\ttB}{{\tt B}}
+\newcommand{\ttC}{{\tt C}}
+\newcommand{\ttD}{{\tt D}}
+\newcommand{\ttE}{{\tt E}}
+\newcommand{\ttF}{{\tt F}}
+\newcommand{\ttG}{{\tt G}}
+\newcommand{\ttH}{{\tt H}}
+\newcommand{\ttI}{{\tt I}}
+\newcommand{\ttJ}{{\tt J}}
+\newcommand{\ttK}{{\tt K}}
+\newcommand{\ttL}{{\tt L}}
+\newcommand{\ttM}{{\tt M}}
+\newcommand{\ttN}{{\tt N}}
+\newcommand{\ttO}{{\tt O}}
+\newcommand{\ttP}{{\tt P}}
+\newcommand{\ttQ}{{\tt Q}}
+\newcommand{\ttR}{{\tt R}}
+\newcommand{\ttS}{{\tt S}}
+\newcommand{\ttT}{{\tt T}}
+\newcommand{\ttU}{{\tt U}}
+\newcommand{\ttV}{{\tt V}}
+\newcommand{\ttW}{{\tt W}}
+\newcommand{\ttX}{{\tt X}}
+\newcommand{\ttY}{{\tt Y}}
+\newcommand{\ttZ}{{\tt Z}}
+
+\newcommand{\tta}{{\tt a}}
+\newcommand{\ttb}{{\tt b}}
+\newcommand{\ttc}{{\tt c}}
+\newcommand{\ttd}{{\tt d}}
+\newcommand{\tte}{{\tt e}}
+\newcommand{\ttf}{{\tt f}}
+\newcommand{\ttg}{{\tt g}}
+\newcommand{\tth}{{\tt h}}
+\newcommand{\tti}{{\tt i}}
+\newcommand{\ttj}{{\tt j}}
+\newcommand{\ttk}{{\tt k}}
+\newcommand{\ttl}{{\tt l}}
+\newcommand{\ttm}{{\tt m}}
+\newcommand{\ttn}{{\tt n}}
+\newcommand{\tto}{{\tt o}}
+\newcommand{\ttp}{{\tt p}}
+\newcommand{\ttq}{{\tt q}}
+\newcommand{\ttr}{{\tt r}}
+\newcommand{\tts}{{\tt s}}
+\newcommand{\ttt}{{\tt t}}
+\newcommand{\ttu}{{\tt u}}
+\newcommand{\ttv}{{\tt v}}
+\newcommand{\ttw}{{\tt w}}
+\newcommand{\ttx}{{\tt x}}
+\newcommand{\tty}{{\tt y}}
+\newcommand{\ttz}{{\tt z}}
+
+
+% Si ca ne rend pas bien, tester \mathbbm, \mathbbtt
+\newcommand{\bba}{{\mathbbmss a}}
+\newcommand{\bbb}{{\mathbbmss b}}
+\newcommand{\bbc}{{\mathbbmss c}}
+\newcommand{\bbd}{{\mathbbmss d}}
+\newcommand{\bbe}{{\mathbbmss e}}
+\newcommand{\bbf}{{\mathbbmss f}}
+\newcommand{\bbg}{{\mathbbmss g}}
+\newcommand{\bbh}{{\mathbbmss h}}
+\newcommand{\bbi}{{\mathbbmss i}}
+\newcommand{\bbj}{{\mathbbmss j}}
+\newcommand{\bbk}{{\mathbbmss k}}
+\newcommand{\bbl}{{\mathbbmss l}}
+\newcommand{\bbm}{{\mathbbmss m}}
+\newcommand{\bbn}{{\mathbbmss n}}
+\newcommand{\bbo}{{\mathbbmss o}}
+\newcommand{\bbp}{{\mathbbmss p}}
+\newcommand{\bbq}{{\mathbbmss q}}
+\newcommand{\bbr}{{\mathbbmss r}}
+\newcommand{\bbs}{{\mathbbmss s}}
+\newcommand{\bbt}{{\mathbbmss t}}
+\newcommand{\bbu}{{\mathbbmss u}}
+\newcommand{\bbv}{{\mathbbm v}}
+\newcommand{\bbw}{{\mathbbmss w}}
+\newcommand{\bbx}{{\mathbbmss x}}
+\newcommand{\bby}{{\mathbbmss y}}
+\newcommand{\bbz}{{\mathbbmss z}}
+
+\newcommand{\bbA}{{\mathbb A}}
+\newcommand{\bbB}{{\mathbb B}}
+\newcommand{\bbC}{{\mathbb C}}
+\newcommand{\bbD}{{\mathbb D}}
+\newcommand{\bbE}{{\mathbb E}}
+\newcommand{\bbF}{{\mathbb F}}
+\newcommand{\bbG}{{\mathbb G}}
+\newcommand{\bbH}{{\mathbb H}}
+\newcommand{\bbI}{{\mathbb I}}
+\newcommand{\bbJ}{{\mathbb J}}
+\newcommand{\bbK}{{\mathbb K}}
+\newcommand{\bbL}{{\mathbb L}}
+\newcommand{\bbM}{{\mathbb M}}
+\newcommand{\bbN}{{\mathbb N}}
+\newcommand{\bbO}{{\mathbb O}}
+\newcommand{\bbP}{{\mathbb P}}
+\newcommand{\bbQ}{{\mathbb Q}}
+\newcommand{\bbR}{{\mathbb R}}
+\newcommand{\bbS}{{\mathbb S}}
+\newcommand{\bbT}{{\mathbb T}}
+\newcommand{\bbU}{{\mathbb U}}
+\newcommand{\bbV}{{\mathbb V}}
+\newcommand{\bbW}{{\mathbb W}}
+\newcommand{\bbX}{{\mathbb X}}
+\newcommand{\bbY}{{\mathbb Y}}
+\newcommand{\bbZ}{{\mathbb Z}}
+
+
+\newcommand{\frakA}{\mathfrak{A}}
+\newcommand{\frakF}{\mathfrak{F}}
+\newcommand{\frakG}{\mathfrak{G}}
+\newcommand{\frakP}{\mathfrak{P}}
+\newcommand{\frakW}{\mathfrak{W}}
+
+\newcommand{\gothA}{\textgoth{A}}
+\newcommand{\gothd}{\textgoth{d}}
+\newcommand{\gothF}{\textswab{F}}
+\newcommand{\gothG}{\textgoth{G}}
+\newcommand{\gothp}{\textgoth{p}}
+\newcommand{\gothQ}{\textgoth{Q}}
+\newcommand{\gothT}{\textgoth{T}}
+\newcommand{\gothv}{\textswab{v}}
+\newcommand{\gothW}{\mathfrak{W}}
+\newcommand{\gothC}{\textgoth{C}}
+
+
+\newcommand{\gothdelta}{\textswab{d}}
+\newcommand{\gothchi}{\mathfrak{X}}
+
+
+
+\newcommand{\stuck}{\mathop\mathtt{Stuck}}
+
+%\newcommand{\and}{\wedge}
+%\newcommand{\or}{\wee}
+
+\newcommand{\ie}{\textit{i.e.}\xspace}
+\newcommand{\eg}{\textit{e.g.}\xspace}
+
+% \newtheorem{theorem}{Theorem}[chapter]
+% \newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem{lemma}[theorem]{Lemma}
+% \newtheorem{definition}[theorem]{Definition}
+% \newtheorem{remark}[theorem]{Remark}
+% \newtheorem{law}[theorem]{Law}
+% \newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem{conjecture}[theorem]{Conjecture}
+% \newtheorem{notation}[theorem]{Notation}
+% \newenvironment{proof}{{\noindent \it Proof.\/}}{\hfill $\square$ \medskip}
+% \newenvironment{soundness}{{\noindent \it Soundness.\/}}{\hfill $\square$}
+
+\newenvironment{open}{{\noindent \bf Open Problem\/}\it}{}
+
+\newcommand{\textblack}[1]{\textcolor{black}{#1}}
+\newcommand{\textblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\textgreen}[1]{\textcolor{green}{#1}}
+\newcommand{\textred}[1]{\textcolor{red}{#1}}
+\newcommand{\textmagenta}[1]{\textcolor{magenta}{#1}}
+\newcommand{\textwhite}[1]{\textcolor{white}{#1}}
+\newcommand{\textgray}[1]{\textcolor{\gray}{#1}}
+\newcommand{\gray}{black!35!white}
+
+\newcommand{\safe}{{\tt Safe}}
+
+\newcommand{\uni}[1]{{\tt uni}_{#1}}
+
+
+
+\newcommand{\goodgap}{\hspace{\subfigtopskip} \hspace{\subfigbottomskip}}
+\newcommand{\Visit}{\mathop{\mathrm{Visit}}}
+\newcommand{\true}{{\tt true}}
+\newcommand{\false}{{\tt false}}
+\newcommand{\self}{\textnormal{\tt self}}
+\newcommand{\live}{\textnormal{\tt live}}
+\newcommand{\target}{\circledcirc}
+\newcommand{\sink}{\otimes}
+
+
+\newcommand\pickp[1]{\ensuremath{{\tt Pick^+}(#1)}}
+\newcommand\boite[1]{\ensuremath{{\tt Box}(#1)}}
+
+\makeatletter
+\newenvironment{tablehere}
+  {\def\@captype{table}}
+  {}
+
+\newenvironment{figurehere}
+  {\def\@captype{figure}}
+  {}
+
+\makeatother
+
+%======================================================================
+% Chatterjee's
+%======================================================================
+
+
+\def\qed{\rule{0.4em}{1.4ex}} \def\mynote#1{{\sf $\clubsuit$ #1 $\clubsuit$}}
+\newcommand{\restr}{\upharpoonright} \newcommand{\set}[1]{\{#1\}}
+\newcommand{\sseq}{\langle s_0,s_1,s_2,\ldots\rangle}
+
+\newcommand{\pat}{\omega} \newcommand{\Pat}{\Omega} \newcommand{\Paths}{\Omega}
+\newcommand{\straa}{\sigma} \newcommand{\Straa}{\Sigma}
+\newcommand{\strab}{\pi} \newcommand{\Strab}{\Pi}
+
+\newcommand{\rank}{\mathit{rank}} \newcommand{\dist}{\mathit{dist}}
+\newcommand{\even}{\mathit{even}} \newcommand{\Req}{\mathit{Req}}
+\newcommand{\Srv}{\mathit{Serv}} 
+\newcommand{\Prio}{\mathit{Prio}}
+\newcommand{\Size}{\mathit{Size}}
+
+
+%======================================================================
+% Attrning Conditions (Plays)
+%======================================================================
+
+\newcommand{\Reach}{\mathrm{Reach}}
+\newcommand{\Safe}{\mathrm{Safe}}
+\newcommand{\Buchi}{\mathrm{Buchi}}
+\newcommand{\coBuchi}{\mathrm{coBuchi}}
+\newcommand{\Parity}{\mathrm{Parity}}
+\newcommand{\Rabin}{\mathrm{Rabin}}
+\newcommand{\Streett}{\mathrm{Streett}}
+\newcommand{\Muller}{\mathrm{Muller}}
+
+\newcommand{\StaigerWagner}{\mathrm{StaigerWagner}}
+\newcommand{\weakParity}{\mathrm{weakParity}}
+\newcommand{\weakRabin}{\mathrm{weakRabin}}
+\newcommand{\weakStreett}{\mathrm{weakStreett}}
+\newcommand{\weakMuller}{\mathrm{weakMuller}}
+
+\newcommand{\boundedParity}{\mathrm{boundedParity}}
+\newcommand{\finitaryParity}{\mathrm{finitaryParity}}
+\newcommand{\RR}{\mathrm{Request-Response}}
+\newcommand{\finitaryStreett}{\mathrm{finitaryStreett}}
+
+\renewcommand{\frakF}{\gothF}

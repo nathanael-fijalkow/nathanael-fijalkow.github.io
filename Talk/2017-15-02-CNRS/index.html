@@ -1,0 +1,453 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>CNRS</title>
+    
+    <meta name="description" content="CNRS Interview" />
+    <meta name="author" content="Nathanaël Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="2.1">
+    </div>
+
+    <div id="intro_title" data-type="title" class="step"  data-x="-1200" data-y="-200">
+	<h2>Parcours</h2>
+
+	<h4>Nathanaël Fijalkow, 06/03 et 06/04</h4>
+
+	<br/>
+	<br/>
+
+	<h3><red>Méthodes formelles</red> pour la <red>vérification</red>, <br/>ouverture vers <green>science des données</green></h3>
+	<br/>
+	<br/>
+	
+	<ul>
+		<li><b>Sept. 2012 - Oct. 2015</b> : Thèse cotutelle <red>Paris 7 - Varsovie</red> (Colcombet / Bojańczyk)
+		<li><b>Nov. 2015 - Juill. 2016</b> : Post-doctorat <red>Oxford</red> (Ouaknine / Worrell)
+		<li><b>Août 2016 - Déc. 2016</b> : Chercheur invité <red>Simons Institute</red> Berkeley (Panangaden)
+		<li><b>Jan. 2017 - ?</b> : Chercheur <green>Alan Turing Institute of Data Science</green> Londres
+	</ul>
+    </div>
+
+    <div id="presentation" data-duration="0" class="step"  data-x="-1550" data-y="500" data-scale=".5">
+	<b>Implication dans la communauté scientifique</b> :
+	<ul>
+		<li><red>Publications</red> : conférences (LICS, ICALP, STACS, ...), journaux (LMCS, ToCL, TCS,...)
+		<li><red>Exposés invités</red> : AutoMathA, Cassting
+		<li><red>Développement logiciel</red> : ACME, Stamina, <green>Flides</green>
+		<li><red>Encadrement d'étudiants</red> : Paris, Varsovie, Oxford, Londres
+		<li><red>Projets de recherche</red> : ANR (FREC, <green>STOCH-MC</green>), ERC (SOSNA, GALE, AVS-ISS)
+		<li><red>Organisation d'évènements scientifiques</red> : conférences (<green>Highlights</green>), séminaires (Paris, Oxford, Berkeley), workshops (GT-ALGA)
+	</ul>
+
+	<br/><b>Diffusion scientifique</b> :
+	<ul>
+		<li>Responsable de projets <green>Animath</green> (Kosovo, Laos)
+		<li>Articles de vulgarisation (RMS)
+	</ul>
+    </div>
+
+    <div id="intro" data-duration="0" class="step" data-x="-950" data-y="500" data-scale=".5">
+	<h3>Recherche</h3>
+
+	<b>Domaine de recherche</b> : méthodes formelles (<red>vérification, synthèse</red>), ouverture vers science des données
+	<br/>
+	<br/>
+
+	<svg width="300" height="300">
+		<text x="150" y="270">Modèle</text>
+		<image x="100" y="0" width="200" height="250" xlink:href="img/fig3.svg">
+	</svg>
+	<svg width="300" height="300">
+		<text x="60" y="270">Spécification</text>
+		<image x="0" y="0" width="300" height="200" xlink:href="img/formula.svg">
+	</svg>
+
+	<div class="slide_step">
+	<b>Modèles</b> : automates, jeux, logiques, systèmes dynamiques
+	<br/>
+	<br/>
+	</div>
+
+	<div class="slide_step">
+	<b>Outils</b> : probabilités, complexité, algèbre, topologie, théorie des modèles
+	<br/>
+	<br/>
+	</div>
+    </div>
+
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="2.1">
+    </div>
+
+    <div id="prostoch_title" data-type="title" data-section="resultat" class="step"  data-x="0" data-y="-800">
+	<h2>Un résultat</h2>
+	<h3>La théorie <red>prostochastique</red></h3>
+
+	<br/>
+	Approche <red>profinie</red> pour l'étude des <green>systèmes stochastiques</green>
+    </div>
+
+    <div id="pa" data-section="resultat" class="step" data-duration="0" data-x="-300" data-y="-400" data-scale=".5">
+	<h3>Les automates probabilistes</h3>
+
+	<b>Rabin, 1963</b>
+	<img id="example_value1" src="img/pa.svg"></img>
+	
+	<div class="slide_step">
+	$$\mathbb{P}(\text{train train predict}) = 0.4 \cdot 0.6 \cdot 1\ +\ 0.6 \cdot 0.45 \cdot 1$$
+	</div>
+
+	<div class="slide_step">
+	<h3>Un automate probabiliste induit&nbsp;&nbsp; $\mathbb{P} : A^* \to [0,1]$</h3>
+
+	<red>Objectif</red> : déterminer <green>algorithmiquement</green> les propriétés de $\mathbb{P}$
+	</div>
+    </div>
+
+
+    <div id="value1" data-section="resultat" class="step" data-duration="0" data-x="300" data-y="-400" data-scale=".5">
+	<h3>Le problème de la valeur 1</h3>
+
+	<img id="example_value1" src="img/pa.svg"></img>
+
+	<div class="slide_step">
+	<ul>
+		<li>Pas de séquence d'actions pour atteindre l'état vert avec probabilité $1$
+		<li>Pour tout $\varepsilon > 0$, il existe une séquence d'actions pour atteindre l'état vert avec probabilité $1 - \varepsilon$
+	</ul>
+	</div>
+
+	<div class="slide_step">
+	<br/>
+	<red>Problème de la valeur $1$</red> :
+	</br><b>Entrée</b> : Un automate probabiliste
+	<p><b>Sortie</b> : Existe-t-il une suite de mots $(u_n)_{n \in \mathbb{N}}$ tel que $\lim_n \mathbb{P}(u_n) = 1$?
+	</div>
+    </div>
+
+
+    <div id="contexte" data-section="resultat" class="step" data-duration="0" data-x="-300" data-y="100" data-scale=".5">
+	<h3>Contexte</h3>
+
+	<svg width="800" height="855">
+		<g class="token">
+			<ellipse cx="700" cy="850" rx="400" ry="150" fill="lightpink"/>
+			<ellipse cx="100" cy="850" rx="250" ry="150" fill="lightgreen"/>
+
+			<text x="500" y="800">déterministe</text>
+
+			<text x="150" y="40">2010 : Gimbert & Oualhadj</text>
+			<text x="50" y="220" fill="red" font-size="35">Indécidable</text>
+			<text x="40" y="800">#-acyclique</text>
+		</g>
+
+		<g class="token">
+			<ellipse cx="200" cy="650" rx="500" ry="250" fill="khaki"/>
+			<ellipse cx="400" cy="800" rx="500" ry="250" fill="lightblue"/>
+			<ellipse cx="700" cy="850" rx="400" ry="150" fill="lightpink"/>
+			<ellipse cx="100" cy="850" rx="250" ry="150" fill="lightgreen"/>
+
+			<text x="500" y="800">déterministe</text>
+
+			<text x="150" y="40">2010 : Gimbert & Oualhadj</text>
+			<text x="50" y="220" fill="red" font-size="35">Indécidable</text>
+			<text x="40" y="800">#-acyclique</text>
+
+			<text x="150" y="70">2012 : Chatterjee & Tracol</text>
+			<text x="270" y="620">structurellement simple</text>
+
+			<text x="150" y="100">2012 : F., Gimbert & Oualhadj.</text>
+			<text x="200" y="470">leaktight</text>
+		</g>
+
+		<g class="token">
+			<ellipse cx="350" cy="550" rx="500" ry="250" fill="steelblue"/>
+			<ellipse cx="200" cy="650" rx="500" ry="250" fill="khaki"/>
+			<ellipse cx="400" cy="800" rx="500" ry="250" fill="lightblue"/>
+			<ellipse cx="700" cy="850" rx="400" ry="150" fill="lightpink"/>
+			<ellipse cx="100" cy="850" rx="250" ry="150" fill="lightgreen"/>
+
+			<text x="500" y="800">déterministe</text>
+
+			<text x="150" y="40">2010 : Gimbert & Oualhadj</text>
+			<text x="50" y="220" fill="red" font-size="35">Indécidable</text>
+			<text x="40" y="800">#-acyclique</text>
+
+			<text x="150" y="70">2012 : Chatterjee & Tracol</text>
+			<text x="270" y="620">structurellement simple</text>
+
+			<text x="150" y="100">2012 : F., Gimbert & Oualhadj</text>
+			<text x="200" y="470">leaktight</text>
+
+			<text x="150" y="130">2015 : F., Gimbert, Kelmendi & Oualhadj</text>
+			<text x="330" y="380">algorithme de Markov</text>
+		</g>
+	</svg>
+
+    </div>
+
+
+    <div id="mma" data-section="resultat" class="step" data-duration="0" data-x="300" data-y="100" data-scale=".5">
+	<h3>L'algorithme du monoïde de Markov</h3>
+
+	<img id="mma" src="img/fig9.svg"/>
+
+	<div class="slide_step"">
+		<img id="mma_ex" src="img/fig10.svg"/>
+	</div>
+
+	<div class="slide_step">
+	Implantation :
+	<ul>
+		<li>ACME : F. & Kuperberg 
+		<li>Stamina :  F., Gimbert, Kelmendi & Kuperberg
+	</ul>
+	</div>
+
+    </div>
+
+    <div id="caracterisation" data-section="resultat" class="step" data-duration="0" data-x="-300" data-y="600" data-scale=".5">
+	<h3>Théorie prostochastique</h3>
+
+    <br/>
+
+    <b>Théorème</b> (STACS'16, Theoretical Computer Science'17)
+    <br/>
+    <h4>
+    L'algorithme du monoïde de Markov répond OUI
+    <br/>
+    si, et seulement si,
+    <br/>
+    il existe une suite <green>polynomiale</green> $(u_n)_{n \in \mathbb{N}}$ tel que $\lim_n \mathbb{P}(u_n) = 1$
+    </h4>
+    <br/>
+    La suite $((a^n b)^n)_{n \in \mathbb{N}}$ est <green>polynomiale</green>
+    <br/>
+    La suite $((a^n b)^{2^n})_{n \in \mathbb{N}}$ ne l'est pas
+    <br/>
+    <br/>
+
+    <div class="slide_step">
+    <red><i>Trouver le bon langage de preuve</i></red> : développement de la théorie prostochastique,
+	pour décrire topologiquement les comportements limites des automates probabilistes
+    </div>
+
+    </div>
+
+    <div id="caracterisation2" data-section="resultat" class="step" data-duration="0" data-x="300" data-y="600" data-scale=".5">
+	<h3>Le monoïde prostochastique libre</h3>
+
+    <br/>
+    <br/>
+
+    <b>Théorème</b><br/>
+	<ul>
+		<li> $\mathbb{P} A^*$ est le complété de $A^*$, c'est un monoïde compact
+		<li> Toute suite de mots est interprétable dans $\mathbb{P} A^*$
+		<li> Le problème de la valeur $1$ est équivalent au problème du vide dans $\mathbb{P} A^*$
+		<li> La classe des suites polynomiales forme une structure algébrique (monoïde de stabilisation)
+	</ul>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="2.1">
+    </div>
+
+
+
+
+
+
+    <div id="projet_title" data-section="projet" data-type="title" data-duration="0" class="step"  data-x="1300" data-y="-850">
+	<h2>Projet</h2>
+	<h3><green>Incertitude</green> pour les <red>systèmes stochastiques</red></h3>
+    </div>
+
+    <div id="robustesse" data-section="projet" class="step" data-duration="0" data-x="1000" data-y="-300" data-scale=".7">
+	<h2>Robustesse</h2>
+
+	<div class="slide_step">
+	Illustration : algorithme randomisé
+
+	<br/><br/>
+	Pièce biaisée : $\mathbb{P}(\text{pile}) = x$, $\mathbb{P}(\text{face}) = 1 - x$
+
+	<br/><br/>
+
+	<b>Algorithme de von Neumann</b> : deux lancers
+	<ul>
+		<li> même résultat : on recommence
+		<li> résultats différents : premier lancer
+	</ul>
+	</div>
+
+	<div class="slide_step">
+	<br/>
+	Simule une pièce équilibrée !
+	<br/>
+	<red>Question</red> : dépendance (<green>robustesse</green>) en $x$ ?
+	<br/><br/>
+	</div>
+
+	<div class="slide_step">
+	<u>Deux axes :</u>
+	<ul>
+		<li>Notion de distance entre systèmes stochastiques
+		<li>Notion de confiance (liens avec l'<green>apprentissage</green> et les <red>statistiques</red>)
+	</ul>
+	</div>
+    </div>
+
+    <div id="simulation" data-section="projet" class="step" data-duration="0" data-x="1600" data-y="-300" data-scale=".7">
+	<h2>Simulation<br/>en ligne</h2>
+
+	<br/><b>Rabin, 1963</b> : comment <red>simuler</red> un automate probabiliste ?
+	<br/><red>Objectif </red> : construire un <green>algorithme en ligne</green> pour déterminer $\mathbb{P}(w) \ge .65$
+
+	<svg width="800" height="250">
+		<g class="token">
+			<text x="0" y="200">mot lu ""</text>
+			<text x="300" y="230" fill="red">1</text>
+			<text x="650" y="230" fill="red">0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">mot lu "a"</text>
+			<text x="295" y="230" fill="red">.5</text>
+			<text x="645" y="230" fill="red">.5</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">mot lu "aa"</text>
+			<text x="290" y="230" fill="red">.25</text>
+			<text x="640" y="230" fill="red">.75</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">mot lu "aaa"</text>
+			<text x="285" y="230" fill="red">.125</text>
+			<text x="635" y="230" fill="red">.875</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">mot lu "aaaa"</text>
+			<text x="280" y="230" fill="red">.0625</text>
+			<text x="630" y="230" fill="red">.9375</text>
+		</g>
+		<image x="200" y="0" width="600" height="220" xlink:href="img/fig.svg">
+	</svg>
+
+	<div class="slide_step">
+	<b>Karp, 1967</b> : combien d’<green>espace</green> est nécessaire pour vérifier une propriété en ligne ?
+	Lié à la <red>précision</red>
+	<br/>
+	</div>
+	
+	<div class="slide_step">
+	<br/>
+	<u>Deux axes :</u>
+	<ul>
+		<li>Classification des automates probabilistes
+		<li>Méthodes de bornes inférieures (liens avec la <green>complexité</green>)
+	</ul>
+	</div>
+    </div>
+
+    <div id="overview_intermediate2" class="step" data-x="1300" data-y="-400" data-scale="1.2">
+    </div>
+
+
+
+
+    <div id="voeux_title" data-duration="0" class="step"  data-x="1300" data-y="200">
+	<h2>V&oelig;ux d'affectation</h2>
+    </div>
+
+    <div id="0603" data-duration="0" class="step" data-x="1000" data-y="600" data-scale=".5">
+	<h3>Affectation dans un laboratoire d'informatique (concours 06/03)</h3>
+
+	<br/><br/>
+	<b>LaBRI, Bordeaux, équipe Méthodes Formelles</b>
+
+	<ul>
+		<li><red>Systèmes probabilistes</red> : Hugo Gimbert (ANR Stoch-MC), 
+		<li><green>Data Science (streaming, bases de données)</green> : Olivier Gauwin, Gabriele Puppis (ANR ExStream),
+		<li><red>Vérification</red> : Jérôme Leroux, Anca Muscholl, Thomas Place, Igor Walukiewicz, Marc Zeitoun
+	</ul>
+
+	<br/><br/>
+	<b>IRISA, Rennes, équipe SUMO</b>
+
+	<ul>
+		<li><red>Systèmes probabilistes</red> : Nathalie Bertrand, Blaise Genest, Ocan Sankur (ANR Stoch-MC), 
+		<li><green>Théorie du contrôle</green> : Eric Fabre, Hervé Marchand,
+		<li><red>Vérification</red> : Sophie Pinchinat (équipe Logica)
+	</ul>
+    </div>
+
+    <div id="0604" data-duration="0" class="step" data-x="1600" data-y="600" data-scale=".5">
+	<h3>Affectation dans un laboratoire de mathématiques (concours 06/04)</h3>
+
+	<br/><b>J.A. Dieudonné, Mathématiques et Interactions, Nice</b>
+
+	<br/><br/>
+	Deux équipes :
+	<ul>
+
+		<li> <i><green>Algèbre, Topologie et Géométrie</green></i> : Sorin Dumitrescu, François-Xavier Dehon
+		<div class="slide_step">
+			- <i>Espaces profinis</i> : théorie prostochastique (STACS'16,TCS'17)
+			<br/>- <i>Théorie des nombres algébriques</i>  : problème de l'orbite de Kannan-Lipton (STACS'17), complexité en ligne des nombres premiers (soumis)
+		</div>
+
+		<li> <i><red>Probabilités et Statistiques</red></i> : Raphaël Chetrite, Patricia Reynaud-Bouret
+		<div class="slide_step">
+			- <i>Notions de confiance</i> : distance entre systèmes stochastiques (projet)
+			<br/>- <i>Théorèmes d'ergodicité</i> : comportements limites des automates probabilistes (LICS'12, LMCS'15)
+			<br/>- <i>Apprentissage</i> : apprentissage d'automates probabilistes
+		</div>
+	</ul>
+    </div>
+
+    <div id="flides_credit" data-type="title" class="step unclickable" data-fixed="1" data-x="-1200" data-y="-800">
+	<h3>Présentation produite avec <red>Flides</red></h3>
+	<h4>HTML5 et Javascript</h4>
+
+	<u>Navigation</u> :
+	<ul>
+		<li>Fléche droite ou bas : suivant
+		<li>Fléche gauche ou haut : précédent
+		<li>Barre d'espace : animation
+		<li>Entrée : afficher tout le contenu d'un transparent
+		<li>Shift : vue globale
+		<li>Retour arrière : initialisation
+		<li>Clic gauche : aller au transparent
+	</ul>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="2.1">
+    </div>
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+</body>
+</html>

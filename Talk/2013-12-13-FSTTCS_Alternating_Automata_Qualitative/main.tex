@@ -1,0 +1,408 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+\usefonttheme{serif}
+\usecolortheme{dove}
+\useinnertheme{rounded}
+\setbeamercolor{item projected}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphics}
+\usepackage{multicol}
+\usepackage{framed}
+\usepackage{ulem}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usepackage{gastex}
+\usepackage{ulem}
+\usepackage{booktabs}
+
+
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Parity}{\mathrm{Parity}}
+\newcommand{\EXPTIME}{\mathrm{EXPTIME}}
+
+\renewcommand{\ULthickness}{1.2pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% A non-original creation by Nathanaël Fijalkow and myself %
+
+\setbeamertemplate{frametitle}{%
+  \vskip-2pt%
+  \begin{beamercolorbox}[rightskip=2cm,leftskip=1em,dp=1ex,wd=12.8cm]{frametitle}%
+    \vskip2pt%
+    \usebeamercolor{frametitle}%
+    \begin{tikzpicture}[scale=1]%
+      \useasboundingbox (0,0) rectangle (0,0); %(-1,-1) rectangle (1,1);%
+      \ifthenelse{\insertframenumber<\inserttotalframenumber}%
+      { % uncomplete tart
+
+        \pgfmathsetmacro{\aimangle}{90-(\insertframenumber*360/\inserttotalframenumber)}
+        \fill [fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,.2) -- (11.8,.6) arc (90:\aimangle:0.4) -- cycle;%
+
+      }{ % the full tart
+        \fill[fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,0.2) circle (.4);%
+      }%
+      \fill[fill=frametitle.fg,thin, color=white,draw=black] (11.8,0.2) circle (.3);%
+      \node at (11.8, .2) [black,circle]{\normalsize\insertframenumber};
+
+    \end{tikzpicture}
+    \insertframetitle%
+    \vskip2pt%
+  \end{beamercolorbox}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setbeamertemplate{blocks}[rounded]%
+\setbeamercolor{block title}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=normal text.bg!95!black}
+
+\begin{document}
+
+\addtocounter{framenumber}{-1}
+
+\title{Emptiness Of Alternating Tree Automata\\
+Using Games With Imperfect Information}
+\author{\underline{Nathana\"el Fijalkow} \and Olivier Serre \and Sophie Pinchinat}
+\institute{Institute of Informatics, Warsaw University -- Poland 
+\and LIAFA, Universit\'e Paris Diderot, Paris 7 \& CNRS -- France}
+\date{FSTTCS, December 13th, 2013}
+
+\begin{frame}
+\maketitle
+\end{frame}
+
+\section{Introduction}
+
+\begin{frame}{Objectives}
+This talk is about \textit{one} approach to deal with alternating tree automata.
+\pause
+
+\vskip2em
+Two settings: ``classical'' and ``qualitative''.
+\end{frame}
+
+
+\begin{frame}{Infinite binary trees}
+\begin{figure}[!ht]
+\begin{center}
+\begin{picture}(50,40)(0,0)
+	\gasset{Nh=5,Nw=5,Nframe=n,fillcolor=LightGray}
+
+	\node(v_0)(25,30){$a$}
+	\node(v_1)(10,20){$b$}
+	\node(v_2)(40,20){$a$}
+	\node(v_3)(0,10){$b$}
+	\node(v_4)(20,10){$a$}
+	\node(v_5)(30,10){$b$}
+	\node(v_6)(50,10){$b$}
+
+	\drawedge(v_0,v_1){}
+	\drawedge(v_0,v_2){}
+	\drawedge(v_1,v_3){}
+	\drawedge(v_1,v_4){}
+	\drawedge(v_2,v_5){}
+	\drawedge(v_2,v_6){}
+
+	\put(-1,0){$\begin{huge}\vdots\end{huge}$}
+	\put(19,0){$\begin{huge}\vdots\end{huge}$}
+	\put(29,0){$\begin{huge}\vdots\end{huge}$}
+	\put(49,0){$\begin{huge}\vdots\end{huge}$}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Definition of alternating tree automata (1/2)}
+
+$\A = (Q,Q_\exists,Q_\forall,q_0,\delta,\Parity)$
+\vskip1em
+Transition relation: $\delta \subseteq Q \times A \times Q \times Q$
+
+\begin{figure}[!ht]
+\begin{center}
+\begin{picture}(70,40)(0,0)
+    \drawpolygon[linecolor=Red,linewidth=0.5,arcradius=3](0,18)(25,40)(50,18)
+    \drawpolygon[linecolor=LightBlue,linewidth=0.5,arcradius=3](-5,3)(10,28)(25,3)
+    \drawpolygon[linecolor=Purple,linewidth=0.5,arcradius=3](25,3)(40,28)(55,3)
+
+	\gasset{Nframe=n}
+
+	\node(q_0)(25,35){$q$}
+	\node(q_1)(10,20){$p$}
+	\node(q_2)(40,20){$r$}
+	\node(q_3)(0,5){$q$}
+	\node(q_4)(20,5){$q$}
+	\node(q_5)(30,5){$p$}
+	\node(q_6)(50,5){$r$}
+
+	\put(65,25){$(q,a,p,r) \in \delta$}
+	\put(65,15){$(p,b,q,q) \in \delta$}
+	\put(65,10){$(r,a,p,r) \in \delta$}
+
+	\gasset{Nh=5,Nw=5,Nframe=n,fillcolor=LightGray}
+
+	\node(v_0)(25,30){$a$}
+	\node(v_1)(10,15){$b$}
+	\node(v_2)(40,15){$a$}
+	\node(v_3)(0,0){$b$}
+	\node(v_4)(20,0){$a$}
+	\node(v_5)(30,0){$b$}
+	\node(v_6)(50,0){$b$}
+
+	\drawedge(v_0,v_1){}
+	\drawedge(v_0,v_2){}
+	\drawedge(v_1,v_3){}
+	\drawedge(v_1,v_4){}
+	\drawedge(v_2,v_5){}
+	\drawedge(v_2,v_6){}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Definition of alternating tree automata (2/2)}
+
+Fix $\A$ alternating automaton, $t$ tree.
+\vskip1em
+$\looparrowright$ Two-player where Eve tries to show that the tree is accepted:
+\begin{itemize}
+	\item Eve picks the transitions from $Q_\exists$,
+	\item Adam picks the transitions from $Q_\forall$,
+	\item Adam also chooses directions.
+\end{itemize}
+
+\pause
+\vskip1em
+\textit{Classical} versus \textit{Qualitative} semantics:
+\begin{itemize}
+	\item $\A$ accepts $t$ if Eve has a strategy such that\\
+	\textbf{all plays} consistent with the strategy are winning.
+	\item $\A$ qualitatively accepts $t$ if Eve has a strategy such that\\
+	\textbf{almost all plays} consistent with the strategy are winning.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{An example}
+\begin{center}For all nodes labelled $a$, there is a branch without $b$'s\end{center}
+\begin{figure}[!ht]
+\begin{center}
+\begin{picture}(120,40)(0,0)
+	\gasset{Nh=5,Nw=5,Nframe=n,fillcolor=LightGray}
+
+	\node(v_0)(25,30){$a$}
+	\node(v_1)(10,20){$b$}
+	\node(v_2)(40,20){$a$}
+	\node(v_3)(0,10){$b$}
+	\node(v_4)(20,10){$a$}
+	\node(v_5)(30,10){$b$}
+	\node(v_6)(50,10){$b$}
+
+	\drawedge(v_0,v_1){}
+	\drawedge(v_0,v_2){}
+	\drawedge(v_1,v_3){}
+	\drawedge(v_1,v_4){}
+	\drawedge(v_2,v_5){}
+	\drawedge(v_2,v_6){}
+
+	\put(-1,0){$\begin{huge}\vdots\end{huge}$}
+	\put(19,0){$\begin{huge}\vdots\end{huge}$}
+	\put(29,0){$\begin{huge}\vdots\end{huge}$}
+	\put(49,0){$\begin{huge}\vdots\end{huge}$}
+
+	\put(100,60){$q \xrightarrow{a} p,q$}
+	\put(100,40){$q \xrightarrow{a} p,q$}
+	\put(100,20){}
+	\put(100,0){$\begin{huge}\vdots\end{huge}$}
+
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Classical versus Qualitative semantics}
+
+\begin{itemize}
+	\item $L(\A)$: set of trees accepted by $\A$.
+	\item $L^{=1}(\A)$: set of trees qualitatively accepted by $\A$.
+\end{itemize}
+
+\pause
+\vskip2em
+
+\begin{itemize}
+	\item $\set{L(\A) \mid \A \textrm{ parity alternating automaton}}$: class of regular languages.
+	\item $\set{L^{=1}(\A) \mid \A \textrm{ parity non-deterministic automaton}}$: class of qualitative languages,
+	introduced by Carayol, Haddad and Serre.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Properties of non-deterministic automata}
+Regular languages and qualitative languages are incomparable.
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{center}\textbf{ Regular Languages}\end{center}
+	\begin{itemize}
+		\item Emptiness is decidable (no PTIME algorithm known),
+		\item Closure under \textit{union}, \textit{intersection}, and \textit{projection},
+		\item Closure under \textit{complementation}.
+	\end{itemize}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{0.4\textwidth}
+\begin{center}\textbf{ Qualitative Languages}\end{center}
+	\begin{itemize}
+		\item Emptiness is decidable in PTIME,
+		\item Closure under \textit{union}, \textit{intersection}, and \textit{projection},
+		\item \sout{Closure under \textit{complementation}}.
+	\end{itemize}
+\vspace{.75em}
+\end{minipage}
+\end{center}
+\end{frame}
+
+\begin{frame}{Properties of alternating automata}
+\begin{itemize}
+	\item[] \textbf{Input:} An alternating automaton $\A$
+	\item[] \textbf{Output:} Is $L(\A)$ empty?
+\end{itemize}
+
+\vskip1em
+\pause
+\begin{theorem}[Muller and Schupp]
+The emptiness problem for alternating parity automata with the classical semantics is
+$\EXPTIME$-complete.
+\end{theorem}
+
+\begin{theorem}[Our paper]
+\begin{itemize}
+	\item The emptiness problem for alternating B\"uchi automata with the qualitative semantics is
+$\EXPTIME$-complete.
+	\item The emptiness problem for alternating CoB\"uchi automata with the qualitative semantics is
+undecidable.
+\end{itemize}
+\end{theorem}
+
+\pause
+We use a different technique, through games of imperfect information.
+\end{frame}
+
+\section{A solution through the simulation technique (Muller and Schupp)}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{A sketch of the solution}
+Fix $\A$ alternating parity automaton.
+
+\begin{enumerate}
+	\item construct an equivalent non-deterministic automaton $\B$,
+	\item solve the emptiness problem for $\B$.
+\end{enumerate}
+
+\vskip1em
+\pause
+The emptiness problem for non-deterministic automata
+reduces to solving a two-player game,
+where Eve tries to show that there exists an accepted tree:
+\begin{itemize}
+	\item Eve picks the tree $t$ \textit{and} the transitions,
+	\item Adam only chooses directions.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Questions}
+\begin{itemize}
+	\item Can we directly reduce the emptiness problem for alternating automata
+	to solving a two-player game?
+	\item How to handle the qualitative semantics, for which no simulation is known?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Problem}
+\begin{center}
+\color{Red}{In the naively extended previous game,\\
+Eve can cheat if she sees what Adam is doing!}
+\end{center}
+
+\vskip1em
+\pause
+Consider a universal word automaton where Adam can decide in the first move to:
+\begin{enumerate}
+	\item check that the word contains a $b$,
+	\item or check that the word does not contain any $b$
+\end{enumerate}
+The language accepted is empty but Eve can wait to see whether Adam
+chooses option $1$ or $2$ and pick the next letters to contradict Adam's choice.
+\end{frame}
+
+\section{A different technique through games of imperfect information}
+
+\addtocounter{framenumber}{-1}
+\begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection]
+\end{frame}
+
+\begin{frame}{Games of imperfect information}
+
+We directly reduce the emptiness problem for alternating automata
+to solving a two-player imperfect-information game,
+where Eve tries to show that there exists an accepted tree:
+\begin{itemize}
+	\item Eve picks the tree $t$ \textit{and} a positional strategy for her transitions,
+	\item Adam chooses transitions and directions.
+	\item \color{Red}{Eve does not see what Adam does!}
+\end{itemize}
+
+\vskip1em
+\pause
+The new key technical ingredient is 
+a positional determinacy theorem for infinite (chronological) arenas:
+
+\begin{theorem}
+If Eve has an almost surely winning strategy for B\"uchi,\\
+then she has a positional one.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Summary}
+\begin{theorem}[Our paper]
+\begin{itemize}
+	\item The emptiness problem for alternating B\"uchi automata with the qualitative semantics is
+$\EXPTIME$-complete.
+	\item The emptiness problem for alternating CoB\"uchi automata with the qualitative semantics is
+undecidable.
+\end{itemize}
+\end{theorem}
+\vskip1em
+\pause
+Remark: the second item shows that there is no simulation theorem for qualitative automata!
+\end{frame}
+
+\begin{frame}{A generic result}
+To solve the emptiness problem of alternating automata with a semantics $Acc$,
+one can reduce it to a two-player imperfect-information game, and:
+\begin{enumerate}
+	\item to prove the construction correctness,
+	show a positional determinacy result for $Acc$,
+	\item solve the obtained imperfect-information game with winning condition $Acc$.
+\end{enumerate}
+
+\vskip2em
+\pause
+Thank you!
+\end{frame}
+
+\end{document}

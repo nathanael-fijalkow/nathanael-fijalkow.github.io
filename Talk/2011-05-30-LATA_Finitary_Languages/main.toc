@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.07pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Motivations}{16}{0}{1}
+\beamer@sectionintoc {2}{Characterizations}{28}{0}{2}
+\beamer@sectionintoc {3}{Expressions}{38}{0}{3}

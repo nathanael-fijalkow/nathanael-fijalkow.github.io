@@ -1,0 +1,1134 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+\usefonttheme{serif}
+\usecolortheme{dove}
+\useinnertheme{rounded}
+%\useoutertheme{smoothbars}
+\setbeamercolor{item projected}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsthm,amssymb,amsmath,graphicx}
+\usepackage{color}
+\usepackage{gastex}
+\usepackage{tikz}
+
+\renewcommand{\AA}{\mathcal{A}}
+
+\newcommand{\PSPACE}{\mathrm{PSPACE}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\JJ}{\mathcal{J}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MMAA}{\MM_\AA}
+\newcommand{\tr}[1]{\langle #1 \rangle}
+\newcommand{\prob}[1]{\mathbb{P}_{#1}}
+\newcommand{\stab}[1]{S(#1)}
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\val}[1]{\text{val}(#1)}
+\newcommand{\merge}{\textrm{merge}}
+\newcommand{\chck}{\textrm{check}}
+\newcommand{\apply}{\textrm{apply}}
+\newcommand{\finish}{\textrm{finish}}
+\newcommand{\wait}{\textrm{wait}}
+\newcommand{\delay}{\textrm{Delay}}
+   
+\title{Deciding the value $1$ problem \\ for probabilistic leaktight automata}
+\author{Nathana\"el Fijalkow, \\
+joint work with Hugo Gimbert and Youssouf Oualhadj}
+\institute{LIAFA, CNRS \& Universit\'e Denis Diderot - Paris 7, France\\
+\textbf{nath@liafa.jussieu.fr}}
+\date{November 25th, 2011}
+\subtitle{S\'eminaire Automates}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}<beamer>{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{The value $1$ problem for probabilistic automata}
+
+\subsection{Definitions}
+
+\begin{frame}{Probabilistic automata (Rabin, 1963)}
+\begin{figure}
+\begin{center}
+\begin{picture}(20,40)(0,-10)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=0](L1)(15,15){$1$}
+  	\node(L2)(0,30){$2$}
+  	\node[Nmarks=r](L3)(0,0){$3$}
+
+  	\drawedge(L1,L2){$b$}
+  	\drawedge[curvedepth=-5,ELside=r](L1,L3){$a,.4$}
+  	\drawedge[curvedepth=-5,ELside=r](L3,L1){$b$}
+	\drawloop(L1){$a,.6$}
+	\drawloop[loopangle=135](L2){$a,b$}
+	\drawloop[loopangle=215](L3){$a$}
+\end{picture}
+\end{center}
+\end{figure}
+$$\prob{\AA} : A^* \rightarrow [0,1]$$
+\end{frame}
+
+\begin{frame}{Cutpoint and value}
+Fix $0 < \lambda \leq 1$, define:
+$$L_\lambda = \set{w \mid \prob{\AA}(w) \geq \lambda}.$$
+
+\pause
+$\lambda$ is isolated if there exists $\delta > 0$ such that for all $w \in A^*$, we have
+$$|\prob{\AA}(w) - \lambda| \geq \delta$$
+
+\pause
+\begin{theorem}[Rabin, 1963]
+If $\lambda$ is isolated, then $L_\lambda$ is a regular language.
+\end{theorem}
+
+\end{frame}
+
+\subsection{Deciding the isolation problem}
+
+\begin{frame}{The isolation problem}
+
+Fix $0 \leq \lambda \leq 1$, the isolation problem is:
+\begin{itemize}
+	\item[] \textbf{Instance:} a probabilistic automaton $\AA$
+	\item[] \textbf{Question:} is $\lambda$ isolated in $\AA$?
+\end{itemize}
+
+\pause
+For $0 < \lambda < 1$, Bertoni showed that this is undecidable (in 1974)!
+\end{frame}
+
+\begin{frame}{The value $1$ problem}
+For $\lambda = 1$ the isolation problem can be formulated as:
+``are there words accepted by $\AA$ with probability arbitrarily close to $1$''.
+\pause
+
+Equivalently, define $\val{\AA} = \sup_w \prob{\AA}(w)$,
+then the problem is:
+\begin{center}
+``$\val{\AA} \stackrel{?}{=} 1$''.
+\end{center}
+
+\pause
+\begin{theorem}[Gimbert, Oualhadj, 2010]
+The value $1$ problem is undecidable.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{An intuition}
+
+\begin{figure}
+\begin{center}
+\begin{picture}(60,35)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+  	\node[Nmarks=i,iangle=-90](0)(30,15){$0$}
+  	\node(L1)(0,10){$L_1$}
+  	\node[Nmarks=r](L2)(0,30){$L_2$}
+  	\node(R1)(60,10){$R_1$}
+  	\node(R2)(60,30){$R_2$}
+
+	\drawloop(0){$a$}
+
+  	\drawedge[curvedepth=5,ELside=l](0,L1){$b,\frac{1}{2}$}
+  	\drawedge[curvedepth=5,ELside=l](L1,0){$a,1-x$}
+  	\drawedge(L1,L2){$b$}
+	\drawloop[loopangle=-135](L1){$a,x$}
+	\drawloop[loopangle=90](L2){$a,b$}
+
+  	\drawedge[curvedepth=-5,ELside=r](0,R1){$b,\frac{1}{2}$}
+  	\drawedge[curvedepth=-5,ELside=r](R1,0){$a,x$}
+  	\drawedge[ELside=r](R1,R2){$b$}
+	\drawloop[loopangle=-45](R1){$a,1-x$}
+	\drawloop(R2){$a,b$}
+\end{picture}
+\end{center}
+\end{figure}
+\begin{center}
+has value $1$ if and only if $x > \frac{1}{2}$.
+\end{center}
+\end{frame}
+
+\begin{frame}{A very restricted case}
+\begin{theorem}[Fijalkow, Gimbert, Oualhadj, 2011]
+The isolation problem is (still) undecidable if we randomise only on \textbf{one} transition.
+\end{theorem}
+\end{frame}
+
+\begin{frame}{Sketch of proof (1)}
+\begin{figure}
+\begin{center}
+\begin{picture}(120,30)(7,0)
+	\gasset{Nw=5,Nh=5,Nframe=n}
+
+	\put(10,30){$a$}
+	\drawline[dash={1.5}0,AHnb=0](10,-2)(10,27)
+	\put(30,30){$b$}
+	\drawline[dash={1.5}0,AHnb=0](30,-2)(30,27)
+	\put(50,30){$b$}
+	\drawline[dash={1.5}0,AHnb=0](50,-2)(50,27)
+	\put(70,30){$a$}
+	\drawline[dash={1.5}0,AHnb=0](70,-2)(70,27)
+	\put(90,30){$b$}
+	\drawline[dash={1.5}0,AHnb=0](90,-2)(90,27)
+	\put(110,30){$b$}
+	\drawline[dash={1.5}0,AHnb=0](110,-2)(110,27)
+
+  	\node(1)(0,15){$q_0$}
+  	\node(2)(20,15){$q_1$}
+  	\node(3)(40,15){$q_2$}
+  	\node(4)(60,25){$r$}
+  	\node(5)(60,5){$s$}
+  	\node(6)(80,25){$\ldots$}
+  	\node(7)(80,12){$\ldots$}
+  	\node(8)(80,0){$\ldots$}
+  	\node(9)(100,25){$q$}
+  	\node(9-10)(100,21){}
+  	\node(10)(100,17){$q$}
+  	\node(11)(100,5){$\ldots$}
+  	\node(12)(100,0){$\ldots$}
+  	\node(13)(120,0){$\ldots$}
+  	\node(14)(120,3){$\ldots$}
+  	\node(15)(120,8){$\ldots$}
+  	\node(16)(120,21){$\ldots$}
+
+  	\drawedge(1,2){}
+  	\drawedge(2,3){}
+  	\drawedge(3,4){}
+  	\drawedge(3,5){}
+  	\drawedge(4,6){}
+  	\drawedge(5,7){}
+  	\drawedge(5,8){}
+  	\drawedge(6,9){}
+  	\drawedge(7,10){}
+  	\drawedge(7,11){}
+  	\drawedge(8,12){}
+  	\drawedge(9-10,16){}
+  	\drawedge(11,15){}
+  	\drawedge(11,14){}
+  	\drawedge(12,13){}
+
+	\put(99,20){$\parallel$}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Sketch of proof (2)}
+Given $\AA$ reading words from $A^*$, we construct $\BB$ over a new alphabet $B$, with one probabilistic transition,
+and a morphism $\widehat{\_} : A^* \rightarrow B^*$ such that:
+$$\forall w \in A^*, \prob{\AA}(w) = \prob{\BB}(\widehat{w}).$$
+
+\pause
+$$\widehat{a} =
+\chck(a,q_0) \cdot * \cdot \apply(a,q_0) \ldots \chck(a,q_{n-1}) \cdot * \cdot \apply(a,q_{n-1}) \cdot \merge.$$
+
+\pause
+\begin{figure}
+\begin{center}
+\begin{picture}(80,20)(0,0)
+	\gasset{Nw=5,Nh=5,Nframe=n}
+
+  	\node(q)(0,10){$q$}
+  	\node(s)(25,10){$s_*$}
+  	\node(s0)(40,20){$s_0$}
+  	\node(s1)(40,0){$s_1$}
+  	\node(hr0)(70,20){$\widetilde{r_0}$}
+  	\node(hr1)(70,0){$\widetilde{r_1}$}
+  	\node(r0)(85,20){$r_0$}
+  	\node(r1)(85,0){$r_1$}
+
+  	\drawedge(q,s){$\chck(a,q)$}
+  	\drawedge(s,s0){$*$}
+  	\drawedge[ELside=r](s,s1){$*$}
+  	\drawedge[ELside=r](s0,hr0){$\apply(a,q)$}
+  	\drawedge(s1,hr1){$\apply(a,q)$}
+  	\drawedge[ELside=r](hr0,r0){$\merge$}
+  	\drawedge(hr1,r1){$\merge$}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Sketch of proof (3)}
+%$$\widehat{a} = \begin{array}{l}
+%\chck(a,p) \cdot * \cdot \apply(a,p) \cdot \\
+%\chck(a,q) \cdot * \cdot \apply(a,q) \cdot \\
+%\chck(a,r) \cdot * \cdot \apply(a,r) \cdot \\
+%\cdot \merge
+%\end{array}$$
+\begin{figure}
+\begin{center}
+\begin{picture}(100,20)(0,0)
+	\gasset{Nw=5,Nh=5,Nframe=n}
+
+	\put(10,35){$\AA$}
+	\put(10,25){$a$}
+	\drawline[dash={1.5}0,AHnb=0](10,-4)(10,22)
+
+	\put(50,35){$\BB$}
+  	\node(p)(0,20){$p$}
+  	\node(q)(0,10){$q$}
+  	\node(r)(0,0){$r$}
+  	\node(wp)(20,20){$p$}
+  	\node(wr)(20,10){$r$}
+  	\node(wq)(20,0){$q$}
+
+  	\drawedge(p,wp){}
+  	\drawedge(q,wp){}
+  	\drawedge(q,wr){}
+  	\drawedge(r,wq){}
+
+	\only<2>{\put(40,25){$\chck(a,p) \cdot * \cdot \apply(a,p)$}}
+	\only<3>{\put(40,25){$\chck(a,q) \cdot * \cdot \apply(a,q)$}}
+	\only<4>{\put(40,25){$\chck(a,r) \cdot * \cdot \apply(a,r)$}}
+	\only<5>{\put(85,25){$\merge$}}
+	\drawline[dash={1.5}0,AHnb=0](10,-4)(10,22)
+
+  	\node(pp)(40,20){$p$}
+  	\node(qp)(40,10){$q$}
+  	\node(rp)(40,0){$r$}
+
+  	\only<2,3,4,5>{
+  		\node(wp)(80,20){$\widetilde{p}$}
+	  	\drawedge(pp,wp){}
+  		}
+  	\only<3,4,5>{
+  		\node(wr)(80,10){$\widetilde{r}$}
+  		\drawedge(qp,wp){}
+  		\drawedge(qp,wr){}
+  		}
+  	\only<4,5>{
+  		\node(wq)(80,0){$\widetilde{q}$}
+	  	\drawedge(rp,wq){}  	
+  		}
+  	\only<5>{
+  		\node(p2)(100,20){$p$}
+  		\node(r2)(100,10){$r$}
+  		\node(q2)(100,0){$q$}
+	  	\drawedge(wp,p2){}  	
+	  	\drawedge(wr,r2){}  	
+	  	\drawedge(wq,q2){}  	
+  		}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Sketch of proof (4)}
+$\BB$ is unable to check that a letter $\chck(a,q)$ is actually followed by the corresponding $\apply(a,q)$: 
+inbetween, it will go through $s_*$ and ``forget'' the state it was in.
+\pause
+
+\begin{figure}
+\begin{center}
+\begin{picture}(80,28)(0,0)
+	\gasset{Nadjust=wh,Nframe=n}
+
+  	\node(q)(0,20){$q$}
+  	\node(s)(40,20){$s_*$}
+  	\node(s0)(55,30){$s_0$}
+  	\node(s1)(55,10){$s_1$}
+  	\node(r0)(80,30){$\widetilde{r_0}$}
+  	\node(r1)(80,10){$\widetilde{r_1}$}
+
+  	\node(w)(40,5){$w$}
+  	\node(q_0)(10,5){to $q_0$}
+
+  	\drawedge(q,s){$\chck(a,q)$}
+  	\drawedge[ELside=r](s,w){$*$}
+	\drawloop[loopangle=-90](w){}
+  	\drawedge(w,q_0){$\finish$}
+  	\drawedge[ELside=l](s,s0){$*$}
+  	\drawedge[ELside=r](s,s1){$*$}
+  	\drawedge(s0,r0){$\apply(a,q)$}
+  	\drawedge[ELside=r](s1,r1){$\apply(a,q)$}
+\end{picture}
+\end{center}
+\end{figure}
+
+$$\sup_n \prob{\BB}((\widehat{w} \cdot \finish)^n) = \prob{\AA}(w)$$
+\end{frame}
+
+\begin{frame}{Sketch of proof (5)}
+Assume $p \in F$, $q \notin F$ 
+and $i$ is the initial state of a (deterministic) automaton recognizing $(\widehat{A^*} \cdot \finish)^*$.
+
+\begin{figure}
+\begin{center}
+\begin{picture}(40,28)(0,0)
+	\gasset{Nw=5,Nh=5,Nframe=n}
+
+	\put(9,25){$\widehat{w}$}
+	\drawline[dash={1.5}0,AHnb=0](10,-4)(10,22)
+	\put(26,25){$\finish$}
+	\drawline[dash={1.5}0,AHnb=0](30,-4)(30,22)
+
+  	\node(q_0)(0,10){$q_0$}
+  	\node(p)(20,20){$p$}
+  	\node(q)(20,10){$q$}
+  	\node(w)(20,0){$w$}
+  	\node(q_02)(40,0){$q_0$}
+  	\node(i)(40,20){$i$}
+
+  	\drawedge(q_0,p){}
+  	\drawedge(q_0,q){}
+  	\drawedge(q_0,w){}
+  	\drawedge(w,q_02){}
+  	\drawedge(q,q_02){}
+  	\drawedge(p,i){}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Our objective}
+Define a \textbf{large} and \textbf{interesting} subclass of probabilistic automata for which the value $1$ problem is decidable.
+\end{frame}
+
+\section{An algebraic solution to the limitedness problem for distance automata}
+
+\subsection{Taking a step back: weighted automata}
+
+\begin{frame}{Probabilistic automata VS distance automata}
+Consider a semiring $(\KK,+,\cdot)$.
+An automaton computes in the semiring $\KK$ if
+$\val{w} = \sum \set{\Pi(\rho) \mid \rho \textrm{ is a run over } w}$.
+\pause
+
+\begin{itemize}
+	\item Classical automata compute in the boolean semiring.
+	\item Probabilistic automata compute in $(\RR,+,\cdot)$ (there is a catch here).
+	\item Distance automata compute in the tropical semiring $(\NN \cup \set{\infty},\min,+)$.
+	Here is an example:
+\end{itemize}
+
+\begin{figure}
+\begin{center}
+\begin{picture}(40,15)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=-90](p)(0,0){$p$}
+  	\node[Nmarks=ir,iangle=-90](q)(20,0){$q$}
+  	\node[Nmarks=r](r)(40,0){$r$}
+
+	\drawloop(p){$a,b:0$}
+  	\drawedge(p,q){$b:0$}
+	\drawloop(q){$a:1$}
+  	\drawedge(q,r){$b:0$}
+	\drawloop(r){$a,b:0$}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{The value $1$ problem VS the limitedness problem}
+The value $1$ problem for probabilistic automata is: 
+\begin{center}
+``are there words accepted with probability arbitrarily close to $1$?''.
+\only<2>{\color{red}{undecidable}}
+\end{center}
+
+\vskip3em
+
+The \textbf{un}limitedness problem for distance automata is: 
+\begin{center}
+``are there words with arbitrarily high value?''.
+
+\pause
+\color{red}{decidable} 
+(Hashiguchi, 1988)
+\end{center}
+\end{frame}
+
+\subsection{Leung's algorithm}
+
+\begin{frame}{Weighted automata using algebra (Sch\"utzenberger)}
+\begin{figure}
+\begin{center}
+\begin{picture}(40,10)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=-90](p)(0,0){$p$}
+  	\node[Nmarks=ir,iangle=-90](q)(20,0){$q$}
+  	\node[Nmarks=r](r)(40,0){$r$}
+
+	\drawloop(p){$a,b:0$}
+  	\drawedge(p,q){$b:0$}
+	\drawloop(q){$a:1$}
+  	\drawedge(q,r){$b:0$}
+	\drawloop(r){$a,b:0$}
+\end{picture}
+\end{center}
+\end{figure}
+
+$$\tr{a} = 
+\left(\begin{array}{ccc}
+0 & \infty & \infty \\
+\infty & 1 & \infty \\
+\infty & \infty & 0
+\end{array}\right)
+\qquad
+\tr{b} = 
+\left(\begin{array}{ccc}
+0 & 0 & \infty \\
+\infty & \infty & 0 \\
+\infty & \infty & 0
+\end{array}\right)$$
+
+\only<1>{
+$$I = \left(\begin{array}{ccc} 0 & 0 & \infty \end{array}\right)
+\qquad
+F = \left(\begin{array}{c} \infty \\ 0 \\ 0 \end{array}\right)$$}
+
+\only<2>{
+$$I \cdot \tr{aaabaa} \cdot F = 
+\left(\begin{array}{ccc} 0 & 0 & \infty \end{array}\right) \cdot
+\left(\begin{array}{ccc}
+0 & 2 & 2 \\
+\infty & \infty & 3 \\
+\infty & \infty & 0
+\end{array}\right) \cdot
+\left(\begin{array}{c} \infty \\ 0 \\ 0 \end{array}\right) = 2$$
+
+$$\left\{
+\begin{array}{cc}
+k \in \NN & \textrm{best run has value } k\\
+\infty & \textrm{no run}
+\end{array}\right.$$}
+\end{frame}
+
+\begin{frame}{Towards Leung's algorithm: $\sharp$-expressions}
+\begin{figure}
+\begin{center}
+\begin{picture}(70,10)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=-90](p)(0,5){$p$}
+  	\node[Nmarks=ir,iangle=-90](q)(20,5){$q$}
+  	\node[Nmarks=r](r)(40,5){$r$}
+
+	\drawloop(p){$a,b:0$}
+  	\drawedge(p,q){$b:0$}
+	\drawloop(q){$a:1$}
+  	\drawedge(q,r){$b:0$}
+	\drawloop(r){$a,b:0$}
+
+  	\node[Nmarks=ir,iangle=180](s)(70,5){$s$}
+	\drawloop[loopangle=90](s){$a:0$}
+	\drawloop[loopangle=-90](s){$b:1$}
+\end{picture}
+\end{center}
+\end{figure}
+
+$$\val{(a^n \cdot b)^n \cdot a^n} = n$$
+\pause
+An unlimitedness witness is $(a^\sharp \cdot b)^\sharp \cdot a^\sharp$.
+\end{frame}
+
+\begin{frame}{Towards Leung's algorithm: stabilization}
+\begin{figure}
+\begin{center}
+\begin{picture}(70,10)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=-90](p)(0,0){$p$}
+  	\node[Nmarks=ir,iangle=-90](q)(20,0){$q$}
+  	\node[Nmarks=r](r)(40,0){$r$}
+
+	\drawloop(p){$a,b:0$}
+  	\drawedge(p,q){$b:0$}
+	\drawloop(q){$a:1$}
+  	\drawedge(q,r){$b:0$}
+	\drawloop(r){$a,b:0$}
+
+  	\node[Nmarks=ir,iangle=180](s)(70,5){$s$}
+	\drawloop[loopangle=90](s){$a:0$}
+	\drawloop[loopangle=-90](s){$b:1$}
+\end{picture}
+\end{center}
+\end{figure}
+
+$$\tr{a} = 
+\left(\begin{array}{cccc}
+0 & \infty & \infty & \infty\\
+\infty & \color{red}{1} & \infty & \infty\\
+\infty & \infty & 0 & \infty\\
+\infty & \infty & \infty & 0
+\end{array}\right)
+\qquad
+\tr{a^n} = 
+\left(\begin{array}{cccc}
+0 & \infty & \infty & \infty\\
+\infty & \color{red}{n} & \infty & \infty\\
+\infty & \infty & 0 & \infty\\
+\infty & \infty & \infty & 0
+\end{array}\right)$$
+
+$$\tr{a^\sharp} = 
+\left(\begin{array}{cccc}
+0 & \infty & \infty & \infty\\
+\infty & \color{red}{\infty} & \infty & \infty\\
+\infty & \infty & 0 & \infty\\
+\infty & \infty & \infty & 0
+\end{array}\right)
+\qquad 
+\only<2>{\left\{\begin{array}{cc}
+k \in \NN & \textrm{best run has value } k\\
+\infty & \textrm{arbitrarily high value}\\
+\infty & \textrm{no run}
+\end{array}\right.}$$
+\end{frame}
+
+\begin{frame}{Leung's algorithm}
+To ensure termination we project the tropical semiring $(\NN \cup \infty, \min, +)$ 
+into the \textbf{finite} semiring $(\set{0,1,\infty},\min,+)$.
+
+\vskip2em
+\pause
+
+Compute a monoid inside the monoid $\MM_{Q \times Q}(\set{0,1,\infty}, \min, +)$.
+
+\begin{itemize}
+	\item Compute $\tr{a}$ for $a \in A$.
+	\item Close under product and stabilization.
+	\item If there exists a matrix $M$ such that $I \cdot M \cdot F = \infty$ then ``unlimited'',
+	otherwise ``limited''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Leung's algorithm: termination and correction}
+
+Termination: the monoid $\MM_{Q \times Q}(\set{0,1,\infty}, \min, +)$ is finite.
+
+\vskip2em
+\pause
+
+Correction: the proof is complicated, and relies on Simon's theorem.
+\end{frame}
+
+\section{Towards an algebraic treatment of probabilistic automata}
+
+\begin{frame}{Our objective (again)}
+Decide the value $1$ problem for a \textit{subclass} of probabilistic automata,
+by \textbf{algebraic} and \textbf{non-numerical} means.
+\pause
+
+\begin{itemize}
+	\item \textbf{algebraic:} focus on the automaton structure,
+	\item \textbf{non-numerical:} abstract away the values.
+\end{itemize}
+
+\pause
+Hence we consider non-deterministic automata:
+we project $(\RR,+,\cdot)$ into the boolean semiring $(\set{0,1},+,\cdot)$.
+\pause
+\begin{figure}
+\begin{center}
+\begin{picture}(20,15)(0,5)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=180](1)(0,5){$1$}
+  	\node[Nmarks=r](2)(20,5){$2$}
+
+	\drawloop(1){$a$}
+  	\drawedge(1,2){$a$}
+	\drawloop(2){$a$}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsection{First tries}
+
+\begin{frame}{Defining stabilization}
+\begin{figure}
+\begin{center}
+\begin{picture}(20,10)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=180](1)(0,5){$1$}
+  	\node[Nmarks=r](2)(20,5){$2$}
+
+	\drawloop(1){$a$}
+  	\drawedge(1,2){$a$}
+	\drawloop(2){$a$}
+\end{picture}
+\end{center}
+\end{figure}
+
+$$\tr{a} = 
+\left(\begin{array}{ccc}
+1 & 1 \\
+0 & 1
+\end{array}\right)
+\qquad
+\only<2,3>{
+\tr{a^\sharp} = 
+\left(\begin{array}{ccc}
+0 & 1\\
+0 & 1
+\end{array}\right)}$$
+
+In $\tr{a}$, the state $1$ is transient and the state $2$ is recurrent.
+
+\only<3>{
+$$M^\sharp(s,t) = 
+\left\{\begin{array}{ll}
+1 & \textrm{if } M(s,t) = 1 \textrm{ and } t \textrm{ recurrent in } M,\\
+0 & \textrm{otherwise.}
+\end{array}\right.$$
+
+(This definition gives an asymmetric monoid, this is unusual.)}
+\end{frame}
+
+\begin{frame}{A first algorithm}
+Compute a monoid inside the \textbf{finite} monoid $\MM_{Q \times Q}(\set{0,1},+,\cdot)$.
+
+\begin{itemize}
+	\item Compute $\tr{a}$ for $a \in A$:
+$$\tr{a}(s,t) = 
+\left\{\begin{array}{ll}
+1 & \textrm{if } \prob{\AA}(s \xrightarrow{a} t) > 0,\\
+0 & \textrm{otherwise.}
+\end{array}\right.$$	
+	\item Close under product and stabilization.
+	\item \pause If there exists a matrix $M$ such that 
+	$$\forall t \in Q, \quad M(s_0,t) = 1 \Rightarrow t \in F$$
+	then ``$\AA$ has value $1$'',
+	otherwise ``$\AA$ does not have value $1$''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{An example}
+\begin{figure}
+\begin{center}
+\begin{picture}(60,15)(0,-5)
+	\gasset{Nw=6,Nh=6,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=-90](0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){$a$}
+	\drawloop(1){$a$}
+	\drawloop[loopangle=0](F){$a,b$}
+	\drawloop[loopangle=180](bottom){$a,b$}
+
+  	\drawedge(0,bottom){$b$}
+  	\drawedge[curvedepth=2](0,1){$a$}
+  	\drawedge[curvedepth=2](1,0){$b$}
+  	\drawedge(1,F){$b$}
+\end{picture}
+\pause
+\begin{picture}(60,10)(0,0)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-20,4){$\tr{a}$}
+
+  	\node(0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){}
+	\drawloop(1){}
+	\drawloop[loopangle=0](F){}
+	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge(0,1){}
+\end{picture}
+\pause
+\begin{picture}(60,10)(0,0)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-20,4){$\tr{b}$}
+
+  	\node(0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop[loopangle=0](F){}
+	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge(0,bottom){}
+  	\drawedge(1,0){}
+  	\drawedge(1,F){}
+\end{picture}
+\pause
+\begin{picture}(60,10)(0,0)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-20,4){$\tr{a^\sharp}$}
+
+  	\node(0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(1){}
+	\drawloop[loopangle=0](F){}
+	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge(0,1){}
+\end{picture}
+\pause
+\begin{picture}(60,10)(0,0)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-22,4){$\tr{a^\sharp \cdot b}$}
+
+  	\node(0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){}
+	\drawloop[loopangle=0](F){}
+	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge[curvedepth=-4](0,F){}
+  	\drawedge(1,0){}
+  	\drawedge(1,F){}
+\end{picture}
+\pause
+\begin{picture}(60,10)(0,0)
+	\gasset{Nw=5,Nh=5,loopdiam=4}
+
+	\put(-25,4){$\tr{(a^\sharp \cdot b)^\sharp}$}
+
+  	\node(0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop[loopangle=0](F){}
+	\drawloop[loopangle=180](bottom){}
+
+  	\drawedge[curvedepth=-4](0,F){}
+  	\drawedge(1,F){}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Correctness}
+\begin{theorem}
+If there exists a matrix $M$ such that 
+$$\forall t \in Q, \quad M(s_0,t) = 1 \Rightarrow t \in F$$
+then $\AA$ has value $1$.
+\end{theorem}
+\pause
+But the value $1$ problem is undecidable, so\ldots
+\end{frame}
+
+\begin{frame}{No completeness}
+\begin{figure}
+\begin{center}
+\begin{picture}(60,35)(0,0)
+	\gasset{Nw=7,Nh=7}
+
+  	\node[Nmarks=i,iangle=-90](0)(30,15){$0$}
+  	\node(L1)(0,10){$L_1$}
+  	\node[Nmarks=r](L2)(0,30){$L_2$}
+  	\node(R1)(60,10){$R_1$}
+  	\node(R2)(60,30){$R_2$}
+
+	\drawloop(0){$a$}
+
+  	\drawedge[curvedepth=5,ELside=l](0,L1){$b,\frac{1}{2}$}
+  	\drawedge[curvedepth=5,ELside=l](L1,0){$a,1-x$}
+  	\drawedge(L1,L2){$b$}
+	\drawloop[loopangle=-135](L1){$a,x$}
+	\drawloop[loopangle=90](L2){$a,b$}
+
+  	\drawedge[curvedepth=-5,ELside=r](0,R1){$b,\frac{1}{2}$}
+  	\drawedge[curvedepth=-5,ELside=r](R1,0){$a,x$}
+  	\drawedge[ELside=r](R1,R2){$b$}
+	\drawloop[loopangle=-45](R1){$a,1-x$}
+	\drawloop(R2){$a,b$}
+\end{picture}
+\end{center}
+\end{figure}
+
+%For all matrices $M$,
+%$$\exists t \in Q, \quad M(s_0,t) = 1 \wedge t \notin F$$
+%but $\AA$ has value $1$. 
+
+Left and right parts are symmetric, so for all $M$:
+$$M(0,L_2) = 1 \Longleftrightarrow M(0,R_2) = 1.$$
+\end{frame}
+
+\subsection{Leaks}
+
+\begin{frame}{An example}
+\begin{figure}
+\begin{center}
+\begin{picture}(50,30)(0,0)
+	\gasset{Nw=6,Nh=6}
+
+  	\node[Nmarks=i,iangle=0](L1)(15,15){$1$}
+  	\node(L2)(0,30){$2$}
+  	\node[Nmarks=r](L3)(0,0){$3$}
+
+  	\drawedge(L1,L2){$b$}
+  	\drawedge[curvedepth=-5,ELside=r](L1,L3){$a$}
+  	\drawedge[curvedepth=-5,ELside=r](L3,L1){$b$}
+	\drawloop(L1){$a$}
+	\drawloop[loopangle=135](L2){$a,b$}
+	\drawloop[loopangle=215](L3){$a$}
+
+	\drawline[linewidth=.3,AHnb=0](26,-3)(26,40)
+
+\pause
+
+	\put(45,-10){$\tr{a^\sharp \cdot b}$}
+
+  	\node(L1b)(55,15){$1$}
+  	\node(L2b)(40,30){$2$}
+  	\node[Nmarks=r](L3b)(40,0){$3$}
+
+  	\drawedge(L3b,L1b){}
+	\drawloop(L1b){}
+	\drawloop[loopangle=135](L2b){}
+
+\only<3>{\drawedge[dash={1}0](L1b,L2b){$\varepsilon$}}
+\end{picture}
+\end{center}
+\end{figure}
+\end{frame}
+
+\subsection{The good semiring}
+
+\begin{frame}{A three-valued semiring}
+Instead of $(\set{0,1},+,\cdot)$ we compute in $(\set{0,\varepsilon,1},+,\cdot)$,
+where $0 < \varepsilon < 1$.
+\pause
+$$\begin{array}{c||c|c|c}
++ & \quad 0 \quad & \quad \varepsilon \quad & \quad 1 \quad\\
+\hline
+0 & 0 & \varepsilon & 1 \\
+\varepsilon & \varepsilon & \varepsilon & 1 \\
+1 & 1 & 1 & 1 \\
+\end{array}
+\hspace{1cm}
+\begin{array}{c||c|c|c}
+\cdot & \quad 0 \quad & \quad \varepsilon \quad & \quad 1 \quad\\
+\hline
+0 & 0 & 0 & 0 \\
+\varepsilon & 0 & \varepsilon & \varepsilon \\
+1 & 0 & \varepsilon & 1 \\
+\end{array}$$
+\end{frame}
+
+\begin{frame}{The algorithm}
+\begin{itemize}
+	\item Compute $\tr{a}$ for $a \in A$:
+$$\tr{a}(s,t) = 
+\left\{\begin{array}{ll}
+1 & \textrm{if } \prob{\AA}(s \xrightarrow{a} t) > 0,\\
+0 & \textrm{otherwise.}
+\end{array}\right.$$	
+	\item Close under product and stabilization:
+$$M^\sharp(s,t) = 
+\left\{\begin{array}{ll}
+1 & \textrm{if } M(s,t) = 1 \textrm{ and } t \textrm{ recurrent in } M,\\
+\varepsilon & \textrm{if } M(s,t) = 1 \textrm{ and } t \textrm{ transient in } M,\\
+\varepsilon & \textrm{if } M(s,t) = \varepsilon,\\
+0 & \textrm{otherwise.}
+\end{array}\right.$$
+	\item \pause If there exists a matrix $M$ such that 
+	$$\forall t \in Q, \quad M(s_0,t) = 1 \Rightarrow t \in F$$
+	then ``$\AA$ has value $1$'',
+	otherwise ``$\AA$ does not have value $1$''.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The control lemma}
+We say that a word $w$ reify $M$ in $\MMAA$ if:
+\begin{itemize}
+	\item $M = \tr{a}$ and $w = a$;
+	\item $M = M_1 \cdot M_2$ and there exists 
+$w_1$ and $w_2$ reifying $M_1$ and $M_2$, respectively,
+such that $w = w_1 \cdot w_2$;
+	\item $M = N^\sharp$ and there exists $x_1,\ldots,x_n$ each reifying $N$,
+such that $w = x_1 \ldots x_n$ for some $n \geq 1$.
+\end{itemize}
+
+\pause
+\begin{lemma}[The control lemma]
+For all $M$ in $\MMAA$, for all words $w$ reifying $M$, 
+for all states $s,t$ in $Q$, we have:
+$$M(s,t) \neq 0 \Longleftrightarrow 
+\prob{\AA}(s \xrightarrow{w} t) > 0.$$
+\end{lemma}
+\end{frame}
+
+\begin{frame}{Leaktight automata}
+\begin{definition}
+An automaton $\AA$ is leaktight if for all $M$,
+we have
+$$M(s,t) = \varepsilon \Longrightarrow (s \textrm{ is transient) or } (M(t,s) = 1).$$
+\end{definition}
+\pause
+
+\begin{theorem}[Fijalkow,Gimbert,Oualhadj]
+The value $1$ problem is decidable for leaktight automata.
+\end{theorem}
+\end{frame}
+
+\subsection{The completeness proof using Simon's theorem}
+
+\begin{frame}{Decomposition trees}
+
+\begin{fact}
+The set $\MMAA$ computed by the algorithm is a stabilization monoid.
+\end{fact}
+
+\begin{definition}
+A \emph{decomposition tree} of a word $w \in A^+$ is a finite unranked ordered tree,
+whose nodes have labels in $(A^+,\MMAA)$ and such that:
+\begin{itemize}
+	\item the root is labeled by $(w,u)$, for some $u \in \MMAA$,
+	\item every leaf is labeled by $(a,\tr{a})$ where $a$ is a letter,
+	\item every internal node with two children labeled by 
+$(w_1,u_1)$ and $(w_2,u_2)$ is labeled by 
+$(w_1 \cdot w_2,u_1 \cdot u_2)$,
+	\item for every internal node with three or more children, 
+there exists $e \in E(M)$ such that 
+the node is labeled by $(w_1 \ldots w_n,e^\sharp)$
+and its children are labeled by $(w_1,e),\ldots,(w_n,e)$.
+\end{itemize}
+\end{definition}
+\end{frame}
+
+\begin{frame}{Bounding the height of a decomposition tree}
+In a decomposition tree,
+an iteration node is said discontinuous if $M^\sharp \neq M$.
+The span of a decomposition tree is the maximal length of a path that contains
+no discontinuous path.
+
+\pause
+\begin{theorem}[Simon, 1990]
+Every word $w \in A^+$ has a decomposition tree whose span is less than 
+$3 \cdot |\MMAA|$.
+\end{theorem}
+
+\pause
+\begin{lemma}[Simon, 1990]
+Let $M \in E(\MMAA)$, if $M^\sharp \neq M$, then $M^\sharp <_\JJ M$.
+\end{lemma}
+
+\pause
+\begin{corollary}
+Every word $w \in A^+$ has a decomposition tree whose height is less than 
+$3 \cdot |\MMAA| \cdot J(\AA)$.
+\end{corollary}
+\end{frame}
+
+\begin{frame}{Bounding the acceptance probability from below}
+
+\begin{lemma}
+There exists a positive rational number $\eta$ which depends only on $\AA$ such that:
+for all words $w \in A^+$, there exists $M$ in $\MMAA$
+satisfying
+
+for all states $s,t \in Q$,
+$$M(s,t) = 1 \Rightarrow \prob{\AA}(s \xrightarrow{w} t) \geq \eta.$$
+\end{lemma}
+
+\pause
+Proof idea: given $w$, consider a decomposition tree of bounded height,
+and prove by induction that the lower bound $2^{-h+1}$ holds at depth $h$,
+going from leaves to the root.
+\end{frame}
+
+\begin{frame}{The case of an iteration node (1)}
+
+The node is labelled by $(w_1 \ldots w_n,\tr{u^\sharp})$
+and its children are labelled by $(w_1,\tr{u}),\ldots,(w_n,\tr{u})$,
+where $\tr{u}$ is idempotent, and $\eta$ a lower bound shared by the $n \geq 3$ children.
+%We have for all $i$, $s,t$ in $Q$, if $\tr{u}(s,t) = 1$ then 
+%$\prob{\AA}(s \xrightarrow{w_i} t) \geq \eta$: call this property $(\dagger)$.
+
+\pause
+Let $s,t$ such that $\tr{u^\sharp}(s,t) = 1$, then:
+$$\prob{\AA}(s \xrightarrow{w_1 \ldots w_n} t)
+\geq \underbrace{\prob{\AA}(s \xrightarrow{w_1} t)}_{\geq \eta} 
+\cdot \underbrace{\prob{\AA}(t \xrightarrow{w_2 \ldots w_n} t)}_{\geq \eta}
+\geq \eta^2.$$
+
+\pause
+The left inequality follows from induction hypothesis,
+since $\tr{u}(s,t) = 1$.
+\end{frame}
+
+\begin{frame}{The case of an iteration node (2)}
+Consider the right inequality: $\prob{\AA}(t \xrightarrow{w_2 \ldots w_n} t) \geq \eta$
+
+Let $C = \set{q \mid \tr{u}(t,q) \neq 0}$, we have:
+$$\begin{array}{lll}
+\prob{\AA}(t \xrightarrow{w_2 \ldots w_n} t) 
+& = & \sum_{q \in C} \prob{\AA}(t \xrightarrow{w_2 \ldots w_{n-1}} q) 
+\cdot \underbrace{\prob{\AA}(q \xrightarrow{w_n} t)}_{\geq \eta} \\
+& \geq & \eta \cdot 
+\underbrace{\sum_{q \in C} \prob{\AA}(t \xrightarrow{w_2 \ldots w_{n-1}} q)}_{= 1} = \eta
+\end{array}$$
+Indeed, since $t$ is recurrent and thanks to the leaktight assumption,
+we have $C \subseteq \set{q \mid \tr{u}(q,t) = 1}$,
+so the inequality follows from induction hypothesis,
+and the equality from the ``control lemma''.
+\end{frame}
+
+\begin{frame}{What I didn't (and won't) say}
+\begin{itemize}
+	\item One can decide whether an automaton is leaktight in $\PSPACE$,
+	\item The value $1$ problem for probabilistic leaktight automata is $\PSPACE$-complete,
+	\item The class of leaktight automata subsumes all subclasses of probabilistic automata
+whose value $1$ problem is known to be decidable,
+	\item The class of leaktight automata is closed under parallel composition and synchronized product.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The end.}
+Thanks for your attention!
+
+\begin{center}
+\includegraphics[scale=0.2]{mario.eps}
+\end{center}
+\end{frame}
+
+\end{document}

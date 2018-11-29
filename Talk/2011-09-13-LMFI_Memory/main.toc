@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.07pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Examples}{23}{0}{1}
+\beamer@sectionintoc {2}{Playing safety}{32}{0}{2}
+\beamer@sectionintoc {3}{Playing reachability}{40}{0}{3}
+\beamer@sectionintoc {4}{Playing optimally in the stochastic case}{52}{0}{4}

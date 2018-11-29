@@ -1,0 +1,13 @@
+\beamer@endinputifotherversion {3.07pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Generalized reachability games}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Games}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Reachability games}{13}{0}{1}
+\beamer@subsectionintoc {1}{3}{Generalized reachability games}{18}{0}{1}
+\beamer@subsectionintoc {1}{4}{The surprizing complexity}{24}{0}{1}
+\beamer@sectionintoc {2}{Weakening weak M\"uller games}{28}{0}{2}
+\beamer@subsectionintoc {2}{1}{Weak M\"uller games}{29}{0}{2}
+\beamer@subsectionintoc {2}{2}{Weakening}{33}{0}{2}
+\beamer@subsectionintoc {2}{3}{Universal reachability games}{44}{0}{2}
+\beamer@subsectionintoc {2}{4}{A possible complexity gap}{52}{0}{2}
+\beamer@subsectionintoc {2}{5}{Memory requirements}{61}{0}{2}

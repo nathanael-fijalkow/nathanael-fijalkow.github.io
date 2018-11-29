@@ -1,0 +1,31 @@
+\begin{thebibliography}{FGKO14}
+
+\bibitem[CT12]{CT12}
+Krishnendu Chatterjee and Mathieu Tracol.
+\newblock Decidable problems for probabilistic automata on infinite words.
+\newblock In {\em Logics in Computer Science}, 2012.
+
+\bibitem[FGKO14]{FGKO14}
+Nathana{\"e}l Fijalkow, Hugo Gimbert, Edon Kelmendi, and Youssouf Oualhadj.
+\newblock Deciding the value 1 problem for probabilistic leaktight automata.
+\newblock Unpublished, 2014.
+
+\bibitem[FGO12]{FGO12}
+Nathana{\"e}l Fijalkow, Hugo Gimbert, and Youssouf Oualhadj.
+\newblock Deciding the value 1 problem for probabilistic leaktight automata.
+\newblock In {\em Logics in Computer Science}, pages 295--304, 2012.
+
+\bibitem[Fij15]{F15}
+Nathana{\"e}l Fijalkow.
+\newblock Profinite techniques for probabilistic automata, and the optimality
+  of the markov monoid algorithm.
+\newblock Unpublished, 2015.
+
+\bibitem[GO10]{GO10}
+Hugo Gimbert and Youssouf Oualhadj.
+\newblock Probabilistic automata on finite words: Decidable and undecidable
+  problems.
+\newblock In {\em International Colloquium on Automata, Languages and
+  Programming}, pages 527--538, 2010.
+
+\end{thebibliography}

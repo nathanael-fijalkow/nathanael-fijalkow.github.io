@@ -1,0 +1,4 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {english}
+\beamer@sectionintoc {1}{The value $1$ problem for probabilistic automata}{3}{0}{1}
+\beamer@sectionintoc {2}{Towards an algebraic treatment of probabilistic automata}{10}{0}{2}

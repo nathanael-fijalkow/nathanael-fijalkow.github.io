@@ -1,0 +1,6 @@
+latex abstract.tex
+latex abstract.tex
+dvips -o abstract.ps abstract.dvi
+
+
+

@@ -1,0 +1,308 @@
+\documentclass[svgnames]{beamer}
+\mode<presentation>
+\usefonttheme{serif}
+\usecolortheme{dove}
+\useinnertheme{rounded}
+%\useoutertheme{smoothbars}
+\setbeamercolor{item projected}{fg=black}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{amsthm,amssymb,amsmath,graphicx}
+\usepackage{color}
+\usepackage{gastex}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{ulem}
+\usepackage{ifthen}
+\usepackage{tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% A non-original creation by Nathanaël Fijalkow and Victor Marsault %
+
+\setbeamertemplate{frametitle}{
+  \vskip-2pt
+  \begin{beamercolorbox}[rightskip=2cm,leftskip=1em,dp=1ex,wd=12.8cm]{frametitle}
+    \vskip2pt
+    \usebeamercolor{frametitle}
+    \begin{tikzpicture}
+      \useasboundingbox (0,0) rectangle (0,0); 
+      \ifthenelse{\insertframenumber<\inserttotalframenumber}
+      { 
+        \pgfmathsetmacro{\aimangle}{90-(\insertframenumber*360/\inserttotalframenumber)}
+        \fill [fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,.2) -- (11.8,.6) arc (90:\aimangle:0.4) -- cycle;
+
+      }{ 
+        \fill[fill=frametitle.fg,thin, color=gray!50,draw=black] (11.8,0.2) circle (.4);
+      }
+      \fill[fill=frametitle.fg,thin, color=white,draw=black] (11.8,0.2) circle (.3);
+      \node at (11.8, .2) [black,circle]{\normalsize\insertframenumber};
+    \end{tikzpicture}
+    \insertframetitle
+    \vskip2pt
+  \end{beamercolorbox}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{blocks}[rounded]
+\setbeamercolor{block title}{bg=normal text.bg!90!black}
+\setbeamercolor{block body}{bg=normal text.bg!95!black}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\tr}[1]{\langle #1 \rangle}
+\newcommand{\prob}[1]{\mathbb{P}_{#1}}
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\val}[1]{\text{val}(#1)}
+
+  
+\title{ACME: Automata with Counters,\\ Monoids and Equivalence}
+\author{\textbf{Nathana\"el Fijalkow}, Denis Kuperberg}
+\institute{LIAFA, Universit\'e Denis Diderot - Paris 7, France\\
+Institute of Informatics, Warsaw University, Poland}
+
+\date{November 5th, 2014}
+
+\AtBeginSection[]
+{
+\addtocounter{framenumber}{-1}
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+\addtocounter{framenumber}{-1}
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\addtocounter{framenumber}{-1}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{An algorithmic back-end: Stabilization Monoids}
+\textbf{What?}
+\begin{itemize}
+	\item An algebraic structure with two operations: a binary composition and a unary operator $\sharp$,
+	\item Generalizes the transition monoid of a non-deterministic automaton to two weighted settings.
+\end{itemize}
+
+\textbf{Where? When?}
+\begin{itemize}
+	\item First appeared in the Theory of Regular Cost Functions (Colcombet 2009),
+	\item Later used for Probabilistic Automata (F., Gimbert, Oualhadj 2012).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Non-deterministic automata}
+\begin{figure}
+\begin{center}
+\begin{picture}(60,14)(0,0)
+	\gasset{Nw=6,Nh=6,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=-90](0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){$a$}
+	\drawloop(1){$a$}
+	\drawloop[loopangle=0](F){$a,b$}
+	\drawloop[loopangle=180](bottom){$a,b$}
+
+  	\drawedge(0,bottom){$b$}
+  	\drawedge[curvedepth=2](0,1){$a$}
+  	\drawedge[curvedepth=2](1,0){$b$}
+  	\drawedge(1,F){$b$}
+\end{picture}
+\end{center}
+\end{figure}
+\vspace*{1em}
+
+$$\tr{a} = 
+\left(\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{array}\right)
+\qquad
+\tr{b} = 
+\left(\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 1
+\end{array}\right)$$
+
+\vspace*{1em}
+
+$$I \cdot \tr{u} \cdot F = 1 \quad \textrm{ if and only if } \quad u \textrm{ is accepted.} $$
+\end{frame}
+
+\begin{frame}{Probabilistic automata}
+
+\begin{figure}
+\begin{center}
+\begin{picture}(60,14)(0,0)
+	\gasset{Nw=6,Nh=6,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=-90](0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){$a:0.5$}
+	\drawloop(1){$a$}
+	\drawloop[loopangle=0](F){$a,b$}
+	\drawloop[loopangle=180](bottom){$a,b$}
+
+  	\drawedge(0,bottom){$b$}
+  	\drawedge[curvedepth=2](0,1){$a:0.5$}
+  	\drawedge[curvedepth=2](1,0){$b:0.7$}
+  	\drawedge(1,F){$b:0.3$}
+\end{picture}
+\end{center}
+\end{figure}
+\vspace*{1em}
+
+$$\tr{a} = 
+\left(\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+0 & 0.5 & 0.5 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1
+\end{array}\right)
+\qquad
+\tr{b} = 
+\left(\begin{array}{cccc}
+1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0.7 & 0 & 0.3 \\
+0 & 0 & 0 & 1
+\end{array}\right)$$
+
+\vspace*{1em}
+
+$$I \cdot \tr{u} \cdot F = \prob{\A}(u)$$
+\end{frame}
+
+\begin{frame}{$B$-automata}
+
+\begin{figure}
+\begin{center}
+\begin{picture}(60,14)(0,0)
+	\gasset{Nw=6,Nh=6,loopdiam=6}
+
+  	\node[Nmarks=i,iangle=-90](0)(20,5){$0$}
+  	\node(1)(40,5){$1$}
+  	\node[Nmarks=r](F)(60,5){$F$}
+  	\node(bottom)(0,5){$\perp$}
+
+	\drawloop(0){$a:+1$}
+	\drawloop(1){$a$}
+	\drawloop[loopangle=0](F){$a,b$}
+	\drawloop[loopangle=180](bottom){$a,b$}
+
+  	\drawedge(0,bottom){$b:+1$}
+  	\drawedge[curvedepth=2](0,1){$a:r$}
+  	\drawedge[curvedepth=2](1,0){$b:r$}
+  	\drawedge(1,F){$b$}
+\end{picture}
+\end{center}
+\end{figure}
+\vspace*{1em}
+
+$$\tr{a} = 
+\left(\begin{array}{cccc}
+0 & \bot & \bot & \bot \\
+\bot & 1 & r & \bot \\
+\bot & \bot & 0 & \bot \\
+\bot & \bot & \bot & 0
+\end{array}\right)
+\qquad
+\tr{b} = 
+\left(\begin{array}{cccc}
+0 & \bot & \bot & \bot \\
+1 & \bot & \bot & \bot \\
+\bot & r & \bot & 0 \\
+\bot & \bot & \bot & 0
+\end{array}\right)$$
+
+\vspace*{1em}
+
+$$I \cdot \tr{u} \cdot F = \A(u)$$
+\end{frame}
+
+\begin{frame}{Computing in Infinite Semirings}
+
+Consider either	the rational semiring $(\Q,+,\times)$ or the tropical semiring $(\N \cup \set{\infty},\min,+)$:
+\begin{itemize}
+	\item An automaton $\A$ is given by a matrix $\tr{a}$ for each letter $a \in A$,
+	\item We would like to finitely represent $\set{\tr{u} \mid u \in A^*}$.
+\end{itemize}
+
+\pause
+\vskip1em
+So we abstract away the precise values and consider two operators:
+\begin{itemize}
+	\item a binary composition law: matrix multiplication,
+	\item a stabilization unary operator $\sharp$.
+\end{itemize}
+
+\pause
+\vskip1em
+Intuitively, $\tr{u}^\sharp$ represents $\lim_n \tr{u^n}$.
+\end{frame}
+
+\begin{frame}{Stabilization Monoid of an Automaton}
+
+\begin{definition}
+The Stabilization Monoid of $\A$ is the closure of $\set{\tr{a} \mid a \in A}$ under both operators.
+\end{definition}
+
+\vskip1em
+The Stabilization Monoid of $\A$ contains a lot of informations about $\A$!
+\end{frame}
+
+\begin{frame}{Using the Stabilization Monoid}
+\begin{columns}[t]
+\begin{column}{0.6\textwidth}
+\textbf{$B$-Automata}
+
+\vskip1em
+\begin{center}
+\begin{itemize}
+	\item Decide whether a $B$-automaton is bounded,
+	\item Decide whether two $B$-automata are equivalent.
+\end{itemize}
+\end{center}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{Probabilistic Automata}
+
+\vskip1em
+\begin{itemize}
+	\item Decide whether a probabilistic automaton has (probably) value $1$,
+	\item Decide whether a probabilistic automaton is leaktight.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{The end.}
+Thank you for your attention!
+\end{frame}
+
+\end{document}
