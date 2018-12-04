@@ -52,7 +52,7 @@
 -->
 		<li><a href="https://arxiv.org/abs/1807.10546">Czerwi&#324;ski, Daviaud, F., Jurdzi&#324;ski, Lazi&#263;, and Parys</a> (SODA'19): reduce separating automata to universal trees
 		<li><a href="https://arxiv.org/abs/1810.05106">Colcombet, F.</a>: introduce universal graphs, revisit the previous equivalence
-		<li>F., Gawrychowski, Ohlmann: tight upper and lower bounds of universal graphs for mean payoff
+		<li>F., Gawrychowski, Ohlmann: upper and lower bounds of universal graphs for mean payoff
 	</ul>
 
     </div>
@@ -157,127 +157,7 @@
 
 
 
-    <div id="universal_graph" class="step" data-duration="0" data-x="750" data-y="-600" data-scale=".7">
-	<h2>Universal graphs</h2>
-	(for parity)
-	<br/>
-	<b>Definition:</b> A graph <red>satisfies parity</red> if all paths in the graph satisfy parity
-	<br/>
-
-	<div class="slide_step">
-	<b>Definition:</b> A (graph) <green> homomorphism</green> is $\phi : V \to V'$ st
-	$$(v,i,v') \in E \Longrightarrow (\phi(v),i,\phi(v')) \in E$$
-	</div>
-
-	<div class="slide_step">
-	<b>Definition:</b> A graph $U$ is <blue>$(n,d)$-universal</blue> if
-	<ul>
-		<li>it satisfies parity
-		<li>all graphs of size $n$ with $d$ priorities satisfying parity can be homomorphically mapped into $U$ 
-	</ul>
-	</div>
-    </div>
-
-    <div id="reduction" class="step" data-x="750" data-y="-150" data-scale=".7">
-	<h2>Reduction to safety games</h2>
-	<br/>
-	Let $G$ parity game, $U$ universal graph.
-	Construct safety game $G \times U$: <red>Eve chooses the evolution in $U$</red>
-	<br/>
-	<br/>
-	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times U$
-	<br/>
-	<br/>
-	<blue>Algorithm:</blue> Solve the safety game $G \times U$, complexity $m \cdot |U|$
-    </div>
-
-    <div id="proof" class="step" data-x="750" data-y="150" data-scale=".3">
-	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times U$
-	<br/>
-	<br/>
-	<b>Proof:</b>
-	<br/>
-	<i>If Eve wins in $G$</i> she has a positional strategy. Then $G_{\sigma}$ embeds into $U$, induces a winning strategy in $G \times U$
-	<br/>
-	<i>If Eve wins in $G \times U$</i> then this strategy is winning in $G$ because $U$ satisfies parity
-    </div>
-
-    <div id="main_results" class="step" data-duration="0" data-x="750" data-y="450" data-scale=".7">
-	<h2>Main results</h2>
-	<br/>
-	<b>Theorem:</b> 
-	<ul>
-		<li>There exists a quasipolynomial universal graph (<blue>three constructions, one for each quasipolynomial time algorithm</blue>)
-		<li>All universal graphs have at least quasipolynomial size
-	</ul>
-	<br/>
-	<div class="slide_step">
-	<b>Theorem:</b> the following quantities are equal
-	<ul>
-		<li>The smallest <blue>universal graph</blue>
-		<li>The smallest <green>universal tree</green>
-		<li>The smallest <red>separating automaton</red>
-	</ul>
-	</div>
-    </div>
-
-    <div id="universal_trees" class="step" data-duration="0" data-x="450" data-y="770" data-scale=".2">
-	<h2>Universal trees</h2>
-	<br/>
-	<b>Definition:</b> A tree is $(n,h)$-universal if it embeds all trees of height $h$ with $n$ leaves
-	<br/>
-	<br/>
-	<center>
-	<img id="universal_tree" src="img/universal_tree.png"></img>
-	$\qquad$
-	<img id="embedding_example" src="img/embedding_example.png"></img>
-	</center>
-	<br/>
-
-	<div class="slide_step">
-	<b>Fact:</b> Universal trees are exactly maximal universal graphs!
-	</div>
-    </div>
-
-    <div id="upper_bounds" class="step" data-duration="0" data-x="700" data-y="770" data-scale=".2">
-	<h2>Upper bounds</h2>
-	<br/>
-	We construct a $(n,h)$-universal tree.
-	Inductively
-	<ul>
-		<li> $T_\text{middle}$ a $(n,h-1)$-universal tree
-		<li> $T_\text{left}$ a $(\lfloor n/2 \rfloor,h)$-universal tree
-		<li> $T_\text{right}$ a $(n - 1 - \lfloor n/2 \rfloor,h)$-universal tree
-	</ul>
-	<center>
-	<img id="smallest_tree_construction" src="img/smallest_tree_construction.png"></img>
-	</center>
-	<b>Fact:</b> there exists a <red>balanced</red> node
-    </div>
-
-    <div id="lower_bounds" class="step" data-duration="0" data-x="950" data-y="770" data-scale=".2">
-	<h2>Lower bounds</h2>
-	$$g(n,h) = \sum_{d = 1}^n g(\lfloor n / d \rfloor,h-1)$$
-	Let $T$ a $(n,h)$-universal tree and $\delta \in [1,n]$. 
-	<br/>
-	<b>Claim:</b> the number of nodes at depth $h-1$ of degree $\ge \delta$ is at least $g(\lfloor n / \delta \rfloor,h-1)$.
-	<center>
-	<img id="tree_delta" src="img/tree_delta.png"></img>
-	</center>
-	<b>Claim:</b> $T_\delta$ is $(\lfloor n / \delta \rfloor,h-1)$-universal
-    </div>
-
-
-
-
-
-    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
-    </div>
-
-
-
-
-    <div id="universal_graph_mp" class="step" data-duration="0" data-x="1400" data-y="-600" data-scale=".7">
+    <div id="universal_graph_mp" class="step" data-duration="0" data-x="750" data-y="-500" data-scale=".7">
 	<h2>Universal graphs</h2>
 	(for mean payoff)
 	<br/>
@@ -299,7 +179,35 @@
 	</div>
     </div>
 
-    <div id="naive" class="step" data-x="1400" data-y="-100" data-scale=".7">
+    <div id="reduction" class="step" data-x="750" data-y="0" data-scale=".7">
+	<h2>Reduction to safety games</h2>
+	<br/>
+	Let $G$ parity game, $U$ universal graph.
+	Construct safety game $G \times U$: <red>Eve chooses the evolution in $U$</red>
+	<br/>
+	<br/>
+	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times U$
+	<br/>
+	<br/>
+	<blue>Algorithm:</blue> Solve the safety game $G \times U$, complexity $m \cdot |U|$
+    </div>
+
+    <div id="proof" class="step" data-x="750" data-y="450" data-scale=".7">
+	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times U$
+	<br/>
+	<br/>
+	<b>Proof:</b>
+	<br/>
+	<i>If Eve wins in $G$</i> she has a positional strategy. Then $G_{\sigma}$ embeds into $U$, induces a winning strategy in $G \times U$
+	<br/>
+	<i>If Eve wins in $G \times U$</i> then this strategy is winning in $G$ because $U$ satisfies parity
+    </div>
+
+
+
+
+
+    <div id="naive" class="step" data-duration="0" data-x="1400" data-y="-300" data-scale=".7">
 	<h2>Simple construction</h2>
 	<br/>
 	<b>Lemma:</b> (parameter: <blue>maximal weight</blue> $B$)
@@ -313,7 +221,7 @@
 	<b>Corollary:</b> Algorithm $O(n m B)$ (matches best known so far)	
     </div>
 
-    <div id="main_results_mp" class="step" data-duration="0" data-x="1400" data-y="450" data-scale=".7">
+    <div id="main_results_mp" class="step" data-x="1400" data-y="250" data-scale=".7">
 	<h2>Main results</h2>
 	<br/>
 	<b>Theorem:</b> (parameter: <blue>maximal weight</blue> $B$)
