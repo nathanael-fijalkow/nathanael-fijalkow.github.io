@@ -304,7 +304,7 @@
 	<br/>
 	<b>Lemma:</b> (parameter: <blue>maximal weight</blue> $B$)
 	<br/>
-	The graph with vertices $[-nB,0]$ and edges $(u,v-u,v) \in E$ is $(n,[-B,B])$-universal
+	The graph with vertices $(-nB,nB)$ and edges $(u,v-u,v) \in E$ is $(n,[-B,B])$-universal
 	<br/>
 	<br/>
 	<red>Key idea</red>: if $(v,w,v') \in E$, then $\text{dist}(v_0,v') \le \text{dist}(v_0,v) + w$
@@ -318,18 +318,18 @@
 	<br/>
 	<b>Theorem:</b> (parameter: <blue>maximal weight</blue> $B$)
 	<ul>
-		<li>There exists a universal graph of size $nB (1 - n (n B)^{1 - 1/n})$
+		<li>There exists a universal graph of size $n (nB)^{1 - 1/n}$
 		<li>All universal graphs have at least $B^{1 - 1/n}$
 	</ul>
-	<b>Corollary:</b> Algorithm $O(n m B^{1 - 1/n})$
+	<b>Corollary:</b> Algorithm $O(n m (nB)^{1 - 1/n})$
 	<br/>
 	<br/>
 	<b>Theorem:</b> (parameter: <red>number of weights</red> $k$)
 	<ul>
-		<li>There exists a universal graph of size $n^k$
-		<li>All universal graphs have size at least $n^{k - \varepsilon}$ for any $\varepsilon > 0$
+		<li>There exists a universal graph of size $n^{k+1}$
+		<li>All universal graphs have size at least $n^{k - 1 - \varepsilon}$ for any $\varepsilon > 0$
 	</ul>
-	<b>Corollary:</b> Algorithm $O(m n^k)$
+	<b>Corollary:</b> Algorithm $O(m n^{k+1})$
     </div>
 
     <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
