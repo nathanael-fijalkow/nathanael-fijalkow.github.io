@@ -81,7 +81,7 @@
 	<red>Parameters</red>: $n$ (number of vertices) and $d$ (number of priorities)
 	<br/>
 	<br/>
-	<blue>Best algorithms</blue> (Calude, Jain, Khoussainov, Li, and Stephan 2017, then Jurdzi&#324;ski and Lazi&#263; 2017, then Lehtinen 2018)
+	<blue>Best algorithms</blue> (Calude, Jain, Khoussainov, Li, and Stephan <green>STOC best paper award</green> 2017, then Jurdzi&#324;ski and Lazi&#263; 2017, then Lehtinen 2018)
 	$$O(n^{\log(d)}) = O(d^{\log(n)})$$
     </div>
 
@@ -127,24 +127,26 @@
     <div id="parity_as_mp" class="step" data-x="-800" data-y="250" data-scale=".7">
 	<h3><red>Parity</red> games as <blue>mean payoff</blue> games</h3>
 	<br/>
+	<center>
+	<red>Parity</red>: the maximal priority appearing infinitely often is <green>even</green>
+	<blue>Mean payoff</blue>: the average limit is <green>non negative</green>
+	</center>
+	<br/>
 	Replace priority $p$ by $(-n)^p$:
 	<br/>
 	<ul>
 		<li> priority $1$ becomes weight $-n$
 		<li> priority $2$ becomes weight $n^2$
 		<li> priority $3$ becomes weight $-n^3$
-		<li> $\ldots$
 	</ul>
-	<green>Key idea</green>: in a cycle (of length $n$) only the largest weight matters 
+	<b>Key idea</b>: in a cycle (of length $n$) only the largest weight matters 
     </div>
 
-    <div id="positionality" class="step" data-x="-1100" data-y="650">
-	<h3>Positionality</h3>
-	<br/>
+    <div id="positionality" class="step" data-x="-1100" data-y="650" data-scale=".7">
 	<green>Positional</green> strategy
 	$$\sigma : V \to E$$
-	<br/>
 	<b>Theorem:</b> If Eve has a winning strategy in a mean payoff game, she also has a positional winning strategy. The same holds for Adam.
+	<center><img id="mp_game_solved" src="img/mp_game_solved.png"></img></center>
     </div>
 
 
@@ -161,7 +163,7 @@
 	<h2>Universal graphs</h2>
 	(for parity)
 	<br/>
-	<b>Definition:</b> A graph <red>satisfies parity</red> if all paths in the graph satisfy parity
+	<b>Definition:</b> A graph <red>satisfies parity</red> if all paths in the graph satisfy parity (eq: all cycles have maximal even priority)
 	<br/>
 
 	<div class="slide_step">
