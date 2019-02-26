@@ -134,6 +134,52 @@ Several distinct techniques have been proposed to design quasi-polynomial algori
 I studied the LoCo conjecture for the best of my PhD studies. It is about the existence of finite-memory winning strategies in games with counters.
         <table border="0" cellpadding="2" width="100%">
                 <tr>
+                        <td class="labels">[FHKS15]</td>
+                        <td class="entree">
+                                <a name="FHKS15"></a>Nathana&euml;l Fijalkow, Florian Horn, Denis Kuperberg and Micha&#322; Skrzypczak. 
+                                <span class="titre">Trading Bounds for Memory in Games with Counters</span>,
+                                <span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2015</em></span>.
+                                (<a class="link" href="pdf/LoCo_ICALP_2015.pdf">Conference version</a> ;
+                                <a class="link" href="pdf/tech_report_loco.pdf">Technical report</a>)
+                                <br/>
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFHKS15">Display/Hide the abstract</button>
+                                <div id="abstractFHKS15" class="collapse">
+                                        <i>We study two-player games with counters, where the objective of the first player is that the counter values remain bounded. 
+                                        We investigate the existence of a trade-off between the size of the memory and the bound achieved on the counters, 
+                                        which has been conjectured by Colcombet and Loeding.
+                                        <br/>
+                                        We show that unfortunately this conjecture does not hold: there is no trade-off between bounds and memory, even for finite arenas. 
+                                        On the positive side, we prove the existence of a trade-off for the special case of thin tree arenas.
+                                        </i>
+                                </div>
+                        </td>
+                </tr>
+                <tr>
+                        <td class="labels">[CF13]</td>
+                        <td class="entree"><a name="CF13"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
+                                <span class="titre">Infinite-state games with finitary conditions</span>,
+                                <span class="booktitle"><em>Computer Science Logic, CSL'2013</em></span>. 
+                                (<a class="link" href="pdf/finitary_games_csl_2013.pdf">Conference version</a> ;
+                                <a class="link" href="http://arxiv.org/abs/1301.2661">Technical report (ArXiv)</a>)
+                                <br/>
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCF13">Display/Hide the abstract</button>
+                                <div id="abstractCF13" class="collapse">
+                                        <i>We study two-player zero-sum games over infinite-state graphs equipped with finitary conditions. 
+                                        Such conditions refine the classical omega-regular conditions: instead of requiring that good events occur infinitely often, 
+                                        they ensure the existence of a bound B such that in the limit good events occur within B steps. 
+                                        <br/>
+                                        Our first contribution is to give (non-effective) characterizations of the winning regions for finitary games over countably infinite-state graphs. 
+                                        From these results we obtain the strategy complexity, i.e the memory required for winning strategies: 
+                                        we prove that memoryless strategies are sufficient for finitary Buchi, and finite memory suffices for finitary parity. 
+                                        <br/>
+                                        We then study pushdown games with finitary conditions, with two contributions. 
+                                        First we prove a collapse result for pushdown games with finitary conditions, implying the decidability of solving these games. 
+                                        Second we consider pushdown games with finitary parity along with stack boundedness conditions, and show that solving these games is EXPTIME-complete.
+                                        </i>
+                                </div>
+                        </td>
+                </tr>	
+                <tr>
                         <td class="labels">[FZ14]</td>
                         <td class="entree"><a name="FZ14"></a>Nathana&euml;l Fijalkow and Martin Zimmermann. 
                                 <span class="titre">Parity and Streett Games with Costs</span>,
@@ -177,52 +223,6 @@ I studied the LoCo conjecture for the best of my PhD studies. It is about the ex
                                 </div>
                         </td>
                 </tr>	
-                <tr>
-                        <td class="labels">[CF13]</td>
-                        <td class="entree"><a name="CF13"></a>Krishnendu Chatterjee and Nathana&euml;l Fijalkow. 
-                                <span class="titre">Infinite-state games with finitary conditions</span>,
-                                <span class="booktitle"><em>Computer Science Logic, CSL'2013</em></span>. 
-                                (<a class="link" href="pdf/finitary_games_csl_2013.pdf">Conference version</a> ;
-                                <a class="link" href="http://arxiv.org/abs/1301.2661">Technical report (ArXiv)</a>)
-                                <br/>
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCF13">Display/Hide the abstract</button>
-                                <div id="abstractCF13" class="collapse">
-                                        <i>We study two-player zero-sum games over infinite-state graphs equipped with finitary conditions. 
-                                        Such conditions refine the classical omega-regular conditions: instead of requiring that good events occur infinitely often, 
-                                        they ensure the existence of a bound B such that in the limit good events occur within B steps. 
-                                        <br/>
-                                        Our first contribution is to give (non-effective) characterizations of the winning regions for finitary games over countably infinite-state graphs. 
-                                        From these results we obtain the strategy complexity, i.e the memory required for winning strategies: 
-                                        we prove that memoryless strategies are sufficient for finitary Buchi, and finite memory suffices for finitary parity. 
-                                        <br/>
-                                        We then study pushdown games with finitary conditions, with two contributions. 
-                                        First we prove a collapse result for pushdown games with finitary conditions, implying the decidability of solving these games. 
-                                        Second we consider pushdown games with finitary parity along with stack boundedness conditions, and show that solving these games is EXPTIME-complete.
-                                        </i>
-                                </div>
-                        </td>
-                </tr>	
-                <tr>
-                        <td class="labels">[FHKS15]</td>
-                        <td class="entree">
-                                <a name="FHKS15"></a>Nathana&euml;l Fijalkow, Florian Horn, Denis Kuperberg and Micha&#322; Skrzypczak. 
-                                <span class="titre">Trading Bounds for Memory in Games with Counters</span>,
-                                <span class="booktitle"><em>International Colloquium on Automata, Languages and Programming, ICALP'2015</em></span>.
-                                (<a class="link" href="pdf/LoCo_ICALP_2015.pdf">Conference version</a> ;
-                                <a class="link" href="pdf/tech_report_loco.pdf">Technical report</a>)
-                                <br/>
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFHKS15">Display/Hide the abstract</button>
-                                <div id="abstractFHKS15" class="collapse">
-                                        <i>We study two-player games with counters, where the objective of the first player is that the counter values remain bounded. 
-                                        We investigate the existence of a trade-off between the size of the memory and the bound achieved on the counters, 
-                                        which has been conjectured by Colcombet and Loeding.
-                                        <br/>
-                                        We show that unfortunately this conjecture does not hold: there is no trade-off between bounds and memory, even for finite arenas. 
-                                        On the positive side, we prove the existence of a trade-off for the special case of thin tree arenas.
-                                        </i>
-                                </div>
-                        </td>
-                </tr>
         </table>
         </div>
 </div>
@@ -384,59 +384,6 @@ This is the purpose of the second part of the current paper.
                         </td>
                 </tr>
                 <tr>
-                        <td class="labels">[FGKO15]</td>
-                        <td class="entree">
-                                <a id="FGKO15"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Youssouf Oualhadj. 
-                                <span class="titre">Deciding the value 1 problem for probabilistic leaktight automata</span>,
-                                <span class="booktitle"><em>Logical Methods in Computer Science, LMCS</em></span>. 
-                                (<a class="link" href="http://arxiv.org/abs/1504.04136">ArXiv</a>)
-                                <br/>
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGKO15">Display/Hide the abstract</button>
-                                <div id="abstractFGKO15" class="collapse">
-                                        <i>The value 1 problem is a decision problem for probabilistic automata over finite words:
-                                        given a probabilistic automaton, are there words accepted with probability arbitrarily close to 1?
-                                        This problem was proved undecidable recently; to overcome this, several classes of probabilistic automata of different nature were proposed, 
-                                        for which the value 1 problem has been shown decidable.
-                                        In this paper, we introduce yet another class of probabilistic automata, called \textit{leaktight automata}, 
-                                        which strictly subsumes all classes of probabilistic automata whose value 1 problem is known to be decidable.
-                                        <br/>
-                                        We prove that for leaktight automata, the value 1 problem is decidable (in fact, PSPACE-complete) by constructing 
-                                        a saturation algorithm based on the computation of a monoid abstracting the behaviours of the automaton.
-                                        We rely on algebraic techniques developed by Simon to prove that this abstraction is complete.
-                                        Furthermore, we adapt this saturation algorithm to decide whether an automaton is leaktight.
-                                        <br/>
-                                        Finally, we show a reduction allowing to extend our decidability results from finite words to infinite ones, 
-                                        implying that the value 1 problem for probabilistic leaktight parity automata is decidable.
-                                        <br/><br/>
-                                        This is the journal version of [FGO12].
-                                        </i>
-                                </div>
-                        </td>
-                </tr>	
-                <tr>
-                        <td class="labels">[FGO12]</td>
-                        <td class="entree"><a id="FGO12-LICS"></a>Nathana&euml;l Fijalkow, Hugo Gimbert and Youssouf Oualhadj.
-                                <span class="titre">Deciding the Value 1 Problem for Probabilistic Leaktight Automata</span>,
-                                <span class="booktitle"><em>Logic in Computer Science, LICS'2012</em></span>.
-                                (<a class="link" href="http://arxiv.org/abs/1504.04136">ArXiv</a>)
-                                <br/>
-                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGO12">Display/Hide the abstract</button>
-                                <div id="abstractFGO12" class="collapse">
-                                        <i>The value 1 problem is a decision problem for probabilistic automata over finite words: 
-                                        given a probabilistic automaton, are there words accepted with probability arbitrarily close to 1? 
-                                        This problem was proved undecidable recently. 
-                                        We sharpen this result, showing that the undecidability result holds even if the probabilistic automata have only one probabilistic transition. 
-                                        Our main contribution is to introduce a new class of probabilistic automata, called leaktight automata, for which the value 1 problem is shown decidable 
-                                        (and PSPACE-complete). 
-                                        We construct an algorithm based on the computation of a monoid abstracting the behaviours of the automaton, 
-                                        and rely on algebraic techniques developed by Simon for the correctness proof. 
-                                        The class of leaktight automata is decidable in PSPACE, subsumes all subclasses of probabilistic automata whose value 1 problem is known to be decidable 
-                                        (in particular deterministic automata), and is closed under two natural composition operators.
-                                        </i>
-                                </div>
-                        </td>
-                </tr>	
-                <tr>
                         <td class="labels">[FS15]</td>
                         <td class="entree">
                                 <a name="FS15"></a>Nathana&euml;l Fijalkow and Micha&#322; Skrzypczak. 
@@ -493,6 +440,59 @@ This is the purpose of the second part of the current paper.
                                         <br/>
                                         For the qualitative semantics, no simulation of alternation by means of non-determinism is known; yet our new approach can successfully be applied. 
                                         The key ingredient in the proof is a positionality result for stochastic games played on infinite arenas.
+                                        </i>
+                                </div>
+                        </td>
+                </tr>	
+                <tr>
+                        <td class="labels">[FGKO15]</td>
+                        <td class="entree">
+                                <a id="FGKO15"></a>Nathana&euml;l Fijalkow, Hugo Gimbert, Edon Kelmendi and Youssouf Oualhadj. 
+                                <span class="titre">Deciding the value 1 problem for probabilistic leaktight automata</span>,
+                                <span class="booktitle"><em>Logical Methods in Computer Science, LMCS</em></span>. 
+                                (<a class="link" href="http://arxiv.org/abs/1504.04136">ArXiv</a>)
+                                <br/>
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGKO15">Display/Hide the abstract</button>
+                                <div id="abstractFGKO15" class="collapse">
+                                        <i>The value 1 problem is a decision problem for probabilistic automata over finite words:
+                                        given a probabilistic automaton, are there words accepted with probability arbitrarily close to 1?
+                                        This problem was proved undecidable recently; to overcome this, several classes of probabilistic automata of different nature were proposed, 
+                                        for which the value 1 problem has been shown decidable.
+                                        In this paper, we introduce yet another class of probabilistic automata, called \textit{leaktight automata}, 
+                                        which strictly subsumes all classes of probabilistic automata whose value 1 problem is known to be decidable.
+                                        <br/>
+                                        We prove that for leaktight automata, the value 1 problem is decidable (in fact, PSPACE-complete) by constructing 
+                                        a saturation algorithm based on the computation of a monoid abstracting the behaviours of the automaton.
+                                        We rely on algebraic techniques developed by Simon to prove that this abstraction is complete.
+                                        Furthermore, we adapt this saturation algorithm to decide whether an automaton is leaktight.
+                                        <br/>
+                                        Finally, we show a reduction allowing to extend our decidability results from finite words to infinite ones, 
+                                        implying that the value 1 problem for probabilistic leaktight parity automata is decidable.
+                                        <br/><br/>
+                                        This is the journal version of [FGO12].
+                                        </i>
+                                </div>
+                        </td>
+                </tr>	
+                <tr>
+                        <td class="labels">[FGO12]</td>
+                        <td class="entree"><a id="FGO12-LICS"></a>Nathana&euml;l Fijalkow, Hugo Gimbert and Youssouf Oualhadj.
+                                <span class="titre">Deciding the Value 1 Problem for Probabilistic Leaktight Automata</span>,
+                                <span class="booktitle"><em>Logic in Computer Science, LICS'2012</em></span>.
+                                (<a class="link" href="http://arxiv.org/abs/1504.04136">ArXiv</a>)
+                                <br/>
+                                <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractFGO12">Display/Hide the abstract</button>
+                                <div id="abstractFGO12" class="collapse">
+                                        <i>The value 1 problem is a decision problem for probabilistic automata over finite words: 
+                                        given a probabilistic automaton, are there words accepted with probability arbitrarily close to 1? 
+                                        This problem was proved undecidable recently. 
+                                        We sharpen this result, showing that the undecidability result holds even if the probabilistic automata have only one probabilistic transition. 
+                                        Our main contribution is to introduce a new class of probabilistic automata, called leaktight automata, for which the value 1 problem is shown decidable 
+                                        (and PSPACE-complete). 
+                                        We construct an algorithm based on the computation of a monoid abstracting the behaviours of the automaton, 
+                                        and rely on algebraic techniques developed by Simon for the correctness proof. 
+                                        The class of leaktight automata is decidable in PSPACE, subsumes all subclasses of probabilistic automata whose value 1 problem is known to be decidable 
+                                        (in particular deterministic automata), and is closed under two natural composition operators.
                                         </i>
                                 </div>
                         </td>
@@ -661,7 +661,7 @@ The tool Stamina is open source and available from Github, details are given on 
         <button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#others" data-parent="#accordion">Others</button>
 </div>
 
-<div id="other" class="panel-collapse collapse">
+<div id="others" class="panel-collapse collapse">
         <div class="panel-body">
         <table border="0" cellpadding="2" width="100%">
                 <tr>
