@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Introduction</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-800">
+	<h2>Nathana&euml;l Fijalkow</h2>
+	<h3>CNRS, LaBRI, Bordeaux, and The Alan Turing Institute of data science, London</h3>
+    </div>
+
+    <div id="title" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-300">
+	<h2>A Global Correctness Criterion using Generative Models</h2>
+    </div>
+
+
+    <div id="setting" class="step" data-x="-1000" data-y="-700" data-scale="1.1">
+	<h3>Image <red>classifier</red></h3>
+
+	$$f : \textit{Images} \to \left\{\textit{Panda},\textit{Monkey}\right\}$$
+    </div>
+
+    <div id="title_wrong" class="step" data-fixed="1" data-duration="0" data-x="-1000" data-y="-500">
+	<h2>What's wrong?</h2>
+    </div>
+
+    <div id="issues" class="step" data-x="-1000" data-y="-200" data-scale="1.1">
+	<red><h2>local</h2></red>
+	check for each image of the test set
+	<br/>
+	<br/>
+	<br/>
+	<blue><h2>perturbations</h2></blue>
+	perturbations (often) defined using norms
+    </div>
+
+
+    <div id="title_criterion" class="step" data-fixed="1" data-duration="0" data-x="-1000" data-y="200">
+	<h2>Criterion</h2>
+    </div>
+
+    <div id="generative" class="step" data-x="-1000" data-y="400" data-scale="1.1">
+	<h3>Generative model</h3>
+
+	$$g : \textit{Random Seeds} \to \textit{Panda Images}$$
+
+	<a href="https://thispersondoesnotexist.com/">thispersondoesnotexist.com</a>
+    </div>
+
+    <div id="idea" class="step" data-x="-1000" data-y="700" data-scale="1.1">
+	$f$ <blue>image classifier</blue>, $g$ <red>generative model</red> for panda images
+ 
+	$$g \circ f : \textit{Random Seeds} \to \left\{\textit{Panda},\textit{Monkey}\right\}$$
+
+	<div class="slide_step">
+	<b>Definition</b>: <green>Correctness</green> of $f$ against $g$ wrt panda class:
+
+	$$\mathbb{P}_{x \sim D}(g \circ f(x) = \text{ Panda})$$
+	</div>
+    </div>
+
+
+
+
+
+    <div id="title_how" class="step" data-fixed="1" data-duration="0" data-x="1000" data-y="-800">
+	<h2>How to check it?</h2>
+    </div>
+
+    <div id="how" class="step" data-x="1000" data-duration="0" data-y="-500" data-scale="1.1">
+	Given a NN $h$ with binary output, compute or approximate:
+
+	$$\mathbb{P}_{x \sim D}(h(x) = 1)$$
+ 
+	<div class="slide_step">
+	<b>Solution 1</b>: <green>Verification approach</green> yields safe under-approximation
+
+	$$\forall x, h(x) = 1$$
+	</div>
+
+	<div class="slide_step">
+	<b>Solution 2</b>: <blue>Statistical approach</blue> yields good and cheap approximations	
+	</div>
+    </div>
+
+
+
+    <div id="title_good" class="step" data-fixed="1" data-duration="0" data-x="1000" data-y="0">
+	<h2>How good is the criterion?</h2>
+    </div>
+
+    <div id="good" class="step" data-x="1000" data-y="400" data-scale="1.1">
+	<b>Global</b>: from thousands to billions of images in the test set
+
+	<br/>
+	<br/>
+
+	<div class="slide_step">
+	Makes a <b>key assumption</b>: generative models are <blue>good</blue>!
+
+	<br/>
+	<red>Idea</red>: we can agree on generative models and make them <u>standard for <green>benchmarks</green></u>
+	</div>
+
+	<br/>
+
+	<div class="slide_step">
+	<b>Perturbations</b>: it seems to yield a (rather) convincing way of perturbing images
+	</div>
+    </div>
+
+
+
+
+
+    <div id="title_exp" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="300">
+	<h2>Experiments</h2>
+    </div>
+
+    <div id="exp" class="step" data-x="0" data-y="600" data-scale="1.1">
+	<ul>
+		<li> small generative models yield irrelevant criteria
+		<li> most image classifiers I could train or find are <red>below 50%</red> (statistical approach), but (some of) the robust ones are <blue>better</blue> 
+		<li> the correctness criterion seems to be <green>independent of the training set!</green>
+	</ul>
+    </div>
+
+
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
