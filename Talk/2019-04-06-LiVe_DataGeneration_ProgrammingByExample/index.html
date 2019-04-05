@@ -1,0 +1,216 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Data generation</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="-300" data-y="-500">
+	<h2>Nathana&euml;l Fijalkow</h2>
+	<h3>CNRS, LaBRI, Bordeaux, <br/> and The Alan Turing Institute, London</h3>
+    </div>
+
+
+
+    <div id="DG" class="step" data-fixed="1" data-duration="0" data-x="-1200" data-y="-800">
+	<h2>Data generation</h2>
+
+	<center>
+	<b>Feynman</b>: What I cannot create, I do not understand.
+	</center>
+    </div>
+
+
+    <div id="general_strategy" class="step" data-x="-1200" data-y="-300">
+	<h3>Scenario: two-step solutions</h3>
+	<br/>
+	<ul>
+		<li><b>Step 1</b>: Learn from the input distribution 
+		<li><b>Step 2</b>: Guide the algorithm using the model
+	</ul> 
+	<center>
+	<img id="general_strategy" src="img/strategy.png"></img>
+	</center>
+	<u>Key idea</u>: the input distribution is <red>heavily biassed</red>!
+    </div>
+
+
+
+    <div id="objectives" class="step" data-x="-1200" data-y="300">
+	<h3>Perils of data generation</h3>
+	<ul>
+		<li>The input distribution is <red>usually not known</red>!
+		<li>Bad data generation leads to <green>bad performances</green>
+	</ul>
+	<br/>
+	
+	<div class="slide_step">	
+	Even worse, <blue>too good performances</blue>!	
+	<center>
+	<b>Confucius</b>: When a wise man points at the moon, the imbecile examines the finger.
+	</center>
+	<br/>
+	The model should learn <red>the input distribution</red>, not <blue>the data generation</blue>.
+	</div>
+    </div>
+
+    <div id="research" class="step" data-x="-1200" data-y="650">
+	<h3>Research program</h3>
+	<br/>
+	<ul>
+		<li>Unbiassed data generation algorithms 
+		<li>Heuristic-based algorithms with provable guarantees
+	</ul>
+    </div>
+
+
+    <div id="overview1" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="PBE" class="step" data-fixed="1" data-duration="0" data-x="1200" data-y="-800">
+	<h2>Programming by example</h2>
+    </div>
+
+
+
+
+
+    <div id="FlashFill" class="step" data-x="500" data-y="-400" data-scale=".7">
+	<h3>FlashFill (Gulwani, Microsoft Research)</h3> 
+	<br/>
+	Included in Microsoft Excel 2013!
+	<center>
+	<img id="FlashFill1" src="img/FlashFill.png"></img>
+	<img id="FlashFill2" src="img/FlashFill2.png"></img>
+	</center>
+	<blue>Correct with one I/O in 60% of the cases!</blue>
+    </div>
+
+    <div id="problem" class="step" data-x="1300" data-y="-400">
+	<h3>Problem</h3>
+	<br/>
+	<b>INPUT</b>: <green>a few*</green> input / output pairs
+	<br/>
+	<b>OUTPUT</b>: synthetise a program
+
+	<br/>
+	<br/>
+	<green>*a few = 5</green>
+    </div>
+
+    <div id="dsl" class="step" data-x="-400" data-y="100" data-duration="0" data-scale=".8">
+	<h3>The domain specific language (DSL)</h3> 
+	<br/>
+	<red>DeepCoder</red>: Learning to Write Programs (ICLR 2017)
+	<br/>
+	<center>
+	<img id="examples" src="img/examples.png"></img>
+	</center>
+	<blue>38</blue> high-level functions operating on lists in <red>[-255,255]</red>
+    </div>
+
+    <div id="closer_look" class="step" data-x="400" data-y="100">
+	<h3><u>Objective</u>: train a model using (<blue>synthetic</blue>) programs and I/O</h3>
+	<br/>
+	<br/>
+	The model takes I/O and predicts <red>which functions appear</red> in the target program
+    </div>
+
+    <div id="methods" class="step" data-duration="0" data-x="1250" data-y="100">
+	<h3>Program generation</h3>
+	<ul>
+		<li>Remove <blue>syntactically inept</blue> programs 
+		<li>Remove (probably) <red>equivalent</red> programs 
+	</ul>
+	<br/>
+	<div class="slide_step">	
+	<h3>I/O generation</h3>
+	<b>Problem</b>: given a program, find interesting I/O
+	<br/>
+	<br/>
+	<ul>
+		<li>Domain restriction (original DeepCoder approach)
+		<li>Non-uniform sampling
+		<li>Constraint-based (leveraging z3)
+		<li>Semantic variation
+	</ul>
+	</div>
+    </div>
+
+    <div id="methods_zoom" class="step" data-scale=".3" data-x="1550" data-y="230">
+	<center>
+	<img id="method" src="img/method.png"></img>
+	</center>
+    </div>
+
+
+
+    <div id="overview1" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="Exp" class="step" data-fixed="1" data-duration="0" data-x="200" data-y="400">
+	<h2>Experiments</h2>
+    </div>
+
+
+
+
+
+    <div id="distribution" class="step" data-x="0" data-y="700" data-scale=".8">
+	<h3>Input distribution</h3>
+	<br/>
+	<center>
+	<img id="input_distribution" src="img/unconditional_input_hist.png"></img>
+	</center>
+    </div>
+
+    <div id="timing" class="step" data-x="600" data-y="700" data-scale=".8">
+	<h3>Timing distribution</h3>
+	<br/>
+	<center>
+	<img id="timing" src="img/combined_testSetPerformance_searchTime.png"></img>
+	</center>
+    </div>
+
+    <div id="courts" class="step" data-x="1200" data-y="700" data-scale=".8">
+	<h3>Home court / away court</h3>
+	<br/>
+	<center>
+	<img id="courts" src="img/top_k_plots.png"></img>
+	</center>
+    </div>
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
