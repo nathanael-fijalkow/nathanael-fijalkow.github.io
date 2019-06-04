@@ -32,19 +32,9 @@
 	<h3>in the learning era</h3>
     </div>
 
-    <div id="intro1" class="step" data-x="0" data-scale=".7" data-y="-100">
-	<h3>Classical ML approach</h3>
-	<br/>
-	Synthesis implies 
-        <ul>
-		<li>a <red>search problem</red>
-		<li>turned into an <green>optimisation problem</green>
-		<li>which is tackled using a <blue>gradient descent approach</blue>
-	</ul>
-    </div>
-
-    <div id="intro2" class="step" data-x="0" data-scale=".7" data-y="200">
-	<h3>Another take</h3>
+<!--
+    <div id="intro" class="step" data-x="0" data-scale=".7" data-y="200">
+	<h3>Combining FM and ML</h3>
 	<br/>
         <ul>
 		<li>use <green>formal methods</green> to describe the <red>search problem</red>
@@ -54,15 +44,16 @@
 	<br/>
 	<u>Key advantage</u>: do not give up on <b>correctness</b>!
     </div>
+-->
 
-    <div id="intro3" class="step" data-x="0" data-scale=".7" data-y="600">
-	<h3>High level view</h3>
+    <div id="intro" class="step" data-x="0" data-scale=".7" data-y="0">
+	<h3>Two choices</h3>
 	<br/>
 	<b>Program space</b>:
         <ul>
 		<li>models from <blue>formal languages</blue> (automata, grammars)
-		<li>models from <blue>machine learning</blue> (linear models, neural networks)
-		<li>more <blue>syntactically structured programs</blue>
+		<li>models from <red>machine learning</red> (linear models, neural networks)
+		<li>more <green>syntactically structured programs</green>
 	</ul>
 	<br/>
 	<b>Specification</b>:
@@ -286,12 +277,12 @@
 	<br/>
 	<ul>
 		<li>I have a biassed coin $(p,1-p)$
-		<li>You pick a biassed coin $(p',1 - p')$
+		<li>you pick a biassed coin $(p',1 - p')$
 		<li>I toss my coin
 		<li>you toss your coin until you get the same outcome as mine
 	</ul>
 	<br/>
-	Your score is the <red>number of tosses</red>
+	Your score is the (expected) <red>number of tosses</red>
 	<br/>
 	<br/>
 	<div class="slide_step">
@@ -320,8 +311,6 @@
     </div>
 
     <div id="difficulty" class="step" data-x="550" data-y="-300" data-scale=".5">
-	<h3>Difficulty</h3> 
-	<br/>
 	The problem is:
 	$$\exists E \text{ expression}, \forall x \in I, E(x) = f(x)$$
 	<div class="slide_step">
@@ -330,7 +319,10 @@
 	<green>easy</green> using a <blue>SAT / SMT solver</blue>
 	<br/>
 	<br/>
-	<b>Main question</b>: <red>How do we choose expressions in a smart way?</red>
+	<b>Main question</b>: <red>How do we enumerate expressions</red>?
+	<center>
+	<img src="img/SyGuS.png"></img>
+	</center>	
 	</div>
     </div>
 
@@ -341,7 +333,7 @@
 	<ul>
 		<li> the learner chooses an expression consistent with the set of I/O
 		<li> the teacher rules out the given expression by expanding the set of I/O
-	</ul>	
+	</ul>
     </div>
 
     <div id="weaknesses" class="step" data-x="1450" data-y="-300" data-scale=".5">
@@ -510,7 +502,7 @@
 
     <div id="mastermind2" class="step" data-x="1150" data-y="700" data-scale=".3">
 	<b>Key assumption</b>: we know properties of the distribution $\mathcal{D}$, 
-	such as marginals $\mathcal{D}(c)$ for each $c \in \{1,\dots,k\}$
+	such as marginals $\mathcal{D}(c)$ for each $c \in \{1,\dots,k\}$, or conditionals $\mathcal{D}(c \mid c')$
 	<br/>
 	<br/>
 	<b>Two settings</b>: 
@@ -538,7 +530,7 @@
     <div id="overview_int2" class="step" data-x="900" data-y="300" data-scale="1.3">
     </div>
 
-    <div id="bonus2" class="step" data-x="0" data-y="-1400" data-duration="0">
+    <div id="bonus2" class="step" data-x="0" data-y="500" data-duration="0" data-scale=".8">
 	<h3>DeepSynth hires!</h3> 
 	<br/>
 	For internship / PhD / postdoc in LaBRI, Bordeaux
