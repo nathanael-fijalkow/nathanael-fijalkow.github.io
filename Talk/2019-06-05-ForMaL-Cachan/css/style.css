@@ -159,32 +159,36 @@ orange {
 	Slides specific part
 */
 
-#parity_games img {
+#FlashFill img {
+    width: 45%;
+}
+
+#weighted_automata img {
+    width: 80%;
+}
+
+#applications_automata_learning img {
+    width: 80%;
+}
+
+#sygus_setting img {
+    width: 40%;
+}
+
+#closer_look img {
+    width: 40%;
+}
+
+#methods_zoom img {
+    width: 40%;
+}
+ 
+#distribution img {
     width: 60%;
 }
 
-#mp_games img {
-    width: 50%;
-}
-
-#universal_tree {
-    width: 30%;
-}
-
-#embedding_example {
-    width: 50%;
-}
-
-#smallest_tree_construction {
-    width: 50%;
-}
-
-#separation {
-    width: 50%;
-}
-
-#mp_game_solved {
-    width: 60%;
+#courts img {
+    width: 80%;
 }
 
 #flides { 
@@ -248,6 +252,14 @@ orange {
 }
 
 .flides-on-overview_int .slide_step {
+    opacity: 1;
+}
+
+.flides-on-overview_int2 .step.seen {
+    opacity: 1;
+}
+
+.flides-on-overview_int2 .slide_step {
     opacity: 1;
 }
 
