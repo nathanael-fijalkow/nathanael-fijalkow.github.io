@@ -265,6 +265,8 @@
 	It is easy if we observe <blue>derivations</blue> (trees)
 	<br/>
 	<br/>
+	</div>
+	<div class="slide_step">
 	<b>Theorem</b>: (F., Clark) Probabilistic anchored context-free grammars are <red>efficiently</red> learnable
 	</div>
     </div>
@@ -273,7 +275,7 @@
     </div>
 
     <div id="bonus" class="step" data-x="0" data-y="1400" data-duration="0">
-	<h3>Exercise</h3> 
+	<h3>Puzzle</h3> 
 	<br/>
 	<ul>
 		<li>I have a biassed coin $(p,1-p)$
@@ -319,6 +321,8 @@
 	<green>easy</green> using a <blue>SAT / SMT solver</blue>
 	<br/>
 	<br/>
+	</div>
+	<div class="slide_step">
 	<b>Main question</b>: <red>How do we enumerate expressions</red>?
 	<center>
 	<img src="img/SyGuS.png"></img>
@@ -346,7 +350,13 @@
 	
     </div>
 
-    <div id="pbe" class="step" data-duration="0" data-x="550" data-y="0" data-scale=".5">
+    <div id="deepcoder" class="step" data-x="550" data-y="0" data-scale=".5">
+	<center>
+	<img src="img/deepcoder.png"></img>
+	</center>
+    </div>
+
+    <div id="pbe" class="step" data-duration="0" data-x="1000" data-y="0" data-scale=".5">
 	<h3>Programming by example</h3>
 	<br/>
 	<b>INPUT</b>: <green>a few*</green> I/O
@@ -355,12 +365,6 @@
 	<br/>
 	<br/>
 	a few = 5
-    </div>
-
-    <div id="deepcoder" class="step" data-x="1000" data-y="0" data-scale=".5">
-	<center>
-	<img src="img/deepcoder.png"></img>
-	</center>
     </div>
 
     <div id="dsl" class="step" data-x="1450" data-y="0" data-scale=".5">
@@ -373,7 +377,7 @@
     </div>
 
     <div id="closer_look" class="step" data-duration="0" data-x="550" data-y="300" data-scale=".5">
-	<h3>DeepCoder's line of attack</h3> 
+	<h3>DeepCoder's <u>line of attack</u></h3> 
 	<br/>
 	<ul>
 		<li>train a model using programs and I/O. 
@@ -381,11 +385,13 @@
 		<li>given I/O, use the model as an oracle to guide the search using a <green>simple DFS</green>
 	</ul>
 	<br/>
+	<div class="slide_step">
 	<b>Idea</b>: the model learns
 	<ul>
 		<li><red>patterns</red> relating I/O to programs
 		<li><orange>biasses</orange> on the distribution of programs
 	</ul> 
+	</div>
     </div>
 
     <div id="synthetic" class="step" data-x="1000" data-y="300" data-scale=".5">
@@ -508,7 +514,7 @@
 	<b>Two settings</b>: 
 	<ul>
 		<li>Memoryless: algorithm = distribution $\mathcal{D'}$
-		<li>Memoryfull: remembers wrong combinations
+		<li>General: remembers wrong combinations
 	</ul>
     </div>
 
