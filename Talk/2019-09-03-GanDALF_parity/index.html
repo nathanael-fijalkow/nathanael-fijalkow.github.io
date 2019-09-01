@@ -187,32 +187,32 @@
 	<br/>
 	$$\text{Parity}_{n,d} = \bigcup \left\{ \text{Paths}(G) : \begin{array}{c} G \text{ is an } (n,d)\text{-graph} \\ \text{satisfying parity}\end{array} \right\}.$$
 	<br/>
-	<b>Definition:</b> A deterministic <red>safety</red> automaton $A$ reading $[1,d]^\omega$ is <blue>separating</blue> if
+	<b>Definition:</b> A deterministic <red>safety</red> automaton $A$ reading $[1,d]^\omega$ is <blue>$(n,d)$-separating</blue> if
 	$$\text{Parity}_{n,d} \subseteq L(A) \subseteq \text{Parity}$$
     </div>
 
     <div id="reduction" class="step" data-x="750" data-y="-150" data-scale=".7">
 	<h2>Reduction to safety games</h2>
 	<br/>
-	Let $G$ parity game, $A$ separating automaton.
+	Let $G$ parity game and $A$ separating automaton.
 	Construct safety game $G \times A$: <red>$A$ reads the priorities</red>
 	<br/>
 	<br/>
-	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times A$
+	<b>Lemma:</b> Eve has a strategy ensuring parity if and only if she has a strategy ensuring $L(A)$
 	<br/>
 	<br/>
 	<blue>Algorithm:</blue> Solve the safety game $G \times A$, complexity $m \cdot |A|$
     </div>
 
     <div id="proof" class="step" data-x="750" data-y="100" data-scale=".2">
-	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times A$
+	<b>Lemma:</b> Eve has a strategy ensuring parity if and only if she has a strategy ensuring that the play is accepted by $A$
 	<br/>
 	<br/>
 	<b>Proof:</b>
 	<br/>
-	<i>If Eve wins in $A$</i> she has a positional strategy. Then $G_{\sigma}$ satisfy parity, so $\text{Paths}(G) \subseteq L(A)$
+	<i>If Eve ensures parity</i>, she has a positional strategy. Then $G_{\sigma}$ satisfy parity, so $\text{Paths}(G) \subseteq L(A)$
 	<br/>
-	<i>If Eve wins in $G \times A$</i> then this strategy is winning in $G$ because $L(A) \subseteq \text{Parity}$
+	<i>If Eve ensures $L(A)$</i>, then this strategy ensures parity because $L(A) \subseteq \text{Parity}$
     </div>
 
     <div id="separation_results" class="step" data-x="750" data-y="300" data-scale=".7">
@@ -264,7 +264,7 @@
     <div id="universal_graph" class="step" data-x="1400" data-y="-200" data-scale=".7">
 	<h2>Beyond parity</h2>
 	<br/>
-	<b>Definition:</b> A graph <red>satisfies W</red> if all paths in the graph satisfy W
+	<b>Definition:</b> A graph <red>satisfies W</red> if all paths in the graph satisfy $W$
 	<br/>
 
 	<div class="slide_step">
@@ -275,8 +275,8 @@
 	<div class="slide_step">
 	<b>Definition:</b> A graph $U$ is <blue>$(n,W)$-universal</blue> if
 	<ul>
-		<li>it satisfies W
-		<li>all graphs of size $n$ satisfying W can be homomorphically mapped into $U$ 
+		<li>it satisfies $W$
+		<li>all graphs of size $n$ satisfying $W$ can be homomorphically mapped into $U$ 
 	</ul>
 	</div>
     </div>
@@ -284,11 +284,11 @@
     <div id="reduction_graph" class="step" data-x="1400" data-y="250" data-scale=".7">
 	<h2>Reduction to safety games</h2>
 	<br/>
-	Let $G$ game with objective W and $U$ a $(n,W)$-universal graph.
+	Let $G$ game with objective $W$ and $U$ a $(n,W)$-universal graph.
 	Construct safety game $G \times U$
 	<br/>
 	<br/>
-	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times U$
+	<b>Lemma:</b> Eve has a strategy ensuring $W$ if and only if she has a strategy to play forever in $G \times U$
 	<br/>
 	<br/>
 	<blue>Algorithm:</blue> Solve the safety game $G \times U$, complexity $m \cdot |U|$
