@@ -1,0 +1,327 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Parity games: the quasipolynomial era</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-750">
+	<h2>Nathana&euml;l Fijalkow</h2>
+	<h3>CNRS, LaBRI, Bordeaux, and The Alan Turing Institute of data science, London</h3>
+    </div>
+
+    <div id="title_workshop" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-300">
+	<h2>Parity games: the quasipolynomial era</h2>
+    </div>
+
+    <div id="intro" class="step" data-x="0" data-y="150">
+	<center>
+	<img id="intro" src="img/intro.png"></img>
+	</center>
+    </div>
+
+    <div id="blog" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="550">
+	<h2><a href="http://games-automata-play.github.io/">Research blog</a></h2>
+    </div>
+
+
+
+
+    <div id="universal_trees" class="step" data-duration="0" data-x="-1400" data-y="-600" data-scale=".7">
+	<h2>Universal trees</h2>
+	<blue>Question</blue>: what is the smallest tree containing all trees of height $2$ with $5$ leaves?
+	<div class="slide_step">
+	<br/>
+	<center>
+	<img id="universal_tree" src="img/universal_tree.png"></img>
+	$\qquad$
+	<img id="embedding_example" src="img/embedding_example.png"></img>
+	</center>
+	<br/>
+	<b>Definition:</b> A tree is $(n,h)$-universal if it contains all trees of height $h$ with $n$ leaves
+	</div>
+    </div>
+
+    <div id="results_universal_trees" class="step" data-x="-1400" data-y="-200" data-scale=".7">
+	<b>Theorem</b> ([F.]):
+	<ul>
+		<li> There exists a $(n,h)$-universal tree of size $\binom{h + \log(n)}{h}$
+		<li> This upper bound is asymptotically tight
+	</ul>	
+	<div class="slide_step">
+	<br/>
+	<red>Remark</red>: the number $\binom{h + \log(n)}{h}$ is
+	<ul>
+		<li> $O(n^{\log(h)})$ in general
+		<li> $n^{O(1)}$ for $h = O(\log(n))$
+	</ul>	
+	</div>
+    </div>
+
+    <div id="upper_bounds" class="step" data-x="-1400" data-y="150" data-scale=".7">
+	<h2>Upper bounds</h2>
+	<br/>
+	We construct a $(n,h)$-universal tree.
+	Inductively
+	<ul>
+		<li> $T_\text{middle}$ a $(n,h-1)$-universal tree
+		<li> $T_\text{left}$ a $(\lfloor n/2 \rfloor,h)$-universal tree
+		<li> $T_\text{right}$ a $(n - 1 - \lfloor n/2 \rfloor,h)$-universal tree
+	</ul>
+	<center>
+	<img id="smallest_tree_construction" src="img/smallest_tree_construction.png"></img>
+	</center>
+	<b>Fact:</b> there exists a <red>balanced</red> node
+    </div>
+
+    <div id="lower_bounds" class="step" data-duration="0" data-x="-1400" data-y="600" data-scale=".7">
+	<h2>Lower bounds</h2>
+	$$g(n,h) = \sum_{d = 1}^n g(\lfloor n / d \rfloor,h-1)$$
+	Let $T$ a $(n,h)$-universal tree and $\delta \in [1,n]$. 
+	<br/>
+	<b>Claim:</b> the number of nodes at depth $h-1$ of degree $\ge \delta$ is at least $g(\lfloor n / \delta \rfloor,h-1)$.
+	<center>
+	<img id="tree_delta" src="img/tree_delta.png"></img>
+	</center>
+	<b>Claim:</b> $T_\delta$ is $(\lfloor n / \delta \rfloor,h-1)$-universal
+    </div>
+
+
+
+
+
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+
+
+
+    <div id="parity_games" class="step" data-duration="0" data-x="-700" data-y="-600" data-scale=".7">
+	<h2>Parity games</h2>
+	<br/>
+	<center><img id="parity_game" src="img/parity_game.png"></img></center>
+	<red>Parity</red>: the maximal priority appearing infinitely often is <blue>even</blue>
+    </div>
+
+    <div id="parity_question" class="step" data-x="-700" data-y="-100" data-scale=".7">
+	<h3>Solving parity games</h3>
+
+	<center>
+	<br/>
+	<b>INPUT:</b> A parity game and initial vertex $v_0$<br/>
+	<b>QUESTION:</b> Does Eve have a winning strategy from $v_0$?	
+	</center>
+	<br/>
+	<red>Parameters</red>: $n$ (number of vertices), $m$ (number of edges) and $d$ (number of priorities)
+	<br/>
+	<br/>
+	<blue>Best algorithm</blue>
+	$$O \left( m \cdot \binom{d/2 + \log(n)}{d/2} \right) = O(n^{\log(d)})$$
+    </div>
+
+    <div id="care" class="step" data-x="-700" data-y="250" data-scale=".7">
+	<h3>Why might you care?</h3>
+	<br/>
+	Parity games play a crucial role in:
+	<ul>
+		<li><red>LTL synthesis</red>
+		<li><blue>automata and logic over infinite trees</blue> (emptiness games)
+		<li><green>modal mu-calculus</green> (model-checking games)
+	</ul>
+	<br/>
+	<br/>
+	But also complexity: in $\textrm{NP} \cap \textrm{coNP}$, not known to be in $\textrm{P}$!
+    </div>
+
+    <div id="positionality" class="step" data-x="-900" data-y="600" data-scale=".45">
+	<green>Positional</green> strategy
+	$$\sigma : V \to E$$
+	<b>Theorem:</b> If Eve has a winning strategy in a parity game, she also has a positional winning strategy. The same holds for Adam.
+	<center><img id="parity_game_solved" src="img/parity_game_solved.png"></img></center>
+    </div>
+
+    <div id="def_parity" class="step" data-x="-500" data-y="600" data-scale=".45">
+	<center><img id="parity_graph" src="img/parity_graph.png"></img></center>
+	<br/>
+	<b>Definition:</b> A graph <red>satisfies parity</red> if all paths in the graph satisfy parity
+	<br/>
+	<div class="slide_step">
+	<b>Remark:</b> if $\sigma$ is a positional winning strategy, then $G_{\sigma}$ satisfies parity
+        </div>
+    </div>
+
+
+
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+
+
+    <div id="separating_automata" class="step" data-x="750" data-y="-600" data-scale=".7">
+	<h2>Separating automata</h2>
+	<br/>
+	$$\text{Parity}_{n,d} = \bigcup \left\{ \text{Paths}(G) : \begin{array}{c} G \text{ is an } (n,d)\text{-graph} \\ \text{satisfying parity}\end{array} \right\}.$$
+	<br/>
+	<b>Definition:</b> A deterministic <red>safety</red> automaton $A$ reading $[1,d]^\omega$ is <blue>separating</blue> if
+	$$\text{Parity}_{n,d} \subseteq L(A) \subseteq \text{Parity}$$
+    </div>
+
+    <div id="reduction" class="step" data-x="750" data-y="-150" data-scale=".7">
+	<h2>Reduction to safety games</h2>
+	<br/>
+	Let $G$ parity game, $A$ separating automaton.
+	Construct safety game $G \times A$: <red>$A$ reads the priorities</red>
+	<br/>
+	<br/>
+	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times A$
+	<br/>
+	<br/>
+	<blue>Algorithm:</blue> Solve the safety game $G \times A$, complexity $m \cdot |A|$
+    </div>
+
+    <div id="proof" class="step" data-x="750" data-y="100" data-scale=".2">
+	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times A$
+	<br/>
+	<br/>
+	<b>Proof:</b>
+	<br/>
+	<i>If Eve wins in $A$</i> she has a positional strategy. Then $G_{\sigma}$ satisfy parity, so $\text{Paths}(G) \subseteq L(A)$
+	<br/>
+	<i>If Eve wins in $G \times A$</i> then this strategy is winning in $G$ because $L(A) \subseteq \text{Parity}$
+    </div>
+
+    <div id="separation_results" class="step" data-x="750" data-y="300" data-scale=".7">
+	<center><img id="separating_automata" src="img/separating_automata.png"></img></center>
+	<br/>
+	<div class="slide_step">
+	<b>Cleaner definition:</b> <blue>good for small games automata</blue>
+	</div>
+    </div>
+
+    <div id="equivalence" class="step" data-x="750" data-y="650" data-scale=".7">
+	<h2>Equivalence</h2>
+	<br/>
+	<b>Theorem:</b> [CDFJLP], [CF]
+	<ul>
+		<li>A <blue>separating automaton</blue> induces a <red>universal tree</red> of the same size
+		<li>A <red>universal tree</red> induces a <blue>separating automaton</blue> of the same size
+	</ul>
+	<br/>
+	<b>Corollary:</b> A universal tree yields an algorithm for parity games
+	</ul>
+    </div>
+
+
+
+
+
+
+
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+
+
+
+
+
+
+    <div id="similar_story" class="step" data-x="1400" data-y="-600" data-scale=".7">
+	<h2>Three similar stories</h2>
+	<br/>
+	<h3><orange>good for small games</orange>, <blue>value iteration</blue>, and <red>fixed point</red> are <u>families</u> of algorithms for parity games,
+	parametrised by the choice of a <green>universal tree</green>!
+        </h3>
+    </div>
+
+    <div id="universal_graph" class="step" data-x="1400" data-y="-200" data-scale=".7">
+	<h2>Beyond parity</h2>
+	<br/>
+	<b>Definition:</b> A graph <red>satisfies W</red> if all paths in the graph satisfy W
+	<br/>
+
+	<div class="slide_step">
+	<b>Definition:</b> A (graph) <green> homomorphism</green> is $\phi : V \to V'$ st
+	$$(v,w,v') \in E \Longrightarrow (\phi(v),w,\phi(v')) \in E$$
+	</div>
+
+	<div class="slide_step">
+	<b>Definition:</b> A graph $U$ is <blue>$(n,W)$-universal</blue> if
+	<ul>
+		<li>it satisfies W
+		<li>all graphs of size $n$ satisfying W can be homomorphically mapped into $U$ 
+	</ul>
+	</div>
+    </div>
+
+    <div id="reduction_graph" class="step" data-x="1400" data-y="250" data-scale=".7">
+	<h2>Reduction to safety games</h2>
+	<br/>
+	Let $G$ game with objective W and $U$ a $(n,W)$-universal graph.
+	Construct safety game $G \times U$
+	<br/>
+	<br/>
+	<b>Lemma:</b> Eve has a winning strategy in $G$ if and only if she has a strategy to play forever in $G \times U$
+	<br/>
+	<br/>
+	<blue>Algorithm:</blue> Solve the safety game $G \times U$, complexity $m \cdot |U|$
+    </div>
+
+    <div id="future_research" class="step" data-duration="0" data-x="1400" data-y="650" data-scale=".7">
+	<h2>Happening now</h2>
+	with <red>universal graphs</red>
+	<br/>
+	<ul>
+		<li>New algorithms for mean payoff games (F., Gawrychowski, Ohlmann)
+		<li>Logical implications (Dawar, F., Lehtinen)
+		<li>Combining parity with other objectives (Anand, F., Leroux)
+		<li>Combination of mean payoff objectives
+	</ul>
+	<br/>
+	Also: understanding <green>strategy improvement</green>, exponential lower bounds (F., Perez, Raha)
+    </div>
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
