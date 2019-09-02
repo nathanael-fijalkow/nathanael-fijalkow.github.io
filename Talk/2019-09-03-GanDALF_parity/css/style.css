@@ -187,6 +187,18 @@ orange {
     width: 30%;
 }
 
+#value_iteration img {
+    width: 60%;
+}
+
+#tree_orders img {
+    width: 70%;
+}
+
+#value_iteration_parity img {
+    width: 30%;
+}
+
 #separation_results img {
     width: 80%;
 }

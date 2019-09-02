@@ -19,7 +19,7 @@
 
 <div id="flides">
 
-    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3">
+    <div id="overview_start" class="step" data-x="350" data-y="0" data-scale="3.5">
     </div>
 
     <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-750">
@@ -43,9 +43,11 @@
 
 
 
+    <div id="title_universal_trees" class="step" data-fixed="1" data-x="-1400" data-y="-900" data-scale=".7">
+	<h2>Universal trees</h2>
+    </div>
 
     <div id="universal_trees" class="step" data-duration="0" data-x="-1400" data-y="-600" data-scale=".7">
-	<h2>Universal trees</h2>
 	<blue>Question</blue>: what is the smallest tree containing all trees of height $2$ with $5$ leaves?
 	<div class="slide_step">
 	<br/>
@@ -60,7 +62,7 @@
     </div>
 
     <div id="results_universal_trees" class="step" data-x="-1400" data-y="-200" data-scale=".7">
-	<b>Theorem</b> ([F.]):
+	<b>Theorem</b>:
 	<ul>
 		<li> There exists a $(n,h)$-universal tree of size $\binom{h + \log(n)}{h}$
 		<li> This upper bound is asymptotically tight
@@ -108,7 +110,7 @@
 
 
 
-    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    <div id="overview_int" class="step" data-x="350" data-y="0" data-scale="3.5">
     </div>
 
 
@@ -117,16 +119,17 @@
 
 
 
-    <div id="parity_games" class="step" data-duration="0" data-x="-700" data-y="-600" data-scale=".7">
+    <div id="title_parity_games" class="step" data-fixed="1" data-x="-700" data-y="-900" data-scale=".7">
 	<h2>Parity games</h2>
-	<br/>
+    </div>
+
+    <div id="parity_games" class="step" data-duration="0" data-x="-700" data-y="-600" data-scale=".7">
 	<center><img id="parity_game" src="img/parity_game.png"></img></center>
 	<red>Parity</red>: the maximal priority appearing infinitely often is <blue>even</blue>
     </div>
 
     <div id="parity_question" class="step" data-x="-700" data-y="-100" data-scale=".7">
 	<h3>Solving parity games</h3>
-
 	<center>
 	<br/>
 	<b>INPUT:</b> A parity game and initial vertex $v_0$<br/>
@@ -167,14 +170,14 @@
 	<b>Definition:</b> A graph <red>satisfies parity</red> if all paths in the graph satisfy parity
 	<br/>
 	<div class="slide_step">
-	<b>Remark:</b> if $\sigma$ is a positional winning strategy, then $G_{\sigma}$ satisfies parity
+	<b>Remark:</b> If $\sigma$ is a positional winning strategy, then $G_{\sigma}$ satisfies parity
         </div>
     </div>
 
 
 
 
-    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    <div id="overview_int" class="step" data-x="350" data-y="0" data-scale="3.5">
     </div>
 
 
@@ -182,16 +185,99 @@
 
 
 
-    <div id="separating_automata" class="step" data-x="750" data-y="-600" data-scale=".7">
-	<h2>Separating automata</h2>
+    <div id="title_value_iteration" class="step" data-fixed="1" data-x="700" data-y="-900" data-scale=".7">
+	<h2>Value iteration</h2>
+    </div>
+
+    <div id="value_iteration" class="step" data-x="700" data-y="-650" data-scale=".6">
+	Büchi: parity with priorities $1$ and $2$
 	<br/>
+	<br/>
+	<center><img id="progress_graph" src="img/progress_graph.png"></img></center>
+	<br/>
+	<div class="slide_step">
+	<b>Lemma:</b> A graph satisfies Büchi if and only if there exists a progress measure <red>$\mu : V \to \mathbb{N}$</red>:
+	$$(v,1,v') \in E \implies \mu(v) < \mu(v')$$
+        </div>	
+    </div>
+
+    <div id="tree_orders" class="step" data-x="700" data-y="-350" data-scale=".6">
+	A tree is the graphical representation of nested orders $\triangleleft_p$, for $p \in [1,d]$.	
+	Example:
+	<br/>
+	<center>
+	<img id="example_tree_orders" src="img/example_tree_orders.png"></img>
+	</center>
+    </div>
+
+    <div id="value_iteration_parity" class="step" data-x="700" data-y="-50" data-scale=".6">
+	<center>
+	<img id="parity_graph" src="img/parity_graph.png"></img>
+	$\qquad$
+	<img id="example_tree" src="img/example_tree.png"></img>
+	</center>
+	<br/>
+	<div class="slide_step">
+	<b>Lemma:</b> A graph satisfies parity if and only if there exists a tree $T$ and <red>$\mu : V \to T$</red>:
+	$$(v,p,v') \in E \implies \mu(v) \triangleleft_p \mu(v')$$
+        </div>	
+    </div>
+
+    <div id="value_iteration_algorithm" class="step" data-x="700" data-y="300" data-scale=".6">
+	$G$ parity game.
+	A <red>progress measure</red> is $\mu : V \to T \cup \{ \bot \}$:
+	$$
+	\begin{array}{c}
+	\forall v \in V_{\text{Eve}},\ \forall (v,p,v') \in E \implies \mu(v) \triangleleft_p \mu(v') \\
+	\forall v \in V_{\text{Adam}},\ \exists (v,p,v') \in E \wedge \mu(v) \triangleleft_p \mu(v')
+	\end{array}
+	$$
+	<div class="slide_step">
+	<b>Theorem:</b> There exists a tree $T$ and a progress measure $\mu : V \to T \cup \{ \bot \}$ such that $\mu(v) \neq \bot$ if and only if Eve wins from $v$
+        </div>	
+	<br/>
+	<div class="slide_step">
+	<b>Corollary:</b> Let $\mathcal{T}$ a $(n,d/2)$-universal tree. 
+	There exists a progress measure $\mu : V \to \mathcal{T} \cup \{ \bot \}$ such that $\mu(v) \neq \bot$ if and only if Eve wins from $v$
+        </div>	
+    </div>
+
+    <div id="algorithm" class="step" data-x="700" data-y="650" data-scale=".6">
+	<green>Key idea</green>: The value iteration algorithm constructs the <blue>largest</blue> progress measure
+	<br/>
+	<br/>
+	<center>
+	<img id="example_lifting" src="img/example_lifting.png"></img>
+	</center>
+    </div>
+
+
+
+
+
+
+
+    <div id="overview_int" class="step" data-x="350" data-y="0" data-scale="3.5">
+    </div>
+
+
+
+
+
+
+
+    <div id="title_separating_automata" class="step" data-fixed="1" data-x="1400" data-y="-900" data-scale=".7">
+	<h2>Separation automata</h2>
+    </div>
+
+    <div id="separating_automata" class="step" data-x="1400" data-y="-600" data-scale=".7">
 	$$\text{Parity}_{n,d} = \bigcup \left\{ \text{Paths}(G) : \begin{array}{c} G \text{ is an } (n,d)\text{-graph} \\ \text{satisfying parity}\end{array} \right\}.$$
 	<br/>
 	<b>Definition:</b> A deterministic <red>safety</red> automaton $A$ reading $[1,d]^\omega$ is <blue>$(n,d)$-separating</blue> if
 	$$\text{Parity}_{n,d} \subseteq L(A) \subseteq \text{Parity}$$
     </div>
 
-    <div id="reduction" class="step" data-x="750" data-y="-150" data-scale=".7">
+    <div id="reduction" class="step" data-x="1400" data-y="-150" data-scale=".7">
 	<h2>Reduction to safety games</h2>
 	<br/>
 	Let $G$ parity game and $A$ separating automaton.
@@ -204,7 +290,7 @@
 	<blue>Algorithm:</blue> Solve the safety game $G \times A$, complexity $m \cdot |A|$
     </div>
 
-    <div id="proof" class="step" data-x="750" data-y="100" data-scale=".2">
+    <div id="proof" class="step" data-x="1400" data-y="100" data-scale=".2">
 	<b>Lemma:</b> Eve has a strategy ensuring parity if and only if she has a strategy ensuring that the play is accepted by $A$
 	<br/>
 	<br/>
@@ -215,7 +301,7 @@
 	<i>If Eve ensures $L(A)$</i>, then this strategy ensures parity because $L(A) \subseteq \text{Parity}$
     </div>
 
-    <div id="separation_results" class="step" data-x="750" data-y="300" data-scale=".7">
+    <div id="separation_results" class="step" data-x="1400" data-y="300" data-scale=".7">
 	<center><img id="separating_automata" src="img/separating_automata.png"></img></center>
 	<br/>
 	<div class="slide_step">
@@ -223,7 +309,7 @@
 	</div>
     </div>
 
-    <div id="equivalence" class="step" data-x="750" data-y="650" data-scale=".7">
+    <div id="equivalence" class="step" data-x="1400" data-y="650" data-scale=".7">
 	<h2>Equivalence</h2>
 	<br/>
 	<b>Theorem:</b> [CDFJLP], [CF]
@@ -231,9 +317,10 @@
 		<li>A <blue>separating automaton</blue> induces a <red>universal tree</red> of the same size
 		<li>A <red>universal tree</red> induces a <blue>separating automaton</blue> of the same size
 	</ul>
+	<div class="slide_step">
 	<br/>
-	<b>Corollary:</b> A universal tree yields an algorithm for parity games
-	</ul>
+	(Actually holds for good for small games automata)
+	</div>
     </div>
 
 
@@ -243,7 +330,7 @@
 
 
 
-    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    <div id="overview_int" class="step" data-x="350" data-y="0" data-scale="3.5">
     </div>
 
 
@@ -253,7 +340,7 @@
 
 
 
-    <div id="similar_story" class="step" data-x="1400" data-y="-600" data-scale=".7">
+    <div id="similar_story" class="step" data-x="2100" data-y="-650" data-scale=".7">
 	<h2>Three similar stories</h2>
 	<br/>
 	<h3><orange>good for small games</orange>, <blue>value iteration</blue>, and <red>fixed point</red> are <u>families</u> of algorithms for parity games,
@@ -261,7 +348,7 @@
         </h3>
     </div>
 
-    <div id="universal_graph" class="step" data-x="1400" data-y="-200" data-scale=".7">
+    <div id="universal_graph" class="step" data-x="2100" data-y="-250" data-scale=".7">
 	<h2>Beyond parity</h2>
 	<br/>
 	<b>Definition:</b> A graph <red>satisfies W</red> if all paths in the graph satisfy $W$
@@ -281,7 +368,7 @@
 	</div>
     </div>
 
-    <div id="reduction_graph" class="step" data-x="1400" data-y="250" data-scale=".7">
+    <div id="reduction_graph" class="step" data-x="2100" data-y="200" data-scale=".7">
 	<h2>Reduction to safety games</h2>
 	<br/>
 	Let $G$ game with objective $W$ and $U$ a $(n,W)$-universal graph.
@@ -294,7 +381,7 @@
 	<blue>Algorithm:</blue> Solve the safety game $G \times U$, complexity $m \cdot |U|$
     </div>
 
-    <div id="future_research" class="step" data-duration="0" data-x="1400" data-y="650" data-scale=".7">
+    <div id="future_research" class="step" data-duration="0" data-x="2100" data-y="650" data-scale=".7">
 	<h2>Happening now</h2>
 	with <red>universal graphs</red>
 	<br/>
@@ -308,7 +395,7 @@
 	Also: understanding <green>strategy improvement</green>, exponential lower bounds (F., Perez, Raha)
     </div>
 
-    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
+    <div id="overview" class="step" data-duration="0" data-x="350" data-y="0" data-scale="3.5">
     </div>
 
 </div>
