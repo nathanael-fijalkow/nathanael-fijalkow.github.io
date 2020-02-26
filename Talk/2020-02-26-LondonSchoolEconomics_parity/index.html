@@ -1,0 +1,336 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Parity games: the quasipolynomial era</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-750">
+	<h2>Nathana&euml;l Fijalkow</h2>
+	<h3>CNRS, LaBRI, Bordeaux, and The Alan Turing Institute of data science, London</h3>
+    </div>
+
+    <div id="title_workshop" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="-300">
+	<h2>Parity games: the quasipolynomial era</h2>
+    </div>
+
+    <div id="intro" class="step" data-x="0" data-y="200">
+	<center>
+	<img id="intro" src="img/intro.png"></img>
+	</center>
+    </div>
+
+
+
+    <div id="title_universal_trees" class="step" data-fixed="1" data-x="-1400" data-y="-900" data-scale=".7">
+	<h2>Universal trees</h2>
+    </div>
+
+    <div id="universal_trees" class="step" data-duration="0" data-x="-1400" data-y="-600" data-scale=".7">
+	<blue>Question</blue>: what is the smallest tree containing all trees of height $2$ with $5$ leaves?
+	<div class="slide_step">
+	<br/>
+	<center>
+	<img id="universal_tree" src="img/universal_tree.png"></img>
+	$\qquad$
+	<img id="embedding_example" src="img/embedding_example.png"></img>
+	</center>
+	<br/>
+	<b>Definition:</b> A tree is $(n,h)$-universal if it contains all trees of height $h$ with $n$ leaves
+	</div>
+    </div>
+
+    <div id="results_universal_trees" class="step" data-x="-1400" data-y="-200" data-scale=".7">
+	<b>Theorem</b>:
+	<ul>
+		<li> There exists a $(n,h)$-universal tree of size $\binom{h + \log(n)}{h}$
+		<li> This upper bound is asymptotically tight
+	</ul>	
+	<div class="slide_step">
+	<br/>
+	<red>Remark</red>: the number $\binom{h + \log(n)}{h}$ is
+	<ul>
+		<li> $O(n^{\log(h)})$ in general
+		<li> $n^{O(1)}$ for $h = O(\log(n))$
+	</ul>	
+	</div>
+    </div>
+
+    <div id="upper_bounds" class="step" data-x="-1400" data-y="150" data-scale=".7">
+	<h2>Upper bounds</h2>
+	<br/>
+	We construct a $(n,h)$-universal tree.
+	Inductively
+	<ul>
+		<li> $T_\text{middle}$ a $(n,h-1)$-universal tree
+		<li> $T_\text{left}$ a $(\lfloor n/2 \rfloor,h)$-universal tree
+		<li> $T_\text{right}$ a $(n - 1 - \lfloor n/2 \rfloor,h)$-universal tree
+	</ul>
+	<center>
+	<img id="smallest_tree_construction" src="img/smallest_tree_construction.png"></img>
+	</center>
+	<b>Fact:</b> there exists a <red>balanced</red> node
+    </div>
+
+    <div id="lower_bounds" class="step" data-duration="0" data-x="-1400" data-y="600" data-scale=".7">
+	<h2>Lower bounds</h2>
+	$$g(n,h) = \sum_{d = 1}^n g(\lfloor n / d \rfloor,h-1)$$
+	Let $T$ a $(n,h)$-universal tree and $\delta \in [1,n]$. 
+	<br/>
+	<b>Claim:</b> the number of nodes at depth $h-1$ of degree $\ge \delta$ is at least $g(\lfloor n / \delta \rfloor,h-1)$.
+	<center>
+	<img id="tree_delta" src="img/tree_delta.png"></img>
+	</center>
+	<b>Claim:</b> $T_\delta$ is $(\lfloor n / \delta \rfloor,h-1)$-universal
+    </div>
+
+
+
+
+
+
+    <div id="overview_int" class="step" data-x="350" data-y="0" data-scale="3.5">
+    </div>
+
+
+
+
+
+
+
+    <div id="title_parity_games" class="step" data-fixed="1" data-x="-700" data-y="-900" data-scale=".7">
+	<h2>Parity games</h2>
+    </div>
+
+    <div id="parity_games" class="step" data-duration="0" data-x="-700" data-y="-600" data-scale=".7">
+	<center><img id="parity_game" src="img/parity_game.png"></img></center>
+	<red>Parity</red>: the maximal priority appearing infinitely often is <blue>even</blue>
+    </div>
+
+    <div id="parity_question" class="step" data-x="-700" data-y="-100" data-scale=".7">
+	<h3>Solving parity games</h3>
+	<center>
+	<br/>
+	<b>INPUT:</b> A parity game and initial vertex $v_0$<br/>
+	<b>QUESTION:</b> Does Eve have a winning strategy from $v_0$?	
+	</center>
+	<br/>
+	<red>Parameters</red>: $n$ (number of vertices), $m$ (number of edges) and $d$ (number of priorities)
+	<br/>
+	<br/>
+	<blue>Best algorithm</blue>
+	$$O \left( m \cdot \binom{d/2 + \log(n)}{d/2} \right) = O(n^{\log(d)})$$
+    </div>
+
+    <div id="care" class="step" data-x="-700" data-y="250" data-scale=".7">
+	<h3>Why might you care?</h3>
+	<br/>
+	Parity games play a crucial role in:
+	<ul>
+		<li><red>LTL synthesis</red>
+		<li><blue>automata and logic over infinite trees</blue> (emptiness games)
+		<li><green>modal mu-calculus</green> (model-checking games)
+	</ul>
+	<br/>
+	But also complexity: in $\textrm{NP} \cap \textrm{coNP}$, not known to be in $\textrm{P}$!
+	<br/>
+	<br/>
+	Also: included in mean payoff, discounted payoff, and simple stochastic games
+    </div>
+
+    <div id="positionality" class="step" data-x="-900" data-y="600" data-scale=".45">
+	<green>Positional</green> strategy
+	$$\sigma : V \to E$$
+	<b>Theorem:</b> If Eve has a winning strategy in a parity game, she also has a positional winning strategy. The same holds for Adam.
+	<center><img id="parity_game_solved" src="img/parity_game_solved.png"></img></center>
+    </div>
+
+    <div id="def_parity" class="step" data-x="-500" data-y="600" data-scale=".45">
+	<center><img id="parity_graph" src="img/parity_graph.png"></img></center>
+	<br/>
+	<b>Definition:</b> A graph <red>satisfies parity</red> if all paths in the graph satisfy parity
+	<br/>
+	<div class="slide_step">
+	<b>Remark:</b> If $\sigma$ is a positional winning strategy, then $G_{\sigma}$ satisfies parity
+        </div>
+    </div>
+
+
+
+
+    <div id="overview_int" class="step" data-x="350" data-y="0" data-scale="3.5">
+    </div>
+
+
+
+
+
+
+    <div id="title_value_iteration" class="step" data-fixed="1" data-x="700" data-y="-900" data-scale=".7">
+	<h2>Value iteration</h2>
+    </div>
+
+    <div id="value_iteration" class="step" data-x="700" data-y="-650" data-scale=".6">
+	Büchi: parity with priorities $1$ and $2$
+	<br/>
+	<br/>
+	<center><img id="progress_graph" src="img/progress_graph.png"></img></center>
+	<br/>
+	<div class="slide_step">
+	<b>Lemma:</b> A graph satisfies Büchi if and only if there exists a progress measure <red>$\mu : V \to \mathbb{N}$</red>:
+	$$(v,1,v') \in E \implies \mu(v) < \mu(v')$$
+        </div>	
+    </div>
+
+    <div id="tree_orders" class="step" data-x="700" data-y="-350" data-scale=".6">
+	A tree is the graphical representation of nested orders $\triangleleft_p$, for $p \in [1,d]$.	
+	Example:
+	<br/>
+	<center>
+	<img id="example_tree_orders" src="img/example_tree_orders.png"></img>
+	</center>
+    </div>
+
+    <div id="value_iteration_parity" class="step" data-x="700" data-y="-50" data-scale=".6">
+	<center>
+	<img id="parity_graph" src="img/parity_graph.png"></img>
+	$\qquad$
+	<img id="example_tree" src="img/example_tree.png"></img>
+	</center>
+	<br/>
+	<div class="slide_step">
+	<b>Lemma:</b> A graph satisfies parity if and only if there exists a tree $T$ and <red>$\mu : V \to T$</red>:
+	$$(v,p,v') \in E \implies \mu(v) \triangleleft_p \mu(v')$$
+        </div>	
+    </div>
+
+    <div id="value_iteration_algorithm" class="step" data-x="700" data-y="300" data-scale=".6">
+	$G$ parity game.
+	A <red>progress measure</red> is $\mu : V \to T \cup \{ \bot \}$:
+	$$
+	\begin{array}{c}
+	\forall v \in V_{\text{Eve}},\ \exists (v,p,v') \in E \wedge \mu(v) \triangleleft_p \mu(v') \\
+	\forall v \in V_{\text{Adam}},\ \forall (v,p,v') \in E,\ \mu(v) \triangleleft_p \mu(v')
+	\end{array}
+	$$
+	<div class="slide_step">
+	<b>Theorem:</b> There exists a tree $T$ and a progress measure $\mu : V \to T \cup \{ \bot \}$ such that $\mu(v) \neq \bot$ if and only if Eve wins from $v$
+        </div>	
+	<br/>
+	<div class="slide_step">
+	<b>Corollary:</b> Let $\mathcal{T}$ a $(n,d/2)$-universal tree. 
+	There exists a progress measure $\mu : V \to \mathcal{T} \cup \{ \bot \}$ such that $\mu(v) \neq \bot$ if and only if Eve wins from $v$
+        </div>	
+    </div>
+
+    <div id="algorithm" class="step" data-x="700" data-y="650" data-scale=".6">
+	<green>Key idea</green>: The value iteration algorithm constructs the <blue>largest</blue> progress measure
+	<br/>
+	<br/>
+	<center>
+	<img id="example_lifting" src="img/example_lifting.png"></img>
+	</center>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+
+
+
+
+
+
+
+    <div id="similar_story" class="step" data-x="1400" data-y="-650" data-scale=".7">
+	<h2>Three similar stories</h2>
+	<br/>
+	<h3><orange>good for small games</orange>, <blue>value iteration</blue>, and <red>fixed point</red> are <u>families</u> of algorithms for parity games,
+	parametrised by the choice of a <green>universal tree</green>!
+        </h3>
+    </div>
+
+    <div id="universal_graph" class="step" data-x="1400" data-y="-250" data-scale=".7">
+	<h2>Beyond parity</h2>
+	<br/>
+	<b>Definition:</b> A graph <red>satisfies W</red> if all paths in the graph satisfy $W$
+	<br/>
+
+	<div class="slide_step">
+	<b>Definition:</b> A (graph) <green> homomorphism</green> is $\phi : V \to V'$ st
+	$$(v,w,v') \in E \Longrightarrow (\phi(v),w,\phi(v')) \in E$$
+	</div>
+
+	<div class="slide_step">
+	<b>Definition:</b> A graph $U$ is <blue>$(n,W)$-universal</blue> if
+	<ul>
+		<li>it satisfies $W$
+		<li>all graphs of size $n$ satisfying $W$ can be homomorphically mapped into $U$ 
+	</ul>
+	</div>
+    </div>
+
+    <div id="reduction_graph" class="step" data-x="1400" data-y="200" data-scale=".7">
+	<h2>Value iteration algorithm</h2>
+	<br/>
+	Let $G$ game with objective $W$ and $U$ a $(n,W)$-universal graph
+	<br/>
+	<br/>
+	We construct a value iteration algorithm of time complexity $m |U|$ and space complexity $n \log |U|$.
+    </div>
+
+    <div id="future_research" class="step" data-duration="0" data-x="1400" data-y="650" data-scale=".7">
+	<h2>Happening now</h2>
+	with <red>universal graphs</red>
+	<br/>
+	<br/>
+	<ul>
+		<li>New algorithms for mean payoff games (F., Gawrychowski, Ohlmann)
+		<li>Logical implications (Dawar, F., Lehtinen)
+		<li>Combining parity with other objectives (Anand, F., Leroux)
+		<li>Combination of mean payoff objectives
+	</ul>
+    </div>
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
