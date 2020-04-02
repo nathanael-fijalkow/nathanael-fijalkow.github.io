@@ -1,0 +1,283 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Assume-Guarantee Synthesis for Prompt Linear Temporal Logic</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="0">
+	<h2>Assume-Guarantee Synthesis for Prompt Linear Temporal Logic</h2>
+	<br/>
+	<h3><red>Nathana&euml;l Fijalkow</red>, Bastien Maubert, and Moshe Y. Vardi</h3>
+	<h3>CNRS, LaBRI, Bordeaux, and The Alan Turing Institute of data science, London</h3>
+    </div>
+
+
+    <div id="Step1" class="step" data-fixed="1" data-x="-1000" data-y="400">
+	<h25>Step 1: Prompt LTL to Prompt Automata</h25>
+    </div>
+
+    <div id="Step2" class="step" data-fixed="1" data-x="000" data-y="400">
+	<h25>Step 2: History-determinisation of Prompt Automata</h25>
+    </div>
+
+    <div id="Step3" class="step" data-fixed="1" data-x="1000" data-y="400">
+	<h25>Step 3: Domination Games</h25>
+    </div>
+
+
+
+
+<!-- Section Introduction -->
+
+    <div id="LTLsynthesis" class="step" data-duration="0" data-x="-1200" data-y="-800" data-scale=".5">
+	<h2>LTL (Reactive) Synthesis</h2>
+	<br/>
+	Originates from Church's synthesis problem: given a (Boolean) specification $\phi$ over 
+	$$(I \times O)^\omega$$
+	construct a <blue>reactive system</blue> $S : I^+ \to O$ satisfying $\phi$
+
+	<div class="slide_step">
+	$$\begin{array}{ccccccc}
+	\text{input} & i_0 & i_1 & i_2 & \dots \\
+	\text{output} & S(i_0) & S(i_0 i_1) & S(i_0 i_1 i_2) & \dots
+	\end{array}$$
+        </div>
+    </div>
+
+    <div id="ClassicalSolution" class="step" data-x="-1200" data-y="-400" data-scale=".5">
+	<h2>Classical Solution</h2>
+	<br/>
+	<ul>
+		<li><blue>Translate</blue> the LTL formula $\phi$ into a non-deterministic Büchi automaton $\mathcal{A}$
+		<li><red>Determinise</red> $\mathcal{A}$: construct an equivalent parity automaton $\mathcal{B}$ 
+		<li>From $\mathcal{B}$ construct a game where Adam gives inputs and Eve gives outputs,
+		and <green>solve</green> it: a winning strategy is a reactive system satisfying $\phi$
+	</ul>
+    </div>
+
+    <div id="PromptLTL" class="step" data-duration="0" data-x="-600" data-y="-800" data-scale=".5">
+	<h2>Prompt LTL</h2>
+	(Kupferman, Piterman, Vardi 2009)
+	<br/>
+	LTL (simplified) syntax: Boolean formulas plus $\mathbf{X} \phi$ and $\mathbf{F} \phi$
+	<br/>
+	$w,i \models \phi$ reads ``w satisfies $\phi$ from position $i$''
+	<br/>
+	<ul>
+		<li>	$\mathbf{X} \phi$ reads ``$\phi$ holds at the next position''
+		<li>	$\mathbf{F} \phi$ reads ``$\phi$ holds at some position in the future''
+	</ul>
+	<br/>
+	<div class="slide_step">
+	<red>Prompt LTL</red> extends LTL with $\mathbf{F}^{B} \phi$
+	<br/>
+	$\mathbf{F}^{B}[N] \models \phi$ reads ``$\phi$ holds within the next $N$ positions''
+	<br/>
+	$w,i \models \phi$ if <blue>there exists $N \in \mathbb{N}$</blue> such that $w,i \models \phi[N]$
+       </div>
+    </div>
+
+    <div id="AltColourTechnique" class="step" data-x="-600" data-y="-400" data-scale=".5">
+	<h2>The Alternating Colour Technique</h2>
+	(Kupferman, Piterman, Vardi 2009)
+	<br/>
+	<br/>
+	is a reduction from a Prompt LTL formula $\phi$ to an LTL formula $\phi'$ such that: 
+	<br/>
+	there exists a system satisfying $\phi$
+	if and only if there exists a system satisfying $\phi'$
+    </div>
+
+    <div id="AG" class="step" data-duration="0" data-x="00" data-y="-800" data-scale=".5">
+	<h2>Assume-Guarantee Synthesis</h2>
+	(Alur, Henzinger 1999)
+	<br/>
+	An AG specification is $$A \implies G$$ where <red>$A$ is over $I^\omega$</red> and $G$ over $(I \times O)^\omega$
+	<br/>
+	<br/>
+	A system $S : I^+ \to O$ satisfies $(A,G)$ if for all $w \in I^\omega$,
+	$$w \models A \implies S(w) \models G$$
+    </div>
+
+    <div id="Difficulty" class="step" data-x="00" data-y="-400" data-scale=".5">
+	AG synthesis for LTL reduces to synthesis for LTL: $A \implies G$ is a formula of LTL
+	<br/>
+	<br/>
+	<div class="slide_step">
+	For Prompt LTL implies an <blue>alternation of bounds</blue>:
+	A system $S : I^+ \to O$ satisfies $(A,G)$ if for all $w \in I^\omega$, 
+	<green>for all $N \in \mathbb{N}$, there exists $N' \in \mathbb{N}$</green> such that:
+	$$w \models A[N] \implies S(w) \models G[N']$$
+        </div>
+	<div class="slide_step">
+	The alternating colour technique <red>does not suffice</red>!
+        </div>
+    </div>
+
+    <div id="Example1" class="step" data-duration="0" data-x="600" data-y="-800" data-scale=".5">
+	<small>
+	The system runs a server with $k$ users who can request access.
+	The server may be up or down at each time step.
+	When the server is up, it can grant access to a user, one at a time.
+	Additionally, time is divided in sessions: sometimes a session ends, and a new session starts.
+	</small>
+	<br/>
+	<br/>
+	<div class="slide_step">
+	<b>Assumption</b> (over $I$):
+	<ul>
+		<li>The server is up infinitely many times;
+		<li>There are infinitely many sessions.
+	</ul>
+	<br/>
+	<b>Guarantee</b> (over $I \times O$):
+	<ul>
+		<li>In each session each user who requests access is eventually granted access, or the session ends;
+		<li>The server does not grant access when it is down.
+	</ul>
+	</div>
+    </div>
+
+    <div id="Example2" class="step" data-x="600" data-y="-400" data-scale=".5">
+	Write $A,G$ for the LTL formulas above, and $A',G'$ for their Prompt LTL refinements:
+	<ul>
+		<li>$A'$ includes: the server is up every $N$ steps for some $N \in \mathbb{N}$;
+		<li>$G'$ includes: each user who requests access is granted access within $N'$ steps for some $N' \in \mathbb{N}$.
+	</ul>
+	<br/>		
+	<div class="slide_step">
+	Three systems:
+	<ul>
+		<li><red>Never grants access</red>: satisfies LTL specification because every session ends!
+		<li><blue>LIFO</blue>: grants access to the user who made the <b>latest</b> unanswered request: does not satisfy $A' \implies G'$
+		<li><green>FIFO</green>: grants access to the user who made the <b>earliest</b> unanswered request: satisfies $A' \implies G'$
+	</ul>
+	</div>
+    </div>
+
+    <div id="RegCost" class="step" data-duration="0" data-x="1200" data-y="-800" data-scale=".5">
+	<h2>Regular cost functions</h2>
+	(Colcombet, 2009)
+	<br/>
+	Instead of considering
+	$$L(\phi) = \{ w \in \Sigma^\omega : \exists N \in \mathbb{N}, w \models \phi[N] \} \subseteq \Sigma^\omega$$
+	Work with
+	$$\begin{array}{lll}
+	[\phi] : & \Sigma^\omega & \to & \mathbb{N} \cup \{ \infty \} \\
+		  & w & \mapsto & \inf \{ N \in \mathbb{N} : w \models \phi[N] \}
+	\end{array}$$
+	modulo an equivalence relation:
+	$f \approx g$ if for all $X \subseteq \Sigma^\omega$, $f(X)$ is bounded if and only if $g(X)$ is bounded
+    </div>
+
+    <div id="Results" class="step" data-x="1200" data-y="-400" data-scale=".5">
+	<h2>Main result</h2>
+	<br/>
+	<b>Theorem</b>: Assume-Guarantee Synthesis for Prompt LTL is 2-EXPTIME complete (<i>same complexity as for LTL</i>).
+	<br/>
+	<br/>
+	The solution mimics the classical solution using the three steps: <blue>translate to automata</blue>, <red>determinise</red>, and <green>solve a game</green>.
+    </div>
+
+
+
+
+
+
+    <div id="overview_int" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+
+
+<!-- Section Step 1 -->
+    <div id="translation" class="step" data-duration="0" data-x="-1000" data-y="800">
+	(almost Kuperberg and Vanden Boom 2012 and 2014)
+	<br/>
+	<br/>
+	A <red>Prompt automaton</red> has a counter which can be incremented or reset at each transition.
+	The value of a run is the maximal value of the counter along the run.
+	<br/>
+	<br/>
+	<b>Theorem</b>: For every Prompt LTL formula $\phi$, there exists a non-deterministic Büchi Prompt automaton $\mathcal{A}$
+	such that $[\phi] \approx [\mathcal{A}]$ (but not equal!)
+    </div>
+
+
+
+    <div id="overview_int" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+<!-- Section Step 2 -->
+    <div id="defHD" class="step" data-duration="0" data-x="000" data-y="800" data-scale="1">
+	(continues Colcombet 2013, extends Colcombet and F. 2016)
+	<br/>
+	<br/>
+	A Prompt automaton $\mathcal{A}$ is <green>history-deterministic</green> if there exists a correction function $\alpha$ such that for all $N \in \mathbb{N}$,
+	there exists a function $\sigma : \Sigma^+ \to \Delta$ such that for all $w \in \Sigma^\omega$, 
+	\[
+	\text{if } [\mathcal{A}](w) \le N, \text{ then } \mathbf{val}(\sigma^\omega(w)) \le \alpha(N).
+	\]
+	<div class="slide_step">
+	Note that the definition is <red>non-uniform</red>: $\sigma$ depends on $b$!
+	<br/>
+	<br/>
+	<b>Theorem</b>: For every Büchi Prompt automaton with $n$ states, there exists an equivalent history-deterministic parity Prompt automaton with $2^{O(n \log(n))}$ states.
+	</div>
+    </div>
+
+
+
+    <div id="overview_int" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+<!-- Section Step 3 -->
+    <div id="dom" class="step" data-duration="0" data-x="1000" data-y="800">
+	(revisits Colcombet and Goeller 2016)
+	<br/>
+	<br/>
+	Let $\mathcal{A},\mathcal{B}$ history-deterministic parity Prompt automata for the assumption and the guarantee.
+	<br/>
+	We construct a domination game where the objective is:
+	for all $N \in \mathbb{N}$, there exists $N' \in \mathbb{N}$ such that
+	\[
+	\text{Parity}_{\mathcal{A}} \wedge \text{val}_{\mathcal{A}}[N] \implies \text{Parity}_{\mathcal{B}} \wedge \text{val}_{\mathcal{B}}[N'].
+	\]
+	<b>Theorem</b>: Solving domination games is in <b>EXPTIME</b>.
+    </div>
+
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
