@@ -235,8 +235,8 @@
 	(continues Colcombet 2013, extends Colcombet and F. 2016)
 	<br/>
 	<br/>
-	A Prompt automaton $\mathcal{A}$ is <green>history-deterministic</green> if there exists a correction function $\alpha$ such that for all $N \in \mathbb{N}$,
-	there exists a function $\sigma : \Sigma^+ \to \Delta$ such that for all $w \in \Sigma^\omega$, 
+	A Prompt automaton $\mathcal{A}$ is <green>history-deterministic</green> if for all $N \in \mathbb{N}$, 
+	there exists $N' \in \mathbb{N}$ and a function $\sigma : \Sigma^+ \to \Delta$ such that for all $w \in \Sigma^\omega$, 
 	\[
 	\text{if } [\mathcal{A}](w) \le N, \text{ then } \mathbf{val}(\sigma^\omega(w)) \le \alpha(N).
 	\]
