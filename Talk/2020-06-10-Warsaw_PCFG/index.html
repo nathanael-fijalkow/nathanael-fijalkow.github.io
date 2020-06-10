@@ -1,0 +1,420 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <title>Program Synthesis</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+    <div id="name" class="step" data-x="0" data-y="-780">
+	<h3>Learning (some) probabilistic context-free grammars</h3>
+	<h4>Nathana&euml;l Fijalkow</h4>
+	<br/> 	
+	<h4>CNRS, LaBRI, Bordeaux, and The Alan Turing Institute of data science, London</h4>
+    </div>
+
+    <div id="title" class="step" data-x="0" data-y="-400">
+	<h4>Joint work with Alexander Clark (King's College London)</h4>
+
+	<center>
+	<img id="alexander" src="img/alexander.jpg"></img>
+	</center>
+	
+	Published in <a href="https://www.transacl.org/ojs/index.php/tacl/index">Transactions of the Association for Computational Linguistics</a>
+    </div>
+
+    <div id="intro" class="step" data-x="0" data-scale=".7" data-y="0">
+	<h3>Outline</h3>
+	<br/>
+        <ul>
+		<li>Definition of the problem
+		<li>Learning <blue>probabilistic automata</blue> (over words)
+		<li>Learning <red>probabilistic automata</red> (over trees)
+		<li>Learning <green>probabilistic context-free grammar</green>
+	</ul>
+    </div>
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+<!-- Part 1 - Definitions -->
+
+    <div id="part_1" class="step" data-fixed="1" data-duration="0" data-x="-1200" data-y="-900">
+	<h2>Learning</h2>
+    </div>
+
+    <div id="Weighted" class="step" data-duration="0" data-x="-1500" data-y="-700" data-scale=".5">
+	<h3>Weighted automata</h3> 
+
+	<svg width="800" height="350">
+		<g class="token">
+			<text x="0" y="200">word read ""</text>
+			<text x="300" y="320" fill="red">1</text>
+			<text x="650" y="320" fill="red">0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "b"</text>
+			<text x="295" y="320" fill="red">-1</text>
+			<text x="645" y="320" fill="red">1</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "bb"</text>
+			<text x="290" y="320" fill="red">1</text>
+			<text x="640" y="320" fill="red">3 - 1 = 2</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "bba"</text>
+			<text x="285" y="320" fill="red">1 + 4 = 5</text>
+			<text x="635" y="320" fill="red">0</text>
+		</g>
+		<g class="token">
+			<text x="0" y="200">word read "bbab"</text>
+			<text x="280" y="320" fill="red">-5</text>
+			<text x="630" y="320" fill="red">5</text>
+		</g>
+		<image x="200" y="0" width="600" height="300" xlink:href="img/wfa.svg">
+	</svg>
+	
+	<br/>
+	<h3>Induces&nbsp;&nbsp; $f : \Sigma^* \to \mathbb{R}$</h3>
+    </div>
+
+    <div id="PFA" class="step" data-duration="0" data-x="-900" data-y="-700" data-scale=".5">
+	<h3><red>Generative</red> Probabilistic Automata</h3>
+	<br/>
+	<center><img src="img/pa.svg"></img></center>
+	<br/>
+	Induces a <green>distribution</green> over finite words $\mathbb{D} : \Sigma^* \to [0,1]$
+    </div>
+
+    <div id="Angluin" class="step" data-duration="0" data-x="-1500" data-y="-450" data-scale=".5">
+	<h3>Angluin's style learning</h3> 
+	<br/>
+	Target: unknown function $f$
+	<br/>
+	<br/>
+	A <red>learner</red> and a <green>teacher</green>
+	<br/>
+	<ul>
+		<li> <blue>membership</blue>: the learner can choose $w \in \Sigma^*$ and ask the teacher for $f(w)$
+		<li> <blue>equivalence</blue>: the learner can submit a hypothesis automaton $\mathcal{A}$ to the teacher, who agrees or gives a word $w$ such that
+		$f(w) \neq \mathcal{A}(w)$
+	</ul>
+    </div>
+
+    <div id="Distribution" class="step" data-duration="0" data-x="-900" data-y="-450" data-scale=".5">
+	<h3>Learning a distribution</h3> 
+	<br/>
+	<blue>Target</blue>: unknown distribution $\mathcal{D}$
+	<br/>
+	<br/>
+	<green>Input</green>: a set of words $w_1,\dots,w_n$ drawn iid with $\mathcal{D}$, and two parameters $\varepsilon,\delta$
+	<br/>
+	<red>Output</red>: a distribution $\mathcal{D'}$ such that
+	<br/>
+	$$\text{Probability}( | \mathcal{D} - \mathcal{D'} | \le \varepsilon ) \ge 1 - \delta$$
+	<br/>
+	Ideally: complexity polynomial in $n$, $\text{size}(\mathcal{D})$, $\frac{1}{\varepsilon}$, $\frac{1}{\delta}$
+    </div>
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+<!-- Part I - Automata learning -->
+
+    <div id="part_1" class="step" data-fixed="1" data-duration="0" data-x="-1200" data-y="-200">
+	<h2>Automata Learning</h2>
+	<h3>over words</h3>
+    </div>
+
+    <div id="hankel_matrix" class="step" data-duration="0" data-x="-1500" data-y="100" data-scale=".5">
+	<h3>Hankel matrix</h3> 
+	<br/>
+	Let $f : \Sigma^* \to \mathbb{R}$. 
+	The Hankel matrix of $f$ is the bi-infinite matrix $H_f \in \mathbb{R}^{\Sigma^* \times \Sigma^*}$ defined by 
+	$$H_f(u,v) = f(uv)$$
+	<div class="slide_step">
+	<b>Theorem</b>: (Fliess '74)
+	<ul>
+		<li> Any automaton recognising $f$ has <green>at least</green> $\text{rank}(H_f)$ many states,
+		<li> <blue>There <red>(effectively!)</red> exists</blue> an automaton recognising $f$ with $\text{rank}(H_f)$ many states.
+	</ul>
+	</div>
+    </div>
+
+    <div id="ptime_algorithm" class="step" data-x="-1050" data-y="100" data-scale=".5">
+	<h3>A polynomial time algorithm</h3> 
+	<br/>
+	<b>Theorem</b>: (Beimel, Bergadano, Bshouty, Kushilevitz, Varricchio, 2000) Weighted automata are <red>efficiently</red> learnable.
+	<br/>
+	<green>Key idea</green>: use a partial Hankel matrix as <blue>data structure</blue>!
+	<br/>
+	<br/>
+	<b>Invariant</b>: maintain $X,Y$ set of words such that $H_f(X,Y)$ has full rank 
+    </div>
+
+    <div id="ptime_algorithm2" class="step" data-x="-600" data-y="100" data-scale=".5">
+	<h3>Extending the matrix</h3> 
+	<br/>
+	Learning procedure:
+	<ul>
+		<li> Using $H_f(X,Y)$, construct a hypothesis automaton $\mathcal{A}$ and submit it to the teacher
+		<li> Using the counter-example, construct $X' = X \cup \{u\}$ and $Y' = Y \cup \{v\}$ such that $H_f(X',Y')$ has full rank
+	</ul>
+    </div>
+
+    <div id="applications_automata_learning" class="step" data-duration="0" data-x="-1500" data-y="400" data-scale=".5">
+	<h3>Applications</h3> 
+	<br/>
+	<ul>
+		<li> Best algorithm to learn <red>deterministic (boolean) automata</red>
+		<li> Best algorithm to learn <blue>boolean circuits</blue>
+		<li> Best algorithm to learn <green>polynomials</green>
+		<li> Best algorithm to learn <magenta>boolean formulas</magenta>
+	</ul>
+	<br/>
+	<center><img src="img/weighted_automata_paper.png"></img></center>
+    </div>
+
+    <div id="learning_pfa" class="step" data-x="-1050" data-y="400" data-scale=".5">
+	<h3>Learning Probabilistic Automata</h3> 
+	<br/>
+	If we learn it <green>as a weighted automaton</green>, the learned object is <blue>not probabilistic</blue>!
+	<br/>
+	<br/>
+	Many <red>hardness results</red> (computational complexity and using cryptographic assumptions)
+	for both Angluin style and distribution learning
+	<br/>
+	<br/>
+	The same solution was discovered many times: <green>residual</green> automata!
+    </div>
+
+    <div id="matrix_factorisation" class="step" data-x="-600" data-y="400" data-scale=".5">
+	<h3>Matrix Factorisations</h3> 
+	<br/>
+	Let $H \in \mathbb{R}^{n \times m}$. 
+	A factorisation of size $d$ is $H = A W$ where $A \in \mathbb{R}^{n \times d}$ and $W \in \mathbb{R}^{d \times m}$
+	<br/>
+	<br/>
+	<ul>
+		<li> <green>non-negative</green> if the entries of $A$ and $W$ are non-negative
+		<li> <red>residual </red> if the rows of $W$ are rows of $M$
+	</ul>
+	<br/>
+	<div class="slide_step">
+	<ul>
+		<li> rank of $H$: smallest factorisation of $H$
+		<li> <green>non-negative rank</green> of $H$: smallest non-negative factorisation of $H$
+		<li> <red>residual rank</red> of $H$: (<blue>insert your guess</blue>)
+	</ul>
+	</div>
+    </div>
+
+    <div id="anchor" class="step" data-duration="0" data-x="-1500" data-y="650" data-scale=".5">
+	<h3>Residual automata</h3> 
+	<br/>
+	<b>Residual assumption</b>: for every state $q$, there exists a word (anchor) $w$ which characterises $q$
+	<br/>
+	<br/>
+	<b>Corollary</b>: (Arora, Ge, Kannan, and Moitra OR Stratos, Collins and Hsu) Probabilistic residual automata are <red>efficiently</red> learnable
+    </div>
+
+    <div id="extending_fliess_theorem" class="step" data-x="-1050" data-y="650" data-scale=".5">
+	<b><red>NOT</red> a theorem</b>:
+	<ul>
+		<li> Any probabilistic automaton recognising $f$ has <green>at least</green> $\text{non-negative rank}(H_f)$ many states,
+		<li> There exists a probabilistic automaton recognising $f$ with $\text{non-negative rank}(H_f)$ many states.
+	</ul>
+	<br/>
+	(Anyway the non-negative rank is NP-hard to compute)
+	<br/>
+	<br/>
+	<div class="slide_step">
+	<b>Theorem</b>:
+	The result above holds for residual probabilistic automata
+	</div>
+    </div>
+
+    <div id="algorithm_residual_rank" class="step" data-x="-600" data-y="650" data-scale=".5">
+	<b>Theorem</b>: (Arora, Ge, Kannan, and Moitra) The non-negative residual rank can be computed in polynomial time
+	<br/>
+	<br/>
+	<div class="slide_step">
+	Very elegant algorithm that no one uses, everyone uses a greedy algorithm with no theoretical guarantees 
+	<br/>
+	<br/>
+	<green>Bottom line</green>: the Hankel matrix approach above extends to learning probabilistic residual automata 
+	</div>
+    </div>
+
+    <div id="overview_int" class="step" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+
+    <div id="part_1bis" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="500">
+	<h2>Automata Learning</h2>
+	<h3>over trees</h3>
+    </div>
+
+<!-- Part II - Grammar learning -->
+
+    <div id="part_2" class="step" data-fixed="1" data-duration="0" data-x="1000" data-y="-800">
+	<h2>Context-free Grammar Learning</h2>
+    </div>
+
+    <div id="pcfg" class="step" data-duration="0" data-x="550" data-y="-450" data-scale=".5">
+	<h3>Probabilistic context-free grammars</h3> 
+	<br/>
+	$$S \rightarrow 2 SS + 7 a\ S\ b + (-1) \varepsilon$$
+	A WCFG induces a <red>function</red> over finite words $f : \Sigma^* \to \mathbb{R}$
+	<br/>
+	<br/>
+	$$S \rightarrow \frac{1}{2} SS + \frac{1}{3} a\ S\ b + \frac{1}{6} \varepsilon$$
+	A PCFG induces a <green>distribution</green> over finite words $\mathbb{D} : \Sigma^* \to [0,1]$
+    </div>
+
+    <div id="problem" class="step" data-x="1000" data-y="-450" data-scale=".5">
+	<h3>Learning PCFGs</h3> 
+	<br/>
+	<green>Input</green>: a set of words $w_1,\dots,w_n$ drawn iid with $\mathcal{D}$, and two parameters $\varepsilon,\delta$
+	<br/>
+	<red>Output</red>: a distribution $\mathcal{D'}$ such that
+	<br/>
+	$$\text{Probability}( | \mathcal{D} - \mathcal{D'} | \le \varepsilon ) \ge 1 - \delta$$
+	<br/>
+	<br/>
+	<b>Key difficulty</b>: Learn <green>from words only</green>.
+	It is easy if we observe <blue>derivations trees</blue>
+    </div>
+
+    <div id="main_result" class="step" data-x="1450" data-y="-450" data-scale=".5">
+	<h3>Main result</h3> 	
+	<br/>
+	<br/>
+	<b>Theorem</b>: (F., Clark) Probabilistic residual (<blue>+ extra conditions</blue>) context-free grammars are <red>(not so efficiently)</red> learnable
+    </div>
+
+    <div id="IO_values" class="step" data-x="550" data-y="-100" data-scale=".5">
+	<h3>Inside and Outside values for WCFGs</h3> 	
+	<br/>
+	<br/>
+	Let $A$ non-terminal in a WCFG
+	<br/>	
+	<b>Inside value</b>: 
+	$$I(A) = \sum_{w \in \Sigma^+} \text{Probability}(\text{$w$ generated from $A$})$$
+	<b>Outside value</b>: 
+	$$O(A) = \sum_{u,v \in \Sigma^*} \text{Probability}(\text{$uAv$ generated from $S$})$$
+    </div>
+
+    <div id="parameterisation" class="step" data-x="1000" data-y="-100" data-scale=".5">
+	<h3>Parameterisation</h3> 	
+	<br/>
+	$I(S) = 1$: the WCFG defines a probability distribution
+	<br/>
+	<br/>
+	<b>Expectation</b>: 
+	$\mathbb{E}(A)$ is the expected number of occurrences of $A$ in a derivation
+	<br/>
+	<div class="slide_step">
+	<b>Fact</b>: 
+	$$\mathbb{E}(A) = I(A) \cdot O(A)$$
+	</div>
+    </div>
+
+    <div id="reparameterisation" class="step" data-x="1450" data-y="-100" data-scale=".5">
+	<h3>Re-parameterisation</h3> 	
+	<br/>
+	$$\mathbb{E}(A) = I(A) \cdot O(A)$$
+	<b>Definition</b>: 
+	for all $A$, $I(A) = 1$: PCFG (top down process)
+	<br/>
+	<br/>
+	<b>Definition</b>: 
+	for all $A$, $O(A) = 1$: BUWCFG (bottom up process)
+	<br/>
+	<br/>
+	<div class="slide_step">
+	<b>Theorem</b>: 
+	There is a bijection between the classes of PCFG and BUWCFG
+	</div>
+    </div>
+
+    <div id="advantage" class="step" data-duration="0" data-x="550" data-y="200" data-scale=".5">
+	<h3>Observables</h3> 	
+	<br/>
+	<b>For PCFG</b>: 
+	$$\theta(A \rightarrow a) = \frac{\mathbb{E}(A \rightarrow a)}{\mathbb{E}(A)}$$
+	$$\theta(A \rightarrow BC) = \frac{\mathbb{E}(A \rightarrow BC)}{\mathbb{E}(A)}$$
+	<b>For BUWCFG</b>: 
+	$$\theta(A \rightarrow a) = \mathbb{E}(A \rightarrow a)$$
+	$$\theta(A \rightarrow BC) = \frac{\mathbb{E}(A \rightarrow BC)}{\mathbb{E}(B) \mathbb{E}(C)}$$
+    </div>
+
+    <div id="residual" class="step" data-x="1000" data-y="200" data-scale=".5">
+	<h3>First condition: residual</h3>
+	<br/> 	
+	<b>Residual</b>: for all non-terminal $A$, there exists a terminal $a$ such that $A \rightarrow a$ and 
+	if $B \rightarrow a$ then $B = A$
+	<br/> 	
+	<br/> 	
+	<div class="slide_step">
+	<b>Intuitively</b>: allows us to choose the set of non-terminals through matrix factorisation
+	</div>
+    </div>
+
+    <div id="ambiguity" class="step" data-x="1450" data-y="200" data-scale=".5">
+	<h3>Second condition: ambiguity</h3>
+	<br/> 	
+	<b>Local ambiguity</b>: every production has a non-ambiguous context
+	<br/> 	
+	<br/> 	
+	<div class="slide_step">
+	<b>Intuitively</b>: ensures convergence (from below) of the parameters
+	</div>
+    </div>
+
+    <div id="maximality" class="step" data-duration="0" data-x="1000" data-y="500" data-scale=".5">
+	<h3>Third condition: maximality</h3>
+	<br/> 	
+	<b>Local ambiguity</b>: adding any rule strictly augments the language (of underlying CFG)
+	<br/> 	
+	<br/> 	
+	<div class="slide_step">
+	<b>Intuitively</b>: ensures convergence (from above) of the parameters
+	</div>
+    </div>
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
