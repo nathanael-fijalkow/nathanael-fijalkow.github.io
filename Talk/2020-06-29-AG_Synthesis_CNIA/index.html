@@ -1,0 +1,206 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Assume-Guarantee Synthesis for Prompt Linear Temporal Logic</title>
+    
+    <meta name="description" content="Intro" />
+    <meta name="author" content="Nathana&euml;l Fijalkow" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<div id="flides">
+
+    <div id="overview_start" class="step" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+    <div id="name" class="step" data-fixed="1" data-duration="0" data-x="0" data-y="400" data-scale="2">
+	<h2>Assume-Guarantee Synthesis for Prompt Linear Temporal Logic</h2>
+	<br/>
+	<h3><red>Nathana&euml;l Fijalkow</red>, Bastien Maubert, and Moshe Y. Vardi</h3>
+	<br/>
+	<h3>in IJCAI 2020</h3>
+	<h4>CNRS, LaBRI, Bordeaux, and The Alan Turing Institute of data science, London</h4>
+    </div>
+
+
+
+
+    <div id="LTLsynthesis" class="step" data-duration="0" data-x="-1200" data-y="-800" data-scale=".5">
+	<h2>Church's Synthesis Problem</h2>
+	<br/>
+	Given a (Boolean) specification $\phi$ over 
+	$$(I \times O)^\omega$$
+	construct a <blue>reactive</blue> <red>non-terminating</red> system $S : I^+ \to O$ satisfying $\phi$:
+	<br/>
+	for all $w = i_0 i_1 \dots \in I^\omega$,
+	<br/>
+
+	<div class="slide_step">
+	$$\begin{array}{ccccccc}
+	\text{input} & i_0 & i_1 & i_2 & \dots \\
+	\text{output} & S(i_0) & S(i_0 i_1) & S(i_0 i_1 i_2) & \dots
+	\end{array}$$
+        </div>
+    </div>
+
+    <div id="LTL" class="step" data-x="-1200" data-y="-400" data-scale=".5">
+	<h2>Linear Temporal Logic (LTL)</h2>
+	(Pnueli 1977)
+	<br/>
+	<br/>
+	$w,i \models \phi$ reads ``w satisfies $\phi$ from position $i$''
+	<br/>
+	<br/>
+	<div class="slide_step">
+	<ul>
+		<li>atomic formula: check whether an atomic property holds at the current position
+		<li>boolean operators
+		<li>$\mathbf{X} \phi$ reads ``$\phi$ holds at the next position''
+		<li>$\mathbf{F} \phi$ reads ``$\phi$ holds at some position in the future''
+	</ul>
+       </div>
+    </div>
+
+    <div id="PromptLTL" class="step" data-x="-1200" data-y="-0" data-scale=".5">
+	<h2>Prompt LTL</h2>
+	(Kupferman, Piterman, Vardi 2009)
+	<br/>
+	<br/>
+	$\mathbf{F} \phi$ reads ``$\phi$ holds at some position in the future'': 
+	<red>no bound on waiting time</red>!
+	<br/>
+	<br/>
+	<div class="slide_step">
+	<green>Prompt LTL</green> extends LTL with $\mathbf{F}^{B} \phi$
+	<br/>
+	$\mathbf{F}^{B} \models \phi[N]$ reads ``$\phi$ holds within the next $N$ positions''
+	<br/>
+	$w \models \mathbf{F}^{B} \phi$ if <blue>there exists $N \in \mathbb{N}$</blue> such that $w,0,N \models \mathbf{F}^{B} \phi[N]$
+       </div>
+    </div>
+
+    <div id="AG" class="step" data-duration="0" data-x="00" data-y="-800" data-scale=".5">
+	<h2>Assume-Guarantee Synthesis</h2>
+	(Alur, Henzinger 1999)
+	<br/>
+	An AG specification is $$A \implies G$$ where <red>$A$ is over $I^\omega$</red> and $G$ over $(I \times O)^\omega$
+	<br/>
+	<br/>
+	A system $S : I^+ \to O$ satisfies $(A,G)$ if for all $w \in I^\omega$,
+	$$w \models A \implies S(w) \models G$$
+    </div>
+
+    <div id="Difficulty" class="step" data-x="00" data-y="-400" data-scale=".5">
+	AG synthesis for LTL reduces to synthesis for LTL: $A \implies G$ is (almost) a formula of LTL
+	<br/>
+	<br/>
+	<div class="slide_step">
+	For Prompt LTL implies an <blue>alternation of bounds</blue>:
+	A system $S : I^+ \to O$ satisfies $(A,G)$ if for all $w \in I^\omega$,
+	$$(\exists N \in \mathbb{N}, w \models A[N]) \implies (\exists N' \in \mathbb{N}, S(w) \models G[N'])$$
+        </div>
+    </div>
+
+    <div id="Example1" class="step" data-duration="0" data-x="600" data-y="-800" data-scale=".5">
+	<small>
+	The system runs a server with $k$ users who can request access.
+	The server may be up or down at each time step.
+	When the server is up, it can grant access to a user, one at a time.
+	Additionally, time is divided in sessions: sometimes a session ends, and a new session starts.
+	</small>
+	<br/>
+	<br/>
+	<div class="slide_step">
+	<b>Assumption</b> (over $I$):
+	<ul>
+		<li>The server is up infinitely many times
+		<li>There are infinitely many sessions
+	</ul>
+	<br/>
+	<b>Guarantee</b> (over $I \times O$):
+	<ul>
+		<li>In each session each user who requests access is eventually granted access, or the session ends
+		<li>The server does not grant access when it is down
+	</ul>
+	</div>
+    </div>
+
+    <div id="Example2" class="step" data-x="600" data-y="-400" data-scale=".5">
+	Write $A,G$ for the LTL formulas above, and $A',G'$ for their Prompt LTL refinements:
+	<ul>
+		<li>$A'$ includes: the server is up every $N$ steps for some $N \in \mathbb{N}$
+		<li>$G'$ includes: each user who requests access is granted access within $N'$ steps for some $N' \in \mathbb{N}$
+	</ul>
+	<br/>		
+	<div class="slide_step">
+	Three systems:
+	<ul>
+		<li><red>Never grants access</red>: satisfies LTL specification because every session ends!
+		<li><blue>LIFO</blue>: grants access to the user who made the <b>latest</b> unanswered request: does not satisfy $A' \implies G'$
+		<li><green>FIFO</green>: grants access to the user who made the <b>earliest</b> unanswered request: satisfies $A' \implies G'$
+	</ul>
+	</div>
+    </div>
+
+    <div id="Results" class="step" data-duration="0" data-x="1300" data-y="400" data-scale="1">
+	<h2>Main result</h2>
+	<br/>
+	<b>Theorem</b>: Assume-Guarantee Synthesis for Prompt LTL is 2-EXPTIME complete (<i>same complexity as for LTL</i>).
+	<br/>
+	<br/>
+	The solution mimics the classical solution using the three steps: <blue>translate to automata</blue>, <red>determinise</red>, and <green>solve a game</green>.
+    </div>
+
+
+
+
+
+
+
+    <div id="overview" class="step" data-duration="0" data-x="0" data-y="0" data-scale="3.5">
+    </div>
+
+</div>
+
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</body>
+</html>
+
+
+
+<!-- 
+
+
+    <div id="ClassicalSolution" class="step" data-x="-1200" data-y="-400" data-scale=".5">
+	<h2>Classical Solution</h2>
+	<br/>
+	<ul>
+		<li><blue>Translate</blue> the LTL formula $\phi$ into a non-deterministic Büchi automaton $\mathcal{A}$
+		<li><red>Determinise</red> $\mathcal{A}$: construct an equivalent parity automaton $\mathcal{B}$ 
+		<li>From $\mathcal{B}$ construct a game where Adam gives inputs and Eve gives outputs,
+		and <green>solve</green> it: a winning strategy is a reactive system satisfying $\phi$
+	</ul>
+	<br/>
+	<div class="slide_step">
+	<red>Determinisation</red> is required and crucial!
+        </div>	
+    </div>
+-->
