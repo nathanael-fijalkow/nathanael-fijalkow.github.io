@@ -1,0 +1,38 @@
+\ProvidesPackage{myTitle}[M2 Algorithmes et Modèles]
+
+\newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand*{\@subtitle}{Project Name}
+
+\newcommand*{\prof}[1]{\gdef\@prof{#1}}
+\newcommand*{\@prof}{Professor's name}
+
+\renewcommand*{\maketitle}{
+
+\begin{titlepage}
+
+\begin{center}
+\includegraphics[width=10cm]{img/UniversiteBordeaux.jpg}
+\vspace{20pt}
+  \par \textbf{\LARGE \@title}
+\vspace{15pt}
+\hrule
+\vspace{10pt}
+\textbf{\@subtitle}
+\vspace{10pt}
+\hrule
+\vspace{20pt}
+
+{\@author} \\
+
+\vspace{10pt}
+\par {\@date}\\
+\vspace{70pt}
+\textbf {\large Enseignant :}\\
+\Large {\@prof}\\
+\end{center}
+
+\end{titlepage}
+
+}
+
+\endinput

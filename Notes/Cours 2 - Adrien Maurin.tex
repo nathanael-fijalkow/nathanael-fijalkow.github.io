@@ -1,0 +1,238 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[top = 3cm, bottom = 3cm, right = 3cm, left = 3cm ]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Théorème}
+\newtheorem{definition}{Définition}
+\newtheorem{property}{Propriété}
+
+\newcommand{\err}{\text{err}}
+
+\begin{document}
+
+\section{Cours 2 - PAC : Probably Approximately Correct}
+
+\paragraph{Définition du problème} Soient $X$ un ensemble de données (\og{} data points \fg) et Y (équivalent à $\{0, 1\}$) un ensemble de labels. \'Etant donné un couple $S = \{(x_0, y_0), \cdots , (x_m, y_m)\}$, l'objectif est de trouver $h : X \to Y$ avec $h \in \mathcal{H}$ tel que $h$ trouve au mieux $S$.
+
+\begin{definition}[Consistancy model]
+  La fonction $h$ du problème défini précédemment vérifie la condition suivante : $\forall i \in [1, m], h(x_i) = y_i$.
+\end{definition}
+
+\paragraph{Remarque}
+  \begin{enumerate}
+    \item La fonction n'assure pas la généralité.
+    \item La fonction ne prend pas en compte le bruit.
+  \end{enumerate}
+
+\begin{definition}[PAC model]
+  Ce modèle repose sur l'hypothèse suivante : on suppose que les données sont générées par une distribution $\mathcal{D}$ inconnue tel que : $\mathcal{D} : X \longrightarrow [0, 1]$ et $\sum_{x \in X} \mathcal{D}(x) = 1$.
+\end{definition}
+
+
+On va introduire deux paramètres :
+
+\begin{itemize}
+  \item $\epsilon$ : la précision
+  \item $\delta$ : la confiance
+\end{itemize}
+
+\paragraph{Algorithme d'apprentissage}
+Un algorithme d'apprentissage fonctionne de la manière suivante :
+
+Input : $S = \{(x_0, y_0), \cdots , (x_m, y_m)\}$
+
+Output : $h \in \mathcal{H}$.
+
+\begin{definition}[erreur]
+On défini l'erreur d'une fonction (notée $\err$) de la manière suivante :
+
+\begin{align*}
+  \forall \epsilon > 0, \forall \delta > 0, \forall c \in \mathcal{H} \text{ (objectif) }, \forall \mathcal{D}, \exists M \in \mathbb{N}, \forall m \geqslant M : \\
+  \err(h) = \mathbb{P}_{x \tild \mathcal{D}}(h(x) \ne c(x))
+\end{align*}
+
+\end{definition}
+
+La notation $x \tild \mathcal{D}$ signifie que l'on tire un élément $x$ avec la distribution $\mathcal{D}$.
+
+\begin{definition}[apprentissage]
+\label{definition:apprentissage}
+Un algorithme apprend au sens PAC la classe $\mathcal{H}$ si :
+
+\begin{equation}
+  \label{equation:pac}
+  \boxed{
+\mathbb{P}_{x \tild \mathcal{D}^m} (\err(h) \leqslant \epsilon) \geqslant 1- \delta
+  }
+\end{equation}
+
+En des termes plus simples, cela signifie qu'avec une forte probabilité, mon erreur est faible. On rajoute l'adjectif efficacement si $m = \text{poly}(\frac{1}{\epsilon} ; \frac{1}{\delta})$.
+
+\end{definition}
+
+\paragraph{Exemple 1 : ensemble de points sur $\mathbb{R}^2$}~\\
+% rajouter le package tikz et xcolor
+% \usepackage{tikz}
+% \usepackage{xcolor}
+
+\paragraph{Description du problème} Soit un plan sur $\mathbb{R}^2$. Sur ce plan, on a des symboles $-$ et des $+$. L'objectif est de déterminer le plus grand rectangle tel que les symboles $+$ sont dans le rectangle. On définit $R_h$ le plus petit rectangle qui contient les $+$. Le rectangle $R_c$ étant celui qu'on cherche à déterminer.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}
+    % rectangle Rh
+    \draw [blue, very thick] (0, 0) rectangle (5, 3);
+    \draw (0.5, 3.3) node[blue] {$R_h$};
+
+    % rectangle Rc
+    \draw [red, very thick] (-1, -1) rectangle (5.8, 3.5);
+    \draw (-0.5, 3.8) node[red] {$R_c$};
+
+    % rectangle Ehaut
+    \draw [green] (-0.95, 3.05) rectangle (5.75, 3.45);
+    \draw (2.5, 3.25) node[green] {$E_{haut}$};
+
+    % rectangle Ebas
+    \draw[green] (-0.95, -0.95) rectangle (5.75, -0.05);
+    \draw (2.5, -0.5) node[green] {$E_{bas}$};
+
+    % rectangle Egauche
+    \draw [green] (-0.95, -0.95) rectangle (-0.05, 3.45);
+    \draw (5.6, 1.5) node[green] {$E_{gauche}$};
+
+    % rectangle Edroite
+    \draw [green] (5.05, -0.95) rectangle (5.75, 3.45);
+    \draw (-0.5, 1.5) node[green] {$E_{droite}$};
+
+    % nodes -
+    \draw (-3, -2) node[] {-};
+    \draw (4, -2) node[] {-};
+    \draw (6, 2) node[] {-};
+    \draw (7, 3.5) node[] {-};
+    \draw (-2, 1) node[] {-};
+    \draw (2, -1.5) node[] {-};
+    \draw (2, 4) node[] {-};
+    \draw (4, 5) node[] {-};
+    \draw (-1, 4) node[] {-};
+    \draw (6.5, -1) node[] {-};
+
+    % nodes +
+    \draw (4, 1.5) node[] {+};
+    \draw (2, 2.5) node[] {+};
+    \draw (3, 2) node[] {+};
+    \draw (1, 1) node[] {+};
+
+    % nodes + extrema
+    \draw (4, 0) node[cyan] {\textbf{+}};
+    \draw (0, 1) node[cyan] {\textbf{+}};
+    \draw (2, 3) node[cyan] {\textbf{+}};
+    \draw (5, 2) node[cyan] {\textbf{+}};
+
+  \end{tikzpicture}
+  \caption{Illustration du problème.}
+\end{figure}
+
+On cherche à déterminer $\mathbb{P}_{x \tild \mathcal{D}^m} (\err(h) \leqslant \epsilon) \geqslant 1- \delta$. Pour cela, on pose : $\mathbb{P}_{x \tild \mathcal{D}}(E_{gauche}) = \mathbb{P}_{x \tild \mathcal{D}} = \frac{\epsilon}{4}$. On fait de même pour $E_{droite}$, $E_{bas}$ et $E_{haut}$. On définit l'évènement $A$ suivant :
+
+\begin{equation*}
+  A = \{ \exists x, y, z, t \in S, x \in E_{bas} \wedge y \in E_{haut} \wedge z \in E_{droite} \wedge t \in E_{gauche} \}.
+\end{equation*}
+
+Si $A$ est réalisé, alors on a $\err_c(h) \leqslant \epsilon$. En effet :
+
+\begin{equation*}
+  \err_c(h) = \mathbb{P}_{x \tild \mathcal{D}} (h(x) \ne c(x)) = \mathbb{P}_{x \tild \mathcal{D}}(x \in R_c \textbackslash R_h) = \mathbb{P}(R_c \textbackslash R_h)
+\end{equation*}
+
+Si l'évènement $A$ est réalisé, on obtient $R_c \textbackslash R_h \subseteq E_{gauche} \cup E_{droite} \cup E_{bas} \cup E_{haut}$. On a alors l'inégalité suivante :
+
+\begin{equation*}
+  \mathbb{P}(R_c \textbackslash R_h) \leqslant \mathbb{P}(E_{gauche} \cup E_{droite} \cup E_{bas} \cup E_{haut}) \leqslant \sum \mathbb{P}(E_i) = \epsilon
+\end{equation*}
+
+On a le résultat suivant : $\mathbb{P}(\forall x \in S, x \notin E_{bas}) = (1 - \frac{\epsilon}{4})^m$. On en déduit donc par le complémentaire que :
+
+\begin{equation*}
+  \mathbb{P}(\exists x \in S, x \in E_{bas}) = 1 - (1 - \frac{\epsilon}{4})^m \leqslant 1 - e^{-\frac{m\epsilon}{4}}
+\end{equation*}
+
+En revenant à l'évènement $A$, on obtient : $\mathbb{P} \geqslant 1 - 4e^{-\frac{m\epsilon}{4}}$.
+
+\begin{equation*}
+  \mathbb{P}(A^C) = \mathbb{P}(\forall x \in S, x \notin E_{bas} \cup \cdots \cup x \notin E_{gauche}) \leqslant \sum \mathbb{P}(\forall x \in S, x \notin E_i) \leqslant 4e^{-\frac{m\epsilon}{4}}
+\end{equation*}
+
+On en déduit le résultat : $\mathbb{P}(A) \geqslant 1 - 4e^{-\frac{m\epsilon}{4}}$. En combinant ce résultat avec l'équation (\ref{equation:pac}), il faut choisir $\delta$ tel que $\delta \leqslant 4e^{-\frac{m\epsilon}{4}}$. Cette inégalité est vraie si $\boxed{m \geqslant -\frac{4}{\epsilon} \ln (\frac{\delta}{4})}$.
+
+\paragraph{Exemple 2 : formules booléennes conjonctives}~\\
+
+Soient $X = \{0, 1\}^n$, $Y = \{0, 1\}$ et $\mathcal{H} = \{\phi = \bigwedge_{i} l_i : l_i = p_i \text{ ou } \neg p_i \}$.
+
+Par exemple avec $n = 4$, $\phi = p_1 \wedge p_3 \wedge \neg p_4$
+
+\paragraph{Algorithme :}~\\
+\begin{itemize}
+  \item On commence avec $\phi = p_1 \wedge \neg p_1 \wedge \cdots \wedge p_n \wedge \neg p_n$.
+  \item Pour chaque $x \in S$ positif,on enlève les littéraux incompatiples dans $\phi$.
+\end{itemize}
+
+\paragraph{Objectif}~\\
+L'objectif est de trouver $m \in \mathbb{N}$ qui vérifie l'équation (\ref{equation:pac}). On défini la fonction erreur par : $\err(h) = \mathbb{P}_{x \tild \mathcal{D}}(x \models \phi_c \nLeftrightarrow \phi_h) \leqslant \epsilon$
+
+\begin{definition}[mauvais littéral]
+  Soit $l$ un littéral. On dit qu'un littéral est mauvais si $\mathbb{P}_{x \tild \mathcal{D}}(x \models \phi_c \wedge \phi \not\models l) \geqslant \frac{\epsilon}{2n}$
+\end{definition}
+
+\begin{property}
+  Si $\phi_h$ ne contient aucun mauvais littéral, alors $\err(h) \leqslant \epsilon$.
+\end{property}
+
+\begin{proof}
+  \begin{equation*}
+    \err(h) = \mathbb{P}_{x \tild \mathcal{D}}(x \models \phi_c \wedge x \not\models \phi_h) \leqslant \sum_{l \in \phi_h} \mathbb{P}_{x \tild \mathcal{D}}(x \models \phi_c \wedge x \not\models l) \leqslant \sum_{l \in \phi_h} \frac{\epsilon}{2n} \leqslant \epsilon
+  \end{equation*}
+\end{proof}
+
+Calculons ensuite la probabilité suivante :
+
+\begin{equation*}
+  \mathbb{P}_{x \tild \mathcal{D}}(\text{Tous les mauvais littéraux apparaissent dans $S$})
+\end{equation*}
+
+Soit $l$ un mauvais littéral. On obtient alors :
+
+\begin{equation*}
+  \mathbb{P}_{x \tild \mathcal{D}}(\forall x \in S, x \models \phi_c \implies x \models l) \leqslant (1 - \frac{\epsilon}{2n})^m \leqslant e^{-\frac{\epsilon m}{2n}} \text{ car $1+x \leqslant e^x$}
+\end{equation*}
+
+\begin{equation*}
+  \mathbb{P}_{x \tild \mathcal{D}}(\text{Il existe un mauvais littéral dans $S$}) \leqslant \sum_{l} \mathbb{P}(l \text{ apparaisse dans $S$}) \leqslant  \sum_{l} e^{-\frac{\epsilon m}{2n}} \leqslant 2n.e^{-\frac{\epsilon m}{2n}}
+\end{equation*}
+
+En appliquant la définition de l'apprentissage (définition \ref{definition:apprentissage}), on obtient l'inégalité suivante :
+
+\begin{equation*}
+  \delta \geqslant 2n.e^{-\frac{\epsilon m}{2n}}
+\end{equation*}
+
+Cette inégalité est vraie si $\boxed{m \geqslant \frac{2n}{\epsilon} (\ln (2n) + \ln(\frac{1}{\delta}))}$.
+
+\paragraph{Conclusion}~\\
+On a l'erreur qui est bien un polynôme en $\frac{1}{\epsilon}$. Cependant, ce n'est pas efficacement apprenable car $m$ est en $\ln \frac{1}{\delta}$.
+
+
+
+
+
+
+
+
+\end{document}
