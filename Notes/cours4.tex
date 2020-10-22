@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+
+\title{Cours 4 - Jeux, contôle et synthèse}
+\author{Notes par Faiz Abderrahmane}
+\date{ }
+
+\begin{document}
+
+\maketitle
+
+\section*{Propriété}
+Si dimVC($\mathcal{H}$) = $\infty$ $\Longrightarrow$ $\mathcal{H}$ n'est pas apprenable au sens PAC
+
+\subsection*{Preuve}
+
+Rappelons la définition de $\mathcal{H}$ est PAC apprenable :\\
+$\forall~\epsilon~,\forall~\delta~,\exists~algorithm~,\exists~M \in \mathbb{N}~,\forall~m \geq M~,\forall~c \in \mathcal{H}~,
+\forall~\mathcal{D}~ distribution~sur~X,$
+\begin{center}
+    $ \mathbb{P}_{S \sim \mathcal{D}^m} (err_c(h)\leq \epsilon) ~ \geq ~ 1-\delta$
+\end{center}
+Avec h la fonction retourné par l'algorithme avec l'entrée $S=\{(x_i,c(x_i))\}$
+Montrons que si dimVC($\mathcal{H}$) = $\infty$ alors $\mathcal{H}$ n'est pas apprenable au sens PAC.\\
+Soit $m \in \mathbb{N}$ : $dimVC(\mathcal{H} \geq 2m$\\
+$\exists Z \subseteq X$ : $|Z|=2m$ explosé par $\mathcal{H}$\\
+Choisissons $\mathcal{D} =\mathcal{U}_Z$ distribution uniforme sur Z\\
+\underline{\textbf{Claim :}}\\
+Etant donné un sample de taille m, n'importe quel algorithem a une erreur $\geq 1/8$ avec probabilité $\geq 1/7$
+\begin{center}
+        $ \mathbb{P}_{S \sim \mathcal{U}_Z^m} (err_c(h)\leq 1/8) ~ \geq ~ 6/7$
+\end{center}
+\underline{\textbf{Lemme 1:}}\\
+Fixons $A$ algo
+\begin{center}
+    $\mathbb{E}_{ c \sim \mathcal{U}_Z^m} [\mathbb{E}_{ S \sim \mathcal{U}_Z^m} [err_c(h)]] \geq 1/4$
+\end{center}
+Avec $h = A(S)$\\ \\
+Soient alors $\mathcal{H} \subseteq X \rightarrow \{0,1\}$ et $\mathcal{H}_Z \subseteq Z \rightarrow \{0,1\}$\\
+Admettons le lemme on a donc $\forall~A~algo~, \exists~c~\in~\mathcal{H}_Z$
+\begin{center}
+    $\mathbb{E}_{ S \sim \mathcal{U}_Z^m} [err_c(h)] \geq 1/4$
+\end{center}
+\underline{\textbf{Lemme 2:}}\\
+Soit V variable aléatoire à valeurs dans $[0,1]$\\
+Si $\mathbb{E} [V] \geq 1/4$ alors $\mathbb{P}(V \geq 1/8) \geq 1/7$\\\\
+Montrons le lemme 2, pour cela on appliquera l'inégalité de Markov\\
+\underline{\textbf{Inégalité de Markov:}}\\
+Soit V variable aléatoire à valeurs $\geq 0$
+\begin{center}
+    $\mathbb{E}[V]/a \geq \mathbb{P}(V \geq a)$
+\end{center}
+$\mathbb{P}(V \geq 1/8) = 1 - \mathbb{P}(V \leq 1/8) = 1 - \mathbb{P}(1-V \geq 7/8)$\\
+$~~~~~~~~~~~~~~~~~~~~~\geq~ 1 - 8/7 \times \mathbb{E}[1-V] = 1 - 8/7 \times (1 - \mathbb{E}[V])$\\
+$~~~~~~~~~~~~~~~~~~~~~\geq~ 8/7 \times \mathbb{E}[V] - 1/7$ \\
+$~~~~~~~~~~~~~~~~~~~~~\geq~ 8/7 \times 1/4 - 1/7 = 1/7$\\\\
+Montons le lemme 1 :\\
+$err_c(h) = 
+\mathbb{P}_{x \sim \mathcal{U}_Z}(h(x) \neq c(x)) =
+\underbrace{\mathbb{P}_{x \sim \mathcal{U}_Z}(x \notin S) \mathbb{E}_{x \sim \mathcal{U}_Z}[h(x) \neq c(x) | x \notin S]}_{\textrm{?}}+\\ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\underbrace{\mathbb{P}_{x \sim \mathcal{U}_Z}(x \in S) \mathbb{E}_{x \sim \mathcal{U}_Z}[h(x) \neq c(x) | x \in S]}_{\mathrm{\geq 0}}$\\
+Donc\\ $err_c(h) \geq \mathbb{P}_{x \sim \mathcal{U}_Z}(x \notin S) \mathbb{E}_{x \sim \mathcal{U}_Z}[h(x) \neq c(x) | x \notin S]$\\
+Alors\\
+$\mathbb{E}_c [ \mathbb{E}_S [ err_c (h) ] ] \geq \mathbb{E}_c [ \mathbb{E}_S [\underbrace{ \mathbb{P}_{x \sim \mathcal{U}_Z}(x \notin S)}_{\mathrm{\geq 1/2}} \mathbb{E}_{x \sim \mathcal{U}_Z}[h(x) \neq c(x) | x \notin S] ] ]$\\
+$~~~~~~~~~~~~~~~~~~~~~\geq~ 1/2 \times \underbrace{\mathbb{E}_c [ \mathbb{E}_S [ \mathbb{E}_{x \sim \mathcal{U}_Z}[h(x) \neq c(x) | x \notin S] ] ]}_{\mathrm{\geq 1/2}}$\\
+$~~~~~~~~~~~~~~~~~~~~~\geq~ 1/4$
+\end{document}
