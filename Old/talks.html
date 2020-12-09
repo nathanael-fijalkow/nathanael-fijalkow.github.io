@@ -1,740 +1,153 @@
-<div id="accordion" class="panel-group">
+<h3>The slides on this page are in HTML5 format. 
+I make them using <a href="https://github.com/nathanael-fijalkow/Flides">Flides</a>, a software I developed (based on impress.js).</h3>
 
-	<h3>My recent slides are in HTML5 format (see for instance <a href="Talk/PhD">the slides for my PhD defense</a>).</h3>
+If you have troubles visualising them:
+<ul> 
+	<li> If you see nothing: you are using a too old browser which did not yet implement the latest HTML5 features used there, or you did not enable javascript. I can do nothing for you.</li>
+	<li> If it's slow and laggy: you may want to try Google Chrome, as it's definitely the best browser for this.</li>	
+	<li> If some parts of the slides do not fit the windows: it's because you use a zoom in your browser, play with it (usually, setting it to between 67% and 100% works just fine).</li>
+</ul>
 
-	If you have troubles visualising them:
-	<ul> 
-		<li> If you see nothing: you are using a too old browser which did not yet implement the latest HTML5 features used there, or you did not enable javascript. I can do nothing for you.</li>
-		<li> If it's slow and laggy: you may want to try Google Chrome, as it's definitely the best browser for this.</li>	
-		<li> If some parts of the slides do not fit the windows: it's because you use a zoom in your browser, play with it (usually, setting it to between 67% and 100% works just fine).</li>
-	</ul>
+<br/><br/>
 
-	<h3>New!</h3> 
-	If you would like to make such slides yourselves, you can check out this <a href="?page=flides">page</a>, which contains a demo.
-	<br/><br/>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#bisim" data-parent="#accordion">Probabilistic Bisimulation</button>
-    </div>
-
-    <div id="bisim" class="panel-collapse collapse">
+<div class="panel panel-danger">
 	<div class="panel-body">
+		<dl class="dl-horizontal">
 
-	<ul>
+		  <dt>02/04/2020</dt>
+		  <dd><a href="Talk/2020-04-03-AG_Synthesis_IRIF">Assume-Guarantee Synthesis for Prompt Linear Temporal Logic</a>, for the (online) IRIF Automata seminar in Paris. 
+                  </dd>
 
-		<br/><li>Bisimulation on Distributions for Reinforcement Learning: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractlearnaut">Display/Hide the abstract</button>
-			<div id="abstractlearnaut" class="collapse">
-				<i>
-The study of bisimulation for Markov Decision Processes is
-a well established topic within the LICS community, where the
-original motivations and questions come from programming
-languages and concurrency. It also has potential applications
-for reinforcement learning, which seem to be so far not deeply
-explored. The objective of this abstract is to open a discussion
-on the topic at the Workshop LearnAut 2017, starting from
-recent works on bisimulation on distributions. There are many
-promising directions to look at, including comparing to the
-classical notion of probabilistic bisimulation, and considering
-distances instead of equivalence relations.
-				</i>
-			</div>
+		  <dt>26/02/2020</dt>
+		  <dd><a href="Talk/2020-02-26-LondonSchoolEconomics_parity">Parity games: the quasipolynomial era</a>, for the Seminar on Combinatorics, Games and Optimisation at the London School of Economics in London.
+                  </dd>
 
-			<ul>
-				<li>presentation for LearnAut, workshop affiliated to LICS'2017 in Reyjkjavik, Iceland (19/06/2017) [<a href="Talk/LearnAut_Bisimulation">HTML5 Flides</a>]</li>
-			</ul>
-		</li>
+		  <dt>23/01/2020</dt>
+		  <dd><a href="Talk/2020-01-23-LaBRI_IA">Progam synthesis in the machine learning era</a>, in Bordeaux.
+                  </dd>
 
-		<br/><li>Logical characterization of Probabilistic Simulation and Bisimulation: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractliafabisim">Display/Hide the abstract</button>
-			<div id="abstractliafabisim" class="collapse">
-				<i>I will discuss a notion of equivalence between two probabilistic systems introduced by Larsen and Skou in 89 called probabilistic bisimulation.
-				<br/>
-				In particular, I will look at logical characterizations for this notion: the goal is to describe a logic such that two systems are bisimilar if and only if 
-				they satisfy the same formulas. This question goes all the way back to Hennessey and Millner for non probabilistic transition systems.
-				<br/>
-				I will develop topological tools and give very general logical characterization results for probabilistic simulation and bisimulation.
-				</i>
-			</div>
+		  <dt>03/09/2019</dt>
+		  <dd><a href="Talk/2019-09-03-GanDALF_parity">Parity games: the quasipolynomial era</a>, invited talk for the <a href="https://gandalf2019.sciencesconf.org/">GanDALF</a> conference (the Tenth International Symposium on Games, Automata, Logics, and Formal Verification) in Bordeaux.
+                  </dd>
 
-			<ul>
-				<li>presentation for ICALP, Warsaw, Poland (11/07/2017) [<a href="Talk/ICALP_Bisimulation">HTML5 Flides</a>]</li>
-				<li>presentation for the seminar in the Distributed, Embedded, and Intelligent Systems research group, Aalborg, Denmark (10/05/2017)</li>
-				<li>presentation for the seminar at Queen Mary University of London, UK (06/04/2017) [<a href="Talk/QueenMary_Bisimulation">HTML5 Flides</a>]</li>
-				<li>presentation for the Short Talk series at the Turing, London, UK (02/03/2017) [<a href="Talk/Turing_Bisimulation">HTML5 Flides</a>]</li>
-				<li>presentation for the Computer Science department Seminar in Warwick, UK (09/02/2017) [<a href="Talk/Warwick_Bisimulation">HTML5 Flides</a>]</li>
-				<li>presentation for the Automata Seminar in IRIF, France (13/01/2017)</li>
-			</ul>
-		</li>
+		  <dt>05/06/2019</dt>
+		  <dd><a href="Talk/2019-06-05-ForMaL-Cachan">Program synthesis</a> for the <a href="https://formal-paris-saclay.fr/">ForMaL spring school</a>, two hours invited lecture in ENS Cachan.
+		  </dd>
 
-		<br/><li>Simulation and Bisimulations for Probabilistic Systems, and their Logical Contents: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractsimons">Display/Hide the abstract</button>
-			<div id="abstractsimons" class="collapse">
-				<i>In this talk, I will discuss the different definitions that have been proposed in the literature to express that two states of a probabilistic system are similar 
-				(or bisimilar). Different intuitions and purposes led to conceptually various definitions.
-				</i>
-			</div>
+		  <dt>06/04/2019</dt>
+		  <dd><a href="Talk/2019-04-06-LiVe_DataGeneration_ProgrammingByExample">Data generation for programming by example</a> for the <a href="https://www7.in.tum.de/~kretinsk/LiVe2019.html">LiVe workshop in Prague, affiliated workshop of <a href="https://etaps.org/2019/">ETAPS</a>.
+		  </dd>
 
-			<ul>
-				<li>presentation for the {Symmetry, Logic, Computation} workshop in Berkeley, US (07/11/2016) 
-				[<a href="Talk/Simons_Bisimulation">HTML5 Flides</a> and <a href="https://simons.berkeley.edu/talks/nathanael-fijalkow-11-07-2016">video</a>]</li>
-			</ul>
-		</li>
-	</ul>
-
-	</div>
-    </div>
-
-    <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#pa" data-parent="#accordion">Probabilistic Automata</button>
-    </div>
-
-    <div id="pa" class="panel-collapse collapse">
-	<div class="panel-body">
-
-	<ul>
-
-		<br/><li>Probabilistic Automata of Bounded Ambiguity:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractCONCUR17">Display/Hide the abstract</button>
-			<div id="abstractCONCUR17" class="collapse">
-				<i>
-				Probabilistic automata are a computational model introduced by Michael Rabin, extending non-deterministic finite automata with probabilistic transitions. 
-				Despite its simplicity, this model is very expressive and many of the associated algorithmic questions are undecidable. 
-				In this work we focus on the emptiness problem, which asks whether a given probabilistic automaton accepts some word with probability higher than a given threshold. 
-				We consider a natural and well-studied structural restriction on automata, namely the degree of ambiguity, which is defined as the maximum number of accepting runs over all 					words. We observe that undecidability of the emptiness problem requires infinite ambiguity and so we focus on the case of finitely ambiguous probabilistic automata.
-				<br/><br/>
-				Our main results are to construct efficient algorithms for analysing finitely ambiguous probabilistic automata through a reduction to a multi-objective optimisation
-				problem, called the stochastic path problem. We obtain a polynomial time algorithm for approximating the value of finitely ambiguous probabilistic automata and 
-				a quasi-polynomial time algorithm for the emptiness problem for 2-ambiguous probabilistic automata.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for CONCUR'2017, Berlin, Germany (13/09/2017) [<a href="Talk/CONCUR_ProbabilisticAmbiguity">HTML5 Flides</a>]</li>
-		</ul>
+		  <dt>06/04/2019</dt>
+		  <dd><a href="Talk/2019-04-06-GALOP_Universal_Graphs">An introduction to model-checking games and universal graphs</a> for the GALOP workshop in Prague, affiliated workshop of <a href="https://etaps.org/2019/">ETAPS</a> (invited talk).
+		  </dd>
 
 
-		<br/><li>Characterisation of an Algebraic Algorithm for Probabilistic Automata:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractstacs">Display/Hide the abstract</button>
-			<div id="abstractstacs" class="collapse">
-				<i> We consider the value 1 problem for probabilistic automata over finite words: it asks whether a given probabilistic automaton accepts words 
-				with probability arbitrarily close to 1. This problem is known to be undecidable. However, different algorithms have been proposed to partially solve it; 
-				it has been recently shown that the Markov Monoid algorithm, based on algebra, is the most correct algorithm so far. 
-				<br/>
-				The first contribution of this paper is to give a characterisation of the Markov Monoid algorithm. 
-				The second contribution is to develop a profinite theory for probabilistic automata, called the prostochastic theory. 
-				This new framework gives a topological account of the value 1 problem, which in this context is cast as an emptiness problem. 
-				The above characterisation is reformulated using the prostochastic theory, allowing to give a modular proof.
-				</i>
-			</div>
+		  <dt>27/03/2019</dt>
+		  <dd><a href="Talk/2019-03-27-VNN_GAN">A Global Correctness Criterion using Generative Models</a> for the VNN symposium (Verification of Neural Networks) in Stanford, as part of AAAI.
+		  </dd>
 
-		<ul>
-			<li>presentation for the workshop <a href="https://www.cs.ox.ac.uk/bellairs2017/">Algorithmic Aspects of Dynamical Systems</a>, Bridgetown, Barbados (16/03/2016)</li>
-			<li>presentation for STACS'2016, Orl&eacute;ans, France (18/02/2016) [<a href="Talk/STACS_MMA">HTML5 Flides</a>]</li>
-		</ul>
+		  <dt>30/11/2018</dt>
+		  <dd><a href="Talk/2018-11-30-Aachen_Universal_Graphs">Universal graphs for parity and mean payoff games</a> for the 
+		  <a href="http://www.lics.rwth-aachen.de/cms/~nwej/LICS/lidx/1/">Logic und Theory of Discrete Systems</a> (i7) group in Aachen
+		  and the <a href="https://intranet.csc.liv.ac.uk/research/seminars/abstract2.php?id=257">Department of Computer Science</a> in University of Liverpool.
+		  A <a href="Talk/2018-12-05-Delta_Universal_Graphs">shorter version</a> for the 
+		  <a href="https://delta.labri.fr/index.php/Site/Meetings#mid-term">ANR Delta mid-term meeting</a> in Bordeaux.
+		  See <a href="Talk/2019-01-23-CAALM_Universal_Graphs">another long version</a> 
+		  for the <a href="http://www.cmi.ac.in/%7Esri/CAALM2019/index.html">CAALM</a> workshop (Complexity, Algorithms, Automata and Logic Meet) 
+		  at Chennai Mathematical Institute (CMI) - Chennai, India.
+		  The best version to date is <a href="Talk/2019-02-07-IRISA_Universal_Graphs">here</a> for the 68NQRT seminar in IRISA, Rennes,
+		  which is identical to <a href="Talk/2019-04-15-LACL_Universal_Graphs">this version</a> for the LACL seminar in LACL, Créteil. 
+		  </dd>
 
-		<br/><li>Irregular Behaviours of Probabilistic Automata:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractrp">Display/Hide the abstract</button>
-			<div id="abstractrp" class="collapse">
-				<i>We consider probabilistic automata over finite words. Such an automaton defines the language consisting of the words
-				accepted with probability greater than a given threshold.
-				We show the existence of a universally non-regular probabilistic automaton,
-				i.e. an automaton such that the language it defines is non-regular for every threshold.
-				As a corollary, we obtain an alternative and very simple proof of the undecidability of determining whether such a language is regular.
-				</i>
-			</div>
+		  <dt>28/11/2018</dt>
+		  <dd><a href="Talk/2018-11-28-Aachen_DataGeneration_ProgrammingByExample">Data generation for programming by example</a> for the 
+		  <a href="https://moves.rwth-aachen.de/">Software Modeling and Verification</a> (MOVES) group in Aachen
+		  and the <a href="http://mf.labri.fr/">formal methods seminar</a> in Bordeaux.
 
-		<ul>
-			<li>presentation for RP'2015 in Warsaw, Poland (24/09/2015) [<a href="Talk/RP_Irregular">HTML5 Flides</a>]</li>
-		</ul>
+		  <dt>15/10/2018</dt>
+		  <dd><a href="Talk/2018-10-15-ALGA_Parity_games">Parity games: quasipolynomial upper and lower bounds</a> for the 
+		  <a href="http://researchers.lille.inria.fr/~fcapelli/gt-alga/">GT ALGA</a> in Lille.
 
-		<br/><li>Algorithmic Properties of Probabilistic Automata: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractalgopa">Display/Hide the abstract</button>
-			<div id="abstractalgopa" class="collapse">
-				<i>The objective of this survey lecture is to give an overview of the algorithmic properties of probabilistic automata, and the recent developments of this line of work.
-				<br/>
-				A large literature that spreads over the last 40 years shows that unfortunately many natural decision problems for probabilistic automata are undecidable; 
-				the first half of the talk will be about such negative results.
-				<br/>
-				The second half will be about positive and recent results. Indeed, over the last few years, a new trend emerged: constructing algorithms that solve undecidable problems 
-				on subclasses of probabilistic automata. We will review the results obtained there and the techniques they used, and discuss related research challenges 
-				for the years to come.
-				</i>
-			</div>
+		  <dt>21/09/2018</dt>
+		  <dd><a href="Talk/2018-09-21-Highlights_TRCF">History-deterministic cost automata</a> for the 
+		  <a href="https://regular-cost-functions.labri.fr/">Workshop on the theory of regular cost functions, and beyond</a> in Berlin 
+		  (satellite event of <a href="http://highlights-conference.org/">Highlights</a>).
 
-		<ul>
-			<li>presentation for AutoMathA (invited talk) at Leipzig, Germany (08/05/2015) [<a href="Talk/Automatha">HTML5 Flides</a>]</li>
-		</ul>
+		  <dt>09/07/2018</dt>
+		  <dd><a href="Talk/2018-07-09-LICS_State_complexity">The state complexity of alternating automata</a> for the 
+		  <a href="http://lics.siglog.org/lics18/">LICS'2018</a> conference in Oxford.
 
-		<br/><li>The Naughty Side of Probabilistic Automata: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractnaughty">Display/Hide the abstract</button>
-			<div id="abstractnaughty" class="collapse">
-				<i>This talk is about probabilistic automata over finite words: such machines, when reading a letter, flip a coin to determine which transition to follow. 
-				Although quite simple, this computational model is quite powerful, and many natural problems are undecidable.
-				<br/>
-				In this talk, I will review some of the most important undecidability results, with new simplified constructions. 
-				</i>
-			</div>
+		  <dt>29/05/2018</dt>
+		  <dd><a href="Talk/2018-05-29-GT_Verif_ML">Safety Verification of Neural Networks</a> for the 
+		  <a href="http://gt-verif.loria.fr/Wiki.jsp?page=JA-2018">GT Verification</a> in Grenoble.
+		  This was part of a Learning session I organised. The other two talks were given by Oded Maler -- <a href="pdf/slides-maler.pdf">slides</a> -- 
+		  and Rémi Eyraud -- <a href="pdf/slides-eyraud.pdf">slides</a>.</dd>
 
-		<ul>
-			<li>presentation for the LAAG Seminar at LIAFA, Paris, France (01/04/2015 and 15/04/2015)</li>
-		</ul>
+		  <dt>26/02/2018</dt>
+		  <dd><a href="Talk/2018-02-26-Delta_GAN">Generative Adversarial Networks</a> for the 
+		  <a href="https://www.irif.fr/anr/delta/index">Delta meeting</a> in Paris.</dd>
 
-		<br/><li>Algebraic Algorithms for Probabilistic Automata:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractalgebraicalgo">Display/Hide the abstract</button>
-			<div id="abstractalgebraicalgo" class="collapse">
-				<i>In this talk, I'll consider Probabilistic Automata over finite words. They are an extension of classical finite automata where the transitions are stochastic. 
-				This model is quite expressive, and the price to pay is that many questions there are undecidable. I will show that nevertheless we can construct algebraic algorithms 
-				manipulating sets of matrices partially to solve some natural decision problems (equivalence, value approximation, emptiness).
-				<br/>
-				In the talk, I will report on theoretical results, as well as on recent implementations.
-				</i>
-			</div>
+		  <dt>12/12/2017</dt>
+		  <dd><a href="Talk/2017-12-12-Simons_Reunion">Reasoning with time and probability</a> for the 
+		  <a href="https://simons.berkeley.edu/workshops/schedule/6869">Logical structures in computation reunion workshop</a>.</dd>
 
-		<ul>
-			<li>presentation at ONERA, Toulouse, France (26/01/2015)</li>
-		</ul>
+		  <dt>06/12/2017</dt>
+		  <dd><a href="Talk/2017-12-06-Warwick_Turing">Slides</a> for the <a href="https://www2.warwick.ac.uk/fac/sci/dcs/events/warwick-turing-research-day/">Warwick-Turing Research Day</a>.</dd>
 
-		<br/><li>(Hopefully) the last talk about the value 1 problem for probabilistic automata:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractlasttalk">Display/Hide the abstract</button>
-			<div id="abstractlasttalk" class="collapse">
-				<i>Since I started my PhD, I already spoke twice at this seminar about the value 1 problem for probabilistic automata. This talk shall be the last on this topic, 
-				as it hopefully answers the initial question: "what is computable about the value 1 problem?".
-				<br/>
-				The first time, I explained that the value 1 problem is undecidable, that we have an algorithm, called the Markov Monoid Algorithm (MMA), and a subclass of probabilistic 					automata, the leaktight automata, such that the MMA correctly solves the value 1 problem for leaktight automata.
-				<br/>
-				The second time, I explained that relaxing the value 1 problem by abstracting away the numerical values does not lead to decidability.
-				<br/>
-				This time, I will formalize the following claim: "the MMA is optimal". Inspired by Szymon Torunczyk's PhD thesis, 
-				I will develop a theory of prostochastic words borrowing ideas from the profinite approach in automata theory. 
-				This new formulation allows for a simple characterization of the MMA, as well as a new undecidability result that shows that undecidability is around the corner, 
-				supporting the claim that the MMA is optimal.
-				</i>
-			</div>
+		  <dt>13/09/2017</dt>
+		  <dd><a href="Talk/2017-09-13-London_BoundednessGames">Boundedness Games</a>, for <a href="http://highlights-conference.org/">Highlights'2017</a>, London, UK.</dd>
 
-		<ul>
-			<li>presentation for Seminarium Teoria Automat&oacute;w, Warsaw, Poland (26/11/2014)</li>
-		</ul>
+		  <dt>08/09/2017</dt>
+		  <dd><a href="Talk/2017-09-08-CONCUR_ProbabilisticAmbiguity">Probabilistic Automata of Bounded Ambiguity</a>, for <a href="https://www.concur2017.tu-berlin.de/">CONCUR'2017</a>, Berlin, Germany.
+		  <a href="Talk/2018-03-13-Warwick_ProbabilisticAmbiguity">A second version</a>, for the Computer Science department Seminar in Warwick.</dd>
 
-		<br/><li>The Value 1 Problem for Probabilistic Automata:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractprobautomata">Display/Hide the abstract</button>
-			<div id="abstractprobautomata" class="collapse">
-				<i>We consider probabilistic automata over finite words, and develop a profinite theory for them. We use this framework to formalize the notion of convergence speeds 
-				in probabilistic automata. This allows us to provide a fine analysis of the decidable cases for the value 1 problem.
-				We give a characterization of the Markov Monoid algorithm (previously introduced by Gimbert, Oualhadj and the author), and show that this algorithm is in fact optimal, 
-				in the following sense: it captures exactly all polynomial behaviours, and no algorithm can capture non-polynomial behaviours.
-				</i>
-			</div>
+		  <dt>11/07/2017</dt>
+		  <dd><a href="Talk/2017-07-11-ICALP_Bisimulation">Expressiveness of Probabilistic Modal Logics, revisited</a>, for <a href="http://icalp17.mimuw.edu.pl/">ICALP'2017</a>, Warsaw, Poland.
+		  <a href="Talk/2017-04-06-QueenMary_Bisimulation">A longer version</a>, for the seminar at Queen Mary University of London.
+		  <a href="Talk/2017-03-02-Turing_Bisimulation">A shorter version</a>, for the Short Talk series at the Turing, London.
+		  <a href="Talk/2017-02-09-Warwick_Bisimulation">Another short version</a>, for the Computer Science department Seminar in Warwick.
+		  <a href="Talk/2016-11-07-Simons_Bisimulation">The first version</a>, for the <a href="https://simons.berkeley.edu/workshops/logic2016-2">{Symmetry, Logic, Computation} workshop</a> in Berkeley. 
+		  See also <a href="https://simons.berkeley.edu/talks/nathanael-fijalkow-11-07-2016">the video</a>!
+		  </dd>
 
-		<ul>
-			<li>presentation for Highlights, Paris, France (04/09/2014) [<a href="Talk/talk_highlights_2014.pdf">PDF</a>]</li>
-			<li>presentation for the Automata Seminar at LIAFA, Paris, France (27/06/2014) [<a href="Talk/talk_liafa_probabilistic_automata_27062014.pdf">PDF</a>]</li>
-			<li>presentation for the Seminar at ULB, Bruxelles, Belgium (20/06/2014) [<a href="Talk/talk_probabilistic_automata_ulb_20062014.pdf">PDF</a>]</li>
-			<li>presentation for the Graphs and Logics Seminar at LaBRI, Bordeaux, France (27/05/2014) [<a href="Talk/talk_labri_27052014.pdf">PDF</a>]</li>
-			<li>presentation for the FREC Final Conference, Marseille, France (28/04/2014) [<a href="Talk/talk_frec_final_2014.pdf">PDF</a>]</li>
-		</ul>
+		  <dt>19/06/2017</dt>
+		  <dd><a href="Talk/2017-06-19-LearnAut_Bisimulation">Bisimulation on Distributions for Reinforcement Learning</a>, for the LearnAut workshop, Reyjkjavik, Iceland.</dd>
 
-		<br/><li>The Numberless Value 1 Problems for Probabilistic Automata:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractnumberless">Display/Hide the abstract</button>
-			<div id="abstractnumberless" class="collapse">
-				<i>I will talk about probabilistic automata, which are automata assigning to each word a probability to be accepted. 
-				Specifically, I will be interested in the value 1 problem, which asks whether for a given probabilistic automaton, 
-				there are words accepted with acceptance probability arbitrarily close to 1.
-				<br/>
-				Although this problem is undecidable, I'll try to convince you that there are still many things to say about it.
-				<br/>
-				When I first came in Warsaw I gave a seminar talk and introduced two objects: the Markov monoid algorithm and the leaktight property. 
-				The first is a saturation algorithm that (incompletely) solves the value 1 problem, and the second is a sufficient condition 
-				for probabilistic automata ensuring this algorithm to be correct.
-				<br/>
-				This talk is a continuation of the previous one. I plan to discuss two attempts to answer the following question: "what does the Markov monoid algorithm compute?".
-				</i>
-			</div>
+		  <dt>10/07/2016</dt>
+		  <dd><a href="Talk/2016-07-10-SR_Pushdown">Pushdown Boundedness Games</a>, for the <a href="https://sites.google.com/site/sr2016homepage/home">SR'2016 workshop</a> in New York.</dd>
+
+		  <dt>11/04/2016</dt>
+		  <dd><a href="Talk/2016-04-11-ALGA_Marseille">The Theory of Regular Cost Functions at No Extra Cost</a>, for the 
+		  <a href="http://pageperso.lif.univ-mrs.fr/~benjamin.monmege/GT-ALGA2016/">GT-ALGA</a> in Marseille.</dd>
+
+		  <dt>02/04/2016</dt>
+		  <dd><a href="Talk/2016-04-02-Cassting">Boundedness Games</a>, invited talk at <a href="http://www.cassting-project.eu/workshop2016/">CASSTING workshop</a> in Eindhoven 
+		  (affiliated workshop of <a href="http://www.etaps.org/index.php/2016/fossacs">FoSSaCS</a>).</dd>
+
+		  <dt>10/03/2016</dt>
+		  <dd><a href="Talk/2016-03-10-Rennes_OSC">Online Space Complexity</a> for the <a href="http://68nqrt.irisa.fr/">68NQRT seminar</a> in Rennes.
+		  <a href="Talk/2016-01-20-Oxford_Verification_State_Complexity">A similar version</a> for the <a href="http://www.cs.ox.ac.uk/seminars/verification/">Verification seminar</a> in Oxford.
+		  <a href="Talk/2016-01-06-LFCS_Florida">A preliminary version</a> for <a href="http://lfcs.info/lfcs-2016/">LFCS'2016</a>.
+		  </dd>
+
+		  <dt>18/02/2016</dt>
+		  <dd><a href="Talk/2016-02-18-STACS_MMA">Characterisation of an Algebraic Algorithm for Probabilistic Automata</a> for <a href="http://www.stacs-conf.org">STACS'2016</a>.</dd>
+
+		  <dt>16/10/2015</dt>
+		  <dd><a href="Talk/2015-10-16-PhD">PhD defense</a>.</dd>
+
+		  <dt>06/09/2015</dt>
+		  <dd><a href="Talk/2015-09-06-Highlights_Online_Complexity">Online Complexity</a> for <a href="http://highlights-conference.org/">Highlights'2015</a>.</dd>
 	
-		<ul>
-			<li>presentation for Seminarium Teoria Automat&oacute;w, Warsaw, Poland (19/03/2014)</li>
-		</ul>
+		  <dt>15/07/2015</dt>
+		  <dd><a href="Talk/2015-07-15-ICALP_LoCo">Trading Bounds for Memory in Games with Counters</a> for <a href="http://www.kurims.kyoto-u.ac.jp/icalp2015/">ICALP'2015</a>.</dd>
 
-		<br/><li>Deciding the value 1 problem for probabilistic leaktight automata:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractvalue1">Display/Hide the abstract</button>
-			<div id="abstractvalue1" class="collapse">
-				<i>In this talk, I will present some recent work on the value 1 problem for probabilistic automata over finite words: given a probabilistic automaton, 
-				are there words accepted with probability arbitrarily close to 1?
-				<br/>
-				This problem was proved undecidable recently. However, it shows some similarities with another problem, the boundedness problem for distance automata, 
-				which was shown decidable by Hashiguchi in 1982. 
-				Initially derived from a very long and complicated proof, this decidability result has been considerably simplified, the major steps being an algebraic 				algorithm proposed by Leung in 1991 and algebraic techniques developed by Simon in 1990 and 1994. 
-				The decidability result was later extended to nested desert distance automata and conceptually simplified by Kirsten in 2005.
-				<br/>
-				We have transferred the underlying ideas to probabilistic automata. Our main contribution is to introduce a new class of probabilistic automata, called leaktight automata, 					for which the value 1 problem is shown decidable (and PSPACE-complete). We construct an algorithm based on the computation of a monoid 
-				abstracting the behaviors of the automaton, following Leung's algorithm. As in the case of distance automata, the correctness proof relies on the algebraic techniques 					developed by Simon, namely factorization and decomposition trees.
-				</i>
-			</div>
+		  <dt>06/05/2015</dt>
+		  <dd><a href="Talk/2015-05-06-Automatha">Probabilistic Automata</a>, invited talk at <a href=http://automatha.uni-leipzig.de/>AutoMathA</a>.</dd>
 
-		<ul>
-			<li>presentation for the 68NQRT Seminar, Rennes, France (24/01/2013) [<a href="Talk/talk_68NQRT_probabilistic_automata.pdf">PDF</a>]</li>
-			<li>presentation for the conference LICS (Logics in Computer Science), Dubrovnik, Croatia (26/06/2012) [<a href="Talk/talk_lics_2012_leaktight.pdf">PDF</a>]</li>
-			<li>presentation for WATA'2012, Dresden, Germany (31/05/2012) [<a href="Talk/talk_leaktight_wata_2012.pdf">PDF</a>]</li>
-			<li>presentation for Seminarium Teoria Automat&oacute;w, Warsaw, Poland (09/05/2012)</li>
-			<li>presentation for S&eacute;minaire de l'&eacute;quipe Automates et Applications, Paris, France (25/11/2011) [<a href="Talk/talk_leaktight.pdf">PDF</a>]</li>
-		</ul>
-
-	</ul>
-
+		</dl>
 	</div>
-    </div>
-
-    <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#online_complexity" data-parent="#accordion">State Complexity</button>
-    </div>
-
-    <div id="online_complexity" class="panel-collapse collapse">
-	<div class="panel-body">
-
-	<ul>
-
-		<br/><li> Alternating Online Space Complexity: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractonlinealt">Display/Hide the abstract</button>
-			<div id="abstractonlinealt" class="collapse">
-				<i>The notion of online space complexity, introduced by Karp in 1967, quantifies the amount of space required to solve a given problem using an online algorithm,
-				represented by a Turing machine which scans the input exactly once from left to right.
-				We study alternating algorithms as introduced by Chandra, Kozen and Stockmeyer in 1976.
-				<br/>
-				We devise a lower bound technique relying on boundedly generated lattices of languages, and give two applications of this technique.
-				The first is a hierarchy theorem for languages of polynomial alternating online space complexity, 
-				and the second is a linear lower bound on the alternating online space complexity of the prime numbers written in binary.
-				This second result strengthens a result of Hartmanis and Shank from 1968, which implies an exponentially worse lower bound for the same model.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for the Fellows Logic Open, Berkeley, US (03/10/2016)</li>
-			<li>presentation for the Algorithms & Complexity seminar, IRIF, France (14/06/2016)</li>
-		</ul>
-
-		<br/><li>Online Space Complexity: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractonline">Display/Hide the abstract</button>
-			<div id="abstractonline" class="collapse">
-				<i>In this talk, I will speak about the Online Space Complexity of languages, which is an old topic (studied by Karp, Minsky, Hartmanis and others in the 60s) that 
-				I picked up recently.
-				The main question is the following: given a language L, how many states does an automaton need to recognise L, as a function of the input length?
-				This question is well-understood for regular languages, which are those recognised by finite automata, so we go beyond this case and study non-regular languages.
-				This talk will be a gentle introduction to these questions.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for the Verification seminar, Oxford, United Kingdom (20/01/2016) [<a href="Talk/Oxford_Verification_Seminar">HTML5 Flides</a>]</li>
-			<li>presentation for the LSV seminar, Cachan, France (15/12/2015)</li>
-			<li>presentation for the MoVe seminar at LIF, Marseille, France (10/12/2015)</li>
-			<li>presentation for the Méthodes Formelles seminar at LaBRI, Bordeaux, France (08/12/2015)</li>
-		</ul>
-
-		<br/><li>Online Complexity of Probabilistic Languages: 
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstracthighlightsonline">Display/Hide the abstract</button>
-			<div id="abstracthighlightsonline" class="collapse">
-				<i>In his seminal paper introducing probabilistic automata in 1963, Rabin defined a computational question that we call the online complexity problem. 
-				He studied the online complexity of a subclass of probabilistic automata, and made a claim about the general class of probabilistic automata. 
-				Roughly speaking, the claim is that they have a high online complexity, and an example achieving this is attributed to R. E. Stearns, without bibliographical references.
-				<br>
-				In this work, we follow Rabin's ideas and define the online complexity problem in general, i.e. for all languages. Our first step is then to substantiate Rabin's claim: 
-				we prove that indeed, probabilistic automata have the highest possible online complexity. 
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for LFCS'2016 in Deerfield Beach, Miami, Florida, US (06/01/2016) [<a href="Talk/LFCS_Florida">HTML5 Flides</a>]</li>
-			<li>presentation for the Logic and Semantics Seminar in the Theory Group of Cambridge University, United Kingdom (13/11/2015)</li>
-			<li>presentation for Highlights'2015 in Prague, Czech Republic (24/09/2015) [<a href="Talk/Highlights_Online_Complexity">HTML5 Flides</a>]</li>
-		</ul>
-
-	</ul>
-
-	</div>
-    </div>
-
-  <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#games_counters" data-parent="#accordion">Games with Counters</button>
-  </div>
-
-  <div id="games_counters" class="panel-collapse collapse">
-	<div class="panel-body">
-
-	<ul>
-
-		<br/><li>Pushdown Boundedness Games
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractsr">Display/Hide the abstract</button>
-			<div id="abstractsr" class="collapse">
-				<i>The contribution of this work is to show that solving two-player pushdown games equipped with conditions defined by non-deterministic omega B automata is decidable.</i>
-			</div>
-
-		<ul>
-			<li>presentation for SR, New York, US (10/07/2016) [<a href="Talk/SR_Pushdown">HTML5 Flides</a>]</li>
-		</ul>
-
-		<br/><li>The Theory of Regular Cost Functions at No Extra Cost
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractnocost">Display/Hide the abstract</button>
-			<div id="abstractnocost" class="collapse">
-				<i>The theory of regular cost functions aims at constructing algorithms answering boundedness questions. 
-				It has been introduced by Colcombet and developed by several people for over ten years, allowing to reformulate and solve many problems from automata theory and logics.
-				Along with its successes, the theory of regular cost functions suffers from one shortcoming: its combinatorially intricate proofs and constructions.
-				This era is gone! We present one new simple idea, inspired by Mikołaj Bojańczyk, allowing to obtain most of the results without any extra effort.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for GT-ALGA, Marseille, France (11/04/2016) [<a href="Talk/ALGA_Marseille">HTML5 Flides</a>]</li>
-		</ul>
-
-		<br/><li>Boundedness Games
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractcassting">Display/Hide the abstract</button>
-			<div id="abstractcassting" class="collapse">
-				<i>We consider two-player games played over graphs equipped with one or multiple counters. 
-				The term boundedness refers to the idea that one player tries to keep the values of the counters bounded, while the other one tries to make them diverge to infinity. 
-				There are several variants of boundedness games, which appeared in essentially two contexts; either for synthesis, or as a proof object for boundedness logics.
-				<br/>
-				In this talk, I will survey the results that we know, and the unbounded number of questions that remain to be solved!
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for Highlights'2017, London, UK (13/09/2017) [<a href="Talk/London_BoundednessGames">HTML5 Flides</a>]</li>
-			<li>presentation for CASSTING'2016, Eindhoven, Holland (02/04/2016) [<a href="Talk/Cassting">HTML5 Flides</a>]</li>
-		</ul>
-
-		<br/><li>The LoCo Conjecture: Trading Bounds for Memory in Games with Counters:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractloco">Display/Hide the abstract</button>
-			<div id="abstractloco" class="collapse">
-				<i>In this talk, I will consider boundedness games, which are two-player games over graphs equipped with counters, where the first player tries to bound the counter values.
-				<br/>
-				In 2010, Colcombet and Loeding conjectured a finite-memory determinacy result for boundedness games, and showed that this conjecture, 
-				that we call the LoCo conjecture, allows to extend the theory of regular cost functions over infinite trees, and in particular solves a long-standing open problem, 
-				the decidability of the index of the Mostowski hierarchy.
-				<br/>
-				We obtained two results about this conjecture:
-				<ul>
-					<li>it does not hold over finite graphs,</li>
-					<li>it holds over thin tree graphs.</li>
-				</ul>
-				<br/>
-				In this talk, I will present examples, counter-examples and proof ideas of these two results.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for ICALP'2015, Kyoto, Japan (07/07/2015) [<a href="Talk/ICALP_LoCo">HTML5 Flides</a>]</li>
-			<li>presentation for the Seminar at Liverpool University, Liverpool, UK (01/07/2015)</li>
-			<li>presentation for the Seminarium Teoria Automat&oacute;w, Warsaw, Poland (24/06/2015)</li>
-			<li>presentation for the PUMA Seminar at TUM, Munich, Germany (18/06/2015)</li>
-			<li>presentation for the Automata Seminar at LIAFA, Paris, France (17/04/2015)</li>
-			<li>presentation for the Seminar at LACL, Créteil, France (08/06/2015)</li>
-			<li>presentation for the Verification Seminar, Oxford, UK (03/06/2015)</li>
-		</ul>
-
-		<br/><li>Logical Formalisms Expressing Boundedness Properties over Infinite Trees:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractlogicsboundedness">Display/Hide the abstract</button>
-			<div id="abstractlogicsboundedness" class="collapse">
-				<i>Over the last 10 years, different extensions of Monadic Second-Order Logic (MSO) have been introduced and studied that allow to express boundedness properties, 
-				for instance MSO + U (introduced by Mikolaj Bojanczyk) and cost MSO (introduced by Thomas Colcombet). 
-				It turned out to be a fertile area of research, leading to a theory comprising new models of automata, algebraic representations and decidability results. 
-				Although many positive results are known in the case of (finite or infinite) words, extending them to infinite trees seems to be very challenging. 
-				<br/>
-				In this talk, I will survey the recent results in this direction, and focus on our recent result, which is a simulation theorem for alternating B-automata.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for the Reactive Systems group, Saarbr&uuml;cken, Germany (27/01/2014) [<a href="Talk/talk_sarrebruck_2014.pdf">PDF</a>]</li>
-			<li>presentation for the GT Jeux, Paris, France (24/01/2014) [<a href="Talk/talk_gt_jeux_2014.pdf">PDF</a>]</li>
-		</ul>
-
-		<br/><li>Infinite-state games with finitary conditions:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractfinitarygames">Display/Hide the abstract</button>
-			<div id="abstractfinitarygames" class="collapse">
-				<i>We study two-player zero-sum games over infinite-state graphs equipped with omega-B and finitary conditions. 
-				Our first contribution is about the strategy complexity, i.e the memory required for winning strategies: we prove that over general infinite-state graphs, memoryless 					strategies are sufficient for finitary Büchi, and finite-memory suffices for finitary parity games. 
-				<br/>
-				We then study pushdown games with boundedness conditions, with two contributions. First we prove a collapse result for pushdown games with omega-B-conditions, implying the 					decidability of solving these games. Second we consider pushdown games with finitary parity along with stack boundedness conditions, and show that solving these games is 					EXPTIME-complete.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for CSL'2013, Turin, Italy (05/09/2013) [<a href="Talk/talk_csl_2013_chatterjee_fijalkow.pdf">PDF</a>]</li>
-		</ul>
-
-		<br/><li>Boundedness games:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractboundednessgames">Display/Hide the abstract</button>
-			<div id="abstractboundednessgames" class="collapse">
-				<i>In this talk, I will discuss some recent developments about boundedness games, which appear in different contexts, 
-				for instance in the study of regular cost-functions as defined by Thomas Colcombet.
-				<br/>
-				They are two-player games featuring counters that can be incremented, reset of left unchanged, 
-				and where the first player's objective is that the counters remain bounded along the play. 
-				They can be played over finite graphs or infinite graphs, for instance over pushdown graphs. 
-
-				I am interested in the following questions: deciding the winner, proving the existence of finite-memory strategies, and constructing such strategies.	
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for Highlights, Paris, France (19/09/2013) [<a href="Talk/talk_highlights_2013.pdf">PDF</a>]</li>
-			<li>presentation for the S&eacute;minaire de l'Equipe MoVe du Laboratoire d'Informatique Fondamentale, Marseille, France (02/05/2013) 
-			<a href="Talk/talk_boundedness_games_LIF_02052013.pdf">PDF</a>]</li>
-			<li>presentation for the S&eacute;minaire Algorithmique du Laboratoire d'informatique Gaspard-Monge, Marne-la-Vall&eacute;e, France (16/04/2013) 
-			[<a href="Talk/talk_boundedness_games_marne_16042013.pdf">PDF</a>]</li>
-		</ul>
-
-
-		<br/><li>Cost-parity games and Cost-Streett games (Gry parzystosci z licznikami):
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractcostparity">Display/Hide the abstract</button>
-			<div id="abstractcostparity" class="collapse">
-				<i>The starting point of this work is the following observation: 
-				although similar in flavor, parity games and finitary parity games are very different from an algorithmic perspective. 
-				Both are two-player games on graphs whose vertices are labeled by integers. 
-				The parity winning condition states that almost all odd labels are followed by a greater even label. 
-				Parity games have received a lot of attention since they are the model-checking games of the modal mu-calculus and determining the winner in a parity game 
-				is one of the few problems in NP and co-NP, but not known to be in PTIME. 
-				<br/>
-				The finitary parity condition is obtained by additionally requiring a bound on the number of edges traversed between odd labels and the next greater even label. 
-				Quite surprisingly, deciding the winner in a finitary parity game can be carried out in polynomial time.
-				</br>
-				This work generalizes both parity games and finitary parity games by introducing cost-parity games. 
-				In these games traversing an edge comes with a cost and the condition requires a bound on the cost between odd labels and the next greater even label. 
-				We show that cost-parity games enjoy two nice properties of parity and finitary parity games: the first player has memoryless winning strategies, 
-				and determining the winner lies in NP and co-NP (as for parity games). 
-				Furthermore, we show that solving cost-parity games can be algorithmically reduced to solving parity games, 
-				which allows to solve cost-parity games almost as efficiently as parity games.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for FSTTCS'2012, Hyderabad, India (15/12/2012) [<a href="Talk/talk_FSTTCS_2012_cost_parity_games.pdf">PDF</a>]</li>
-			<li>presentation for the annual meeting of Groupe de Travail Jeux, Cachan, France (21/09/2012) [<a href="Talk/talk_gtjeux_2012.pdf">PDF</a>]</li>
-			<li>presentation for GAMES'2012, Naples, Italy (11/09/2012) [<a href="Talk/talk_games_2012.pdf">PDF</a>]</li>
-			<li>presentation for Seminarium Teoria Automat&oacute;w, Warsaw, Poland (20/06/2012)</li>
-		</ul>
-
-	</ul>
-
-	</div>
-    </div>
-
-    <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#games" data-parent="#accordion">Games</button>
-    </div>
-
-    <div id="games" class="panel-collapse collapse">
-	<div class="panel-body">
-
-	<ul>
-
-		<br/><li>Playing Safe:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractplayingsafe">Display/Hide the abstract</button>
-			<div id="abstractplayingsafe" class="collapse">
-				<i>The general question we consider is to characterize the memory size of winning strategies in two-player games.
-				In this talk, I will show that for the special case of safety conditions (aka topologically closed conditions), the minimal number of memory states of a strategy ensuring a 					safety condition is given by the size of the maximal antichain of left quotients with respect to language inclusion.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for FSTTCS'2014, Delhi, India (16/12/2014) [<a href="Talk/talk_FSTTCS_2014_playing_safe.pdf">PDF</a>]</li>
-			<li>presentation for Seminarium Teoria Automat&oacute;w, Warsaw, Poland (01/10/2014)</li>
-		</ul>
-
-		<br/><li>A closer look at Muller and Schupp's techniques:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractmullerschupp">Display/Hide the abstract</button>
-			<div id="abstractmullerschupp" class="collapse">
-				<i>I will present a proof of Positional Determinacy for Parity Games based on ideas by Muller and Schupp, following a "backward approach".
-				In particular, I will explain how this naturally induces a determinization procedure for automata over infinite words.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for the GALE Seminar, Paris, France (13/02/2014)</li>
-		</ul>
-
-		<br/><li>Emptiness of alternating tree automata through games of imperfect information:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractemptiness">Display/Hide the abstract</button>
-			<div id="abstractemptiness" class="collapse">
-				<i>In this talk, I will consider the emptiness problem for alternating tree automata with two different acceptance semantics: classical (all branches are accepted) 
-				and qualitative (almost all branches are accepted).
-				<br/>
-				I will show a new approach to tackle these problems, through games of imperfect information, and argue that this technique provides new answers as well as new questions: 					first, it shows the decidability of the emptiness problem for alternating (Buechi) tree automata with qualitative semantics, and second, it is generic in the sense that 
-				it only relies on a positionality result and decidability of the corresponding imperfect information games.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for FSTTCS'2013, Guwahati, India (13/12/2013)</li>
-			<li>presentation for Seminarium Teoria Automat&oacute;w, Warsaw, Poland (20/03/2013)</li>
-		</ul>
-
-		<br/><li>Exercises in reachability style:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractreachability">Display/Hide the abstract</button>
-			<div id="abstractreachability" class="collapse">
-				<i>Games on graphs provide a natural and powerful model for reactive systems. In this paper, we consider generalized reachability objectives, 
-				defined as conjunctions of reachability objectives. We first prove that deciding the winner in such games is PSPACE-complete, 
-				although it is fixed-parameter tractable with the number of reachability objectives as parameter. 
-				Moreover, we consider the memory requirements for both players and give matching upper and lower bounds on the size of winning strategies. 
-				In order to allow more efficient algorithms, we consider subclasses of generalized reachability games. 
-				We show that bounding the size of the reachability sets gives two natural subclasses where deciding the winner can be done efficiently.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for GASICS' 4th meeting, Paris, France (19/11/2010) [<a href="Talk/talk_gasics_2010.pdf">PDF</a>]</li>
-			<li>presentation for GAMES'2010, Oxford, Great-Britain (20/09/2010) [<a href="Talk/talk_games_2010.pdf">PDF</a>]</li>
-		</ul>
-
-		<br/><li>How much memory is needed to win regular games:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractmemory">Display/Hide the abstract</button>
-			<div id="abstractmemory" class="collapse">
-				<i>Games on graphs provide a natural model for reactive systems.
-				In this talk, we consider games with an external winning condition given by a regular language over finite words.
-				The first player, Eve, tries to ensure that a finite prefix of the play belongs to the language, while the second player, Adam, tries to spoil this objective.
-				Given an external condition described by a regular language, we study the memory required to construct optimal strategies in any arena.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for GAMES'2011, Paris, France (01/09/2011) [<a href="Talk/talk_games_2011.pdf">PDF</a>]</li>
-		</ul>
-
-		<br/><li>Reducing parity games to simple stochastic games:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractreduction">Display/Hide the abstract</button>
-			<div id="abstractreduction" class="collapse">
-				<i>Games on graphs provide a natural model for reactive non-terminating systems. 
-				In such games, the interaction of two players on an arena results in an infinite path that describes a run of the system. 
-				Different settings are used to model various open systems in computer science, as for instance turn-based or concurrent moves, and deterministic or stochastic transitions. 					In this paper, we are interested in turn-based games, and specifically in deterministic parity games and stochastic reachability games 
-				(also known as simple stochastic games). We present a simple, direct and efficient reduction from deterministic parity games to simple stochastic games: 
-				it yields an arena whose size is linear up to a logarithmic factor in size of the original arena.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for GanDALF'2011, Minori, Italy (15/06/2011)</li>
-		</ul>
-
-	</ul>
-
-	</div>
-    </div>
-
-    <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#automata_counters" data-parent="#accordion">Automata with Counters</button>
-    </div>
-
-    <div id="automata_counters" class="panel-collapse collapse">
-	<div class="panel-body">
-
-	<ul>
-
-		<br/><li>Finitary Languages:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractfinitary">Display/Hide the abstract</button>
-			<div id="abstractfinitary" class="collapse">
-				<i>The class of omega-regular languages provides a robust specification language in verification. 
-				Every omega-regular condition can be decomposed into a safety part and a liveness part. 
-				The liveness part ensures that something good happens "eventually". 
-				Finitary liveness was proposed by Alur and Henzinger as a stronger formulation of liveness. 
-				It requires that there exists an unknown, fixed bound b such that something good happens within b transitions. 
-				In this work we consider automata with finitary acceptance conditions defined by finitary Buchi, parity and Streett languages. 
-				We study languages expressible by such automata: we give their topological complexity and present a regular-expression characterization. 
-				We compare the expressive power of finitary automata and give optimal algorithms for classical decisions questions. 
-				We show that the finitary languages are Sigma 2-complete; we present a complete picture of the expressive power of various classes of automata 
-				with finitary and infinitary acceptance conditions; we show that the languages defined by finitary parity automata 
-				exactly characterize the star-free fragment of omega B-regular languages; 
-				and we show that emptiness is NLOGSPACE-complete and universality as well as language inclusion are PSPACE-complete for finitary parity and Streett automata.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for LATA'2011, Tarragona, Spain (30/05/2011) [<a href="Talk/talk_lata_2011.pdf">PDF</a>]</li>
-			<li>presentation for YR'2010 (Young Researchers), affiliated workshop of CONCUR'2010, Paris, France (04/09/2010) [<a href="Talk/talk_yr_2010.pdf">PDF</a>]</li>
-		</ul>
-
-	</ul>
-
-	</div>
-    </div>
-
-  <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#softwares" data-parent="#accordion">Software presentations</button>
-  </div>
-
-  <div id="softwares" class="panel-collapse collapse">
-	<div class="panel-body">
-
-	<ul>
-
-		<br/><li>ACME: Automata with Counters, Monoids and Equivalence:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractacme">Display/Hide the abstract</button>
-			<div id="abstractacme" class="collapse">
-				<i>ACME is a tool implementing algebraic techniques to solve decision problems from automata theory. 
-				The core generic algorithm takes as input an automaton and computes its stabilization monoid, which is a generalization of its transition monoid.
-				<br/>
-				Using the stabilization monoid, one can solve many problems: determine whether a B-automaton (which is a special kind of automata with counters) is limited, 
-				whether two B-automata are equivalent, and whether a probabilistic leaktight automaton has value 1.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation for ATVA, Sydney, Australia (05/11/2014) [<a href="Talk/talk_highlights_2014.pdf">PDF</a>]</li>
-		</ul>
-
-	</ul>
-
-	</div>
-    </div>
-
-    <div class="panel-heading">
-	<button type="button" class="btn btn-default btn-lg" data-toggle="collapse" data-target="#informal" data-parent="#accordion">Others</button>
-    </div>
-
-    <div id="informal" class="panel-collapse collapse">
-	<div class="panel-body">
-
-	<ul>
-
-		<br/><li>PhD Defense: 
-	
-		<ul>
-			<li>presentation at Paris 7, Paris, France (16/10/2015) [<a href="Talk/PhD">HTML5 Flides</a>]</li>
-		</ul>
-
-
-		<br/><li>A non-technical introduction to Games in Computer Science: 
-
-		<ul>
-			<li>presentation at PhD Seminar in Game Theory, Institut Henri Poincar&eacute;, Paris, France (11/05/2015)</li>
-		</ul>
-
-		<br/><li>An introduction to Automata Theory:
-			<button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#abstractautomata">Display/Hide the abstract</button>
-			<div id="abstractautomata" class="collapse">
-				<i>In this talk, I will introduce a simple computational model, called automata. It was introduced around 1950, 
-				and is today both a lively and international research topic and used in industry.
-				From a mathematical point of view, it is very rich: I will show how Algebra, Logics, Topology and Combinatorics each are involved in the study of automata.
-				</i>
-			</div>
-
-		<ul>
-			<li>presentation at Prishtina, Kosovo (01/05/2015)</li>
-		</ul>
-	
-		<br/><li>Games on graphs:
-
-		<ul>
-			<li>presentation for S&eacute;minaire Th&eacute;sards, Paris, France (10/11/2010) [<a href="Talk/talk_seminaire_thesards.pdf">PDF</a>]</li>
-		</ul>
-
-	</ul>
-
-	</div>
-    </div>
-
-  </div>
-
 </div>
 
 

@@ -210,11 +210,11 @@ table {
      opacity: 1;
 }
 
-.flides-on-overview_intermediate #project { 
+.flides-on-overview_intermediate #past { 
      opacity: 1;
 }
 
-.flides-on-overview_intermediate #integration { 
+.flides-on-overview_intermediate #future { 
      opacity: 1;
 }
 

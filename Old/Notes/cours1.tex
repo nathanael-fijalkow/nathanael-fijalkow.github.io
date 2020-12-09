@@ -1,0 +1,293 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{textcomp}
+\usepackage[top=2cm, bottom=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{cancel}
+\usepackage{tikz}
+\usetikzlibrary{shapes,snakes}
+
+\usepackage{array}
+
+%mise en page document
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}[0]{0pt}
+\fancyfoot{}
+\renewcommand{\footrulewidth}[0]{0.00mm}
+\fancyfoot[L]{4TIN919U-Jeux, synthèse et contrôle}
+\fancyfoot[R]{\thepage}
+
+
+\begin{document}
+
+%-------title---------------------------------------
+\begin{center}
+\Large{\textbf{Jeux, synthèse et contrôle}}
+\vskip2em
+Notes par Sarah Larroze
+\end{center}
+
+\section*{Introduction}
+Ce cours s'intéresse à l'apprentissage (Machine learning). Cette notion est liée
+à la complexité, à la logique, à l'algorithmique et à la statistique. Le principe
+de l'apprentissage est de classifier des valeurs d'un domaine $X$ à l'aide d'un
+label set $Y$. La plupart du temps, $Y=\left\{0,1\right\}$. Il existe différents
+types d'apprentissage :
+
+    \paragraph{L'apprentissage supervisé}
+        \begin{tabular}{l c l}
+         Input & : & $\begin{pmatrix}
+                         x_1 \\
+                         y_1 \\
+                     \end{pmatrix}, \dots,
+                         \begin{pmatrix}
+                         x_n \\
+                         y_n \\
+                         \end{pmatrix}$ \\
+        Output & : & $h : X \rightarrow Y$\\
+        \end{tabular}
+
+    On obtient une classification si $Y=\left\{0,1\right\}$ avec 0 qui étiquette
+    les $x\in X$ négatifs et 1 qui étiquette les $x\in X$ positifs. Le but de
+    l'apprentissage supervisé est de généraliser sur des entrées inconnues ce qui
+    a été appris à partir des $\begin{pmatrix}
+                    x_1 \\
+                    y_1 \\
+                \end{pmatrix}, \dots,
+                    \begin{pmatrix}
+                    x_n \\
+                    y_n \\
+                    \end{pmatrix}$.
+
+    \paragraph{L'apprentissage non supervisé}
+        \begin{tabular}{l c l}
+         Input & : & $\begin{pmatrix}
+                         x_1, \dots, x_n \\
+                     \end{pmatrix}$\\
+        Output & : & une partition de $X$ en $k$ classes avec $k \in \mathbb{N}$\\
+        \end{tabular}
+
+
+        Le but de l'apprentissage non supervisé est de partitionner un ensemble
+        d'entrées en fonction de similarités ou différences caractérisant cet
+        ensemble.
+
+    \paragraph{Reinforcement learning (Apprentissage par récompense), noté RL}~\\
+
+        \begin{center}
+        \begin{tikzpicture}
+            \begin{scope}[shape=ellipse,minimum size=1cm]
+                \tikzstyle{every node}=[draw]
+                \node (q_1) at (0,0){Agent};
+                \node (q_2) at (4,0) {Environnement};
+                \end{scope}
+                \draw[->] (q_1) .. controls +(up:1cm) and +(up:1cm) .. node[above] {$a\in Actions$} (q_2);
+                \draw[->] (q_2) .. controls +(down:1cm) and +(down:1cm) .. node[below] {$\mathit{r\acute{e}compense}\in \mathbb{R}$} (q_1);
+        \end{tikzpicture}
+    \end{center}
+
+        L'agent doit apprendre les actions à prendre pour maximiser la récompense
+        en fonction de l'environnement.
+
+    \paragraph{Online learning (Apprentissage au fur et à mesure)} Cet apprentissage
+    correspond à une succession de phases d'apprentissage. Chaque phase d'apprentissage est constituée de la manière suivante : \\
+    \begin{tabular}{l c l}
+     Input & : & $\begin{pmatrix}
+                     x_k \\
+                     y_k \\
+                     \end{pmatrix}, k\in \mathbb{N}$ \\
+    Output & : & $h_k : X \rightarrow Y$\\
+    \end{tabular}
+
+    La fonction $h_k$ retournée pour la phase $k$ doit être meilleure que $h_{k-1}$.
+
+    \section{Apprentissage supervisé}
+    On rappelle que l'apprentissage supervisé est de la forme \begin{tabular}{l c l}
+     Input & : & $\begin{pmatrix}
+                     x_1 \\
+                     y_1 \\
+                 \end{pmatrix}, \dots,
+                     \begin{pmatrix}
+                     x_n \\
+                     y_n \\
+                     \end{pmatrix}$ \\
+    Output & : & $h : X \rightarrow Y$\\
+    \end{tabular}.
+
+    $S$ est appelé le "sample". Soit $\mathcal{H}\subseteq \left\{f : X \rightarrow Y\right\}$ l'ensemble des fonctions de retour acceptées pour l'apprentissage. On considère alors le
+    problème suivant:
+
+    \begin{tabular}{l c l}
+     Input & : & $S = \left\{ (x_i,y_i) \backslash i\in \llbracket 1, \lvert S \rvert  \rrbracket \right\}$ \\
+    Output & : & Trouver $h\in \mathcal{H}$ tq $h\models S$ (i.e $\forall i, h(x_i)=y_i$)\\
+    \end{tabular}
+
+    \paragraph{Définition} Un algorithme apprend $\cal{H}$ si pour tout $S$,
+    l'algorithme retourne $h\models S$ avec $h\in \cal{H}$ ou "il n'existe pas
+    de $h\in \mathcal{H},  h\models S$". De plus, il est efficace s'il est polynomial en la dimension des $x_i$ et le nombre de points et on note
+    $poly(dim(x_i),\lvert S \rvert)$.
+
+    \subsection{Formules conjonctives}
+    Dans cette partie, $X = \left\{0,1 \right\}^n, n\in \mathbb{N}$, $Y = \left\{0,1 \right\}$ et $\mathcal{H} = \left\{\varphi = \bigwedge_{p\in X_1} p \wedge \bigwedge_{p\in X_2} \neg p \right\}$.
+
+    Par exemple, pour $n=2$, $\mathcal{H} = \left\{p_1, p_2, p_1 \wedge p_2,
+    p_1 \wedge \neg p_2, \neg p_1 \wedge p_2, \neg p_1 \wedge \neg p_2 \right\}$.
+
+    On considère le sample $S = \left\{(x_1,y_1),\dots,(x_5,y_5) \right\}$ avec
+    $dim(x_i)=5$ suivant :
+
+    \begin{center}
+        \begin{tabular}{c c c c c c c c c}
+        & $p_1$ & $p_2$ & $p_3$ & $p_4$ & $p_5$ &&&\\
+        $x_1$ & 0 & 1 & 0 & 1 & 1 && 1 & $y_1$ \\
+        $x_2$ & 0 & 1 & 1 & 1 & 0 && 1 & $y_2$ \\
+        $x_3$ & 0 & 1 & 1 & 0 & 1 && 0 & $y_3$ \\
+        $x_4$ & 1 & 0 & 1 & 1 & 0 && 0 & $y_4$ \\
+        $x_5$ & 0 & 0 & 0 & 1 & 1 && 0 & $y_5$ \\
+        \end{tabular}
+    \end{center}
+
+    On veut alors obtenir $\varphi$ tq $x_1 \models \varphi$ et $x_2 \models \varphi$ et $x_3 \not\models \varphi$ et et $x_4 \not\models \varphi$ et $x_5 \not\models \varphi$. L'algorithme utilisé pour trouver une telle formule
+    $\varphi$ est de considérer la conjonction contenant tous les $p_i$ et
+    leur négation. On supprime au fur et à mesure les valeurs des $p_i$ qui
+    empêchent de satisfaire le sample. \`A la fin, si $\varphi \models S$ on
+    retourne $\varphi$, sinon on retourne "il n'existe pas de $\varphi$".
+    \\
+
+    Appliquons cet algorithme que le sample $S$ précédent: \\
+    Initialement, $\varphi = p_1 \wedge \neg p_1 \wedge p_2 \wedge \neg p_2 \wedge p_3 \wedge \neg p_3 \wedge p_4 \wedge \neg p_4 \wedge p_5 \wedge \neg p_5$\\
+    $x_1 \models \varphi$ : $\varphi = \cancel{p_1} \wedge \neg p_1 \wedge p_2 \wedge \cancel{\neg p_2} \wedge \cancel{p_3} \wedge \neg p_3 \wedge p_4 \wedge \cancel{\neg p_4} \wedge p_5 \wedge \cancel{\neg p_5}$\\
+    $x_2 \models \varphi$ : $\varphi = \cancel{p_1} \wedge \neg p_1 \wedge p_2 \wedge \cancel{\neg p_2} \wedge \cancel{p_3} \wedge \cancel{\neg p_3} \wedge p_4 \wedge \cancel{\neg p_4} \cancel{\wedge p_5} \wedge \cancel{\neg p_5}$\\
+    On vérifie ensuite que : $x_3 \not\models \varphi$, $x_4 \not\models \varphi$,
+    $x_5 \not\models \varphi$. C'est bien le cas ici donc on retourne $\varphi = \neg p_1 \wedge p_2 \wedge p_4$.\\
+
+    On note $n=dim(x_i)$, cet algorithme s'effectue en $O(n\lvert S \rvert)$ donc
+    $\mathcal{H}$ est apprenable efficacement.
+
+    \subsection{DNF (Disjonctive normal form)}
+    On va à présent considérer le cas où $\mathcal{H}$ est l'ensemble des formules sous forme normale disjonctive. Par définition, $\varphi$ est sous forme
+    normale disjonctive si $\varphi = \bigvee_{i=1}^k C_i, C_i = \bigwedge_{p\in X_1} p \wedge \bigwedge_{p\in X_2} \neg p$. Dans cette partie, $X = \left\{0,1 \right\}^n, n\in \mathbb{N}$ et $Y = \left\{0,1 \right\}$.
+
+    On reprend l'exemple précédent et on cherche à nouveau à savoir s'il est possible d'obtenir une formule $\varphi$ tq $\varphi \models S$.
+
+    Pour cela, il suffit de prendre :
+    \begin{equation}
+        \varphi = \underbrace{(\neg p_1 \wedge p_2 \wedge \neg p_3 \wedge p_4 \wedge p_5)}_{x_1 \models \varphi}
+                \vee \underbrace{(\neg p_1 \wedge p_2 \wedge p_3 \wedge p_4 \wedge \neg p_5)}_{x_2 \models \varphi}
+    \end{equation}
+
+    On peut donc toujours construire $\varphi$ pour qu'elle ne satisfasse que
+    les entrées à vérifier. Il faut ensuite vérifier qu'il n'y a pas d'incohérence
+    dans le sample (i.e $\not \exists x_i, x_j, i \neq j$ avec $y_i = y_j$).
+    On remarque alors que $\mathcal{H}$ est trivialement apprenable. En revanche,
+    le consistency model ne prend pas en compte la généralisation car il se contente d'apprendre les exemples positifs et ne met donc pas certaines
+    propriétés en avant.
+
+    \subsection{3-DNF}
+    Dans cette section, $\mathcal{H}_3 = {\varphi = C_1 \vee C_2 \vee C_3}$. On
+    s'intéresse au problème de la 3-coloration qui se résume au problème suivant:
+    \\
+
+    \begin{tabular}{ccc}
+    Input & : & $G = (V,E)$ un graphe non-orienté \\
+    Output & : & $\exists c : V \rightarrow \left\{ R,G,B \right\} tq~ \forall e=(u,v)\in E, c(u) \neq c(v)$ \\
+    \end{tabular}
+    \\
+
+    \'Etant donné un graphe $G$, on cherche à construire un sample
+    $S = \left\{(x_i, y_i)\right\}$ tq $G$ est 3-coloriable ssi $\exists \varphi \in \mathcal{H}_3 \backslash \varphi \models S$.
+
+    L'exemple suivant présente un graphe 3-coloriable (voir couleur des sommets)
+    et le sample le représentant. La partie supérieure du sample représente les
+    sommets du graphes et la partie inférieure représente ses arêtes.
+
+    % faire graphe d'exemple
+    \begin{minipage}[c]{0.45\linewidth}
+            \begin{tikzpicture}[scale=1.5]
+                \begin{scope}[shape=circle]
+                    \tikzstyle{every node}=[draw]
+                    \node[fill=red!50!] (1) at (0,0){1};
+                    \node[fill=green!50!] (2) at (2,0){2};
+                    \node[fill=blue!50!] (3) at (2,-2){3};
+                    \node[fill=green!50!] (4) at (0,-2){4};
+                    \node[fill=red!50!] (5) at (2,-4){5};
+                    \end{scope}
+                     \draw (1) edge node[above]{1} (2)
+                       (2) edge node[right]{2} (3)
+                       (1) edge node[right]{3} (3)
+                       (1) edge node[right]{4} (4)
+                       (4) edge node[above]{5} (3)
+                       (3) edge node[right]{6} (5)
+                       (4) edge node[right]{7} (5)
+                       ;
+            \end{tikzpicture}
+        \end{minipage}
+        \hfill
+    % décrire problème
+    \begin{minipage}[c]{0.45\linewidth}
+        \begin{equation*}
+            Sommets \left\{
+        \begin{array}{cccccccc}
+        & p_1 & p_2 & p_3 & p_4 & p_5 && y\\
+        x_1 & 1 & 0 & 0 & 0 & 0 & & 1\\
+        x_2 & 0 & 1 & 0 & 0 & 0 & & 1\\
+        x_3 & 0 & 0 & 1 & 0 & 0 & & 1\\
+        x_4 & 0 & 0 & 0 & 1 & 0 & & 1\\
+        x_5 & 0 & 0 & 0 & 0 & 1 & & 1
+        \end{array} \right.
+        \end{equation*}
+        \begin{equation*}
+        ~~~~Ar\hat{e}tes \left\{
+        \begin{array}{cccccccc}
+        & p_1 & p_2 & p_3 & p_4 & p_5 && y\\
+        x_1 & 1 & 1 & 0 & 0 & 0 & & 0\\
+        x_2 & 0 & 1 & 1 & 0 & 0 & & 0\\
+        x_3 & 1 & 0 & 1 & 0 & 0 & & 0\\
+        x_4 & 1 & 0 & 0 & 1 & 0 & & 0\\
+        x_5 & 0 & 0 & 1 & 1 & 0 & & 0\\
+        x_6 & 1 & 0 & 1 & 0 & 1 & & 0\\
+        x_7 & 1 & 0 & 0 & 1 & 1 & & 0\\
+        \end{array} \right.
+        \end{equation*}
+    \end{minipage}
+
+    Prouvons que pour tout graphe $G$ il est possible de construire un samlple
+    $S = \left\{(x_i, y_i)\right\}$ tq $G$ est 3-coloriable ssi $\exists \varphi \in \mathcal{H}_3 \backslash \varphi \models S$ :
+
+    \begin{itemize}
+        \item Supposons que $G$ est 3-coloriable, construisons alors $\varphi$
+        tq $\varphi \models S$ en illustrant sur l'exemple précédent.
+
+        On construit d'abord une formule représentant la couleur rouge (ici les états 1 et 5) : $C_R = \neg p_2 \wedge \neg p_3 \wedge \neg p_4$. On procède de la même manière pour le
+        vert et le bleu.
+
+        $C_v = \neg p_1 \wedge \neg p_4 \wedge \neg p_5$
+
+        $C_b = \neg p_1 \wedge \neg p_2 \wedge \neg p_4 \wedge \neg p_5$
+
+        On obtient alors $\varphi = C_r \vee C_v \vee C_b$. \`A partir d'un
+        graphe 3-colorié, on peut donc toujours construire $\varphi$ tq
+        $\varphi \models S$.
+
+        \item Supposons maintenant qu'on dispose d'une formule $\varphi = C_r \vee C_v \vee C_b$ tq $\varphi \models S$. Les sommets qui satisfont respectivement $C_r$,
+        $C_v$ ou $C_b$ donnent la 3-coloration de $G$.
+
+    \end{itemize}
+
+
+
+
+
+
+
+
+\end{document}

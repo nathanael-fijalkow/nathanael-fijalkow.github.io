@@ -1,88 +1,529 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Professional webpage of Nathanaël Fijalkow">
+	<meta name="author" content="Nathanaël Fijalkow">
+	<title>Nathanaël Fijalkow</title>
 
-    <meta name="title" content="Nathana&euml;l FIJALKOW"/>
-    <meta name="keywords" content="Nathana&euml;l FIJALKOW, FIJALKOW Nathana&euml;l, Nathana&euml;l, FIJALKOW, Nathanael"/>
-    <meta name="description" content="Nathana&euml;l FIJALKOW"/>
-    <meta name="subject" content="Nathana&euml;l FIJALKOW"/>
-    <meta name="author" content="Nathana&euml;l FIJALKOW"/>
-    <meta name="language" content="EN"/>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <title>Nathana&euml;l Fijalkow</title>
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet"/>    
-
-<!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21235964-5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments)};
-  gtag('js', new Date());
-
-  gtag('config', 'UA-21235964-5');
-</script>
- 
+		@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style>
 </head>
+<body>
 
-<body> 
-
-<div id="nav"></div>
-
-<div id="body" class="container-fluid">
-		<div class="row">
-			<div class="col-md-10">
-				<div id="main"></div>
+	<header>
+		<div class="bg-dark">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-7 py-4">
+						<h2 class="text-white">Nathanaël Fijalkow</h2>
+					</div>
+					<div class="col-sm-4 offset-md-1 py-4">
+						<ul class="list-unstyled">
+							<li><a href="https://games-automata-play.github.io/" class="text-white">Blog: Games automata play</a></li>
+							<li><a href="labri.html" class="text-white">How to find LaBRI and my office</a></li>
+							<li><a href="mailto:nathanael.fijalkow at gmail.com" class="text-white">Email: nathanael.fijalkow at gmail.com</a></li>
+						</ul>		
+						
+						
+					</div>				
+				</div>				
 			</div>
-			<div class="col-md-2">
-				<div id="photo"></div>
+		</div>	
+	</header>
+
+	<main>
+		<section class="py-5 text-center container">
+			<div class="row py-lg-5">
+				<div class="col-lg-4 col-md-4 mx-auto">
+					<h1 class="fw-light">Short bio</h1>
+					<p class="lead text-muted">
+						I am a computer scientist working on games, machine learning, automata, and dynamical systems.
+						I am a full-time (permanent) researcher at CNRS in <a href="http://labri.fr/">LaBRI</a>, Bordeaux (chargé de recherche).
+						I am also a research fellow of <a href="https://turing.ac.uk">The Alan Turing Institute</a> of data science and artificial intelligence in London.
+						I defended my <a href="phd.html">PhD</a> in October 2015.
+					</p>
+					<p class="lead text-muted">
+						Curriculum vitae: <a href="pdf/cv_short.pdf">short</a>, <a href="pdf/cv_fr.pdf">short in French</a>, and <a href="pdf/publications.pdf">full publications list</a>.
+					</p>
+				</div>
+				<div class="col-lg-4 col-md-4 mx-auto">
+					<h1 class="fw-light">Latest</h1>
+					<p class="lead text-muted">
+						I am the principal investigator of the <a href="https://deepsynth.labri.fr/">DeepSynth</a> project (Momentum 2019 -- 2021) whose goal is to combine formal methods and machine learning for program synthesis.
+					</p>
+					<p class="lead text-muted">
+						Check out my research blog <a href="http://games-automata-play.github.io/">Games automata play</a>!
+					</p>
+				</div>
+				<div class="col-lg-4 col-md-4 mx-auto">
+					<img src="img/nath.jpg" width="80%"/> 
+				</div>
+			</div>
+		</section>
+
+
+		<div class="album py-5 bg-light">
+			<div class="container">
+
+				<h1 class="fw-light">Selected research</h1>
+
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+					<div class="col d-flex">
+						<div class="card shadow-sm">
+							<img src="img/program_synthesis.jpeg" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+
+							<h2 class="text-center fw-light">Program synthesis</h2>
+
+							<div class="card-body">
+								<p class="card-text">The conception of computer programs is a complicated, costly, and error-prone task. Program synthesis is an ideal where the program is automatically generated from its specification.
+								</p>
+								<p>
+									I am interested in different instances of program synthesis: programming by example where the specification is given by a set of input and output pairs, and linear temporal logic (LTL) synthesis where the specification is given by a logical formula and describes a non-terminating system.
+								</p>
+
+								<p>
+									<a class="btn btn-link" data-bs-toggle="collapse" href="#program_synthesis" aria-expanded="false" aria-controls="program_synthesis">
+										more
+									</a>
+								</p>
+
+								<div id="program_synthesis" class="collapse">
+									<div class="card card-body">
+										<ul class="list-unstyled">
+											<li>
+												<p>[FMV20] <strong>Assume-Guarantee Synthesis for Prompt Linear Temporal Logic</strong> 
+													<a data-bs-toggle="collapse" href="#abstractFMV20">abstract</a>
+													<a href="https://www.ijcai.org/Proceedings/2020/17" target="_blank">open access link</a>
+													<a href="Talk/2020-04-03-AG_Synthesis_IRIF">slides</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow, Bastien Maubert, and Moshe Y. Vardi
+												</p>
+												<p>
+													<p>
+														International Joint Conference on Artificial Intelligence, IJCAI'20
+													</p>
+													<div id="abstractFMV20" class="collapse">
+														<i>
+															Prompt-LTL extends Linear Temporal Logic with a bounded version of the
+															eventually operator to express temporal requirements such as
+															bounding waiting times.  We study assume-guarantee synthesis for
+															prompt-LTL: the goal is to construct a system such that for all
+															environments satisfying a first prompt-LTL formula (the assumption)
+															the system composed with this environment satisfies a second
+															prompt-LTL formula (the guarantee).  This problem has been open for a
+															decade. We construct an algorithm for solving it and show that, like
+															classical LTL synthesis, it is 2-EXPTIME-complete.
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[FL20] <strong>Tutorial on Machine Learning Guided Program Synthesis</strong> 
+													<a href="https://deepsynth.labri.fr/?page=tutorial" target="_blank">dedicated webpage</a> (includes slides)
+												</p>
+												<p>Nathana&euml;l Fijalkow and Guillaume Lagarde
+												</p>
+												<p>
+													<p>
+														European Conference on Artificial Intelligence, ECAI'20
+													</p>
+													<div id="abstractFMV20" class="collapse">
+														<i>
+															Program synthesis is an ideal where the program is automatically generated from its specification. It has recently gained momentum thanks to the use of machine learning techniques. In this tutorial we will survey the recent line of work using machine learning for improving program search algorithms. 
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[CMFGP20] <strong>Data Generation for Neural Programming by Example</strong> 
+													<a data-bs-toggle="collapse" href="#abstractCMFGP20">abstract</a>
+													<a href="http://proceedings.mlr.press/v108/clymo20a.html" target="_blank">open access link</a>
+													<a href="Talk/2019-04-06-LiVe_DataGeneration_ProgrammingByExample" target="_blank">slides</a>
+												</p>
+												<p>Judith Clymo, Haik Manukian, Nathana&euml;l Fijalkow, Adrià Gascón, and Brooks Paige
+												</p>
+												<p>
+													International Conference on Artificial Intelligence and Statistics, AI&STAT'20
+												</p>
+												<p>
+													<div id="abstractCMFGP20" class="collapse">
+														<i>
+															Programming by example is the problem of synthesizing a program from a small set of input / output pairs. Recent works applying machine learning methods to this task show promise, but are typically reliant on generating synthetic examples for training. A particular challenge lies in generating meaningful sets of inputs and outputs, which well-characterize a given program and accurately demonstrate its behavior. Where examples used for testing are generated by the same method as training data then the performance of a model may be partly reliant on this similarity. In this paper we introduce a novel approach using an SMT solver to synthesize inputs which cover a diverse set of behaviors for a given program. We carry out a case study comparing this method to existing synthetic data generation procedures in the literature, and find that data generated using our approach improves both the discriminatory power of example sets and the ability of trained machine learning models to generalize to unfamiliar data.
+														</i>
+													</div>
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col d-flex">
+						<div class="card shadow-sm">
+							<img src="img/universal_tree.png" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+
+							<h2 class="text-center fw-light">Universal trees and universal graphs for parity games and beyond</h2>
+
+							<div class="card-body">
+								<p class="card-text">Games on graphs is at the intersection of several fields: verification (model-checking games such as parity games), logic and model theory (Ehrenfeucht–Fraïssé games), automata theory (emptiness and acceptance games), reinforcement learning (Markov decision processes), and optimisation (mean payoff and discounted games).
+								</p>
+								<p>We have introduced the notions of universal trees and later universal graphs, giving a unifying perspective on the recent quasipolynomial time algorithms for parity games, showing matching lower bounds, and providing new tools for constructing algorithms beyond parity games.
+								</p>
+								<p>
+									<a class="btn btn-link" data-bs-toggle="collapse" href="#games" aria-expanded="false" aria-controls="program_synthesis">
+										more
+									</a>
+								</p>
+
+								<div id="games" class="collapse">
+									<div class="card card-body">
+										<ul class="list-unstyled">
+
+											<li>
+												<p>[Fij19] <strong>Parity games: the quasipolynomial era</strong> 
+													<a href="Talk/2020-02-26-LondonSchoolEconomics_parity" target="_blank">slides</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow
+												</p>
+												<p>
+												Invited talk for the International Symposium on Games, Automata, Logics, and Formal Verification, GanDALF'19
+												</p>
+											</li>
+
+											<li>
+												<p>[FGO20] <strong>Value iteration using universal graphs and the complexity of mean payoff games</strong> 
+													<a data-bs-toggle="collapse" href="#abstractFGO20">abstract</a>
+													<a href="https://drops.dagstuhl.de/opus/volltexte/2020/12701/" target="_blank">open access link</a>
+													<a href="Talk/2019-02-07-IRISA_Universal_Graphs" target="_blank">slides</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow, Pawe&#322; Gawrychowski, and Pierre Ohlmann
+												</p>
+												<p>
+													Symposium on Mathematical Foundations of Computer Science, MFCS'20
+												</p>
+												<p>
+													<div id="abstractFGO20" class="collapse">
+														<i>
+															We study the computational complexity of solving mean payoff games. This class of games can be seen as an extension of parity games, and they have similar complexity status: in both cases solving them is in NP and in coNP and not known to be in P. In a breakthrough result Calude, Jain, Khoussainov, Li, and Stephan constructed in 2017 a quasipolynomial time algorithm for solving parity games, which was quickly followed by a few other algorithms with the same complexity. Our objective is to investigate how these techniques can be extended to mean payoff games.
+															<br/>
+															<br/>
+															The starting point is the combinatorial notion of universal trees: all quasipolynomial time algorithms for parity games have been shown to exploit universal trees. Universal graphs extend universal trees to arbitrary (positionally determined) objectives.
+															We show that they yield a family of value iteration algorithms for solving mean payoff games which includes the value iteration algorithm due to Brim, Chaloupka, Doyen, Gentilini, and Raskin.
+															<br/>
+															<br/>
+															The contribution of this paper is to prove tight bounds on the complexity of algorithms for mean payoff games using universal graphs.
+															We consider two parameters: the largest weight N in absolute value and the number k of weights.
+															The dependence in N in the existing value iteration algorithm is linear, we show that this can be improved to N^{1 - 1/n} and obtain a matching lower bound.
+															However, we show that we cannot break the linear dependence in the exponent in the number k of weights implying that universal graphs do not yield a quasipolynomial time algorithm for solving mean payoff games.
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[CF19] <strong>Universal graphs and Good for small games automata: New tools for infinite duration games</strong> 
+													<a data-bs-toggle="collapse" href="#abstractCF19">abstract</a>
+													<a href="https://link.springer.com/chapter/10.1007/978-3-030-17127-8_1" target="_blank">open access link</a>
+													<a href="Talk/2018-10-15-ALGA_Parity_games" target="_blank">slides</a>
+												</p>
+												<p>Thomas Colcombet and Nathana&euml;l Fijalkow
+												</p>
+												<p>
+													International Conference on Foundations of Software Science and Computation Structures, FoSSaCS'19 (invited paper)
+												</p>
+												<p>
+													<div id="abstractCF19" class="collapse">
+														<i>
+															In this paper, we give a self contained presentation of a recent breakthrough in the theory of infinite duration games: the existence of a quasipolynomial time algorithm for solving parity games. 
+															We introduce for this purpose two new notions: good for small games automata and universal graphs.
+															<br/>
+															The first object, good for small games automata, induces a generic algorithm for solving games by reduction to safety games. We show that it is in a strong sense equivalent to the second object, universal graphs, which is a combinatorial notion easier to reason with. Our equivalence result is very generic in that it holds for all existential memoryless winning conditions, not only for parity conditions.
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[CDFJLP19] <strong>Universal trees grow inside separating automata: Quasi-polynomial lower bounds for parity games</strong>
+													<a data-bs-toggle="collapse" href="#abstractCDFJLP19">abstract</a>
+													<a href="https://link.springer.com/chapter/10.1007/978-3-030-17127-8_1" target="_blank">open access link</a>
+												</p>
+												<p>Wojciech Czerwi&#324;ski, Laure Daviaud, Nathana&euml;l Fijalkow, Marcin Jurdzi&#324;ski, Ranko Lazi&#263;, and Pawe&#322; Parys
+												</p>
+												<p>
+													Symposium On Discrete Algorithms, SODA'19
+												</p>
+												<p>
+													<div id="abstractCDFJLP19" class="collapse">
+														<i>
+															Several distinct techniques have been proposed to design quasi-polynomial algorithms for solving parity games since the breakthrough result of Calude, Jain, Khoussainov, Li, and Stephan (2017): play summaries, progress measures and register games. We argue that all those techniques can be viewed as instances of the separation approach to solving parity games, a key technical component of which is constructing (explicitly or implicitly) an automaton that separates languages of words encoding plays that are (decisively) won by either of the two players. Our main technical result is a quasi-polynomial lower bound on the size of such separating automata that nearly matches the current best upper bounds. This forms a barrier that all existing approaches must overcome in the ongoing quest for a polynomial-time algorithm for solving parity games. The key and fundamental concept that we introduce and study is a universal ordered tree. The technical highlights are a quasi-polynomial lower bound on the size of universal ordered trees and a proof that every separating safety automaton has a universal tree hidden in its state space.
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[Fij19] <strong>An Optimal Value Iteration Algorithm for Parity Games</strong>
+													<a data-bs-toggle="collapse" href="#abstractFij19">abstract</a>
+													<a href="http://arxiv.org/abs/1801.09618" target="_blank">technical report</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow
+												</p>
+												<p>
+													Technical report (subsumed by SODA'19)
+												</p>
+												<p>
+													<div id="abstractFij19" class="collapse">
+														<i>
+															The quest for a polynomial time algorithm for solving parity games gained momentum in 2017 when two different quasipolynomial time algorithms were constructed. In this paper, we further analyse the second algorithm due to Jurdziński and Lazić and called the succinct progress measure algorithm. It was presented as an improvement over a previous algorithm called the small progress measure algorithm, using a better data structure.
+															The starting point of this paper is the observation that the underlying data structure for both progress measure algorithms are (subgraph-)universal trees. We show that in fact any universal tree gives rise to a value iteration algorithm à la succinct progress measure, and the complexity of the algorithm is proportional to the size of the chosen universal tree. We then show that both algorithms are instances of this generic algorithm for two constructions of universal trees, the first of exponential size (for small progress measure) and the second of quasipolynomial size (for succinct progress measure).
+															The technical result of this paper is to show that the latter construction is asymptotically tight: universal trees have at least quasipolynomial size. This suggests that the succinct progress measure algorithm of Jurdziński and Lazić is in this framework optimal, and that the polynomial time algorithm for parity games is hiding someplace else.
+														</i>
+													</div>
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col d-flex">
+						<div class="card shadow-sm">
+							<img src="img/stochastic.gif" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+
+							<h2 class="text-center fw-light">Stochastic models: learning and control</h2>
+
+							<div class="card-body">
+								<p class="card-text">The study of stochastic models, in particular algorithms for learning and controlling them, spans too many fields of research to be listed. I am interested in models from formal languages such as automata and context-free grammars.
+								</p>
+								<p>Recently we have constructed algorithms for learning (a subclass of) probabilistic context-free grammars, as well as for controlling randomised population protocols.
+								</p>
+								<p>
+									<a class="btn btn-link" data-bs-toggle="collapse" href="#stochastic" aria-expanded="false" aria-controls="program_synthesis">
+										more
+									</a>
+								</p>
+
+								<div id="stochastic" class="collapse">
+									<div class="card card-body">
+										<ul class="list-unstyled">
+											<li>
+												<p>[CF20] <strong>Consistent unsupervised estimators for anchored PCFGs</strong> 
+													<a data-bs-toggle="collapse" href="#abstractCF20">abstract</a>
+													<a href="https://www.mitpressjournals.org/doi/full/10.1162/tacl_a_00323" target="_blank">open access link</a>
+												</p>
+												<p>Alexander Clark and Nathana&euml;l Fijalkow
+												</p>
+												<p>
+													Transactions of the Association for Computational Linguistics, TaCL, 
+													invited for presentation at the Conference on Empirical Methods in Natural Language Processing, EMNLP'20,
+													and for the Society for Computation in Linguistics, SCiL'21
+												</p>
+												<p>
+													<div id="abstractCF20" class="collapse">
+														<i>
+															Learning probabilistic context-free grammars from strings is a classic problem in computational linguistics since Horning (1969). 
+															Here we present an algorithm based on distributional learning that is a consistent estimator for a large class of PCFGs that satisfy certain natural conditions including being anchored (Stratos et al., 2016). We proceed via a reparameterisation of (top-down) PCFGs which we call a bottom-up weighted context-free grammar. We show that if the grammar is anchored and satisfies additional restrictions on its ambiguity, then the parameters can be directly related to distributional properties of the anchoring strings; we show the asymptotic correctness of a naive estimator and present some simulations using synthetic data that show that algorithms based on this approach have good finite sample behaviour.
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[CF020] <strong>Controlling a random population</strong> 
+													<a data-bs-toggle="collapse" href="#abstractCF020">abstract</a>
+													<a href="https://link.springer.com/chapter/10.1007/978-3-030-45231-5_7" target="_blank">open access link</a>
+												</p>
+												<p>Thomas Colcombet, Nathana&euml;l Fijalkow, and Pierre Ohlmann
+												</p>
+												<p>
+													International Conference on Foundations of Software Science and Computation Structures, FoSSaCS'20,
+													and invited for the journal special issue in Logical Methods in Computer Science, LMCS
+												</p>
+												<p>
+													<div id="abstractCF020" class="collapse">
+														<i>
+															Bertrand et al. introduced a model of parameterised systems, where each agent is represented by a finite state system, and studied the following control problem: for any number of agents, does there exist a controller able to bring all agents to a target state? They showed that the problem is decidable and EXPTIME-complete in the adversarial setting, and posed as an open problem the stochastic setting, where the agent is represented by a Markov decision process. In this paper, we show that the stochastic control problem is decidable. Our solution makes significant uses of well quasi orders, of the max-flow min-cut theorem, and of the theory of regular cost functions. 
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[FRW20] <strong>Probabilistic Automata of Bounded Ambiguity</strong>
+													<a data-bs-toggle="collapse" href="#abstractFRW20">abstract</a>
+													<a href="https://hal.archives-ouvertes.fr/hal-02503353/" target="_blank">technical report</a>
+													<a href="Talk/2018-03-13-Warwick_ProbabilisticAmbiguity" target="_blank">slides</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow, Cristian Riveros and James Worrell
+												</p>
+												<p>
+													Published in the journal Information and Computation, special issue on "Weighted Automata",
+													also presented in the conference International Conference on Concurrency Theory, CONCUR'17
+												</p>
+												<p>
+													<div id="abstractFRW20" class="collapse">
+														<i>
+															Probabilistic automata are an extension of nondeterministic finite automata in which transitions are annotated with probabilities. Despite its simplicity, this model is very expressive and many of the associated algorithmic questions are undecidable. In this work we focus on the emptiness problem (and its variant the value problem), which asks whether a given probabilistic automaton accepts some word with probability greater than a given threshold. We consider a natural and well-studied structural restriction on automata, namely the degree of ambiguity, which is defined as the maximum number of accepting runs over all words. The known undecidability proofs exploits infinite ambiguity and so we focus on the case of finitely ambiguous probabilistic automata.
+															<br/>
+															Our main contributions are to construct efficient algorithms for analysing finitely ambiguous probabilistic automata through a reduction to a multi-objective optimisation problem called the stochastic path problem. We obtain a polynomial time algorithm for approximating the value of probabilistic automata of fixed ambiguity and a quasi-polynomial time algorithm for the emptiness problem for 2-ambiguous probabilistic automata.
+															<br/>
+															We complement these positive results by an inapproximability result stating that the value of finitely ambiguous probabilistic automata cannot be approximated unless P = NP.
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[Fij17] <strong>Undecidable problems for probabilistic automata</strong>
+													<a data-bs-toggle="collapse" href="#abstractFij17">abstract</a>
+													<a href="http://siglog.org/download/14th-newsletter-october-2017/?wpdmdl=395" target="_blank">SIGLOG bulletin</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow
+												</p>
+												<p>
+													Automata column in SIGLOG news
+												</p>
+												<p>
+													<div id="abstractFij17" class="collapse">
+														<i>
+															The model of probabilistic automata was introduced by Rabin in 1963. Ever since, undecidability results were obtained for this model, showing that although simple, it is very expressive. This paper provides streamlined constructions implying the most important negative results, including the celebrated inapproximability result of Condon and Lipton.
+														</i>
+													</div>
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col d-flex">
+						<div class="card shadow-sm">
+							<img src="img/dynamical.jpeg" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid slice" focusable="false"></img>
+
+							<h2 class="text-center fw-light">Linear dynamical systems</h2>
+
+							<div class="card-body">
+								<p class="card-text">
+									A dynamical system follows the evolution of a point through repeated applications of a function; the special case of linear dynamical systems is concerned with linear functions, i.e. multiplication by a matrix.
+									Their algorithmic study is deeply intertwined with deep insights from algebraic number theory and geometry, and many very natural problems remain unsolved. 
+								</p>
+								<p>
+									I am particularly interested in invariants for linear dynamical systems, and in related control problems.
+									We have recently constructed algorithms for synthesising semialgebraic and semilinear invariants for linear dynamical systems.
+								</p>
+								<p>
+									<a class="btn btn-link" data-bs-toggle="collapse" href="#dynamical" aria-expanded="false" aria-controls="program_synthesis">
+										more
+									</a>
+								</p>
+
+								<div id="dynamical" class="collapse">
+									<div class="card card-body">
+										<ul class="list-unstyled">
+											<li>
+												<p>[FLOOPW19] <strong>On the Monniaux Problem in Abstract Interpretation</strong> 
+													<a data-bs-toggle="collapse" href="#abstractFLOOPW19">abstract</a>
+													<a href="https://hal.archives-ouvertes.fr/hal-02395773" target="_blank">technical report</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow, Engel Lefaucheux, Pierre Ohlmann, Jo&euml;l Ouaknine, Amaury Pouly, and James Worrell
+												</p>
+												<p>
+												International Static Analysis Symposium, SAS'19
+												</p>
+												<p>
+													<div id="abstractFLOOPW19" class="collapse">
+														<i>
+The Monniaux Problem in abstract interpretation asks, roughly speaking, whether the following question is decidable: given a program P, a safety (e.g., non-reachability) specification phi, and an abstract domain of invariants D, does there exist an inductive invariant I in D guaranteeing that program P meets its specification phi. The Monniaux Problem is of course parameterised by the classes of programs and invariant domains that one considers. In this paper, we show that the Monniaux Problem is undecidable for unguarded affine programs and semilinear invariants (unions of polyhedra). Moreover, we show that decidability is recovered in the important special case of simple linear loops.
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[FOPSW19] <strong>On the Decidability of Reachability in Linear Time-Invariant Systems</strong> 
+													<a data-bs-toggle="collapse" href="#abstractFOPSW19">abstract</a>
+													<a href="https://arxiv.org/abs/1802.06575" target="_blank">technical report link</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow, Jo&euml;l Ouaknine, Amaury Pouly, Jo&atilde;o Sousa-Pinto, and James Worrell
+												</p>
+												<p>
+													International Conference on Hybrid Systems: Computation and Control, HSCC'19
+												</p>
+												<p>
+													<div id="abstractFOPSW19" class="collapse">
+														<i>
+We consider the decidability of state-to-state reachability in linear time-invariant control systems, with control sets defined by boolean combinations of linear inequalities. Decidability of the sub-problem in which control sets are linear subspaces is a fundamental result in control theory. We first show that reachability is undecidable if the set of controls is a finite union of affine subspaces. We then consider two simple subclasses of control sets---unions of two affine subspaces and bounded convex polytopes respectively---and show that in these two cases the reachability problem for LTI systems is as hard as certain longstanding open decision problems concerning linear recurrence sequences. Finally we present some spectral assumptions on the transition matrix of an LTI system under which reachability becomes decidable with bounded convex polytopes as control sets. 
+														</i>
+													</div>
+												</p>
+											</li>
+
+											<li>
+												<p>[FOOPW19] <strong>Complete Semialgebraic Invariant Synthesis for the Kannan-Lipton Orbit Problem</strong>
+													<a data-bs-toggle="collapse" href="#abstractFOOPW19">abstract</a>
+													<a href="https://hal.archives-ouvertes.fr/hal-02503357" target="_blank">technical report</a>
+												</p>
+												<p>Nathana&euml;l Fijalkow, Pierre Ohlmann, Jo&euml;l Ouaknine, Amaury Pouly and James Worrell
+												</p>
+												<p>
+													Theory of Computing Systems (ToCS), special issue by invitation of the Symposium on Theoretical Aspects of Computer Science, STACS'17
+												</p>
+												<p>
+													<div id="abstractFOOPW19" class="collapse">
+														<i>
+The Orbit Problem consists of determining, given a linear transformation A on Q^d, together with vectors x and y, whether the orbit of x under repeated applications of A can ever reach y. This problem was famously shown to be decidable by Kannan and Lipton in the 1980s.
+<br/>
+In this paper, we are concerned with the problem of synthesising suitable invariants P included in R^d, i.e., sets that are stable under A and contain x and not y, thereby providing compact and versatile certificates of non-reachability. 
+We show that whether a given instance of the Orbit Problem admits a semialgebraic invariant is decidable, and moreover in positive instances we provide an algorithm to synthesise suitable invariants of polynomial size.
+<br/>
+Our results imply that the class of closed semialgebraic invariants is closure-complete: there exists a closed semialgebraic invariant if and only if y is not in the topological closure of the orbit of x under A.
+														</i>
+													</div>
+												</p>
+											</li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-</div>
 
-<div id="footer"></div>
+		<section class="py-5 text-center container">
+			<div class="row py-lg-5">
+				<iframe src="https://calendar.google.com/calendar/embed?height=200&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FParis&amp;src=ZDA4MjBydmIzYTJhajh0ZG1qc2RhdWNzNThAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%233F51B5&amp;mode=AGENDA&amp;hl=en_GB&amp;showPrint=0&amp;showTitle=0" style="border-width:0" width="600" height="200" frameborder="0" scrolling="no">
+				</iframe>
+			</div>
+		</section>
+	</main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script>
-$.urlParam = function(name){
-	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-	if(results == null)
-		return "start.html"
-	else if (results[1] == 'start' 
-		|| results[1] == 'pub_year' 
-		|| results[1] == 'pub_topic' 
-		|| results[1] == 'talks' 
-		|| results[1] == 'notes' 
-		|| results[1] == 'run' 
-		|| results[1] == 'reading_group'
-		|| results[1] == 'teaching' 
-		|| results[1] == 'deepsynth' 
-		|| results[1] == 'labri' 
-		|| results[1] == 'phd' 
-		|| results[1] == 'phdopen')
-		return (results[1] + ".html")
-	else
-		return "start.html" ;
-}
-
-$(document).ready(function() {
-    $('#nav').load('nav.html');
-    $('#footer').load('footer.html');
-
-    if($.urlParam("page") != "start.html")
-	$('#main').load($.urlParam("page"))
-    else {
-	$('#main').load('start.html');
-	$('#photo').load('photo.html');
-    }
-});
-</script>
+	<script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

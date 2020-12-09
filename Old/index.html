@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="title" content="Nathana&euml;l FIJALKOW"/>
+    <meta name="keywords" content="Nathana&euml;l FIJALKOW, FIJALKOW Nathana&euml;l, Nathana&euml;l, FIJALKOW, Nathanael"/>
+    <meta name="description" content="Nathana&euml;l FIJALKOW"/>
+    <meta name="subject" content="Nathana&euml;l FIJALKOW"/>
+    <meta name="author" content="Nathana&euml;l FIJALKOW"/>
+    <meta name="language" content="EN"/>
+
+    <title>Nathana&euml;l Fijalkow</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet"/>    
+
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21235964-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'UA-21235964-5');
+</script>
+ 
+</head>
+
+<body> 
+
+<div id="nav"></div>
+
+<div id="body" class="container-fluid">
+		<div class="row">
+			<div class="col-md-10">
+				<div id="main"></div>
+			</div>
+			<div class="col-md-2">
+				<div id="photo"></div>
+			</div>
+		</div>
+</div>
+
+<div id="footer"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if(results == null)
+		return "start.html"
+	else if (results[1] == 'start' 
+		|| results[1] == 'pub_year' 
+		|| results[1] == 'pub_topic' 
+		|| results[1] == 'talks' 
+		|| results[1] == 'notes' 
+		|| results[1] == 'run' 
+		|| results[1] == 'reading_group'
+		|| results[1] == 'teaching' 
+		|| results[1] == 'deepsynth' 
+		|| results[1] == 'labri' 
+		|| results[1] == 'phd' 
+		|| results[1] == 'phdopen')
+		return (results[1] + ".html")
+	else
+		return "start.html" ;
+}
+
+$(document).ready(function() {
+    $('#nav').load('nav.html');
+    $('#footer').load('footer.html');
+
+    if($.urlParam("page") != "start.html")
+	$('#main').load($.urlParam("page"))
+    else {
+	$('#main').load('start.html');
+	$('#photo').load('photo.html');
+    }
+});
+</script>
+
+</body>
+</html>

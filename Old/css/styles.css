@@ -1,0 +1,33 @@
+body { 
+	padding-top: 70px; 
+	padding-bottom: 70px;
+	background-color: #E7E7E7;
+}
+
+.btn {
+    white-space: normal;
+}
+
+/* general */
+
+img {
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #660099;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #25FDE9;
+}
+
+a.anchor {
+    display: block;
+    position: relative;
+    top: -250px;
+    visibility: hidden;
+}
+
